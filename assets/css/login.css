@@ -23,10 +23,11 @@ body {
   height: 100%;
   max-width: 500px;
   max-height: 800px;
-  background-color: #fcfdf6;
+  background-color: rgba(252, 253, 246, 0.9);
   padding: 20px;
   border-radius: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  backdrop-filter: blur(5px);
 }
 .konten .logo {
   width: 34px;
