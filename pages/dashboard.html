@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard | TUKP Data Keeper</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <!-- Pisahkan bagian ini -->
+    <link rel="stylesheet" href="../assets/css/navmenu.css" />
+  </head>
+  <body>
+    <!-- Nav Menu -->
+    <div class="navmenu">
+      <span class="material-symbols-rounded menu-btn">menu</span>
+      <div class="navmenu-content">
+        <div class="logo">
+          <h2>PT. Talan utama karisma perkasa</h2>
+          <img src="../assets/images/logo.svg" alt="Logo" />
+        </div>
+        <div class="links">
+          <a href="#">
+            <div class="link active">
+              <span class="material-symbols-rounded">speed</span>
+              <p>Dashboard</p>
+            </div>
+          </a>
+          <div class="dropdown">
+            <div class="link">
+              <span class="material-symbols-rounded">edit_document</span>
+              <p>Pencatatan</p>
+              <span class="material-symbols-rounded down-icon"
+                >keyboard_arrow_down</span
+              >
+            </div>
+            <div class="drop-menu">
+              <a href="#">Data Pengunjung</a>
+              <a href="#">Data Barang</a>
+              <a href="#">Data Mobil</a>
+            </div>
+          </div>
+          <div class="dropdown">
+            <div class="link">
+              <span class="material-symbols-rounded">description</span>
+              <p>Lihat Data</p>
+              <span class="material-symbols-rounded down-icon"
+                >keyboard_arrow_down</span
+              >
+            </div>
+            <div class="drop-menu">
+              <a href="#">Data Pengunjung</a>
+              <a href="#">Data Barang</a>
+              <a href="#">Data Mobil</a>
+            </div>
+          </div>
+          <!-- Hanya tampilkan jika admin -->
+          <div class="admin-menu show">
+            <a href="#">
+              <div class="link">
+                <span class="material-symbols-rounded">person_add</span>
+                <p>Tambah Pengguna</p>
+              </div>
+            </a>
+            <a href="#">
+              <div class="link">
+                <span class="material-symbols-rounded">notifications</span>
+                <p>Notifikasi</p>
+              </div>
+            </a>
+          </div>
+          <a href="#">
+            <div class="link">
+              <span class="material-symbols-rounded">logout</span>
+              <p>Keluar</p>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    <script src="../assets/js/navmenu.js"></script>
+  </body>
+</html>

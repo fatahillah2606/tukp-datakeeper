@@ -1,0 +1,155 @@
+.navmenu {
+  width: 100px;
+  height: 100vh;
+  background-color: #162a49;
+  padding: 0 20px;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 999;
+  transition: 0.3s ease;
+}
+.navmenu.active {
+  width: 400px;
+}
+.navmenu::-webkit-scrollbar {
+  width: 7px;
+}
+.navmenu::-webkit-scrollbar-track {
+  background: none;
+}
+.navmenu::-webkit-scrollbar-thumb {
+  background-color: #3061b0;
+  border-radius: 10px;
+}
+.navmenu::-webkit-scrollbar-thumb:hover {
+  background-color: #4a79d0;
+}
+.navmenu .navmenu-content {
+  width: 360px;
+  height: auto;
+}
+.menu-btn {
+  position: sticky;
+  top: 15px;
+  right: 15px;
+  padding: 15px;
+  font-size: 30px;
+  color: #fff;
+  background-color: #3061b0;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+.navmenu .logo {
+  margin-top: 50px;
+  margin-bottom: 70px;
+  height: 0;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+.navmenu.active .logo {
+  height: 196px;
+}
+.navmenu .logo img {
+  display: block;
+  margin: auto;
+  width: 70px;
+}
+.navmenu .logo h2 {
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+  text-transform: capitalize;
+  margin-bottom: 30px;
+}
+.navmenu .links .link {
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.navmenu .links a > .link:hover:not(.active) > *,
+.navmenu .links .dropdown:hover:not(.active) > .link > * {
+  color: #74a3ef;
+}
+.navmenu .links .link.active,
+.navmenu .links .dropdown.active > .link {
+  background: none;
+}
+.navmenu.active .links .link.active,
+.navmenu.active .links .dropdown.active > .link {
+  background-color: #3061b0;
+}
+.navmenu .links .link p,
+.navmenu .links .link span {
+  color: #fff;
+  font-size: 20px;
+}
+.navmenu .links .link span {
+  font-size: 30px;
+  padding: 15px;
+  border-radius: 10px;
+}
+.navmenu .links .link.active span {
+  background-color: #3061b0 !important;
+}
+.navmenu .links .link span {
+  margin-right: 40px;
+}
+.navmenu .links > a,
+.navmenu .links .admin-menu > a {
+  display: block;
+  margin-bottom: 10px;
+}
+.navmenu .dropdown {
+  margin-bottom: 10px;
+}
+.navmenu .dropdown .link {
+  position: relative;
+}
+.navmenu .dropdown .link .down-icon {
+  position: absolute;
+  right: 0;
+  margin: 0;
+  transition: 0.3s ease;
+}
+.navmenu .links .dropdown.active > .link .down-icon {
+  transform: rotate(180deg);
+}
+.navmenu .dropdown .drop-menu {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  /* height: 120px; */
+  height: 0;
+  transition: 0.3s ease;
+}
+.navmenu .dropdown.active .drop-menu {
+  height: 120px;
+}
+.navmenu .dropdown .drop-menu::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 30px;
+  width: 2px;
+  height: 85%;
+  background-color: #74a3ef;
+}
+.navmenu .dropdown .drop-menu a {
+  color: #fff;
+  padding: 10px;
+  margin-left: 55px;
+}
+.navmenu .dropdown .drop-menu a:hover {
+  color: #74a3ef;
+}
+.admin-menu {
+  display: none;
+}
+.admin-menu.show {
+  display: block;
+}
