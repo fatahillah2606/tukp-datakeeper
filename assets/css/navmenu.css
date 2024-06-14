@@ -130,7 +130,7 @@
   height: 120px;
 }
 .navmenu .dropdown .drop-menu::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
