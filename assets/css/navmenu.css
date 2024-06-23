@@ -114,11 +114,11 @@
   height: 120px;
 }
 .navmenu .dropdown .drop-menu::before {
-  content: "";
+  content: '';
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 30px;
+  left: 20px;
   width: 2px;
   height: 85%;
   background-color: #74a3ef;
@@ -126,9 +126,13 @@
 .navmenu .dropdown .drop-menu a {
   color: #fff;
   padding: 10px;
-  margin-left: 55px;
+  margin-left: 40px;
+  border-radius: 10px;
 }
-.navmenu .dropdown .drop-menu a:hover {
+.navmenu .dropdown .drop-menu a.active {
+  background-color: #3061b0;
+}
+.navmenu .dropdown .drop-menu a:hover:not(.active) {
   color: #74a3ef;
 }
 .admin-menu {

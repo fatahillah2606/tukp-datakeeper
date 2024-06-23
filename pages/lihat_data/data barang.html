@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <!-- iconss -->
+    <link
+      href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+    <!-- My CSS -->
+    <link
+      rel="stylesheet"
+      href="../../assets/css/style.css"
+    />
+    <!-- Pisahkan bagian ini -->
+    <link
+      rel="stylesheet"
+      href="../../assets/css/navmenu.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../../assets/css/databrg.css"
+    />
+
+    <title>Admin</title>
+  </head>
+  <!-- Nav Menu -->
+  <body>
+    <div class="container">
+      <div class="navmenu">
+        <div class="navmenu-content">
+          <div class="links">
+            <a href="../dashboard.html">
+              <div class="link">
+                <span class="material-symbols-rounded">dashboard</span>
+                <p>Dashboard</p>
+              </div>
+            </a>
+            <div class="dropdown">
+              <div class="link active">
+                <span class="material-symbols-rounded">edit_document</span>
+                <p>Pencatatan</p>
+                <span class="material-symbols-rounded down-icon">keyboard_arrow_down</span>
+              </div>
+              <div class="drop-menu">
+                <a href="data pengunjung.html">Catat Pengunjung</a>
+                <a
+                  href="data barang.html"
+                  class="active"
+                  >Catat Barang</a
+                >
+                <a href="data mobil.html">Catat Mobil</a>
+              </div>
+            </div>
+            <div class="dropdown">
+              <div class="link">
+                <span class="material-symbols-rounded">description</span>
+                <p>Lihat Data</p>
+                <span class="material-symbols-rounded down-icon">keyboard_arrow_down</span>
+              </div>
+              <div class="drop-menu">
+                <a href="data pengunjung.html">Lihat Pengunjung</a>
+                <a href="#">Lihat Barang</a>
+                <a href="data mobil.html">Lihat Mobil</a>
+              </div>
+            </div>
+            <!-- Hanya tampilkan jika admin -->
+            <div class="admin-menu show">
+              <a href="#">
+                <div class="link">
+                  <span class="material-symbols-rounded">person_add</span>
+                  <p>Tambah Pengguna</p>
+                </div>
+              </a>
+              <a href="#">
+                <div class="link">
+                  <span class="material-symbols-rounded">notifications</span>
+                  <p>Notifikasi</p>
+                </div>
+              </a>
+            </div>
+            <a href="#">
+              <div class="link">
+                <span class="material-symbols-rounded">logout</span>
+                <p>Keluar</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Konten -->
+      <div class="konten">
+        <!-- navbar -->
+        <div class="navbar">
+          <span class="material-symbols-rounded menu-btn">menu</span>
+          <!-- Logo -->
+          <div class="logo">
+            <img
+              src="../../assets/images/logo.svg"
+              alt="Logo"
+            />
+            <p>TUKP Data Keeper</p>
+          </div>
+        </div>
+        <!-- CONTENT -->
+        <section id="content">
+          <!-- MAIN -->
+          <main>
+            <div class="head-title">
+              <div class="left">
+                <h1>Data Barang</h1>
+                <ul class="breadcrumb">
+                  <li>
+                    <a href="dashboard.html">Home</a>
+                  </li>
+                  <li><i class="bx bx-chevron-right"></i></li>
+                  <li></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="table-data">
+              <div class="order">
+                <div class="head">
+                  <i class="bx bx-search"></i>
+                  <i class="bx bx-filter"></i>
+                </div>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>Nama barang</th>
+                      <th>Date</th>
+                      <th>Jumlah</th>
+                      <th>Nama pembawa</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <img src="hutao.png" />
+                        <p>dzaki</p>
+                      </td>
+                      <td>07-12-2023</td>
+                      <td>
+                        <!-- <span onclick="openlihatModal()" class="status update"
+                      >lihat</span
+                    > -->
+                      </td>
+                      <td>
+                        <!-- <span class="status update" onclick="openUpdateModal()"
+                      >Update</span
+                    > -->
+                      </td>
+                      <td>
+                        <span class="status update">Update</span>
+                        <span class="status delete">Delete</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img src="hutao.png" />
+                        <p>fatah</p>
+                      </td>
+                      <td>07-12-2023</td>
+                      <td>
+                        <!-- <span class="status update" onclick="openlihatModal()"
+                      >lihat</span
+                    > -->
+                      </td>
+                      <td>
+                        <!-- <span class="status update" onclick="openUpdateModal()"
+                      >Update</span
+                    > -->
+                      </td>
+                      <td>
+                        <span class="status update">Update</span>
+                        <span class="status delete">Delete</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <img src="hutao.png" />
+                        <p>AL</p>
+                      </td>
+                      <td>07-12-2023</td>
+                      <td>
+                        <!-- <span class="status update" onclick="openlihatModal()"
+                      >lihat</span
+                    > -->
+                      </td>
+                      <td>
+                        <!-- <span class="status update" onclick="openUpdateModal()"
+                      >Update</span
+                    > -->
+                      </td>
+                      <td>
+                        <span class="status update">Update</span>
+                        <span class="status delete">Dalate</span>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </main>
+          <!-- MAIN -->
+        </section>
+        <!-- Modal edit keluhan -->
+        <div class="updateModal">
+          <div
+            class="container"
+            id="editKeluhan"
+          >
+            <span class="close-btn">&times;</span>
+            <h1>Halaman keluhan</h1>
+            <form
+              action="#"
+              class="form"
+            >
+              <div class="input-box">
+                <label for="">Full name</label>
+                <input
+                  type="text"
+                  placeholder="Enter Full Name"
+                  required
+                />
+              </div>
+
+              <div class="column">
+                <div class="input-box">
+                  <label for="">Your Age</label>
+                  <input
+                    type="text"
+                    placeholder="Enter Your Age"
+                    required
+                  />
+                </div>
+
+                <div class="input-box">
+                  <label for="">Date</label>
+                  <input
+                    type="Date"
+                    placeholder="Enter Full Name"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="gender-box">
+                <h3>Gender</h3>
+                <div class="gender-option">
+                  <div class="gender">
+                    <input
+                      type="radio"
+                      id="check-laki"
+                      name="gender"
+                    />
+                    <label for="check">Laki-laki</label>
+                  </div>
+
+                  <div class="gender">
+                    <input
+                      type="radio"
+                      id="check-perempuan"
+                      name="gender"
+                    />
+                    <label for="check">Perempuan</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-box">
+                <label for="">Tindakan</label>
+                <input
+                  type="text"
+                  placeholder="Enter Your Tindakan"
+                  required
+                />
+              </div>
+
+              <div class="input-box">
+                <label for="">Saran obat</label>
+                <input
+                  type="text"
+                  placeholder=" Masukan saran obat"
+                  required
+                />
+              </div>
+
+              <button
+                type="submit"
+                id="submit"
+              >
+                Simpan
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- modal -->
+        <!-- Lihat Modal -->
+        <div
+          class="modal keluhan"
+          id="editModal"
+        >
+          <div class="modal-content">
+            <span
+              class="close-btn"
+              onclick="closeModal()"
+              >&times;</span
+            >
+            <h2>Data keluhan pasien</h2>
+
+            <div class="tgl">
+              <h3>Nama pasien</h3>
+              <p>reza</p>
+            </div>
+
+            <div class="tgl">
+              <h3>umur</h3>
+              <p>23</p>
+            </div>
+
+            <div class="tgl">
+              <h3>Tanggal keluhan</h3>
+              <p>12/12/2023</p>
+            </div>
+
+            <div class="tgl">
+              <h3>Gender</h3>
+              <p>Laki-laki</p>
+            </div>
+
+            <div class="tgl">
+              <h3>Alamat</h3>
+              <p>sepatan</p>
+            </div>
+
+            <div class="tgl">
+              <h3>keluhan pasien</h3>
+              <p>mic selalu ga active</p>
+            </div>
+
+            <div class="status">
+              <h3>Status</h3>
+              <p>pending</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONTENT -->
+      </div>
+    </div>
+    <script src="../../assets/js/navmenu.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
