@@ -1,9 +1,10 @@
-/* Navbar */
-.navbar {
-  width: 100%;
-  height: 50px;
-  background-color: #162a49;
+/* Container */
+.container {
+  display: flex;
+  height: 100vh;
+  transition: all 0.3s ease;
 }
+/* Navmenu */
 .navmenu {
   width: 70px;
   height: 100vh;
@@ -39,19 +40,7 @@
 .navmenu.active .navmenu-content {
   width: 240px;
 }
-/* tombol buka menu */
-.menu-btn {
-  position: absolute;
-  top: 15px;
-  right: -50px;
-  padding: 10px;
-  font-size: 20px;
-  color: #fff;
-  background-color: #3061b0;
-  border-radius: 10px;
-  cursor: pointer;
-  z-index: 10;
-}
+
 /* Links */
 .navmenu .links .link {
   display: flex;
@@ -147,4 +136,41 @@
 }
 .admin-menu.show {
   display: block;
+}
+/* Konten */
+.konten {
+  flex: 1;
+  transition: margin-left 0.3s ease;
+}
+/* Navmenu */
+.navbar {
+  width: 100%;
+  height: auto;
+  padding: 15px 10px;
+  background-color: #162a49;
+  display: flex;
+  align-items: center;
+}
+.navbar > * {
+  margin: 0 10px;
+}
+/* tombol buka menu */
+.navbar .menu-btn {
+  font-size: 30px;
+  color: #fff;
+  border-radius: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+.navbar .logo {
+  display: flex;
+  align-items: center;
+}
+.navbar .logo img {
+  width: 25px;
+  margin-right: 10px;
+}
+.navbar .logo p {
+  color: #fff;
+  font-weight: bold;
 }
