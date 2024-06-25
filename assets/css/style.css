@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
 * {
   margin: 0;
@@ -6,4 +6,188 @@
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Inter", sans-serif;
+}
+.main-content {
+  width: 100%;
+  height: calc(100vh - 70px);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+/* Header */
+.header {
+  width: 90%;
+  max-width: 800px;
+  height: auto;
+  display: block;
+  margin: 30px auto;
+}
+.header h1 {
+  font-size: 40px;
+  font-family: "Lato", sans-serif;
+  font-weight: normal;
+}
+.header h1.nama {
+  font-size: 50px;
+  background: linear-gradient(
+    90deg,
+    #328e3d,
+    #dcba2b,
+    #328e3d,
+    #dcba2b,
+    #328e3d,
+    #dcba2b,
+    #328e3d
+  );
+  background-size: 500%;
+  background-position: left;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: relative;
+  display: inline-block;
+  animation: gradient 2.7s ease;
+}
+.header h1.nama::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #fff 20%);
+  animation: fadeout 1s ease-in;
+}
+/* Animasi Header */
+@keyframes gradient {
+  from {
+    background-position: right;
+  }
+  to {
+    background-position: left;
+  }
+}
+@keyframes fadeout {
+  from {
+    left: -100%;
+  }
+  to {
+    left: 100%;
+  }
+}
+.header h1:nth-child(2) {
+  color: #747d8c;
+  animation: fadein 1s ease;
+}
+/* Header Menu */
+.header .tombol .pilihan-1 {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 30px;
+  animation: fadein 1s ease;
+  margin-top: 30px;
+}
+.header .tombol .pilihan-1 .tmbl {
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+  background-color: #f1f2f6;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+.header .tombol .pilihan-1 .tmbl span {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  font-size: 20px;
+  padding: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+.header .tombol .pilihan-1 .tmbl:hover {
+  background-color: #dfe4ea;
+}
+/* Tabel */
+.tabel {
+  width: 95%;
+  max-width: 1366px;
+  height: auto;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  display: block;
+  margin: auto;
+  padding: 30px;
+  border-radius: 20px;
+  background-color: #f1f2f6;
+  animation: fadein 1s ease;
+}
+.tabel .head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.tabel .head h2 {
+  font-family: "Open Sans", sans-serif;
+  font-weight: normal;
+}
+.tabel .head .bar-cari {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  /* width: 327px; */
+  width: 44px;
+  height: auto;
+  border-radius: 50px;
+  background-color: #fff;
+}
+.tabel .head .bar-cari span {
+  margin: 10px;
+  cursor: pointer;
+}
+.tabel .head .bar-cari input {
+  font-size: 17px;
+  padding: 7px 10px;
+  border: none;
+  background: none;
+  outline: none;
+}
+.tabel table {
+  width: 100%;
+  height: auto;
+  border-collapse: collapse;
+}
+.tabel table tr th,
+.tabel table tr td {
+  padding: 10px 0;
+  text-align: center;
+}
+.tabel table thead {
+  border-bottom: 1px solid #ced6e0;
+}
+.tabel table tr td button {
+  margin: 0 3px;
+  height: auto;
+  padding: 7px 10px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+}
+.tabel table tr td button:nth-child(1) {
+  background-color: #3867d6;
+}
+.tabel table tr td button:nth-child(2) {
+  background-color: #eb3b5a;
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

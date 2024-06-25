@@ -2,31 +2,23 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard | TUKP Data Keeper</title>
-    <link
-      rel="stylesheet"
-      href="../assets/css/style.css"
-    />
-    <link
-      rel="stylesheet"
-      href="../assets/css/style.css"
-    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+    <link rel="stylesheet" href="../assets/css/style.css" />
     <!-- Pisahkan bagian ini -->
-    <link
-      rel="stylesheet"
-      href="../assets/css/navmenu.css"
-    />
+    <link rel="stylesheet" href="../assets/css/navmenu.css" />
   </head>
   <body>
+    <!-- Container -->
     <div class="container">
       <!-- Nav Menu -->
       <div class="navmenu">
         <div class="navmenu-content">
           <div class="links">
+            <div class="link">
+              <span class="material-symbols-rounded menu-btn">menu</span>
+            </div>
             <a href="#">
               <div class="link active">
                 <span class="material-symbols-rounded">dashboard</span>
@@ -37,7 +29,9 @@
               <div class="link">
                 <span class="material-symbols-rounded">edit_document</span>
                 <p>Pencatatan</p>
-                <span class="material-symbols-rounded down-icon">keyboard_arrow_down</span>
+                <span class="material-symbols-rounded down-icon"
+                  >keyboard_arrow_down</span
+                >
               </div>
               <div class="drop-menu">
                 <a href="#">Catat Pengunjung</a>
@@ -49,7 +43,9 @@
               <div class="link">
                 <span class="material-symbols-rounded">description</span>
                 <p>Lihat Data</p>
-                <span class="material-symbols-rounded down-icon">keyboard_arrow_down</span>
+                <span class="material-symbols-rounded down-icon"
+                  >keyboard_arrow_down</span
+                >
               </div>
               <div class="drop-menu">
                 <a href="lihat_data/data pengunjung.html">Lihat Pengunjung</a>
@@ -81,121 +77,133 @@
           </div>
         </div>
       </div>
+      <!-- End Nav Menu -->
       <!-- Konten -->
       <div class="konten">
-        <!-- navbar -->
+        <!-- Navbar -->
         <div class="navbar">
-          <span class="material-symbols-rounded menu-btn">menu</span>
-          <!-- Logo -->
           <div class="logo">
-            <img
-              src="../assets/images/logo.svg"
-              alt="Logo"
-            />
+            <img src="../assets/images/logo.svg" alt="Logo" />
             <p>TUKP Data Keeper</p>
           </div>
+          <div class="profile">
+            <span class="material-symbols-rounded">person</span>
+            <img
+              src="https://unsplash.com/photos/mEZ3PoFGs_k/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzE5MzE5NDg4fA&force=true&w=640"
+              alt=""
+            />
+          </div>
         </div>
-        <!-- header -->
-        <div class="header">
-          <h1 class="nama">Selamat Datang, <span>Al Aziz</span></h1>
-          <h1>Mau Apa Kamu Hari Ini?</h1>
-          <div class="tombol">
-            <div class="pilihan-1">
-              <div class="tmbl">
-                <p>Pencatatan</p>
-                <span class="material-symbols-rounded">edit_document</span>
-              </div>
-              <div class="tmbl">
-                <p>Lihat Data</p>
-                <span class="material-symbols-rounded">description</span>
+        <!-- End Navbar -->
+        <!-- Main Content -->
+        <div class="main-content">
+          <!-- header -->
+          <div class="header">
+            <h1 class="nama">Selamat datang, <span id="nama">Al Aziz</span></h1>
+            <h1>Mau apa kamu hari ini?</h1>
+            <div class="tombol">
+              <div class="pilihan-1">
+                <div class="tmbl">
+                  <p>Pencatatan</p>
+                  <span class="material-symbols-rounded">edit_document</span>
+                </div>
+                <div class="tmbl">
+                  <p>Lihat Data</p>
+                  <span class="material-symbols-rounded">description</span>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <!-- tabel -->
-        <div class="tabel">
-          <div class="head">
-            <h2>Data Barang</h2>
-            <div class="bar-cari">
-              <span class="material-symbols-rounded">search</span>
-              <input
-                type="text"
-                placeholder="cari"
-              />
+          <!-- End Header -->
+          <!-- tabel -->
+          <div class="tabel">
+            <div class="head">
+              <div class="teks">
+                <h2>Data Barang</h2>
+                <p>Berikut sekilas catatan hari ini</p>
+              </div>
+              <div class="bar-cari">
+                <span class="material-symbols-rounded">search</span>
+                <input type="text" placeholder="Cari ..." />
+              </div>
             </div>
+            <table>
+              <thead>
+                <tr>
+                  <th>Tanggal</th>
+                  <th>Nama Pembawa</th>
+                  <th>Nama Barang</th>
+                  <th>Jumlah Barang</th>
+                  <th>Paraf</th>
+                  <th>Ubah Data</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>27 Januari 2027</td>
+                  <td>Sofian</td>
+                  <td>Narkoba</td>
+                  <td>20pcs</td>
+                  <td>v</td>
+                  <td>
+                    <button>Edit</button>
+                    <button>Hapus</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>27 Januari 2027</td>
+                  <td>Sofian</td>
+                  <td>Narkoba</td>
+                  <td>20pcs</td>
+                  <td>v</td>
+                  <td>
+                    <button>Edit</button>
+                    <button>Hapus</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>27 Januari 2027</td>
+                  <td>Sofian</td>
+                  <td>Narkoba</td>
+                  <td>20pcs</td>
+                  <td>v</td>
+                  <td>
+                    <button>Edit</button>
+                    <button>Hapus</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>27 Januari 2027</td>
+                  <td>Sofian</td>
+                  <td>Narkoba</td>
+                  <td>20pcs</td>
+                  <td>v</td>
+                  <td>
+                    <button>Edit</button>
+                    <button>Hapus</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>27 Januari 2027</td>
+                  <td>Sofian</td>
+                  <td>Narkoba</td>
+                  <td>20pcs</td>
+                  <td>v</td>
+                  <td>
+                    <button>Edit</button>
+                    <button>Hapus</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-          <table>
-            <thead>
-              <tr>
-                <th>Tanggal</th>
-                <th>Nama Pembawa</th>
-                <th>Nama Barang</th>
-                <th>Jumlah Barang</th>
-                <th>Paraf</th>
-                <th>Ubah Data</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>27 Januari 2027</td>
-                <td>Sofian</td>
-                <td>Narkoba</td>
-                <td>20pcs</td>
-                <td>v</td>
-                <td>
-                  <button>Edit</button>
-                  <button>Hapus</button>
-                </td>
-              </tr>
-              <tr>
-                <td>27 Januari 2027</td>
-                <td>Sofian</td>
-                <td>Narkoba</td>
-                <td>20pcs</td>
-                <td>v</td>
-                <td>
-                  <button>Edit</button>
-                  <button>Hapus</button>
-                </td>
-              </tr>
-              <tr>
-                <td>27 Januari 2027</td>
-                <td>Sofian</td>
-                <td>Narkoba</td>
-                <td>20pcs</td>
-                <td>v</td>
-                <td>
-                  <button>Edit</button>
-                  <button>Hapus</button>
-                </td>
-              </tr>
-              <tr>
-                <td>27 Januari 2027</td>
-                <td>Sofian</td>
-                <td>Narkoba</td>
-                <td>20pcs</td>
-                <td>v</td>
-                <td>
-                  <button>Edit</button>
-                  <button>Hapus</button>
-                </td>
-              </tr>
-              <tr>
-                <td>27 Januari 2027</td>
-                <td>Sofian</td>
-                <td>Narkoba</td>
-                <td>20pcs</td>
-                <td>v</td>
-                <td>
-                  <button>Edit</button>
-                  <button>Hapus</button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+          <!-- End Tabel -->
         </div>
+        <!-- End Main Content -->
       </div>
+      <!-- End Konten -->
     </div>
+    <!-- End Container -->
     <script src="../assets/js/navmenu.js"></script>
   </body>
 </html>
