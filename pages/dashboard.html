@@ -10,9 +10,8 @@
     <link rel="stylesheet" href="../assets/css/navmenu.css" />
   </head>
   <body>
-    <!-- Container -->
     <div class="container">
-      <!-- Nav Menu -->
+      <!-- Navbar -->
       <div class="navmenu">
         <div class="navmenu-content">
           <div class="links">
@@ -77,10 +76,8 @@
           </div>
         </div>
       </div>
-      <!-- End Nav Menu -->
       <!-- Konten -->
       <div class="konten">
-        <!-- Navbar -->
         <div class="navbar">
           <div class="logo">
             <img src="../assets/images/logo.svg" alt="Logo" />
@@ -88,10 +85,31 @@
           </div>
           <div class="profile">
             <span class="material-symbols-rounded">person</span>
+            <img src="../assets/images/profile.jpeg" alt="" />
+          </div>
+          <!-- Profile menu -->
+          <div class="profile-menu">
+            <span class="material-symbols-rounded close-pf-menu">close</span>
+            <p class="user-id">0123456789 / email@email.com</p>
             <img
-              src="https://unsplash.com/photos/mEZ3PoFGs_k/download?ixid=M3wxMjA3fDB8MXxhbGx8fHx8fHx8fHwxNzE5MzE5NDg4fA&force=true&w=640"
-              alt=""
+              src="../assets/images/profile.jpeg"
+              alt="User"
+              class="user-image"
             />
+            <p class="nama">Halo, <span>Al Aziz</span></p>
+            <a href="">
+              <div class="tombol">
+                <span class="material-symbols-rounded">logout</span>
+                <p>Keluar</p>
+              </div>
+            </a>
+            <div class="tombol">
+              <span class="material-symbols-rounded">dark_mode</span>
+              <p>Mode Gelap</p>
+              <div class="saklar">
+                <span class="material-symbols-rounded">check</span>
+              </div>
+            </div>
           </div>
         </div>
         <!-- End Navbar -->
@@ -123,75 +141,216 @@
                 <p>Berikut sekilas catatan hari ini</p>
               </div>
               <div class="bar-cari">
-                <span class="material-symbols-rounded">search</span>
-                <input type="text" placeholder="Cari ..." />
+                <label for="cari" class="material-symbols-rounded"
+                  >search</label
+                >
+                <input
+                  type="text"
+                  id="cari"
+                  name="cari"
+                  placeholder="Cari ..."
+                />
               </div>
             </div>
             <table>
               <thead>
                 <tr>
+                  <th>No</th>
                   <th>Tanggal</th>
                   <th>Nama Pembawa</th>
-                  <th>Nama Barang</th>
-                  <th>Jumlah Barang</th>
-                  <th>Paraf</th>
+                  <th>Nama & Jumlah barang</th>
                   <th>Ubah Data</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
+                  <td>1</td>
                   <td>27 Januari 2027</td>
                   <td>Sofian</td>
-                  <td>Narkoba</td>
-                  <td>20pcs</td>
-                  <td>v</td>
-                  <td>
-                    <button>Edit</button>
+                  <td class="list">
+                    <ul>
+                      <li>Narkoba, 24kg</li>
+                      <li>Ganja, 24kg</li>
+                      <li>Sabu, 24kg</li>
+                    </ul>
+                  </td>
+                  <td class="buttons">
                     <button>Hapus</button>
+                    <button>
+                      <span class="material-symbols-rounded">edit</span>
+                      <span>Edit</span>
+                    </button>
                   </td>
                 </tr>
                 <tr>
+                  <td>2</td>
                   <td>27 Januari 2027</td>
-                  <td>Sofian</td>
-                  <td>Narkoba</td>
-                  <td>20pcs</td>
-                  <td>v</td>
-                  <td>
-                    <button>Edit</button>
+                  <td>Al Aziz</td>
+                  <td class="list">
+                    <ul>
+                      <li>Narkoba, 24kg</li>
+                      <li>Ganja, 24kg</li>
+                      <li>Sabu, 24kg</li>
+                    </ul>
+                  </td>
+                  <td class="buttons">
                     <button>Hapus</button>
+                    <button>
+                      <span class="material-symbols-rounded">edit</span>
+                      <span>Edit</span>
+                    </button>
                   </td>
                 </tr>
                 <tr>
+                  <td>3</td>
                   <td>27 Januari 2027</td>
-                  <td>Sofian</td>
-                  <td>Narkoba</td>
-                  <td>20pcs</td>
-                  <td>v</td>
-                  <td>
-                    <button>Edit</button>
+                  <td>Dzaki</td>
+                  <td class="list">
+                    <ul>
+                      <li>Narkoba, 24kg</li>
+                      <li>Ganja, 24kg</li>
+                      <li>Sabu, 24kg</li>
+                    </ul>
+                  </td>
+                  <td class="buttons">
                     <button>Hapus</button>
+                    <button>
+                      <span class="material-symbols-rounded">edit</span>
+                      <span>Edit</span>
+                    </button>
                   </td>
                 </tr>
                 <tr>
+                  <td>4</td>
                   <td>27 Januari 2027</td>
-                  <td>Sofian</td>
-                  <td>Narkoba</td>
-                  <td>20pcs</td>
-                  <td>v</td>
-                  <td>
-                    <button>Edit</button>
+                  <td>Dzaki</td>
+                  <td class="list">
+                    <ul>
+                      <li>Narkoba, 24kg</li>
+                      <li>Ganja, 24kg</li>
+                      <li>Sabu, 24kg</li>
+                    </ul>
+                  </td>
+                  <td class="buttons">
                     <button>Hapus</button>
+                    <button>
+                      <span class="material-symbols-rounded">edit</span>
+                      <span>Edit</span>
+                    </button>
                   </td>
                 </tr>
                 <tr>
+                  <td>5</td>
                   <td>27 Januari 2027</td>
-                  <td>Sofian</td>
-                  <td>Narkoba</td>
-                  <td>20pcs</td>
-                  <td>v</td>
-                  <td>
-                    <button>Edit</button>
+                  <td>Dzaki</td>
+                  <td class="list">
+                    <ul>
+                      <li>Narkoba, 24kg</li>
+                      <li>Ganja, 24kg</li>
+                      <li>Sabu, 24kg</li>
+                    </ul>
+                  </td>
+                  <td class="buttons">
                     <button>Hapus</button>
+                    <button>
+                      <span class="material-symbols-rounded">edit</span>
+                      <span>Edit</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>27 Januari 2027</td>
+                  <td>Dzaki</td>
+                  <td class="list">
+                    <ul>
+                      <li>Narkoba, 24kg</li>
+                      <li>Ganja, 24kg</li>
+                      <li>Sabu, 24kg</li>
+                    </ul>
+                  </td>
+                  <td class="buttons">
+                    <button>Hapus</button>
+                    <button>
+                      <span class="material-symbols-rounded">edit</span>
+                      <span>Edit</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>27 Januari 2027</td>
+                  <td>Dzaki</td>
+                  <td class="list">
+                    <ul>
+                      <li>Narkoba, 24kg</li>
+                      <li>Ganja, 24kg</li>
+                      <li>Sabu, 24kg</li>
+                    </ul>
+                  </td>
+                  <td class="buttons">
+                    <button>Hapus</button>
+                    <button>
+                      <span class="material-symbols-rounded">edit</span>
+                      <span>Edit</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>27 Januari 2027</td>
+                  <td>Dzaki</td>
+                  <td class="list">
+                    <ul>
+                      <li>Narkoba, 24kg</li>
+                      <li>Ganja, 24kg</li>
+                      <li>Sabu, 24kg</li>
+                    </ul>
+                  </td>
+                  <td class="buttons">
+                    <button>Hapus</button>
+                    <button>
+                      <span class="material-symbols-rounded">edit</span>
+                      <span>Edit</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>27 Januari 2027</td>
+                  <td>Dzaki</td>
+                  <td class="list">
+                    <ul>
+                      <li>Narkoba, 24kg</li>
+                      <li>Ganja, 24kg</li>
+                      <li>Sabu, 24kg</li>
+                    </ul>
+                  </td>
+                  <td class="buttons">
+                    <button>Hapus</button>
+                    <button>
+                      <span class="material-symbols-rounded">edit</span>
+                      <span>Edit</span>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>27 Januari 2027</td>
+                  <td>Dzaki</td>
+                  <td class="list">
+                    <ul>
+                      <li>Narkoba, 24kg</li>
+                      <li>Ganja, 24kg</li>
+                      <li>Sabu, 24kg</li>
+                    </ul>
+                  </td>
+                  <td class="buttons">
+                    <button>Hapus</button>
+                    <button>
+                      <span class="material-symbols-rounded">edit</span>
+                      <span>Edit</span>
+                    </button>
                   </td>
                 </tr>
               </tbody>
@@ -205,5 +364,6 @@
     </div>
     <!-- End Container -->
     <script src="../assets/js/navmenu.js"></script>
+    <script src="../assets/js/tabel.js"></script>
   </body>
 </html>

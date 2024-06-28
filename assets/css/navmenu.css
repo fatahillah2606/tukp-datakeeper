@@ -9,7 +9,7 @@
 .navmenu {
   width: 70px;
   height: 100vh;
-  background-color: #f1f2f6;
+  background-color: #ecf8ee;
   padding: 15px;
   position: relative;
   z-index: 999;
@@ -51,20 +51,20 @@
 .navmenu .links .link {
   display: flex;
   align-items: center;
-  border-radius: 10px;
+  border-radius: 50px;
   cursor: pointer;
 }
-.navmenu .links a > .link:hover:not(.active) > *,
-.navmenu .links .dropdown:hover:not(.active) > .link > * {
-  color: #3867d6;
+.navmenu .links a > .link:hover:not(.active),
+.navmenu .links .dropdown:hover:not(.active) > .link {
+  background-color: #d9f2dc;
 }
 .navmenu .links .link.active,
 .navmenu .links .dropdown.active > .link {
-  background-color: #3061b0;
+  background-color: #328e3d;
 }
 .navmenu .links .link p,
 .navmenu .links .link span {
-  color: #747d8c;
+  color: #000;
 }
 .navmenu .links .link.active p,
 .navmenu .links .link.active span,
@@ -125,6 +125,7 @@
 }
 .navmenu .dropdown.active .drop-menu {
   height: 120px;
+  margin-top: 5px;
 }
 .navmenu .dropdown .drop-menu::before {
   content: "";
@@ -134,19 +135,19 @@
   left: 20px;
   width: 2px;
   height: 85%;
-  background-color: #74a3ef;
+  background-color: #328e3d;
 }
 .navmenu .dropdown .drop-menu a {
-  color: #747d8c;
-  padding: 10px;
+  color: #000;
+  padding: 10px 20px;
   margin-left: 40px;
-  border-radius: 10px;
+  border-radius: 50px;
 }
 .navmenu .dropdown .drop-menu a.active {
-  background-color: #3061b0;
+  background-color: #328e3d;
 }
 .navmenu .dropdown .drop-menu a:hover:not(.active) {
-  color: #74a3ef;
+  background-color: #d9f2dc;
 }
 .admin-menu {
   display: none;
@@ -168,6 +169,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 999;
 }
 .navbar > * {
   margin: 0 10px;
@@ -216,4 +219,108 @@
   height: 32px;
   object-fit: cover;
   border-radius: 50%;
+}
+/* Profile Menu */
+.profile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 20px;
+  width: 436px;
+  height: auto;
+  padding: 20px;
+  background-color: #ecf8ee;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+.profile-menu.show {
+  display: block;
+}
+.profile-menu .close-pf-menu {
+  position: absolute;
+  top: 11px;
+  right: 11px;
+  font-size: 25px;
+  color: #000;
+  border-radius: 50%;
+  padding: 5px;
+  cursor: pointer;
+}
+.profile-menu .close-pf-menu:hover {
+  background-color: #d9f2dc;
+}
+.profile-menu p {
+  text-align: center;
+  font-family: "Lato", sans-serif;
+}
+.profile-menu .user-id {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+.profile-menu .user-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 10px auto;
+}
+.profile-menu .nama {
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+.profile-menu .tombol {
+  display: flex;
+  color: #000;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 50px;
+  width: 100%;
+  height: 60px;
+  margin: 10px 0;
+}
+.profile-menu .tombol:hover {
+  background-color: #d9f2dc;
+}
+.profile-menu .tombol > span {
+  margin: 0 20px;
+}
+.profile-menu .tombol p {
+  font-size: 17px;
+  flex: 1;
+  text-align: left;
+}
+.profile-menu .tombol .saklar {
+  background-color: #fff;
+  border: 2px solid #7f8c8d;
+  width: 70px;
+  height: 35px;
+  border-radius: 50px;
+  margin: 0 20px;
+  padding: 2px;
+  position: relative;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+.profile-menu .tombol .saklar span {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 5px;
+  background-color: #7f8c8d;
+  border-radius: 50px;
+  color: #7f8c8d;
+  font-size: 25px;
+  transition: 0.3s ease;
+}
+.profile-menu .tombol .saklar.aktif {
+  background-color: #328e3d;
+  border-color: #328e3d;
+}
+.profile-menu .tombol .saklar.aktif span {
+  background-color: #fff;
+  color: #000;
+  left: 37px;
 }
