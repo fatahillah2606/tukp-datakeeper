@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Catat Barang Internal | TUKP Data Keeper</title>
+    <link rel="stylesheet" href="../../assets/css/style.css" />
+    <!-- Pisahkan bagian ini -->
+    <link rel="stylesheet" href="../../assets/css/navmenu.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Navbar -->
+      <div class="navmenu">
+        <div class="navmenu-content">
+          <div class="links">
+            <div class="link">
+              <span class="material-symbols-rounded menu-btn">menu</span>
+            </div>
+            <a href="../dashboard.html">
+              <div class="link">
+                <span class="material-symbols-rounded">dashboard</span>
+                <p>Dashboard</p>
+              </div>
+            </a>
+            <div class="dropdown">
+              <div class="link">
+                <span class="material-symbols-rounded">edit_document</span>
+                <p>Pencatatan</p>
+                <span class="material-symbols-rounded down-icon"
+                  >keyboard_arrow_down</span
+                >
+              </div>
+              <div class="drop-menu">
+                <a href="catat-pengunjung.html">Catat Pengunjung</a>
+                <a href="catat-barang-ext.html">Catat Barang External</a>
+                <a href="#" class="active">Catat Barang Internal</a>
+                <a href="catat-mobil.html">Catat Mobil</a>
+              </div>
+            </div>
+            <div class="dropdown">
+              <div class="link">
+                <span class="material-symbols-rounded">description</span>
+                <p>Lihat Data</p>
+                <span class="material-symbols-rounded down-icon"
+                  >keyboard_arrow_down</span
+                >
+              </div>
+              <div class="drop-menu">
+                <a href="../lihat/lihat-pengunjung.html">Lihat Pengunjung</a>
+                <a href="../lihat/lihat-barang-ext.html"
+                  >Lihat Barang external</a
+                >
+                <a href="../lihat/lihat-barang-int.html"
+                  >Lihat Barang internal</a
+                >
+                <a href="../lihat/lihat-mobil.html">Lihat Mobil</a>
+              </div>
+            </div>
+            <!-- Hanya tampilkan jika admin -->
+            <div class="admin-menu show">
+              <a href="#">
+                <div class="link">
+                  <span class="material-symbols-rounded">person_add</span>
+                  <p>Tambah Pengguna</p>
+                </div>
+              </a>
+              <a href="#">
+                <div class="link">
+                  <span class="material-symbols-rounded">notifications</span>
+                  <p>Notifikasi</p>
+                </div>
+              </a>
+            </div>
+            <a href="#">
+              <div class="link">
+                <span class="material-symbols-rounded">logout</span>
+                <p>Keluar</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Konten -->
+      <div class="konten">
+        <div class="navbar">
+          <div class="logo">
+            <img src="../../assets/images/logo.svg" alt="Logo" />
+            <p>TUKP Data Keeper</p>
+          </div>
+          <div class="profile">
+            <span class="material-symbols-rounded">person</span>
+            <img src="../../assets/images/profile.jpeg" alt="" />
+          </div>
+          <!-- Profile menu -->
+          <div class="profile-menu">
+            <span class="material-symbols-rounded close-pf-menu">close</span>
+            <p class="user-id">0123456789 / email@email.com</p>
+            <img
+              src="../../assets/images/profile.jpeg"
+              alt="User"
+              class="user-image"
+            />
+            <p class="nama">Halo, <span>Al Aziz</span></p>
+            <a href="">
+              <div class="tombol">
+                <span class="material-symbols-rounded">logout</span>
+                <p>Keluar</p>
+              </div>
+            </a>
+            <div class="tombol">
+              <span class="material-symbols-rounded">dark_mode</span>
+              <p>Mode Gelap</p>
+              <div class="saklar">
+                <span class="material-symbols-rounded">check</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- End Navbar -->
+        <!-- Main Content -->
+        <div class="main-content">
+          <div class="formulir">
+            <h1>Catat Barang Internal</h1>
+            <form action="">
+              <div class="form-field">
+                <label for="nama-perusahaan">Nama Perusahaan</label>
+                <input
+                  type="text"
+                  id="nama-perusahaan"
+                  name="nama-perusahaan"
+                />
+              </div>
+              <div class="form-field">
+                <label for="bawa-barang">Barang yang dibawa</label>
+                <input type="text" id="bawa-barang" name="bawa-barang" />
+              </div>
+              <div class="multi-field">
+                <div class="form-field fokus">
+                  <label for="tanggal">Tanggal</label>
+                  <input type="date" id="tanggal" name="tanggal" />
+                </div>
+                <div class="form-field">
+                  <label for="no-kendaraan">Nomor Kendaraan</label>
+                  <input type="text" id="no-kendaraan" name="no-kendaraan" />
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="keterangan">Keterangan</label>
+                <input type="text" id="keterangan" name="keterangan" />
+              </div>
+              <div class="tombol-aksi">
+                <button name="submit" id="submit">Simpan</button>
+              </div>
+            </form>
+          </div>
+        </div>
+        <!-- End Main Content -->
+      </div>
+      <!-- End Konten -->
+    </div>
+    <!-- End Container -->
+    <script src="../../assets/js/navmenu.js"></script>
+    <script src="../../assets/js/formulir.js"></script>
+  </body>
+</html>
