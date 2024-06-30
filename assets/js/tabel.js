@@ -1,6 +1,8 @@
 // Define
 let barCariField = document.querySelector("#cari");
 let barCari = document.querySelector(".bar-cari");
+let modalContainer = document.querySelector(".modal-container");
+let tombolEdit = document.querySelectorAll("button.edit");
 
 // Search bar
 barCariField.addEventListener("focus", () => {
@@ -13,3 +15,15 @@ barCariField.addEventListener("blur", () => {
     barCari.classList.remove("aktif");
   }
 });
+
+// modal box
+tombolEdit.forEach((e) => {
+  // e.onclick = openEdit();
+  e.addEventListener("click", openEdit);
+});
+function openEdit() {
+  modalContainer.classList.add("show");
+}
+function closeEdit() {
+  modalContainer.classList.remove("show");
+}
