@@ -123,7 +123,7 @@
           <div class="formulir">
             <h1>Catat Pengunjung</h1>
             <form action="">
-              <div id="visitor-name-cont">
+              <div id="field-nama">
                 <div class="form-field">
                   <label for="nama-pengunjung">Nama Pengunjung</label>
                   <input
@@ -133,17 +133,22 @@
                   />
                 </div>
               </div>
-              <div class="tambah" onclick="tambahPengunjung()">
+              <div
+                class="tambah"
+                onclick="tambahSingleField('Nama Pengunjung', 'text', 'field-nama')"
+              >
                 <span class="material-symbols-rounded">add</span>
                 <span class="btn-label">Tambah</span>
               </div>
-              <div class="form-field">
-                <label for="nama-perusahaan">Nama Perusahaan</label>
-                <input
-                  type="text"
-                  id="nama-perusahaan"
-                  name="nama-perusahaan"
-                />
+              <div id="nama-perusahaan">
+                <div class="form-field">
+                  <label for="nama-perusahaan">Nama Perusahaan</label>
+                  <input
+                    type="text"
+                    id="nama-perusahaan"
+                    name="nama-perusahaan"
+                  />
+                </div>
               </div>
               <div class="multi-field">
                 <div class="form-field fokus">

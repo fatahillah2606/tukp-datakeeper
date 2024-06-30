@@ -300,6 +300,9 @@
   position: relative;
   border-radius: 5px 5px 0 0;
 }
+.formulir .multi-field .form-field {
+  margin: 0;
+}
 .formulir .form-field::before {
   content: "";
   position: absolute;
@@ -321,6 +324,7 @@
   left: 15px;
   font-size: 15px;
   transition: 0.3s ease;
+  text-transform: capitalize;
 }
 .formulir .form-field.fokus label {
   top: 5px;
@@ -339,7 +343,8 @@
   background: none;
   font-size: 17px;
 }
-.formulir .form-field .delete-field {
+.formulir .form-field .delete-field,
+.formulir .multi-field .delete-field {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -369,7 +374,9 @@
 .formulir .multi-field {
   display: flex;
   /* align-items: center; */
+  margin-bottom: 30px;
   gap: 20px;
+  position: relative;
 }
 .formulir .tombol-aksi {
   display: flex;
