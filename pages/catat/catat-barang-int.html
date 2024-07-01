@@ -124,25 +124,43 @@
             <h1>Catat Barang Internal</h1>
             <form action="">
               <div class="form-field">
-                <label for="nama-perusahaan">Nama Perusahaan</label>
+                <label for="nama-perusahaan">Nama Pembawa</label>
                 <input
                   type="text"
                   id="nama-perusahaan"
                   name="nama-perusahaan"
                 />
               </div>
-              <div class="form-field">
-                <label for="bawa-barang">Barang yang dibawa</label>
-                <input type="text" id="bawa-barang" name="bawa-barang" />
+              <h2>Barang</h2>
+              <div id="field-barang">
+                <div class="multi-field">
+                  <div class="form-field">
+                    <label for="nama-barang">Nama Barang</label>
+                    <input type="text" id="nama-barang" name="nama-barang" />
+                  </div>
+                  <div class="form-field">
+                    <label for="jumlah-barang">Jumlah Barang</label>
+                    <input
+                      type="number"
+                      id="jumlah-barang"
+                      name="jumlah-barang"
+                    />
+                  </div>
+                </div>
               </div>
+              <div
+                class="tambah"
+                onclick="tambahMultiField('Nama Barang', 'Jumlah Barang', 'text', 'number', 'field-barang')"
+              >
+                <span class="material-symbols-rounded">add</span>
+                <span class="btn-label">Tambah</span>
+              </div>
+
+              <div id="field-nama"></div>
               <div class="multi-field">
                 <div class="form-field fokus">
                   <label for="tanggal">Tanggal</label>
                   <input type="date" id="tanggal" name="tanggal" />
-                </div>
-                <div class="form-field">
-                  <label for="no-kendaraan">Nomor Kendaraan</label>
-                  <input type="text" id="no-kendaraan" name="no-kendaraan" />
                 </div>
               </div>
               <div class="form-field">
@@ -154,6 +172,7 @@
               </div>
             </form>
           </div>
+          m
         </div>
         <!-- End Main Content -->
       </div>
