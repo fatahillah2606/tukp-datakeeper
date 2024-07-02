@@ -21,19 +21,20 @@
   width: 270px;
 }
 
-/* Scroll bar di menu */
-.navmenu::-webkit-scrollbar {
+/* Scroll bar */
+::-webkit-scrollbar {
   width: 7px;
+  height: 7px;
 }
-.navmenu::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: none;
 }
-.navmenu::-webkit-scrollbar-thumb {
-  background-color: #3061b0;
+::-webkit-scrollbar-thumb {
+  background-color: #328e3d;
   border-radius: 10px;
 }
-.navmenu::-webkit-scrollbar-thumb:hover {
-  background-color: #4a79d0;
+::-webkit-scrollbar-thumb:hover {
+  background-color: #287130;
 }
 
 /* Konten nav-menu */
@@ -55,7 +56,8 @@
   cursor: pointer;
 }
 .navmenu .links a > .link:hover:not(.active),
-.navmenu .links .dropdown:hover:not(.active) > .link {
+.navmenu .links .dropdown:hover:not(.active) > .link,
+.navmenu .links .link .menu-btn:hover {
   background-color: #d9f2dc;
 }
 .navmenu .links .link.active,
@@ -71,6 +73,7 @@
 .navmenu .links .dropdown.active .link p,
 .navmenu .links .dropdown.active .link span {
   color: #f1f2f6;
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
 }
 
 /* Menu Icon */
@@ -91,9 +94,6 @@
 /* Menu Button */
 .navmenu .links .link .menu-btn {
   margin-bottom: 10px;
-}
-.navmenu .links .link .menu-btn:hover {
-  background-color: #d9f2dc;
   border-radius: 50%;
 }
 
@@ -163,6 +163,7 @@
 .konten {
   flex: 1;
   transition: margin-left 0.3s ease;
+  overflow: hidden;
 }
 /* Navmenu */
 .navbar {
@@ -205,7 +206,6 @@
   top: 0;
   left: 0;
 }
-/* If no image */
 .navbar .profile span {
   font-variation-settings: "FILL" 1;
   width: 32px;
@@ -216,13 +216,6 @@
   font-size: 23px;
   border-radius: 50%;
   background-color: #f1f2f6;
-}
-/* if has image */
-.navbar .profile img {
-  width: 32px;
-  height: 32px;
-  object-fit: cover;
-  border-radius: 50%;
 }
 /* Profile Menu */
 .profile-menu {
@@ -266,10 +259,18 @@
 .profile-menu .user-image {
   width: 80px;
   height: 80px;
-  object-fit: cover;
   border-radius: 50%;
   display: block;
   margin: 10px auto;
+  background-color: #fff;
+}
+.profile-menu .user-image span {
+  font-variation-settings: "FILL" 1;
+  display: block;
+  text-align: center;
+  line-height: 80px;
+  font-size: 50px;
+  color: #000;
 }
 .profile-menu .nama {
   font-size: 25px;
@@ -284,9 +285,6 @@
   width: 100%;
   height: 60px;
   margin: 10px 0;
-}
-.profile-menu .tombol:hover {
-  background-color: #d9f2dc;
 }
 .profile-menu .tombol > span {
   margin: 0 20px;
@@ -311,13 +309,19 @@
 .profile-menu .tombol .saklar span {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
-  left: 5px;
+  transform: translateY(-50%) scale(1);
+  left: 7px;
   background-color: #7f8c8d;
   border-radius: 50px;
   color: #7f8c8d;
-  font-size: 25px;
+  font-size: 18px;
   transition: 0.3s ease;
+}
+.profile-menu .tombol .saklar:hover span {
+  transform: translateY(-50%) scale(1.5);
+}
+.profile-menu .tombol .saklar.aktif:hover span {
+  transform: translateY(-50%) scale(1.5);
 }
 .profile-menu .tombol .saklar.aktif {
   background-color: #328e3d;
@@ -326,5 +330,6 @@
 .profile-menu .tombol .saklar.aktif span {
   background-color: #fff;
   color: #000;
-  left: 37px;
+  left: 40px;
+  transform: translateY(-50%) scale(1.4);
 }

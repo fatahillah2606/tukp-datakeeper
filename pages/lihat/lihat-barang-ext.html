@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lihat Data Pengunjung | TUKP Data Keeper</title>
+    <title>Lihat Barang Eksternal | TUKP Data Keeper</title>
     <link rel="stylesheet" href="../../assets/css/style.css" />
     <link rel="stylesheet" href="../../assets/css/style-dark.css" />
     <!-- Pisahkan bagian ini -->
@@ -52,8 +52,8 @@
                 >
               </div>
               <div class="drop-menu">
-                <a href="#" class="active">Lihat Pengunjung</a>
-                <a href="lihat-barang-ext.html">Lihat Barang external</a>
+                <a href="lihat-pengunjung.html">Lihat Pengunjung</a>
+                <a href="#" class="active">Lihat Barang external</a>
                 <a href="lihat-barang-int.html">Lihat Barang internal</a>
                 <a href="lihat-mobil.html">Lihat Mobil</a>
               </div>
@@ -122,8 +122,8 @@
           <div class="tabel">
             <div class="head">
               <div class="teks">
-                <h2>Data Pengunjung</h2>
-                <p>Berikut adalah catatan hari ini</p>
+                <h2>Data Barang Eksternal</h2>
+                <p>Berikut sekilas catatan hari ini</p>
               </div>
               <div class="bar-cari">
                 <label for="cari" class="material-symbols-rounded"
@@ -137,42 +137,54 @@
                 />
               </div>
             </div>
-            <table>
-              <thead>
-                <tr>
-                  <th>No</th>
-                  <th>Nama Pengunjung</th>
-                  <th>Nama Perusahaan</th>
-                  <th>Tanggal</th>
-                  <th>Nomor Telepon</th>
-                  <th>Ubah Data</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td class="no">1</td>
-                  <td class="nama-pengunjung list">
-                    <ul>
-                      <li>Sofian</li>
-                    </ul>
-                  </td>
-                  <td class="nama-perusahaan">PT. Lorem Ipsum</td>
-                  <td class="tanggal">2027-01-27</td>
-                  <td class="no-tlp">08123456789</td>
-                  <td class="buttons">
-                    <button class="hapus">Hapus</button>
-                    <button class="edit">
-                      <span class="material-symbols-rounded">edit</span>
-                      <span>Edit</span>
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="table-container">
+              <table>
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Tanggal</th>
+                    <th>Nama Driver</th>
+                    <th>Nama Suplier</th>
+                    <th>Keperluan</th>
+                    <th>Nama & Jumlah Barang</th>
+                    <th>Nomor Kendaraan</th>
+                    <th>Jam Kedatangan</th>
+                    <th>Keterangan</th>
+                    <th>Ubah Data</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="no">1</td>
+                    <td class="tanggal">27 Januari 2027</td>
+                    <td class="nama-pembawa">Sofian</td>
+                    <td class="">PT. Orang Tua</td>
+                    <td>Mengantar Minuman Keras</td>
+                    <td class="list">
+                      <ul>
+                        <li>Miras 1, 24lt</li>
+                        <li>Miras 2, 24lt</li>
+                        <li>Miras 3, 24lt</li>
+                      </ul>
+                    </td>
+                    <td>K 1234 BR</td>
+                    <td>22:00</td>
+                    <td>Mengantar Minuman Keras</td>
+                    <td class="buttons">
+                      <button>Hapus</button>
+                      <button class="edit">
+                        <span class="material-symbols-rounded">edit</span>
+                        <span>Edit</span>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
           <!-- End Tabel -->
           <!-- fab button -->
-          <a href="../catat/catat-pengunjung.html">
+          <a href="../catat/catat-barang-ext.html">
             <div class="fab-button">
               <span class="material-symbols-rounded">edit</span>
               <span>Catat</span>
@@ -189,34 +201,55 @@
       <div class="formulir">
         <h1>Edit Laporan</h1>
         <form action="">
-          <div id="field-nama">
-            <div class="form-field">
-              <label for="nama-pengunjung">Nama Pengunjung</label>
-              <input type="text" id="nama-pengunjung" name="nama-pengunjung" />
+          <div class="form-field fokus">
+            <label for="tanggal">Tanggal</label>
+            <input type="date" id="tanggal" name="tanggal" />
+          </div>
+          <div class="form-field">
+            <label for="nama-driver">Nama Driver</label>
+            <input type="text" id="nama-driver" name="nama-driver" />
+          </div>
+          <div class="form-field">
+            <label for="nama-suplier">Nama Suplier</label>
+            <input type="text" id="nama-suplier" name="nama-suplier" />
+          </div>
+          <div class="form-field">
+            <label for="nama-driver">Keperluan</label>
+            <input type="text" id="Keperluan" name="Keperluan" />
+          </div>
+          <h2>Barang</h2>
+          <div id="field-barang">
+            <div class="multi-field">
+              <div class="form-field">
+                <label for="nama-barang">Nama Barang</label>
+                <input type="text" id="nama-barang" name="nama-barang" />
+              </div>
+              <div class="form-field">
+                <label for="jumlah-barang">Jumlah Barang</label>
+                <input type="text" id="jumlah-barang" name="jumlah-barang" />
+              </div>
             </div>
           </div>
           <div
             class="tambah"
-            onclick="tambahSingleField('Nama Pengunjung', 'text', 'field-nama')"
+            onclick="tambahMultiField('Nama Barang', 'Jumlah Barang', 'text', 'text', 'field-barang')"
           >
             <span class="material-symbols-rounded">add</span>
             <span class="btn-label">Tambah</span>
           </div>
-          <div id="nama-perusahaan">
-            <div class="form-field">
-              <label for="nama-perusahaan">Nama Perusahaan</label>
-              <input type="text" id="nama-perusahaan" name="nama-perusahaan" />
-            </div>
-          </div>
           <div class="multi-field">
             <div class="form-field fokus">
-              <label for="tanggal">Tanggal</label>
-              <input type="date" id="tanggal" name="tanggal" />
+              <label for="time-pp">Jam Kedatangan</label>
+              <input type="time" id="time-pp" name="time-pp" />
             </div>
             <div class="form-field">
-              <label for="no-tlp">Nomor Telepon</label>
-              <input type="text" id="no-tlp" name="no-tlp" />
+              <label for="no-kendaraan">Nomor Kendaraan</label>
+              <input type="text" id="no-kendaraan" name="no-kendaraan" />
             </div>
+          </div>
+          <div class="form-field">
+            <label for="keterangan">Keterangan</label>
+            <input type="text" id="keterangan" name="keterangan" />
           </div>
           <div class="tombol-aksi">
             <span id="cancel" onclick="closeEdit()">Batal</span>

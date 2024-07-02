@@ -1,22 +1,45 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+@import url(color-base.css);
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Inter", sans-serif;
+  transition: background 0.3s ease;
 }
 .main-content {
   width: 100%;
   height: calc(100vh - 70px);
-  overflow-y: auto;
   overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
 }
+/* Fab Button */
+.fab-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background-color: #328e3d;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  color: #fff;
+  border-radius: 17px;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5);
+}
+.fab-button:hover {
+  background-color: #287130;
+}
+.fab-button span.material-symbols-rounded {
+  margin-right: 15px;
+}
+
 /* Header */
 .header {
   width: 90%;
-  max-width: 800px;
+  max-width: 1200px;
   height: auto;
   display: block;
   margin: 30px auto;
@@ -74,44 +97,65 @@
     left: 100%;
   }
 }
-.header h1:nth-child(2) {
-  color: #747d8c;
-  animation: fadein 1s ease;
+.header .kata-sambutan {
+  display: block;
+  height: 48px;
+  overflow: hidden;
+  animation: fadein 0.5s ease;
+}
+.header .kata-sambutan h1 {
+  color: #576b59;
+  transition: 0.3s ease 0.4s;
+}
+.header .kata-sambutan.change h1:nth-child(1) {
+  margin-top: -50px;
 }
 /* Header Menu */
-.header .tombol .pilihan-1 {
-  display: flex;
+.header .tombol .pilihan {
+  display: none;
   flex-wrap: wrap;
-  gap: 0 30px;
-  animation: fadein 1s ease;
+  gap: 10px;
+  animation: fadein 0.5s ease;
   margin-top: 30px;
 }
-.header .tombol .pilihan-1 .tmbl {
+.header .tombol .pilihan.show {
+  display: flex;
+}
+.header .tombol .pilihan .tmbl {
   width: 200px;
   height: 200px;
-  border-radius: 20px;
+  border-radius: 10px;
   background-color: #ecf8ee;
-  padding: 20px;
+  padding: 15px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  transition: all 0.1s ease;
+  color: #000;
 }
-.header .tombol .pilihan-1 .tmbl span {
+.header .tombol .pilihan .tmbl span {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 10px;
+  right: 10px;
   font-size: 20px;
   padding: 10px;
   border-radius: 50%;
   background-color: #fff;
 }
-.header .tombol .pilihan-1 .tmbl:hover {
+.header .tombol .pilihan .tmbl:hover {
   background-color: #d9f2dc;
+  transform: scale(1.05);
+}
+.header .tombol .pilihan .tmbl:active {
+  background-color: #d9f2dc;
+  transform: scale(1);
+}
+.header .tombol .pilihan .tmbl:hover span {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
 }
 /* Tabel */
 .tabel {
-  width: 95%;
-  max-width: 1366px;
+  width: 90%;
   height: auto;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   display: block;
@@ -119,7 +163,7 @@
   padding: 30px;
   border-radius: 20px;
   background-color: #ecf8ee;
-  animation: fadein 1s ease;
+  animation: fadein 0.5s ease;
 }
 .tabel .head {
   display: flex;
@@ -158,14 +202,21 @@
   background: none;
   outline: none;
 }
-.tabel table {
+.table-container {
   width: 100%;
   height: auto;
+  overflow: auto;
+}
+.tabel table {
+  width: 100%;
+  table-layout: fixed;
+  height: auto;
   border-collapse: collapse;
+  border-spacing: 0;
 }
 .tabel table tr th,
 .tabel table tr td {
-  padding: 10px 0;
+  padding: 8px;
   text-align: center;
 }
 .tabel table tbody tr:hover {
@@ -176,7 +227,9 @@
 }
 .tabel table tr td.list {
   text-align: left;
-  width: 180px;
+}
+.tabel table tr td.list ul {
+  list-style-position: inside;
 }
 .tabel table tr td.buttons {
   display: flex;
@@ -196,6 +249,11 @@
   cursor: pointer;
   transition: 0.2s ease;
 }
+.tabel table tr td button:nth-child(1) {
+  background-color: #faecea;
+  color: #c0392b;
+  transition: none;
+}
 .tabel table tr td button:nth-child(2) {
   border: 1px solid #57606f;
   padding: 7px 12px;
@@ -204,11 +262,6 @@
 }
 .tabel table tr td button:nth-child(2) .material-symbols-rounded {
   margin-right: 8px;
-}
-.tabel table tr td button:nth-child(1) {
-  background-color: #faecea;
-  color: #c0392b;
-  transition: none;
 }
 .tabel table tr td button:nth-child(1):hover {
   background-color: #f6d9d5;
@@ -267,16 +320,31 @@
   /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); */
   animation: fadein 0.5s ease;
 }
+.modal-container .formulir {
+  position: relative;
+  padding-top: 0;
+  overflow-y: auto;
+  max-height: 95%;
+}
 .formulir h1 {
   text-align: center;
   font-family: "Lato", sans-serif;
-  margin-bottom: 70px;
+  padding-bottom: 70px;
   position: relative;
+  background-color: #ecf8ee;
+}
+.modal-container .formulir h1 {
+  padding-top: 50px;
+  margin: 0 -50px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-radius: 30px 30px 0 0;
 }
 .formulir h1::before {
   content: "";
   position: absolute;
-  bottom: -25px;
+  bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
   width: 150px;
@@ -299,6 +367,10 @@
   border-bottom: 1px solid #b2bec3;
   position: relative;
   border-radius: 5px 5px 0 0;
+  padding: 0 15px;
+}
+.formulir .form-field.none {
+  display: none;
 }
 .formulir .multi-field .form-field {
   margin: 0;
@@ -334,14 +406,24 @@
   color: #328e3d;
   font-size: 10px;
 }
-.formulir .form-field input {
+.formulir .form-field input,
+.formulir .form-field select {
   width: 100%;
-  padding: 10px 15px;
+  padding: 10px 0;
   padding-top: 20px;
   border: none;
   outline: none;
   background: none;
   font-size: 17px;
+}
+.formulir .form-field input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+.formulir .form-field select option {
+  background-color: #f8fef2;
+}
+.formulir .form-field select {
+  cursor: pointer;
 }
 .formulir .form-field .delete-field,
 .formulir .multi-field .delete-field {
@@ -368,7 +450,8 @@
 .formulir .tambah span.material-symbols-rounded {
   margin-right: 8px;
 }
-.formulir .tambah:hover {
+.formulir .tambah:hover,
+.formulir .tombol-aksi span#cancel:hover {
   background-color: #d9f2dc;
 }
 .formulir .multi-field {

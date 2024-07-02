@@ -63,7 +63,36 @@ profileMenu.addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
-// Toggle dark mode
+// Dark mode
+function darkMode() {
+  document.documentElement.setAttribute("data-theme", "dark");
+  saklar.classList.add("aktif");
+}
+function lightMode() {
+  document.documentElement.removeAttribute("data-theme");
+  saklar.classList.remove("aktif");
+}
+
+// saklar dark mode
 saklar.addEventListener("click", () => {
-  saklar.classList.toggle("aktif");
+  if (saklar.classList.contains("aktif")) {
+    lightMode();
+  } else {
+    darkMode();
+  }
 });
+
+// Cek sekema warna sistem
+if (
+  window.matchMedia &&
+  window.matchMedia("(prefers-color-scheme: dark)").matches
+) {
+  darkMode();
+}
+
+// Ganti mode jika skema warna sistem berubah
+window
+  .matchMedia("(prefers-color-scheme: dark)")
+  .addEventListener("change", (event) => {
+    event.matches ? darkMode() : lightMode();
+  });

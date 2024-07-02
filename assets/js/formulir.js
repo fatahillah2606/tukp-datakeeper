@@ -1,11 +1,14 @@
-// Define
-
 // focus animation
 function focusAnimation() {
   let inputField = document.querySelectorAll(
-    ".formulir .form-field input:not([type='date'])"
+    ".formulir .form-field input:not([type='date']), .formulir .form-field select"
   );
+
   inputField.forEach((e) => {
+    // Jika field tidak kosong
+    if (e.value !== "") {
+      e.parentElement.classList.add("fokus");
+    }
     e.addEventListener("focus", () => {
       e.parentElement.classList.add("fokus");
     });
@@ -17,6 +20,7 @@ function focusAnimation() {
   });
 }
 focusAnimation();
+
 // Generate single Element
 let singleField = 1;
 function tambahSingleField(nama, tipe, idBungkus) {
@@ -126,4 +130,19 @@ function tambahMultiField(
 function hapusField(elemen) {
   elemen.parentElement.remove();
   focusAnimation();
+}
+
+// Untuk opsi pilih kendaraan
+let pilihMerek = document.getElementById("merek-kendaraan");
+if (pilihMerek !== null) {
+  merekKendaraan();
+  pilihMerek.addEventListener("change", merekKendaraan);
+}
+function merekKendaraan() {
+  let merekLain = document.getElementById("merek-lain").parentElement;
+  if (pilihMerek.value === "Lainnya") {
+    merekLain.classList.remove("none");
+  } else {
+    merekLain.classList.add("none");
+  }
 }
