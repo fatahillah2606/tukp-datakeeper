@@ -2,8 +2,13 @@
 let dropdown = document.querySelectorAll(".dropdown");
 let menuBtn = document.querySelector(".menu-btn");
 let navMenu = document.querySelector(".navmenu");
-let profileMenu = document.querySelector(".profile-menu");
+let notifikasi = document.querySelector(".navbar .right-cont .notif");
+let menuNotifikasi = document.querySelector(".notifikasi");
+let tutupNotifikasi = document.querySelector(
+  ".navbar .notifikasi .head span.material-symbols-rounded"
+);
 let profile = document.querySelector(".profile");
+let profileMenu = document.querySelector(".profile-menu");
 let tutupMenuProfil = document.querySelector(".close-pf-menu");
 let saklar = document.querySelector(".saklar");
 
@@ -15,10 +20,10 @@ dropdown.forEach((element) => {
       menuBtn.click();
     }
     // buka dropdown
-    if (element.classList.contains("active")) {
-      element.classList.remove("active");
+    if (element.classList.contains("show")) {
+      element.classList.remove("show");
     } else {
-      element.classList.add("active");
+      element.classList.add("show");
     }
   });
 });
@@ -29,12 +34,31 @@ menuBtn.addEventListener("click", () => {
     navMenu.classList.remove("active");
     menuBtn.innerHTML = "menu";
     dropdown.forEach((element) => {
-      element.classList.remove("active");
+      element.classList.remove("show");
     });
   } else {
     navMenu.classList.add("active");
     menuBtn.innerHTML = "arrow_back";
   }
+});
+
+// Notifikasi
+function bukaNotifikasi() {
+  menuNotifikasi.classList.toggle("show");
+}
+notifikasi.addEventListener("click", (e) => {
+  e.stopPropagation();
+  bukaNotifikasi();
+});
+tutupNotifikasi.addEventListener("click", (e) => {
+  e.stopPropagation();
+  bukaNotifikasi();
+  if (profileMenu.classList.contains("show")) {
+    bukaMenuProfil();
+  }
+});
+menuNotifikasi.addEventListener("click", (e) => {
+  e.stopPropagation();
 });
 
 // Profile Menu
@@ -48,7 +72,35 @@ profile.addEventListener("click", (e) => {
 tutupMenuProfil.addEventListener("click", (e) => {
   e.stopPropagation();
   bukaMenuProfil();
+  if (menuNotifikasi.classList.contains("show")) {
+    bukaNotifikasi();
+  }
 });
+profileMenu.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
+
+document.addEventListener("click", (e) => {
+  if (
+    profileMenu.classList.contains("show") &&
+    !profileMenu.contains(e.target)
+  ) {
+    profileMenu.classList.remove("show");
+  }
+  if (
+    menuNotifikasi.classList.contains("show") &&
+    !menuNotifikasi.contains(e.target)
+  ) {
+    menuNotifikasi.classList.remove("show");
+  }
+});
+
+// Hak cipta
+const hakCipta = document.createElement("p");
+hakCipta.innerHTML =
+  "&copy;" + new Date().getFullYear() + " - Andika Kurniawan";
+hakCipta.classList.add("hak-cipta");
+profileMenu.appendChild(hakCipta);
 
 document.addEventListener("click", (e) => {
   if (

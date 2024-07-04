@@ -3,6 +3,8 @@ let barCariField = document.querySelector("#cari");
 let barCari = document.querySelector(".bar-cari");
 let modalContainer = document.querySelector(".modal-container");
 let tombolEdit = document.querySelectorAll("button.edit");
+let hapusData = document.querySelectorAll(".hapus");
+let popup = document.querySelector(".popup");
 
 // Search bar
 barCariField.addEventListener("focus", () => {
@@ -17,18 +19,27 @@ barCariField.addEventListener("blur", () => {
 });
 
 // modal box
+function editModal() {
+  modalContainer.classList.toggle("show");
+}
 tombolEdit.forEach((e) => {
-  e.addEventListener("click", openEdit);
+  e.addEventListener("click", editModal);
 });
-function openEdit() {
-  modalContainer.classList.add("show");
+
+// popup alert
+function peringatan() {
+  popup.classList.toggle("show");
 }
-function closeEdit() {
-  modalContainer.classList.remove("show");
-}
+hapusData.forEach((e) => {
+  e.addEventListener("click", peringatan);
+});
+
 window.addEventListener("click", (e) => {
   if (e.target == modalContainer) {
-    closeEdit();
+    editModal();
+  }
+  if (e.target == popup) {
+    peringatan();
   }
 });
 

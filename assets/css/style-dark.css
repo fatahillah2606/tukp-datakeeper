@@ -1,3 +1,4 @@
+@import url(color-base.css);
 [data-theme="dark"] body {
   background-color: #171d16;
 }
@@ -65,6 +66,42 @@
   color: #f6fff0;
 }
 
+/* Notif */
+[data-theme="dark"] .navbar .notif span.notif-count {
+  background-color: var(--error-dark);
+  color: var(--on-error-dark);
+}
+[data-theme="dark"] .navbar .notif span.material-symbols-rounded {
+  color: #f6fff0;
+}
+[data-theme="dark"] .navbar .notifikasi {
+  background-color: #2c322a;
+}
+[data-theme="dark"] .navbar .notifikasi .head {
+  border-color: #424940;
+}
+[data-theme="dark"] .navbar .notifikasi .head * {
+  color: #f6fff0;
+}
+[data-theme="dark"] .navbar .notifikasi .head span:hover {
+  background-color: #424940;
+}
+[data-theme="dark"] .navbar .notifikasi .content .notif-container .notif-menu {
+  background-color: #171d16;
+}
+[data-theme="dark"]
+  .navbar
+  .notifikasi
+  .content
+  .notif-container
+  .notif-menu
+  * {
+  color: #f6fff0;
+}
+[data-theme="dark"] .navbar .notifikasi .content .no-notif {
+  color: #f6fff0;
+}
+
 /* Profile Menu */
 [data-theme="dark"] .profile-menu {
   background-color: #2c322a;
@@ -84,6 +121,13 @@
 [data-theme="dark"] .profile-menu .user-image span {
   color: #f6fff0;
 }
+[data-theme="dark"] .profile-menu .akun {
+  border-color: #c9ffc3;
+  color: #c9ffc3;
+}
+[data-theme="dark"] .profile-menu .akun:hover {
+  background-color: #424940;
+}
 [data-theme="dark"] .profile-menu .tombol {
   background-color: #171d16;
 }
@@ -91,16 +135,14 @@
   color: #f6fff0;
 }
 [data-theme="dark"] .profile-menu .tombol .saklar {
-  background-color: #2c322a;
-  border-color: #2c322a;
+  background-color: #3b4b39;
 }
 [data-theme="dark"] .profile-menu .tombol .saklar span {
-  background-color: #5a6057;
-  color: #5a6057;
+  background-color: #f6fff0;
+  color: #f6fff0;
 }
 [data-theme="dark"] .profile-menu .tombol .saklar.aktif {
   background-color: #a0d49b;
-  border-color: #a0d49b;
 }
 [data-theme="dark"] .profile-menu .tombol .saklar.aktif span {
   background-color: #002105;
@@ -195,7 +237,7 @@
   color: #f6fff0;
 }
 [data-theme="dark"] .formulir h1::before {
-  background-color: #a6ada2;
+  background-color: #c9ffc3;
 }
 [data-theme="dark"] .formulir h2 {
   color: #f6fff0;
@@ -247,5 +289,19 @@
 }
 [data-theme="dark"] .formulir .tombol-aksi span#cancel {
   border-color: #c9ffc3;
+  color: #c9ffc3;
+}
+
+/* Popup alert */
+[data-theme="dark"] .popup .popup-content {
+  background-color: #2c322a;
+}
+[data-theme="dark"] .popup .popup-content h2 {
+  color: #f6fff0;
+}
+[data-theme="dark"] .popup .popup-content p {
+  color: #f6fff0;
+}
+[data-theme="dark"] .popup .popup-content .controls * {
   color: #c9ffc3;
 }

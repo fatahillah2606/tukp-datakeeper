@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -54,39 +54,110 @@
                 <a href="lihat/lihat-mobil.html">Lihat Mobil</a>
               </div>
             </div>
-            <!-- Hanya tampilkan jika admin -->
-            <div class="admin-menu show">
-              <a href="#">
-                <div class="link">
-                  <span class="material-symbols-rounded">person_add</span>
-                  <p>Tambah Pengguna</p>
-                </div>
-              </a>
-              <a href="#">
-                <div class="link">
-                  <span class="material-symbols-rounded">notifications</span>
-                  <p>Notifikasi</p>
-                </div>
-              </a>
-            </div>
-            <a href="#">
-              <div class="link">
-                <span class="material-symbols-rounded">logout</span>
-                <p>Keluar</p>
-              </div>
-            </a>
           </div>
         </div>
       </div>
       <!-- Konten -->
       <div class="konten">
-        <div class="navbar">
-          <div class="logo">
-            <img src="../assets/images/logo.svg" alt="Logo" />
-            <p>TUKP Data Keeper</p>
+        <!-- Navbar -->
+        <div class="navbar admin">
+          <div class="left-cont">
+            <div class="logo">
+              <img src="../assets/images/logo.svg" alt="Logo" />
+              <p>TUKP Data Keeper</p>
+            </div>
           </div>
-          <div class="profile">
-            <span class="material-symbols-rounded">person</span>
+          <div class="right-cont">
+            <div class="notif">
+              <span class="notif-count">10</span>
+              <span class="material-symbols-rounded">notifications</span>
+            </div>
+            <div class="profile">
+              <span class="material-symbols-rounded">person</span>
+            </div>
+          </div>
+          <!-- Notifikasi -->
+          <div class="notifikasi">
+            <div class="head">
+              <h2>Notifikasi</h2>
+              <span class="material-symbols-rounded">close</span>
+            </div>
+            <div class="content">
+              <div class="notif-container">
+                <div class="notif-menu">
+                  <span class="material-symbols-rounded">passkey</span>
+                  <div class="notif-text">
+                    <h2>Permintaan reset sandi</h2>
+                    <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
+                  </div>
+                </div>
+                <div class="notif-menu">
+                  <span class="material-symbols-rounded">passkey</span>
+                  <div class="notif-text">
+                    <h2>Permintaan reset sandi</h2>
+                    <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
+                  </div>
+                </div>
+                <div class="notif-menu">
+                  <span class="material-symbols-rounded">passkey</span>
+                  <div class="notif-text">
+                    <h2>Permintaan reset sandi</h2>
+                    <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
+                  </div>
+                </div>
+                <div class="notif-menu">
+                  <span class="material-symbols-rounded">passkey</span>
+                  <div class="notif-text">
+                    <h2>Permintaan reset sandi</h2>
+                    <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
+                  </div>
+                </div>
+                <div class="notif-menu">
+                  <span class="material-symbols-rounded">passkey</span>
+                  <div class="notif-text">
+                    <h2>Permintaan reset sandi</h2>
+                    <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
+                  </div>
+                </div>
+                <div class="notif-menu">
+                  <span class="material-symbols-rounded">passkey</span>
+                  <div class="notif-text">
+                    <h2>Permintaan reset sandi</h2>
+                    <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
+                  </div>
+                </div>
+                <div class="notif-menu">
+                  <span class="material-symbols-rounded">passkey</span>
+                  <div class="notif-text">
+                    <h2>Permintaan reset sandi</h2>
+                    <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
+                  </div>
+                </div>
+                <div class="notif-menu">
+                  <span class="material-symbols-rounded">passkey</span>
+                  <div class="notif-text">
+                    <h2>Permintaan reset sandi</h2>
+                    <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
+                  </div>
+                </div>
+                <div class="notif-menu">
+                  <span class="material-symbols-rounded">passkey</span>
+                  <div class="notif-text">
+                    <h2>Permintaan reset sandi</h2>
+                    <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
+                  </div>
+                </div>
+                <div class="notif-menu">
+                  <span class="material-symbols-rounded">passkey</span>
+                  <div class="notif-text">
+                    <h2>Permintaan reset sandi</h2>
+                    <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
+                  </div>
+                </div>
+              </div>
+              <!-- Tampilkan jika tidak ada notifikasi -->
+              <p class="no-notif">Tidak ada Notifikasi</p>
+            </div>
           </div>
           <!-- Profile menu -->
           <div class="profile-menu">
@@ -96,12 +167,21 @@
               <span class="material-symbols-rounded">person</span>
             </div>
             <p class="nama">Halo, <span>Al Aziz</span></p>
-            <a href="">
-              <div class="tombol">
-                <span class="material-symbols-rounded">logout</span>
-                <p>Keluar</p>
-              </div>
-            </a>
+            <a href="" class="akun">Kelola akun anda</a>
+            <div class="multi-tombol">
+              <a href="" class="kelola-pengguna">
+                <div class="tombol">
+                  <span class="material-symbols-rounded">manage_accounts</span>
+                  <p>Kelola Pengguna</p>
+                </div>
+              </a>
+              <a href="">
+                <div class="tombol">
+                  <span class="material-symbols-rounded">logout</span>
+                  <p>Keluar</p>
+                </div>
+              </a>
+            </div>
             <div class="tombol">
               <span class="material-symbols-rounded">dark_mode</span>
               <p>Mode Gelap</p>
@@ -224,7 +304,7 @@
                   <th>Nama Pembawa</th>
                   <th>Nama & Jumlah Barang</th>
                   <th>Tanggal</th>
-                  <th>keterangan</th>
+                  <th>Keterangan</th>
                   <th>Ubah Data</th>
                 </tr>
               </thead>
@@ -413,13 +493,25 @@
             <input type="text" id="keterangan" name="keterangan" />
           </div>
           <div class="tombol-aksi">
-            <span id="cancel" onclick="closeEdit()">Batal</span>
+            <span id="cancel" onclick="editModal()">Batal</span>
             <button name="submit" id="submit">Simpan</button>
           </div>
         </form>
       </div>
     </div>
     <!-- End Modal Box -->
+    <!-- modal alert box-->
+    <div class="popup">
+      <div class="popup-content">
+        <h2>Perhatian</h2>
+        <p>Anda yakin ingin menghapus rekaman tersebut?</p>
+        <div class="controls">
+          <button class="close-btn" onclick="peringatan()">Batal</button>
+          <a href="" class="submit-btn">Hapus</a>
+        </div>
+      </div>
+    </div>
+    <!-- End modal alert box -->
     <script src="../assets/js/navmenu.js"></script>
     <script src="../assets/js/tabel.js"></script>
     <script src="../assets/js/script.js"></script>
