@@ -3,16 +3,20 @@
   display: flex;
   height: 100vh;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: auto;
 }
 /* Navmenu */
 .navmenu {
-  width: 70px;
+  width: 80px;
   height: 100vh;
-  background-color: #162a49;
+  background-color: #b6b7f4;
   padding: 15px;
-  position: relative;
-  z-index: 999;
+  z-index: 998;
   transition: 0.3s ease;
+  position: sticky;
+  top: 0%;
+  left: 0%;
 }
 .navmenu.active {
   width: 270px;
@@ -25,11 +29,11 @@
   background: none;
 }
 .navmenu::-webkit-scrollbar-thumb {
-  background-color: #3061b0;
+  background-color: #fff;
   border-radius: 10px;
 }
 .navmenu::-webkit-scrollbar-thumb:hover {
-  background-color: #4a79d0;
+  background-color: #fff;
 }
 .navmenu .navmenu-content {
   width: 40px;
@@ -50,7 +54,7 @@
 }
 .navmenu .links a > .link:hover:not(.active) > *,
 .navmenu .links .dropdown:hover:not(.active) > .link > * {
-  color: #74a3ef;
+  color: #fff;
 }
 .navmenu .links .link.active,
 .navmenu .links .dropdown.active > .link {
@@ -62,7 +66,7 @@
 }
 .navmenu .links .link p,
 .navmenu .links .link span {
-  color: #fff;
+  color: #000000;
 }
 /* Menu Icon */
 .navmenu .links .link span {
@@ -124,7 +128,7 @@
   background-color: #74a3ef;
 }
 .navmenu .dropdown .drop-menu a {
-  color: #fff;
+  color: #000000;
   padding: 10px;
   margin-left: 40px;
   border-radius: 10px;
@@ -151,9 +155,12 @@
   width: 100%;
   height: auto;
   padding: 15px 10px;
-  background-color: #162a49;
+  background-color: #b6b7f4;
   display: flex;
   align-items: center;
+  position: sticky;
+  top: 0%;
+  z-index: 999;
 }
 .navbar > * {
   margin: 0 10px;
@@ -164,7 +171,10 @@
   color: #fff;
   border-radius: 10px;
   cursor: pointer;
-  z-index: 10;
+  z-index: 999;
+  position: absolute;
+  top: 15px;
+  left: 20px;
 }
 .navbar .logo {
   display: flex;
@@ -175,6 +185,6 @@
   margin-right: 10px;
 }
 .navbar .logo p {
-  color: #fff;
+  color: #000000;
   font-weight: bold;
 }
