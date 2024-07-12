@@ -18,6 +18,7 @@ body {
   overflow-x: hidden;
   overflow-y: auto;
   position: relative;
+  padding: 30px;
 }
 /* Fab Button */
 .fab-button {
@@ -38,11 +39,11 @@ body {
 
 /* Header */
 .header {
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
   height: auto;
   display: block;
-  margin: 30px auto;
+  margin: auto;
 }
 .header h1 {
   font-size: 40px;
@@ -153,7 +154,8 @@ body {
 }
 /* Tabel */
 .tabel {
-  width: 90%;
+  width: 100%;
+  max-width: 1600px;
   height: auto;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   display: block;
@@ -163,21 +165,21 @@ body {
   background-color: #ecf3e7;
   animation: fadein 0.5s ease;
 }
-.tabel .head {
+.head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 30px;
 }
-.tabel .head h2 {
+.head h2 {
   font-family: "Open Sans", sans-serif;
   font-weight: normal;
   color: #002105;
 }
-.tabel .head p {
+.head p {
   color: #002105;
 }
-.tabel .head .bar-cari {
+.head .bar-cari {
   display: flex;
   align-items: center;
   overflow: hidden;
@@ -189,15 +191,15 @@ body {
   transition: 0.4s ease;
   /* box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1); */
 }
-.tabel .head .bar-cari.aktif {
+.head .bar-cari.aktif {
   width: 327px;
 }
-.tabel .head .bar-cari label {
+.head .bar-cari label {
   margin: 10px;
   cursor: pointer;
   color: #002105;
 }
-.tabel .head .bar-cari input {
+.head .bar-cari input {
   font-size: 17px;
   padding: 7px 10px;
   padding-left: 0;

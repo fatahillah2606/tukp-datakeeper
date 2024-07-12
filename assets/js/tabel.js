@@ -2,7 +2,7 @@
 let barCariField = document.querySelector("#cari");
 let barCari = document.querySelector(".bar-cari");
 let modalContainer = document.querySelector(".modal-container");
-let tombolEdit = document.querySelectorAll("button.edit");
+let tombolEdit = document.querySelectorAll(".edit");
 let hapusData = document.querySelectorAll(".hapus");
 let popup = document.querySelector(".popup");
 

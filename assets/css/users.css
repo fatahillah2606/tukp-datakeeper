@@ -1,0 +1,127 @@
+.main-content h1 {
+  margin-bottom: 20px;
+}
+.konten-pengguna {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  background-color: #ecf3e7;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 50px auto;
+}
+.konten-pengguna .head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  margin-bottom: 0;
+}
+.konten-pengguna .head .head-action {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.konten-pengguna .head .head-action .tambah {
+  display: flex;
+  align-items: center;
+  border: 1px solid #253423;
+  padding: 7px 12px;
+  color: #3a693a;
+  border-radius: 50px;
+  cursor: pointer;
+}
+.konten-pengguna .head .head-action .tambah:hover {
+  background-color: #d5e8cf;
+}
+.konten-pengguna .users {
+  margin: 20px;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  border-radius: 20px;
+  overflow: hidden !important;
+  height: auto;
+}
+.konten-pengguna .users * {
+  display: flex;
+  align-items: center;
+}
+.konten-pengguna .users .user {
+  background-color: #ffffff;
+  justify-content: space-between;
+  padding: 20px;
+}
+.konten-pengguna .users .user .left .user-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #d5e8cf;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+.konten-pengguna .users .user .left .user-icon span {
+  color: #002105;
+  font-size: 28px;
+}
+.konten-pengguna .users .user .left .user-name {
+  flex-direction: column;
+  align-items: last baseline;
+}
+.konten-pengguna .users .user .left .user-name * {
+  color: #002105;
+}
+.konten-pengguna .users .user .right p.role {
+  margin-right: 50px;
+  width: 80px;
+  display: block;
+  text-align: center;
+  color: #002105;
+  padding: 5px 0;
+  border-radius: 50px;
+}
+.konten-pengguna .users .user .right p.role.admin {
+  background-color: #d5e8cf;
+}
+.konten-pengguna .users .user .right .action-btn {
+  gap: 10px;
+  align-items: normal;
+}
+.konten-pengguna .users .user .right .action-btn > * {
+  width: auto;
+  height: auto;
+  padding: 7px 20px;
+  text-align: center;
+  outline: none;
+  border-radius: 50px;
+  color: #3a693a;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.konten-pengguna .users .user .right .action-btn .hapus {
+  color: var(--on-error-light);
+  background-color: var(--error-light);
+  transition: none;
+  padding: 10px;
+}
+.konten-pengguna .users .user .right .action-btn .edit {
+  border: 1px solid #253423;
+  padding: 7px 12px;
+  display: flex;
+  align-items: center;
+}
+.konten-pengguna
+  .users
+  .user
+  .right
+  .action-btn
+  .btn
+  span.material-symbols-rounded {
+  margin-right: 8px;
+}
+.konten-pengguna .users .user .right .action-btn .edit:hover {
+  background-color: #d5e8cf;
+}

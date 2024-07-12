@@ -262,18 +262,17 @@
 }
 .navbar .notifikasi .content {
   position: relative;
-  overflow-y: auto;
+  overflow-y: auto !important;
   width: 100%;
-  height: auto;
-  min-height: 200px;
-  max-height: 600px;
+  height: 100%;
+  max-height: 400px;
   padding: 10px;
 }
 .navbar .notifikasi .content .notif-container {
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 2px;
   border-radius: 20px;
   overflow: hidden;
   width: 100%;
@@ -430,7 +429,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  gap: 5px;
+  gap: 2px;
   border-radius: 50px;
 }
 .profile-menu .multi-tombol a {

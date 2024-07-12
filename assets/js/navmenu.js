@@ -44,6 +44,9 @@ menuBtn.addEventListener("click", () => {
 
 // Notifikasi
 function bukaNotifikasi() {
+  if (profileMenu.classList.contains("show")) {
+    profileMenu.classList.remove("show");
+  }
   menuNotifikasi.classList.toggle("show");
 }
 notifikasi.addEventListener("click", (e) => {
@@ -53,9 +56,6 @@ notifikasi.addEventListener("click", (e) => {
 tutupNotifikasi.addEventListener("click", (e) => {
   e.stopPropagation();
   bukaNotifikasi();
-  if (profileMenu.classList.contains("show")) {
-    bukaMenuProfil();
-  }
 });
 menuNotifikasi.addEventListener("click", (e) => {
   e.stopPropagation();
@@ -63,6 +63,9 @@ menuNotifikasi.addEventListener("click", (e) => {
 
 // Profile Menu
 function bukaMenuProfil() {
+  if (menuNotifikasi.classList.contains("show")) {
+    menuNotifikasi.classList.remove("show");
+  }
   profileMenu.classList.toggle("show");
 }
 profile.addEventListener("click", (e) => {
@@ -72,9 +75,6 @@ profile.addEventListener("click", (e) => {
 tutupMenuProfil.addEventListener("click", (e) => {
   e.stopPropagation();
   bukaMenuProfil();
-  if (menuNotifikasi.classList.contains("show")) {
-    bukaNotifikasi();
-  }
 });
 profileMenu.addEventListener("click", (e) => {
   e.stopPropagation();
@@ -83,13 +83,15 @@ profileMenu.addEventListener("click", (e) => {
 document.addEventListener("click", (e) => {
   if (
     profileMenu.classList.contains("show") &&
-    !profileMenu.contains(e.target)
+    !profileMenu.contains(e.target) &&
+    e.target.id !== "bukaMenuProfil"
   ) {
     profileMenu.classList.remove("show");
   }
   if (
     menuNotifikasi.classList.contains("show") &&
-    !menuNotifikasi.contains(e.target)
+    !menuNotifikasi.contains(e.target) &&
+    e.target.id !== "bukaNotifikasi"
   ) {
     menuNotifikasi.classList.remove("show");
   }
@@ -135,12 +137,12 @@ saklar.addEventListener("click", () => {
 });
 
 // Cek sekema warna sistem
-if (
-  window.matchMedia &&
-  window.matchMedia("(prefers-color-scheme: dark)").matches
-) {
-  darkMode();
-}
+// if (
+//   window.matchMedia &&
+//   window.matchMedia("(prefers-color-scheme: dark)").matches
+// ) {
+//   darkMode();
+// }
 
 // Ganti mode jika skema warna sistem berubah
 window
