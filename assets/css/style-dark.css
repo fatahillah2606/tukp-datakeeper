@@ -197,10 +197,10 @@
 [data-theme="dark"] .tabel .head p {
   color: #f6fff0;
 }
-[data-theme="dark"] .tabel .head .bar-cari {
+[data-theme="dark"] .head .bar-cari {
   background-color: #171d16;
 }
-[data-theme="dark"] .tabel .head .bar-cari * {
+[data-theme="dark"] .head .bar-cari * {
   color: #f6fff0;
 }
 [data-theme="dark"] .tabel table tr th,
@@ -304,4 +304,60 @@
 }
 [data-theme="dark"] .popup .popup-content .controls * {
   color: #c9ffc3;
+}
+/* Kelola Pengguna */
+[data-theme="dark"] .user-manager * {
+  color: #f6fff0;
+}
+[data-theme="dark"] .konten-pengguna {
+  background-color: #2c322a;
+}
+[data-theme="dark"] .konten-pengguna .head h2 {
+  color: #f6fff0;
+}
+[data-theme="dark"] .head .head-action .tambah {
+  color: #c9ffc3;
+  border-color: #c9ffc3;
+}
+[data-theme="dark"] .head .head-action .tambah:hover {
+  color: #f6fff0;
+  background-color: #52634f;
+}
+[data-theme="dark"] .konten-pengguna .users .user {
+  background-color: #171d16;
+}
+[data-theme="dark"] .konten-pengguna .users .user .left .user-icon {
+  background-color: #2c322a;
+}
+[data-theme="dark"] .konten-pengguna .users .user .left .user-icon span {
+  color: #f6fff0;
+}
+[data-theme="dark"] .konten-pengguna .users .user .left .user-name * {
+  color: #f6fff0;
+}
+[data-theme="dark"] .konten-pengguna .users .user .right p.role {
+  color: #f6fff0;
+}
+[data-theme="dark"] .konten-pengguna .users .user .right p.role.admin {
+  background-color: #52634f;
+}
+[data-theme="dark"] .konten-pengguna .users .user .right .action-btn > * {
+  color: #c9ffc3;
+}
+[data-theme="dark"] .konten-pengguna .users .user .right .action-btn .hapus {
+  color: var(--on-error-dark);
+  background-color: var(--error-dark);
+}
+[data-theme="dark"] .konten-pengguna .users .user .right .action-btn .edit {
+  border-color: #c9ffc3;
+}
+[data-theme="dark"]
+  .konten-pengguna
+  .users
+  .user
+  .right
+  .action-btn
+  .edit:hover {
+  color: #f6fff0;
+  background-color: #52634f;
 }

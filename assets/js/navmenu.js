@@ -137,12 +137,12 @@ saklar.addEventListener("click", () => {
 });
 
 // Cek sekema warna sistem
-// if (
-//   window.matchMedia &&
-//   window.matchMedia("(prefers-color-scheme: dark)").matches
-// ) {
-//   darkMode();
-// }
+if (
+  window.matchMedia &&
+  window.matchMedia("(prefers-color-scheme: dark)").matches
+) {
+  darkMode();
+}
 
 // Ganti mode jika skema warna sistem berubah
 window
