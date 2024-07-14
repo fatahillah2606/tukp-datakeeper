@@ -30,10 +30,14 @@
   display: flex;
   align-items: center;
   border: 1px solid #253423;
-  padding: 7px 12px;
+  padding: 10px;
   color: #3a693a;
   border-radius: 50px;
   cursor: pointer;
+}
+
+.konten-pengguna .head .head-action .tambah * {
+  margin-right: 8px;
 }
 .konten-pengguna .head .head-action .tambah:hover {
   background-color: #d5e8cf;
@@ -91,12 +95,12 @@
 }
 .konten-pengguna .users .user .right .action-btn {
   gap: 10px;
-  align-items: normal;
+  /* align-items: normal; */
 }
 .konten-pengguna .users .user .right .action-btn > * {
   width: auto;
   height: auto;
-  padding: 7px 20px;
+  padding: 10px;
   text-align: center;
   outline: none;
   border-radius: 50px;
@@ -106,11 +110,11 @@
   cursor: pointer;
   transition: 0.2s ease;
 }
-.konten-pengguna .users .user .right .action-btn .hapus {
-  color: var(--on-error-light);
-  background-color: var(--error-light);
-  transition: none;
-  padding: 10px;
+.konten-pengguna .users .user .right .action-btn .reset span {
+  transform: translateY(1px);
+}
+.konten-pengguna .users .user .right .action-btn .reset:hover {
+  background-color: #d5e8cf;
 }
 .konten-pengguna .users .user .right .action-btn .edit {
   border: 1px solid #253423;
@@ -118,15 +122,15 @@
   display: flex;
   align-items: center;
 }
-.konten-pengguna
-  .users
-  .user
-  .right
-  .action-btn
-  .btn
-  span.material-symbols-rounded {
+.konten-pengguna .users .user .right .action-btn .btn * {
   margin-right: 8px;
 }
 .konten-pengguna .users .user .right .action-btn .edit:hover {
   background-color: #d5e8cf;
+}
+.konten-pengguna .users .user .right .action-btn .hapus {
+  color: var(--on-error-light);
+  background-color: var(--error-light);
+  transition: none;
+  padding: 10px;
 }

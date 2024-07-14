@@ -1,6 +1,6 @@
 // Define
 let dropdown = document.querySelectorAll(".dropdown");
-let menuBtn = document.querySelector(".menu-btn");
+let menuBtn = document.querySelectorAll(".menu-btn");
 let navMenu = document.querySelector(".navmenu");
 let notifikasi = document.querySelector(".navbar .right-cont .notif");
 let menuNotifikasi = document.querySelector(".notifikasi");
@@ -17,7 +17,7 @@ dropdown.forEach((element) => {
   element.addEventListener("click", () => {
     // cek jika side bar dibuka
     if (!navMenu.classList.contains("active")) {
-      menuBtn.click();
+      openSideMenu();
     }
     // buka dropdown
     if (element.classList.contains("show")) {
@@ -29,18 +29,25 @@ dropdown.forEach((element) => {
 });
 
 // Menu Button
-menuBtn.addEventListener("click", () => {
+menuBtn.forEach((e) => {
+  e.addEventListener("click", openSideMenu);
+});
+function openSideMenu() {
   if (navMenu.classList.contains("active")) {
     navMenu.classList.remove("active");
-    menuBtn.innerHTML = "menu";
+    menuBtn.forEach((e) => {
+      e.innerHTML = "menu";
+    });
     dropdown.forEach((element) => {
       element.classList.remove("show");
     });
   } else {
     navMenu.classList.add("active");
-    menuBtn.innerHTML = "arrow_back";
+    menuBtn.forEach((e) => {
+      e.innerHTML = "arrow_back";
+    });
   }
-});
+}
 
 // Notifikasi
 function bukaNotifikasi() {

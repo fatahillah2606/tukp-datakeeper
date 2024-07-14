@@ -3,6 +3,7 @@
   display: flex;
   height: 100vh;
   transition: all 0.3s ease;
+  position: relative;
 }
 
 /* Navmenu */
@@ -105,14 +106,14 @@
   position: relative;
 }
 .navmenu.active .dropdown .link .down-icon {
-  position: absolute;
-  right: 0;
-  margin: 0;
-  transition: 0.3s ease;
   display: block;
 }
 .navmenu .dropdown .link .down-icon {
   display: none;
+  position: absolute;
+  right: 0;
+  margin: 0;
+  transition: 0.3s ease;
 }
 .navmenu .links .dropdown.show > .link .down-icon {
   transform: rotate(180deg);
@@ -158,6 +159,7 @@
   flex: 1;
   transition: margin-left 0.3s ease;
   overflow: hidden;
+  position: relative;
 }
 /* Navmenu */
 .navbar {
@@ -173,6 +175,22 @@
 }
 .navbar > * {
   margin: 0 10px;
+}
+.navbar .left-cont {
+  display: flex;
+  align-items: center;
+}
+/* menu btn for screen size 800px */
+.navbar .menu-btn {
+  display: none;
+  margin-left: -10px;
+  margin-right: 10px;
+  color: #002105;
+  padding: 10px;
+  border-radius: 50%;
+}
+.navbar .menu-btn:hover {
+  background-color: #dee5d9;
 }
 /* Logo */
 .navbar .logo {
@@ -223,11 +241,13 @@
 .navbar .notif span.material-symbols-rounded {
   color: #002105;
 }
+/* Menu Notifikasi */
 .navbar .notifikasi {
   position: absolute;
   top: 100%;
   right: 50px;
-  width: 400px;
+  width: 90%;
+  max-width: 400px;
   height: auto;
   background-color: #ecf3e7;
   border-radius: 20px;
@@ -244,6 +264,7 @@
   justify-content: space-between;
   border-bottom: 1px solid #dee5d9;
   padding: 10px 20px;
+  margin-bottom: 0;
 }
 .navbar .notifikasi .head h2 {
   font-size: 20px;
@@ -262,7 +283,7 @@
 }
 .navbar .notifikasi .content {
   position: relative;
-  overflow-y: auto !important;
+  overflow: auto;
   width: 100%;
   height: 100%;
   max-height: 400px;
@@ -353,7 +374,8 @@
   position: absolute;
   top: 100%;
   right: 20px;
-  width: 436px;
+  width: 90%;
+  max-width: 436px;
   height: auto;
   padding: 20px;
   background-color: #ecf3e7;
@@ -408,13 +430,13 @@
   margin-bottom: 20px;
 }
 .profile-menu .akun {
-  padding: 10px 30px;
+  width: 200px;
+  padding: 10px 0;
   font-weight: 500;
   color: #3a693a;
   display: none;
+  margin: auto;
   margin-bottom: 20px;
-  margin-left: 50%;
-  transform: translateX(-50%);
   text-align: center;
   border: 1px solid #253423;
   border-radius: 50px;
@@ -423,7 +445,7 @@
   background-color: #d5e8cf;
 }
 .navbar.admin .profile-menu .akun {
-  display: inline-block;
+  display: block;
 }
 .profile-menu .multi-tombol {
   display: flex;
@@ -502,4 +524,44 @@
 }
 .profile-menu .tombol .saklar.aktif:hover span {
   transform: translateY(-50%) scale(1.5);
+}
+
+/* Responsive */
+@media screen and (max-width: 800px) {
+  .container {
+    display: block;
+  }
+  .navmenu {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 80% !important;
+    transform: translateX(-100%);
+    transition: 0.4s ease;
+    background-color: #ffffff;
+    box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.3);
+  }
+  .navmenu.active {
+    transform: translateX(0);
+  }
+  .navmenu .navmenu-content {
+    width: 100% !important;
+  }
+  .navmenu .dropdown .link .down-icon {
+    display: block !important;
+  }
+  /* menu btn */
+  .navmenu .links .link .menu-btn {
+    display: none;
+  }
+  .navbar .menu-btn {
+    display: block;
+  }
+}
+@media screen and (max-width: 500px) {
+  .navbar .notifikasi,
+  .navbar .profile-menu {
+    right: 50%;
+    transform: translateX(50%);
+  }
 }

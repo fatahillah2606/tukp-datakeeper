@@ -39,7 +39,7 @@ body {
 
 /* Header */
 .header {
-  width: 100%;
+  width: 90%;
   max-width: 1200px;
   height: auto;
   display: block;
@@ -114,15 +114,21 @@ body {
 /* Header Menu */
 .header .tombol .pilihan {
   display: none;
-  flex-wrap: wrap;
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  overflow-x: auto;
   gap: 10px;
   animation: fadein 0.5s ease;
   margin-top: 30px;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
 }
 .header .tombol .pilihan.show {
   display: flex;
 }
 .header .tombol .pilihan .tmbl {
+  flex-shrink: 0;
   width: 200px;
   height: 200px;
   border-radius: 10px;
@@ -154,9 +160,9 @@ body {
 }
 /* Tabel */
 .tabel {
-  width: 100%;
-  max-width: 1600px;
+  width: auto;
   height: auto;
+  max-width: 1600px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   display: block;
   margin: 50px auto;
@@ -167,6 +173,7 @@ body {
 }
 .head {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 30px;
@@ -209,13 +216,12 @@ body {
   color: #002105;
 }
 .table-container {
-  width: 100%;
-  height: auto;
-  overflow: auto;
+  overflow-x: auto;
+  width: auto;
 }
 .tabel table {
   width: 100%;
-  table-layout: fixed;
+  /* table-layout: fixed; */
   height: auto;
   border-collapse: collapse;
   border-spacing: 0;
@@ -224,6 +230,9 @@ body {
 .tabel table tr td {
   padding: 8px;
   text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .tabel table tbody tr:hover {
   background-color: #dee5d9;
@@ -237,15 +246,18 @@ body {
 .tabel table tr td.list ul {
   list-style-position: inside;
 }
-.tabel table tr td.buttons {
+.tabel table tr td.buttons .btn-cont {
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 10px;
 }
 .tabel table tr td button {
   width: auto;
   height: auto;
-  padding: 7px 20px;
+  padding: 10px;
+  min-width: 95px;
+  min-height: 40px;
   text-align: center;
   outline: none;
   border-radius: 50px;
@@ -254,6 +266,7 @@ body {
   border: none;
   cursor: pointer;
   transition: 0.2s ease;
+  font-size: 16px;
 }
 .tabel table tr td button:nth-child(1) {
   color: var(--on-error-light);
@@ -262,11 +275,10 @@ body {
 }
 .tabel table tr td button:nth-child(2) {
   border: 1px solid #253423;
-  padding: 7px 12px;
   display: flex;
   align-items: center;
 }
-.tabel table tr td button:nth-child(2) .material-symbols-rounded {
+.tabel table tr td button:nth-child(2) * {
   margin-right: 8px;
 }
 .tabel table tr td button:nth-child(2):hover {
@@ -280,6 +292,51 @@ body {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Experiment */
+@media screen and (max-width: 900px) {
+  .tabel table {
+    border-radius: 20px;
+    overflow: hidden;
+  }
+  .tabel table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  .tabel table tr {
+    display: block;
+    margin-bottom: 5px;
+    background-color: #ffffff !important;
+    /* border-radius: 20px; */
+    padding: 10px;
+  }
+  .tabel table tr:last-child {
+    margin: 0;
+  }
+  .tabel table td {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #dee5d9;
+    padding: 10px !important;
+  }
+  .tabel table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+  }
+  .tabel table td.buttons {
+    justify-content: space-between !important;
+  }
+  .tabel table td:last-child {
+    border: none;
   }
 }
 
@@ -547,3 +604,46 @@ body {
   cursor: pointer;
   font-weight: 500;
 }
+
+/* Responsive */
+@media screen and (max-width: 900px) {
+  .main-content {
+    padding: 20px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .header h1.nama {
+    font-size: 40px;
+  }
+  .header .kata-sambutan {
+    height: 38px;
+  }
+  .header .kata-sambutan h1 {
+    font-size: 30px;
+  }
+  .header .kata-sambutan.change h1:nth-child(1) {
+    margin-top: -40px;
+  }
+  .tabel {
+    padding: 20px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .tabel .head {
+    flex-direction: column;
+    gap: 20px;
+    align-items: normal;
+  }
+  .tabel .head .bar-cari {
+    width: 100% !important;
+  }
+}
+/* Untuk kata sambutan */
+/* @media screen and (max-width: 467px) {
+  .header .kata-sambutan {
+    height: calc(48px * 2);
+  }
+  .header .kata-sambutan.change h1:nth-child(1) {
+    margin-top: calc(-50px * 2);
+  }
+} */
