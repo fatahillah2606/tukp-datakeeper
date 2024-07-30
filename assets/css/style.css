@@ -253,12 +253,16 @@ body {
   gap: 10px;
 }
 .tabel table tr td button {
-  width: auto;
-  height: auto;
-  padding: 10px;
-  min-width: 95px;
-  min-height: 40px;
+  /* width: auto;
+  height: auto; */
+  /* padding: 10px; */
+  width: 46px;
+  height: 46px;
+  /* min-width: 95px;
+  min-height: 40px; */
+  display: block;
   text-align: center;
+  line-height: 46px;
   outline: none;
   border-radius: 50px;
   color: #3a693a;
@@ -266,7 +270,6 @@ body {
   border: none;
   cursor: pointer;
   transition: 0.2s ease;
-  font-size: 16px;
 }
 .tabel table tr td button:nth-child(1) {
   color: var(--on-error-light);
@@ -275,12 +278,12 @@ body {
 }
 .tabel table tr td button:nth-child(2) {
   border: 1px solid #253423;
-  display: flex;
-  align-items: center;
+  /* display: flex;
+  align-items: center; */
 }
-.tabel table tr td button:nth-child(2) * {
+/* .tabel table tr td button:nth-child(2) * {
   margin-right: 8px;
-}
+} */
 .tabel table tr td button:nth-child(2):hover {
   background-color: #d5e8cf;
 }
