@@ -1,8 +1,11 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Audiowide&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+@import url(color-base.css);
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "inter", sans-serif;
+  font-family: "Inter", sans-serif;
 }
 body {
   background: url(../images/login-bg.jpg);
@@ -15,112 +18,320 @@ body {
   height: 100vh;
 }
 .konten {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  max-width: 500px;
-  max-height: 800px;
-  background-color: rgba(252, 253, 246, 0.9);
-  padding: 20px;
+  width: 95%;
+  max-width: 1050px;
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  padding: 30px;
   backdrop-filter: blur(5px);
 }
 .konten .logo {
-  width: 34px;
-  height: auto;
-  position: absolute;
-  top: 30px;
-  left: 30px;
-}
-.isi-konten {
-  width: 85%;
-  height: auto;
-}
-.isi-konten h2 {
-  margin-bottom: 20px;
-  font-size: 28px;
-}
-.isi-konten .field {
-  position: relative;
+  width: 32px;
   margin-bottom: 20px;
 }
-.isi-konten .field > * {
-  display: block;
-}
-.isi-konten .field .field-box {
-  width: 100%;
-  height: auto;
-  border: 1px solid #bdc3c7;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  margin: 5px 0;
-}
-.isi-konten .field label {
-  margin-bottom: 5px;
-}
-.isi-konten .field .field-box input {
-  flex: 1;
-  padding: 10px;
-  width: 100%;
-  border: none;
-  background: none;
-  outline: none;
-  font-size: 16px;
-}
-.isi-konten .field .field-box .support-icon {
-  display: none;
-  color: #ba1b1b;
-  padding-right: 10px;
-}
-.isi-konten .field .support-icon.material-symbols-outlined {
-  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
-}
-.isi-konten .field .support-text {
-  display: none;
-  font-size: 14px;
-  color: #ba1b1b;
-}
-.isi-konten .field.error .field-box {
-  border-color: #ba1b1b;
-}
-.isi-konten .field.error .field-box .support-icon {
-  display: block;
-}
-.isi-konten .field.error .support-text {
-  display: block;
-}
-.isi-konten .opsi {
+.konten .main-cont {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  gap: 40px;
 }
-.isi-konten .opsi * {
-  margin-bottom: 5px;
+.konten .main-cont > div {
+  max-width: 460px;
+  width: 100%;
 }
-.isi-konten .opsi a,
-.isi-konten p a {
+
+/* Left content */
+.konten .main-cont .left-cont h1 {
+  font-weight: normal;
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+/* User Options */
+.konten .main-cont .left-cont .user-options {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 180px;
+  padding: 5px;
+  background-color: #fff;
+  border: 1px solid #333;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+}
+.konten .main-cont .left-cont .user-options * {
+  color: #333;
+}
+.material-symbols-rounded {
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+.konten .main-cont .left-cont .user-options .jenis-pengguna {
+  font-size: 14px;
+  flex: 1;
+  padding-left: 5px;
+}
+.konten .main-cont .left-cont .user-options .opsi {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  background-color: #ecf3e7;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+  border-radius: 10px;
+  z-index: 1;
+  overflow: hidden;
+}
+.konten .main-cont .left-cont .user-options .opsi a {
+  display: block;
+  padding: 10px 20px;
   text-decoration: none;
 }
-.isi-konten .opsi a:hover,
-.isi-konten p a:hover {
-  text-decoration: underline;
+.konten .main-cont .left-cont .user-options .opsi a:hover {
+  background-color: #dee5d9;
 }
-.isi-konten #submit {
+.konten .main-cont .left-cont .user-options .opsi.show {
   display: block;
+}
+
+/* Form login */
+.konten .right-cont .input-field {
+  position: relative;
   width: 100%;
-  padding: 10px;
-  margin: 20px 0;
-  font-size: 17px;
-  border-radius: 20px;
+  height: auto;
+  margin-bottom: 40px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #5a6057;
+  position: relative;
+  border-radius: 5px 5px 0 0;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.konten .right-cont .input-field.hide {
+  display: none;
+}
+.konten .right-cont .input-field::before {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 0;
+  height: 2px;
+  background-color: #3a693a;
+  transition: 0.3s ease;
+}
+.konten .right-cont .input-field.fokus::before {
+  width: 100%;
+}
+.konten .right-cont .input-field label {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 15px;
+  font-size: 15px;
+  transition: 0.3s ease;
+}
+.konten .right-cont .input-field.fokus label {
+  top: 5px;
+  left: 15px;
+  transform: translateY(0);
   font-weight: bold;
-  color: #fff;
-  background-color: #016e21;
+  color: #3a693a;
+  font-size: 10px;
+}
+.konten .right-cont .input-field input {
+  width: 100%;
+  padding: 10px 0;
+  padding-top: 20px;
   border: none;
   outline: none;
+  background: none;
+  font-size: 17px;
+  color: #002105;
+}
+
+/* Field error */
+.konten .right-cont .input-field .material-symbols-rounded {
+  display: none;
+}
+.konten .right-cont .input-field.error {
+  border-color: var(--error-light);
+}
+.konten .right-cont .input-field.error .material-symbols-rounded {
+  display: block;
+  color: var(--error-light);
+}
+.konten .right-cont .input-field.error::before {
+  background-color: var(--error-light);
+}
+.konten .right-cont .input-field.fokus.error label,
+.konten .right-cont .input-field.error label {
+  color: var(--error-light);
+}
+
+/* Field supporting text */
+.konten .right-cont .input-field .supporting-text {
+  display: none;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 15px;
+  color: var(--error-light);
+  font-size: 12px;
+}
+.konten .right-cont .input-field.error .supporting-text {
+  display: block;
+}
+
+/* Show Passwd button */
+.konten .right-cont .show-passwd * {
   cursor: pointer;
+}
+.konten .right-cont p {
+  margin: 20px 0;
+}
+
+/* Forget password option */
+.konten .right-cont .radio-option {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.konten .right-cont .radio-option .radio {
+  display: flex;
+  gap: 10px;
+}
+.konten .right-cont .radio-option .radio * {
+  cursor: pointer;
+}
+
+/* Buttons */
+.konten .buttons {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  gap: 5px;
+  margin-top: 50px;
+}
+.konten .buttons * {
+  font-size: 14px;
+  padding: 10px 20px;
+  text-align: center;
+  border-radius: 50px;
+  border: none;
+  outline: none;
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+.konten .buttons a {
+  color: #3a693a;
+}
+.konten .buttons button {
+  background-color: #3a693a;
+  color: #f6fff6;
+}
+.konten .buttons button:disabled {
+  background-color: rgba(51, 51, 51, 0.2);
+  color: #808080;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media screen and (max-width: 800px) {
+  .konten .main-cont {
+    flex-direction: column;
+  }
+  .konten .main-cont > div {
+    max-width: none;
+  }
+}
+@media screen and (max-width: 450px) {
+  .konten {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+  }
+}
+
+/* Dark Mode */
+[data-theme="dark"] .konten {
+  background: rgba(23, 29, 22, 0.9);
+}
+[data-theme="dark"] .konten .main-cont .left-cont h1,
+[data-theme="dark"] .konten .main-cont .left-cont p {
+  color: #f6fff0;
+}
+[data-theme="dark"] .konten .main-cont .left-cont .user-options {
+  background-color: #2c322a;
+  border-color: #f6fff0;
+}
+[data-theme="dark"] .konten .main-cont .left-cont .user-options * {
+  color: #f6fff0;
+}
+[data-theme="dark"] .konten .main-cont .left-cont .user-options .opsi {
+  background-color: #2c322a;
+}
+[data-theme="dark"] .konten .main-cont .left-cont .user-options .opsi a:hover {
+  background-color: #424940;
+}
+/* Formulir */
+[data-theme="dark"] .konten .right-cont .input-field {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-color: #c2c9bd;
+}
+[data-theme="dark"] .konten .right-cont .input-field::before {
+  background-color: #c9ffc3;
+}
+[data-theme="dark"] .konten .right-cont .input-field * {
+  color: #f6fff0;
+}
+[data-theme="dark"] .konten .right-cont .input-field.fokus label {
+  color: #c9ffc3;
+}
+/* Field error */
+[data-theme="dark"] .konten .right-cont .input-field.error {
+  border-color: var(--error-dark);
+}
+[data-theme="dark"]
+  .konten
+  .right-cont
+  .input-field.error
+  .material-symbols-rounded {
+  color: var(--error-dark);
+}
+[data-theme="dark"] .konten .right-cont .input-field.error::before {
+  background-color: var(--error-dark);
+}
+[data-theme="dark"] .konten .right-cont .input-field.fokus.error label,
+[data-theme="dark"] .konten .right-cont .input-field.error label {
+  color: var(--error-dark);
+}
+[data-theme="dark"] .konten .right-cont .input-field .supporting-text {
+  color: var(--error-dark);
+}
+[data-theme="dark"] .konten .right-cont .show-passwd label {
+  color: #f6fff0;
+}
+[data-theme="dark"] .konten .right-cont p {
+  color: #f6fff0;
+}
+[data-theme="dark"] .konten .right-cont .radio-option .radio label {
+  color: #f6fff0;
+}
+/* Buttons */
+[data-theme="dark"] .konten .buttons a {
+  color: #c9ffc3;
+}
+[data-theme="dark"] .konten .buttons button {
+  background-color: #c9ffc3;
+  color: #101f10;
+}
+[data-theme="dark"] .konten .buttons button:disabled {
+  background-color: rgba(51, 51, 51, 0.5);
+  color: #808080;
+  cursor: not-allowed;
 }

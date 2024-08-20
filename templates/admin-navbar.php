@@ -1,0 +1,98 @@
+<!-- Navbar -->
+<div class="navbar admin">
+  <div class="left-cont">
+    <span class="material-symbols-rounded menu-btn">menu</span>
+    <div class="logo">
+      <img src="/assets/images/logo.svg" alt="Logo" />
+      <p>TUKP Data Keeper</p>
+    </div>
+  </div>
+  <div class="right-cont">
+    <div class="notif">
+      <span class="notif-count"></span>
+      <span class="material-symbols-rounded">notifications</span>
+    </div>
+    <div class="profile">
+      <span class="material-symbols-rounded">person</span>
+    </div>
+  </div>
+  <!-- Notifikasi -->
+  <div class="notifikasi">
+    <div class="head">
+      <h2>Notifikasi</h2>
+      <span class="material-symbols-rounded">close</span>
+    </div>
+    <div class="content">
+      <div class="notif-container">
+        <div class="notif-menu">
+          <span class="material-symbols-rounded">passkey</span>
+          <div class="notif-text">
+            <h2>Permintaan reset sandi</h2>
+            <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
+          </div>
+        </div>
+        <div class="notif-menu">
+          <span class="material-symbols-rounded">passkey</span>
+          <div class="notif-text">
+            <h2>Permintaan reset sandi</h2>
+            <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
+          </div>
+        </div>
+        <div class="notif-menu">
+          <span class="material-symbols-rounded">passkey</span>
+          <div class="notif-text">
+            <h2>Permintaan reset sandi</h2>
+            <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
+          </div>
+        </div>
+        <div class="notif-menu">
+          <span class="material-symbols-rounded">passkey</span>
+          <div class="notif-text">
+            <h2>Permintaan reset sandi</h2>
+            <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
+          </div>
+        </div>
+        <div class="notif-menu">
+          <span class="material-symbols-rounded">passkey</span>
+          <div class="notif-text">
+            <h2>Permintaan reset sandi</h2>
+            <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
+          </div>
+        </div>
+      </div>
+      <!-- Tampilkan jika tidak ada notifikasi -->
+      <p class="no-notif">Tidak ada Notifikasi</p>
+    </div>
+  </div>
+  <!-- Profile menu -->
+  <div class="profile-menu">
+    <span class="material-symbols-rounded close-pf-menu">close</span>
+    <p class="user-id"><?php echo (isset($_COOKIE['user-type'])) ? $_COOKIE['user-name'] : ''; ?></p>
+    <div class="user-image">
+      <span class="material-symbols-rounded">person</span>
+    </div>
+    <p class="nama">Halo, <span><?php echo (isset($_COOKIE['user-type'])) ? $_COOKIE['user-name'] : ''; ?></span></p>
+    <a href="/pages/users/edit.php" class="akun">Kelola akun anda</a>
+    <div class="multi-tombol">
+      <a href="/pages/users/kelola-pengguna.php" class="kelola-pengguna">
+        <div class="tombol">
+          <span class="material-symbols-rounded">manage_accounts</span>
+          <p>Kelola Pengguna</p>
+        </div>
+      </a>
+      <a href="/logout.php">
+        <div class="tombol">
+          <span class="material-symbols-rounded">logout</span>
+          <p>Keluar</p>
+        </div>
+      </a>
+    </div>
+    <div class="tombol">
+      <span class="material-symbols-rounded">dark_mode</span>
+      <p>Mode Gelap</p>
+      <div class="saklar">
+        <span class="material-symbols-rounded">check</span>
+      </div>
+    </div>
+  </div>
+</div>

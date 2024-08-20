@@ -23,7 +23,7 @@ focusAnimation();
 
 // Generate single Element
 let singleField = 1;
-function tambahSingleField(nama, tipe, idBungkus) {
+function tambahSingleField(nama, tipe, idBungkus, labelIcon) {
   let singleFieldCont = document.getElementById(idBungkus);
   // pisahkan isi parameter
   let x = nama.toLowerCase().split(" ");
@@ -43,16 +43,24 @@ function tambahSingleField(nama, tipe, idBungkus) {
   inputField.setAttribute("name", namaField + "-" + singleField);
 
   singleField++;
+
+  // Field Icon
+  const fieldIcon = document.createElement("span");
+  fieldIcon.classList.add("material-symbols-rounded", "field-icon");
+  fieldIcon.innerText = labelIcon;
   // tombol hapus
   const hapusField = document.createElement("span");
   hapusField.classList.add("material-symbols-rounded", "delete-field");
   hapusField.setAttribute("onclick", "hapusField(this); return false;");
   hapusField.innerText = "delete";
+
   // Masukan kedalam visitor name container
   formField.appendChild(labelField);
   formField.appendChild(inputField);
-  // masukan tombol hapus
+  // masukan tombol hapus dan icon field
   formField.appendChild(hapusField);
+  formField.appendChild(fieldIcon);
+
   singleFieldCont.appendChild(formField);
   focusAnimation();
 }
@@ -64,7 +72,8 @@ function tambahMultiField(
   fieldDua,
   tipeFieldSatu,
   tipeFieldDua,
-  idBungkus
+  idBungkus,
+  labelIcon
 ) {
   doubleFieldCont = document.getElementById(idBungkus);
   // Pisahkan isi parameter untuk Field 1
@@ -106,11 +115,16 @@ function tambahMultiField(
   inputFieldDua.setAttribute("name", namaFieldDua + "-" + multiField);
 
   multiField++;
+  // Field icon
+  const fieldIcon = document.createElement("span");
+  fieldIcon.classList.add("material-symbols-rounded", "field-icon");
+  fieldIcon.innerText = labelIcon;
   // tombol hapus
   const hapusField = document.createElement("span");
   hapusField.classList.add("material-symbols-rounded", "delete-field");
   hapusField.setAttribute("onclick", "hapusField(this); return false;");
   hapusField.innerText = "delete";
+
   // masukan field 1 ke konten double field
   formFieldSatu.appendChild(labelFieldSatu);
   formFieldSatu.appendChild(inputFieldSatu);
@@ -120,8 +134,10 @@ function tambahMultiField(
   formFieldDua.appendChild(inputFieldDua);
   multiFieldCont.appendChild(formFieldDua);
 
-  // masukan tombol hapus
+  // masukan tombol hapus dan icon field
   multiFieldCont.appendChild(hapusField);
+  multiFieldCont.appendChild(fieldIcon);
+
   doubleFieldCont.appendChild(multiFieldCont);
   focusAnimation();
 }

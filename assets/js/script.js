@@ -3,8 +3,8 @@ let kataSambutan = document.querySelector(".kata-sambutan");
 let sambutan = document.getElementById("sambutan");
 let pilihan = document.querySelectorAll(".pilihan");
 let pesan = {
-  catat: "Mau mencatat apa?",
-  lihat: "Mau melihat apa?",
+  catat: "Mau catat apa?",
+  lihat: "Mau lihat apa?",
 };
 let kembali = document.querySelectorAll(".kembali");
 

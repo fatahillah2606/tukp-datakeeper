@@ -131,6 +131,9 @@
   height: 160px;
   margin-top: 5px;
 }
+.navmenu .dropdown.show .drop-menu.guest {
+  height: 80px;
+}
 .navmenu .dropdown .drop-menu::before {
   content: "";
   position: absolute;
@@ -290,10 +293,9 @@
   padding: 10px;
 }
 .navbar .notifikasi .content .notif-container {
-  border-radius: 20px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
   border-radius: 20px;
   overflow: hidden;
   width: 100%;
@@ -336,6 +338,9 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: #002105;
+}
+.navbar .notifikasi.none .content {
+  padding: 50px 0 !important;
 }
 .navbar .notifikasi.none .content .no-notif {
   display: block;

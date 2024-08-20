@@ -1,8 +1,5 @@
 .user-manager h1 {
-  margin-bottom: 20px;
-  color: #002105;
-}
-.user-manager p {
+  margin-bottom: 10px;
   color: #002105;
 }
 .konten-pengguna {
@@ -47,7 +44,7 @@
   margin-top: 0;
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 5px;
   border-radius: 20px;
   overflow: hidden !important;
   height: auto;
@@ -60,6 +57,11 @@
   background-color: #ffffff;
   justify-content: space-between;
   padding: 20px;
+  position: relative;
+  border-radius: 5px;
+}
+.konten-pengguna .users .user.hidden {
+  display: none;
 }
 .konten-pengguna .users .user .left .user-icon {
   width: 50px;
@@ -133,4 +135,89 @@
   background-color: var(--error-light);
   transition: none;
   padding: 10px;
+}
+
+/* Reset passwd modal */
+.reset-passwd-modal {
+  width: 95%;
+  max-width: 500px;
+  background-color: #ecf3e7;
+  border-radius: 30px;
+  overflow: hidden;
+  padding: 30px;
+}
+.reset-passwd-modal h2 {
+  font-size: 30px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.reset-passwd-modal .controls {
+  display: flex;
+  justify-content: right;
+  gap: 10px;
+  margin: 20px 0px 0x;
+}
+.reset-passwd-modal .controls button,
+.reset-passwd-modal .controls a {
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  color: #3a693a;
+  background: none;
+  font-size: 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media screen and (max-width: 850px) {
+  .konten-pengguna .users .user {
+    justify-content: center;
+    flex-direction: column;
+  }
+  .konten-pengguna .users .user .left {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .konten-pengguna .users .user .left .user-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0;
+  }
+  .konten-pengguna .users .user .left .user-icon span {
+    font-size: 50px;
+  }
+  .konten-pengguna .users .user .left .user-name {
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+  }
+  .konten-pengguna .users .user .right {
+    flex-direction: column;
+  }
+  .konten-pengguna .users .user .right p.role {
+    margin: 20px 0;
+  }
+  .konten-pengguna .users .user .right .action-btn .hapus {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .konten-pengguna .head {
+    flex-direction: column;
+    align-items: normal;
+    justify-content: unset;
+    gap: 20px;
+  }
+  .konten-pengguna .head .head-action {
+    flex-direction: column;
+    align-items: normal;
+  }
+  .konten-pengguna .head .head-action .tambah {
+    justify-content: center;
+  }
 }

@@ -272,7 +272,9 @@
   color: #c9ffc3;
 }
 [data-theme="dark"] .formulir .form-field .delete-field,
-[data-theme="dark"] .formulir .multi-field .delete-field {
+[data-theme="dark"] .formulir .multi-field .delete-field,
+[data-theme="dark"] .formulir .form-field .field-icon,
+[data-theme="dark"] .formulir .multi-field .field-icon {
   color: #f6fff0;
 }
 [data-theme="dark"] .formulir .tambah {
@@ -376,6 +378,12 @@
   .edit:hover {
   color: #f6fff0;
   background-color: #52634f;
+}
+[data-theme="dark"] .reset-passwd-modal p {
+  color: #f6fff0;
+}
+[data-theme="dark"] .reset-passwd-modal .controls * {
+  color: #c9ffc3;
 }
 
 @media screen and (max-width: 900px) {
