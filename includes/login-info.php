@@ -1,5 +1,7 @@
 <?php
-// Cek apakah pengguna sudah login
+// connect database
+require 'db-connect.php';
+// Cek apakah pengguna belum login
 if (!isset($_COOKIE['user-type'])) {
   header("Location: /");
   exit();

@@ -1,3 +1,10 @@
+<?php
+if (isset($_GET["token"])) {
+  require '../../function/login-process.php';
+  verifToken($_GET["token"]);
+}
+require '../../includes/login-info.php';
+?>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -12,7 +19,7 @@
     <div class="container">
       <!-- Sidebar -->
       <?php
-        if (isset($_COOKIE['user-type'])) {
+        if ($_COOKIE['user-type'] !== "Tamu") {
           require '../../templates/sidebar.php';
         } else {
           require '../../templates/guest-sidebar.php';
@@ -23,7 +30,7 @@
       <div class="konten">
         <!-- Navbar -->
         <?php
-          if (isset($_COOKIE['user-type'])) {
+          if ($_COOKIE['user-type'] !== "Tamu") {
             if ($_COOKIE['user-type'] === 'Admin') {
               require '../../templates/admin-navbar.php';
             } else {
@@ -38,7 +45,11 @@
         <div class="main-content">
           <div class="formulir">
             <h1>Catat Pengunjung</h1>
-            <form action="">
+            <form
+              action="/function/data-manager.php"
+              method="post"
+              name="catat-pengunjung"
+            >
               <div id="field-nama">
                 <div class="form-field">
                   <label for="nama-pengunjung">Nama Pengunjung</label>
@@ -54,7 +65,7 @@
               </div>
               <div
                 class="tambah"
-                onclick="tambahSingleField('Nama Pengunjung', 'text', 'field-nama', 'person')"
+                onclick="tambahSingleField('Tambahan pengunjung', 'Nama Pengunjung', 'text', 'field-nama', 'person')"
               >
                 <span class="material-symbols-rounded">add</span>
                 <span class="btn-label">Tambah</span>
@@ -67,20 +78,23 @@
                     id="nama-perusahaan"
                     name="nama-perusahaan"
                   />
+                  <span class="material-symbols-rounded field-icon"
+                    >factory</span
+                  >
                 </div>
               </div>
-              <div class="multi-field">
-                <div class="form-field fokus">
-                  <label for="tanggal">Tanggal</label>
-                  <input type="date" id="tanggal" name="tanggal" />
-                </div>
-                <div class="form-field">
-                  <label for="no-tlp">Nomor Telepon</label>
-                  <input type="text" id="no-tlp" name="no-tlp" />
-                </div>
+              <div class="form-field fokus">
+                <label for="tanggal">Tanggal</label>
+                <input type="date" id="tanggal" name="tanggal" />
+                <span class="material-symbols-rounded field-icon">event</span>
+              </div>
+              <div class="form-field">
+                <label for="no-tlp">Nomor Telepon</label>
+                <input type="text" id="no-tlp" name="no-tlp" />
+                <span class="material-symbols-rounded field-icon">call</span>
               </div>
               <div class="tombol-aksi">
-                <button name="submit" id="submit">Simpan</button>
+                <button type="submit" name="simpan-pengunjung">Simpan</button>
               </div>
             </form>
           </div>

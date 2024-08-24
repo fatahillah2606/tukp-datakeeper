@@ -1,4 +1,10 @@
-<?php require '../../includes/login-info.php'; ?>
+<?php
+require '../../includes/login-info.php';
+if ($_COOKIE['user-type'] == 'Tamu') {
+  header("Location: /errors/403.php");
+  exit();
+}
+?>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -96,7 +102,7 @@
           </div>
           <!-- End Tabel -->
           <!-- fab button -->
-          <a href="../catat/catat-barang-int.html">
+          <a href="../catat/catat-barang-int.php">
             <div class="fab-button">
               <span class="material-symbols-rounded">edit</span>
               <span>Catat</span>
@@ -116,9 +122,10 @@
           <div class="form-field">
             <label for="nama-pembawa">Nama Pembawa</label>
             <input type="text" id="nama-pembawa" name="nama-pembawa" />
+            <span class="material-symbols-rounded field-icon">person</span>
           </div>
-          <h2>Barang</h2>
           <div id="field-barang">
+            <h2>Barang</h2>
             <div class="multi-field">
               <div class="form-field">
                 <label for="nama-barang">Nama Barang</label>
@@ -126,27 +133,28 @@
               </div>
               <div class="form-field">
                 <label for="jumlah-barang">Jumlah Barang</label>
-                <input type="text" id="jumlah-barang" name="jumlah-barang" />
+                <input type="number" id="jumlah-barang" name="jumlah-barang" />
               </div>
+              <span class="material-symbols-rounded field-icon">category</span>
             </div>
           </div>
           <div
             class="tambah"
-            onclick="tambahMultiField('Nama Barang', 'Jumlah Barang', 'text', 'text', 'field-barang')"
+            onclick="tambahMultiField('Barang tambahan', 'Nama Barang', 'Jumlah Barang', 'text', 'number', 'field-barang', 'category')"
           >
             <span class="material-symbols-rounded">add</span>
             <span class="btn-label">Tambah</span>
           </div>
-          <div id="field-nama"></div>
-          <div class="multi-field">
-            <div class="form-field fokus">
-              <label for="tanggal">Tanggal</label>
-              <input type="date" id="tanggal" name="tanggal" />
-            </div>
+          <!-- <div id="field-nama"></div> -->
+          <div class="form-field fokus">
+            <label for="tanggal">Tanggal</label>
+            <input type="date" id="tanggal" name="tanggal" />
+            <span class="material-symbols-rounded field-icon">event</span>
           </div>
           <div class="form-field">
             <label for="keterangan">Keterangan</label>
             <input type="text" id="keterangan" name="keterangan" />
+            <span class="material-symbols-rounded field-icon">description</span>
           </div>
           <div class="tombol-aksi">
             <span id="cancel" onclick="editModal()">Batal</span>

@@ -48,7 +48,7 @@ if ($_COOKIE['user-type'] !== 'Admin') {
                     placeholder="Cari..."
                   />
                 </div>
-                <div class="tambah">
+                <div class="tambah" onclick="newUser()">
                   <span class="material-symbols-rounded">add</span>
                   <span>Tambah</span>
                 </div>
@@ -213,6 +213,77 @@ if ($_COOKIE['user-type'] !== 'Admin') {
       <!-- End Konten -->
     </div>
     <!-- End Container -->
+    <!-- Create new user modal -->
+    <div class="modal-container new-user-modal">
+      <div class="new-user formulir">
+        <h1>Tambah pengguna</h1>
+        <div class="content">
+          <div class="left">
+            <div class="profile-icon">
+              <span class="material-symbols-rounded">person</span>
+            </div>
+            <div class="profile-desc">
+              <h2 class="username">Nama Pengguna</h2>
+              <p class="userid">email/user_id</p>
+              <p class="userrole">Tipe</p>
+            </div>
+          </div>
+          <div class="right">
+            <form action="" method="post" id="tambah-user">
+              <div class="form-field">
+                <label for="username">Nama Pengguna</label>
+                <input type="text" id="username" name="username" />
+                <span class="material-symbols-rounded field-icon">person</span>
+              </div>
+              <h2>Kata sandi</h2>
+              <div class="multi-field">
+                <div class="form-field">
+                  <label for="first-pass">Masukan sandi</label>
+                  <input type="password" id="first-pass" name="first-pass" />
+                </div>
+                <div class="form-field">
+                  <label for="final-pass">Ketikan ulang sandi</label>
+                  <input type="password" id="final-pass" name="final-pass" />
+                </div>
+                <span class="material-symbols-rounded field-icon">vpn_key</span>
+              </div>
+              <div class="show-passwd">
+                <input type="checkbox" name="tampil-sandi" id="tampil-sandi" />
+                <label for="tampil-sandi">Tampilkan sandi</label>
+              </div>
+              <div class="form-field">
+                <label for="tipe-pengguna">Tipe Pengguna</label>
+                <select name="tipe-pengguna" id="tipe-pengguna">
+                  <option value=""></option>
+                  <option value="Admin">Admin</option>
+                  <option value="User">Pengguna Biasa</option>
+                </select>
+                <span class="material-symbols-rounded field-icon"
+                  >assignment_ind</span
+                >
+              </div>
+              <div class="form-field none" id="email">
+                <label for="useremail">Masukan Email</label>
+                <input type="email" id="useremail" name="useremail" disabled />
+                <span class="material-symbols-rounded field-icon">mail</span>
+              </div>
+              <div class="form-field none" id="user-id">
+                <label for="userid">Masukan User ID</label>
+                <input type="number" id="userid" name="userid" disabled />
+                <span class="material-symbols-rounded field-icon">passkey</span>
+              </div>
+              <div class="tombol-aksi">
+                <span id="cancel" onclick="closeModal(createModalContainer)"
+                  >Batal</span
+                >
+                <button name="create-new">Simpan</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Create new user modal -->
     <!-- Edit user modal -->
     <div class="modal-container edit-user">
       <div class="formulir">
@@ -257,7 +328,7 @@ if ($_COOKIE['user-type'] !== 'Admin') {
             <span id="cancel" onclick="closeModal(editModalContainer)"
               >Batal</span
             >
-            <button name="submit" id="submit">Simpan</button>
+            <button name="save-changes">Simpan</button>
           </div>
         </form>
       </div>

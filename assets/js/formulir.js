@@ -23,8 +23,11 @@ focusAnimation();
 
 // Generate single Element
 let singleField = 1;
-function tambahSingleField(nama, tipe, idBungkus, labelIcon) {
+function tambahSingleField(judulField, nama, tipe, idBungkus, labelIcon) {
   let singleFieldCont = document.getElementById(idBungkus);
+  // Buat judul field menggunakan h2
+  // const judul = document.createElement("h2");
+  // judul.innerText = judulField;
   // pisahkan isi parameter
   let x = nama.toLowerCase().split(" ");
   let namaField = x[0] + "-" + x[1];
@@ -54,12 +57,14 @@ function tambahSingleField(nama, tipe, idBungkus, labelIcon) {
   hapusField.setAttribute("onclick", "hapusField(this); return false;");
   hapusField.innerText = "delete";
 
-  // Masukan kedalam visitor name container
+  // Masukan kedalam single field container
   formField.appendChild(labelField);
   formField.appendChild(inputField);
   // masukan tombol hapus dan icon field
   formField.appendChild(hapusField);
   formField.appendChild(fieldIcon);
+  // Masukan judul
+  // singleFieldCont.appendChild(judul);
 
   singleFieldCont.appendChild(formField);
   focusAnimation();
@@ -68,6 +73,7 @@ function tambahSingleField(nama, tipe, idBungkus, labelIcon) {
 // Generate multiple element
 let multiField = 1;
 function tambahMultiField(
+  judulField,
   fieldSatu,
   fieldDua,
   tipeFieldSatu,
@@ -76,6 +82,9 @@ function tambahMultiField(
   labelIcon
 ) {
   doubleFieldCont = document.getElementById(idBungkus);
+  // Buat judul field menggunakan h2
+  const judul = document.createElement("h2");
+  judul.innerText = judulField;
   // Pisahkan isi parameter untuk Field 1
   let x = fieldSatu.toLowerCase().split(" ");
   let namaFieldSatu = x[0] + "-" + x[1];
@@ -137,6 +146,8 @@ function tambahMultiField(
   // masukan tombol hapus dan icon field
   multiFieldCont.appendChild(hapusField);
   multiFieldCont.appendChild(fieldIcon);
+  // Masukan judul
+  doubleFieldCont.appendChild(judul);
 
   doubleFieldCont.appendChild(multiFieldCont);
   focusAnimation();
@@ -144,6 +155,13 @@ function tambahMultiField(
 
 // remove element
 function hapusField(elemen) {
+  let x = elemen.parentElement;
+  if (x.getAttribute("class") == "multi-field") {
+    x.previousSibling.remove();
+    multiField--;
+  } else {
+    singleField--;
+  }
   elemen.parentElement.remove();
   focusAnimation();
 }

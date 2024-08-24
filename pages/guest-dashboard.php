@@ -1,8 +1,13 @@
 <?php
-if (isset($_COOKIE['user-type'])) {
+if (isset($_COOKIE['user-type']) && $_COOKIE['user-type'] !== "Tamu") {
   header ("Location: dashboard.php");
   exit();
 }
+if (isset($_GET["token"])) {
+  require '../function/login-process.php';
+  verifToken($_GET["token"]);
+}
+require '../includes/login-info.php';
 ?>
 <html lang="id">
   <head>
@@ -18,7 +23,7 @@ if (isset($_COOKIE['user-type'])) {
     <div class="container">
       <!-- Sidebar -->
       <?php
-        if (isset($_COOKIE['user-type'])) {
+        if ($_COOKIE['user-type'] !== "Tamu") {
           require '../templates/sidebar.php';
         } else {
           require '../templates/guest-sidebar.php';
@@ -29,7 +34,7 @@ if (isset($_COOKIE['user-type'])) {
       <div class="konten">
         <!-- Navbar -->
         <?php
-          if (isset($_COOKIE['user-type'])) {
+          if ($_COOKIE['user-type'] !== "Tamu") {
             if ($_COOKIE['user-type'] === 'Admin') {
               require '../templates/admin-navbar.php';
             } else {

@@ -1,4 +1,10 @@
-<?php require '../../includes/login-info.php'; ?>
+<?php
+require '../../includes/login-info.php';
+if ($_COOKIE['user-type'] == 'Tamu') {
+  header("Location: /errors/403.php");
+  exit();
+}
+?>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -64,7 +70,9 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td data-label="No" class="no"><p class="text-wrap">1</p></td>
+                    <td data-label="No" class="no">
+                      <p class="text-wrap">1</p>
+                    </td>
                     <td data-label="Tanggal" class="tanggal">
                       <p class="text-wrap">2027-07-27</p>
                     </td>
@@ -108,7 +116,7 @@
           </div>
           <!-- End Tabel -->
           <!-- fab button -->
-          <a href="../catat/catat-barang-ext.html">
+          <a href="../catat/catat-barang-ext.php">
             <div class="fab-button">
               <span class="material-symbols-rounded">edit</span>
               <span>Catat</span>
@@ -128,18 +136,23 @@
           <div class="form-field fokus">
             <label for="tanggal">Tanggal</label>
             <input type="date" id="tanggal" name="tanggal" />
+            <span class="material-symbols-rounded field-icon">event</span>
           </div>
-          <div class="form-field">
-            <label for="nama-driver">Nama Driver</label>
-            <input type="text" id="nama-driver" name="nama-driver" />
-          </div>
-          <div class="form-field">
-            <label for="nama-suplier">Nama Suplier</label>
-            <input type="text" id="nama-suplier" name="nama-suplier" />
+          <div class="multi-field">
+            <div class="form-field">
+              <label for="nama-driver">Nama Driver</label>
+              <input type="text" id="nama-driver" name="nama-driver" />
+            </div>
+            <div class="form-field">
+              <label for="nama-suplier">Nama Suplier</label>
+              <input type="text" id="nama-suplier" name="nama-suplier" />
+            </div>
+            <span class="material-symbols-rounded field-icon">person</span>
           </div>
           <div class="form-field">
             <label for="nama-driver">Keperluan</label>
             <input type="text" id="Keperluan" name="Keperluan" />
+            <span class="material-symbols-rounded field-icon">task_alt</span>
           </div>
           <h2>Barang</h2>
           <div id="field-barang">
@@ -152,28 +165,33 @@
                 <label for="jumlah-barang">Jumlah Barang</label>
                 <input type="text" id="jumlah-barang" name="jumlah-barang" />
               </div>
+              <span class="material-symbols-rounded field-icon">category</span>
             </div>
           </div>
           <div
             class="tambah"
-            onclick="tambahMultiField('Nama Barang', 'Jumlah Barang', 'text', 'text', 'field-barang')"
+            onclick="tambahMultiField('Barang tambahan', 'Nama Barang', 'Jumlah Barang', 'text', 'text', 'field-barang', 'category')"
           >
             <span class="material-symbols-rounded">add</span>
             <span class="btn-label">Tambah</span>
           </div>
-          <div class="multi-field">
-            <div class="form-field fokus">
-              <label for="time-pp">Jam Kedatangan</label>
-              <input type="time" id="time-pp" name="time-pp" />
-            </div>
-            <div class="form-field">
-              <label for="no-kendaraan">Nomor Kendaraan</label>
-              <input type="text" id="no-kendaraan" name="no-kendaraan" />
-            </div>
+          <div class="form-field keep-fokus">
+            <label for="time-pp">Jam Kedatangan</label>
+            <input type="time" id="time-pp" name="time-pp" />
+            <span class="material-symbols-rounded field-icon">schedule</span>
           </div>
+          <div class="form-field">
+            <label for="no-kendaraan">Nomor Kendaraan</label>
+            <input type="text" id="no-kendaraan" name="no-kendaraan" />
+            <span class="material-symbols-rounded field-icon"
+              >local_shipping</span
+            >
+          </div>
+
           <div class="form-field">
             <label for="keterangan">Keterangan</label>
             <input type="text" id="keterangan" name="keterangan" />
+            <span class="material-symbols-rounded field-icon">description</span>
           </div>
           <div class="tombol-aksi">
             <span id="cancel" onclick="editModal()">Batal</span>

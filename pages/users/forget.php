@@ -1,4 +1,10 @@
-<!DOCTYPE html>
+<?php
+// Cek apakah sudah login
+if (isset($_COOKIE['user-type'])) {
+  header("Location: /pages/dashboard.php");
+  exit();
+}
+?>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />

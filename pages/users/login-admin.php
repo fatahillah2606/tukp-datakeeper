@@ -1,3 +1,10 @@
+<?php
+// Cek apakah sudah login
+if (isset($_COOKIE['user-type'])) {
+  header("Location: /pages/dashboard.php");
+  exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="id">
   <head>
@@ -20,7 +27,7 @@
             <div class="opsi">
               <a href="#">Admin</a>
               <a href="/">Pengguna Biasa</a>
-              <a href="/pages/guest-dashboard.php">Tamu</a>
+              <a href="/pages/users/login-guest.php">Tamu</a>
             </div>
           </div>
         </div>
@@ -32,7 +39,7 @@
               <span class="material-symbols-rounded">error</span>
               <span class="supporting-text">Supporting text</span>
             </div>
-            <div class="input-field error">
+            <div class="input-field">
               <label for="passwd">Masukan Sandi</label>
               <input type="password" id="passwd" name="passwd" />
               <span class="material-symbols-rounded">error</span>

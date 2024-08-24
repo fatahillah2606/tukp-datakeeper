@@ -1,4 +1,10 @@
-<?php require '../../includes/login-info.php'; ?>
+<?php
+require '../../includes/login-info.php';
+if ($_COOKIE['user-type'] == 'Tamu') {
+  header("Location: /errors/403.php");
+  exit();
+}
+?>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -99,7 +105,7 @@
           </div>
           <!-- End Tabel -->
           <!-- fab button -->
-          <a href="../catat/catat-pengunjung.html">
+          <a href="../catat/catat-pengunjung.php">
             <div class="fab-button">
               <span class="material-symbols-rounded">edit</span>
               <span>Catat</span>
@@ -120,11 +126,12 @@
             <div class="form-field">
               <label for="nama-pengunjung">Nama Pengunjung</label>
               <input type="text" id="nama-pengunjung" name="nama-pengunjung" />
+              <span class="material-symbols-rounded field-icon">person</span>
             </div>
           </div>
           <div
             class="tambah"
-            onclick="tambahSingleField('Nama Pengunjung', 'text', 'field-nama')"
+            onclick="tambahSingleField('Tambahan pengunjung', 'Nama Pengunjung', 'text', 'field-nama', 'person')"
           >
             <span class="material-symbols-rounded">add</span>
             <span class="btn-label">Tambah</span>
@@ -133,17 +140,18 @@
             <div class="form-field">
               <label for="nama-perusahaan">Nama Perusahaan</label>
               <input type="text" id="nama-perusahaan" name="nama-perusahaan" />
+              <span class="material-symbols-rounded field-icon">factory</span>
             </div>
           </div>
-          <div class="multi-field">
-            <div class="form-field fokus">
-              <label for="tanggal">Tanggal</label>
-              <input type="date" id="tanggal" name="tanggal" />
-            </div>
-            <div class="form-field">
-              <label for="no-tlp">Nomor Telepon</label>
-              <input type="text" id="no-tlp" name="no-tlp" />
-            </div>
+          <div class="form-field fokus">
+            <label for="tanggal">Tanggal</label>
+            <input type="date" id="tanggal" name="tanggal" />
+            <span class="material-symbols-rounded field-icon">event</span>
+          </div>
+          <div class="form-field">
+            <label for="no-tlp">Nomor Telepon</label>
+            <input type="text" id="no-tlp" name="no-tlp" />
+            <span class="material-symbols-rounded field-icon">call</span>
           </div>
           <div class="tombol-aksi">
             <span id="cancel" onclick="editModal()">Batal</span>

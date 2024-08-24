@@ -37,4 +37,27 @@ if (isset($_POST['login-admin'])) {
   exit();
 }
 
+// Proses login untuk Tamu
+if (isset($_POST['login-tamu'])) {
+  // Verifikasi token
+  verifToken(htmlspecialchars($_POST['token']));
+  header("Location: /pages/guest-dashboard.php");
+  exit();
+}
+
+// Proses login tamu di luar halaman login
+function verifToken($tokenValue){
+  $token = $tokenValue;
+  // Verifikasi
+  $userType = 'Tamu';
+  // Untuk pengetesan, hapus bagian ini jika verifikasi sudah dibuat
+  // $userName = $userId;
+  // buat cookie
+  setcookie("user-type", $userType, time() + (86400 * 30), "/"); //86400 sama dengan 1 hari, 86400 * 30 sama dengan 30 hari
+  // setcookie("user-name", $userName, time() + (86400 * 30), "/");
+  // header("Location: /pages/dashboard.php");
+  if (isset($_COOKIE["user-type"])) {
+    // echo $_COOKIE["user-info"];
+  }
+}
 ?>

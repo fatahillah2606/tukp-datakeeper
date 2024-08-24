@@ -21,10 +21,10 @@
     </div>
     <p class="nama">Halo, <span>Tamu</span></p>
     <div class="multi-tombol">
-      <a href="/">
+      <a href="/logout.php">
         <div class="tombol">
-          <span class="material-symbols-rounded">login</span>
-          <p>Login</p>
+          <span class="material-symbols-rounded">logout</span>
+          <p>Logout</p>
         </div>
       </a>
     </div>

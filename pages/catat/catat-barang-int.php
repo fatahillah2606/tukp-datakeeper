@@ -1,3 +1,10 @@
+<?php
+if (isset($_GET["token"])) {
+  require '../../function/login-process.php';
+  verifToken($_GET["token"]);
+}
+require '../../includes/login-info.php';
+?>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -12,7 +19,7 @@
     <div class="container">
       <!-- Sidebar -->
       <?php
-        if (isset($_COOKIE['user-type'])) {
+        if ($_COOKIE['user-type'] !== "Tamu") {
           require '../../templates/sidebar.php';
         } else {
           require '../../templates/guest-sidebar.php';
@@ -23,7 +30,7 @@
       <div class="konten">
         <!-- Navbar -->
         <?php
-          if (isset($_COOKIE['user-type'])) {
+          if ($_COOKIE['user-type'] !== "Tamu") {
             if ($_COOKIE['user-type'] === 'Admin') {
               require '../../templates/admin-navbar.php';
             } else {
@@ -38,14 +45,18 @@
         <div class="main-content">
           <div class="formulir">
             <h1>Catat Barang Internal</h1>
-            <form action="">
+            <form
+              action="/function/data-manager.php"
+              method="post"
+              name="catat-barang-int"
+            >
               <div class="form-field">
                 <label for="nama-pembawa">Nama Pembawa</label>
                 <input type="text" id="nama-pembawa" name="nama-pembawa" />
                 <span class="material-symbols-rounded field-icon">person</span>
               </div>
-              <h2>Barang</h2>
               <div id="field-barang">
+                <h2>Barang</h2>
                 <div class="multi-field">
                   <div class="form-field">
                     <label for="nama-barang">Nama Barang</label>
@@ -66,7 +77,7 @@
               </div>
               <div
                 class="tambah"
-                onclick="tambahMultiField('Nama Barang', 'Jumlah Barang', 'text', 'number', 'field-barang', 'category')"
+                onclick="tambahMultiField('Barang tambahan', 'Nama Barang', 'Jumlah Barang', 'text', 'number', 'field-barang', 'category')"
               >
                 <span class="material-symbols-rounded">add</span>
                 <span class="btn-label">Tambah</span>
@@ -85,7 +96,7 @@
                 >
               </div>
               <div class="tombol-aksi">
-                <button name="submit" id="submit">Simpan</button>
+                <button type="submit" name="simpan-barang-int">Simpan</button>
               </div>
             </form>
           </div>

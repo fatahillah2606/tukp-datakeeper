@@ -82,7 +82,15 @@ barCariField.addEventListener("keyup", () => {
   });
 });
 
-// modal box
+// create user modal
+let createModalContainer = document.querySelector(
+  ".modal-container.new-user-modal"
+);
+function newUser() {
+  createModalContainer.classList.add("show");
+}
+
+// edit user modal
 let tombolEdit = document.querySelectorAll(".edit");
 let hapusData = document.querySelectorAll(".hapus");
 let editModalContainer = document.querySelector(".modal-container.edit-user");
@@ -122,13 +130,16 @@ function closeModal(elementName) {
   elementName.classList.remove("show");
 }
 window.addEventListener("click", (e) => {
+  if (e.target == createModalContainer) {
+    closeModal(createModalContainer);
+  }
   if (e.target == editModalContainer) {
     closeModal(editModalContainer);
   }
-  if (e.target == popup) {
-    closeModal(popup);
-  }
   if (e.target == resetPasswdModal) {
     closeModal(resetPasswdModal);
+  }
+  if (e.target == popup) {
+    closeModal(popup);
   }
 });

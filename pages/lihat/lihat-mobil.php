@@ -1,4 +1,10 @@
-<?php require '../../includes/login-info.php'; ?>
+<?php
+require '../../includes/login-info.php';
+if ($_COOKIE['user-type'] == 'Tamu') {
+  header("Location: /errors/403.php");
+  exit();
+}
+?>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -100,7 +106,7 @@
           </div>
           <!-- End Tabel -->
           <!-- fab button -->
-          <a href="../catat/catat-mobil.html">
+          <a href="../catat/catat-mobil.php">
             <div class="fab-button">
               <span class="material-symbols-rounded">edit</span>
               <span>Catat</span>
@@ -120,6 +126,7 @@
           <div class="form-field">
             <label for="nama-driver">Nama Driver</label>
             <input type="text" id="nama-driver" name="nama-driver" />
+            <span class="material-symbols-rounded field-icon">person</span>
           </div>
           <div class="form-field">
             <label for="merek-kendaraan">Merek Kendaraan</label>
@@ -130,6 +137,9 @@
               <option value="Merek 3">Merek 3</option>
               <option value="Lainnya">Lainnya</option>
             </select>
+            <span class="material-symbols-rounded field-icon"
+              >local_shipping</span
+            >
           </div>
           <div class="form-field none">
             <label for="merek-lain">Merek Lain</label>
@@ -145,14 +155,17 @@
               <label for="akhir-km">Akhir</label>
               <input type="number" id="akhir-km" name="akhir-km" />
             </div>
+            <span class="material-symbols-rounded field-icon">speed</span>
           </div>
           <div class="form-field">
             <label for="tujuan">Tujuan</label>
             <input type="text" id="tujuan" name="tujuan" />
+            <span class="material-symbols-rounded field-icon">location_on</span>
           </div>
           <div class="form-field">
             <label for="Keperluan">Keperluan</label>
             <input type="text" id="Keperluan" name="Keperluan" />
+            <span class="material-symbols-rounded field-icon">task_alt</span>
           </div>
           <div class="tombol-aksi">
             <span id="cancel" onclick="editModal()">Batal</span>

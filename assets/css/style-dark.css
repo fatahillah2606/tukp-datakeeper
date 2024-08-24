@@ -240,11 +240,10 @@
   background-color: #2c322a;
 }
 [data-theme="dark"] .formulir h1 {
-  background-color: #2c322a;
   color: #f6fff0;
 }
-[data-theme="dark"] .formulir h1::before {
-  background-color: #c9ffc3;
+[data-theme="dark"] .modal-container .formulir h1 {
+  background-color: #2c322a;
 }
 [data-theme="dark"] .formulir h2 {
   color: #f6fff0;
@@ -268,7 +267,8 @@
 [data-theme="dark"] .formulir .form-field select option {
   background-color: #424940;
 }
-[data-theme="dark"] .formulir .form-field.fokus label {
+[data-theme="dark"] .formulir .form-field.fokus label,
+[data-theme="dark"] .formulir .form-field.keep-fokus label {
   color: #c9ffc3;
 }
 [data-theme="dark"] .formulir .form-field .delete-field,
@@ -300,6 +300,14 @@
   border-color: #c9ffc3;
   color: #c9ffc3;
 }
+@media screen and (max-width: 520px) {
+  [data-theme="dark"] .formulir {
+    background: none;
+  }
+  [data-theme="dark"] .modal-container .formulir {
+    background-color: #2c322a;
+  }
+}
 
 /* Popup alert */
 [data-theme="dark"] .popup .popup-content {
@@ -314,6 +322,7 @@
 [data-theme="dark"] .popup .popup-content .controls * {
   color: #c9ffc3;
 }
+
 /* Kelola Pengguna */
 [data-theme="dark"] .user-manager * {
   color: #f6fff0;
@@ -379,6 +388,26 @@
   color: #f6fff0;
   background-color: #52634f;
 }
+/* new user modal */
+[data-theme="dark"] .new-user .content .left {
+  background-color: #171d16;
+}
+[data-theme="dark"] .new-user .content .left .profile-icon {
+  background-color: #2c322a;
+}
+[data-theme="dark"] .new-user .content .left .profile-icon span {
+  color: #f6fff0;
+}
+[data-theme="dark"] .new-user .content .left .profile-desc * {
+  color: #f6fff0;
+}
+[data-theme="dark"] .new-user .content .left .profile-desc .userrole {
+  background-color: #52634f;
+}
+[data-theme="dark"] .new-user .content .right .show-passwd label {
+  color: #f6fff0;
+}
+/* reset password modal */
 [data-theme="dark"] .reset-passwd-modal p {
   color: #f6fff0;
 }
@@ -397,6 +426,14 @@
 
 @media screen and (max-width: 800px) {
   [data-theme="dark"] .navmenu {
+    background-color: #171d16;
+  }
+}
+@media screen and (max-width: 700px) {
+  [data-theme="dark"] .new-user .content .left {
+    background-color: #2c322a;
+  }
+  [data-theme="dark"] .new-user .content .left .profile-icon {
     background-color: #171d16;
   }
 }

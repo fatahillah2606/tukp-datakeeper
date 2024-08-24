@@ -1,4 +1,10 @@
-<?php require '../../includes/login-info.php'; ?>
+<?php
+require '../../includes/login-info.php';
+if ($_COOKIE['user-type'] == 'Tamu') {
+  header("Location: /errors/403.php");
+  exit();
+}
+?>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -29,24 +35,30 @@
         <div class="main-content">
           <div class="formulir">
             <h1>Catat Barang Eksternal</h1>
-            <form action="">
+            <form
+              action="/function/data-manager.php"
+              method="post"
+              name="catat-barang-ext"
+            >
               <div class="form-field fokus">
                 <label for="tanggal">Tanggal</label>
                 <input type="date" id="tanggal" name="tanggal" />
                 <span class="material-symbols-rounded field-icon">event</span>
               </div>
-              <div class="form-field">
-                <label for="nama-driver">Nama Driver</label>
-                <input type="text" id="nama-driver" name="nama-driver" />
+              <div class="multi-field">
+                <div class="form-field">
+                  <label for="nama-driver">Nama Driver</label>
+                  <input type="text" id="nama-driver" name="nama-driver" />
+                </div>
+                <div class="form-field">
+                  <label for="nama-suplier">Nama Suplier</label>
+                  <input type="text" id="nama-suplier" name="nama-suplier" />
+                </div>
                 <span class="material-symbols-rounded field-icon">person</span>
               </div>
               <div class="form-field">
-                <label for="nama-suplier">Nama Suplier</label>
-                <input type="text" id="nama-suplier" name="nama-suplier" />
-              </div>
-              <div class="form-field">
                 <label for="nama-driver">Keperluan</label>
-                <input type="text" id="Keperluan" name="Keperluan" />
+                <input type="text" id="keperluan" name="keperluan" />
                 <span class="material-symbols-rounded field-icon"
                   >task_alt</span
                 >
@@ -73,24 +85,26 @@
               </div>
               <div
                 class="tambah"
-                onclick="tambahMultiField('Nama Barang', 'Jumlah Barang', 'text', 'text', 'field-barang', 'category')"
+                onclick="tambahMultiField('Barang tambahan', 'Nama Barang', 'Jumlah Barang', 'text', 'text', 'field-barang', 'category')"
               >
                 <span class="material-symbols-rounded">add</span>
                 <span class="btn-label">Tambah</span>
               </div>
-              <div class="multi-field">
-                <div class="form-field fokus">
-                  <label for="time-pp">Jam Kedatangan</label>
-                  <input type="time" id="time-pp" name="time-pp" />
-                </div>
-                <div class="form-field">
-                  <label for="no-kendaraan">Nomor Kendaraan</label>
-                  <input type="text" id="no-kendaraan" name="no-kendaraan" />
-                </div>
+              <div class="form-field keep-fokus">
+                <label for="time-pp">Jam Kedatangan</label>
+                <input type="time" id="time-pp" name="time-pp" />
                 <span class="material-symbols-rounded field-icon"
-                  >pending_actions</span
+                  >schedule</span
                 >
               </div>
+              <div class="form-field">
+                <label for="no-kendaraan">Nomor Kendaraan</label>
+                <input type="text" id="no-kendaraan" name="no-kendaraan" />
+                <span class="material-symbols-rounded field-icon"
+                  >local_shipping</span
+                >
+              </div>
+
               <div class="form-field">
                 <label for="keterangan">Keterangan</label>
                 <input type="text" id="keterangan" name="keterangan" />
@@ -99,7 +113,7 @@
                 >
               </div>
               <div class="tombol-aksi">
-                <button name="submit" id="submit">Simpan</button>
+                <button type="submit" name="simpan-barang-ext">Simpan</button>
               </div>
             </form>
           </div>

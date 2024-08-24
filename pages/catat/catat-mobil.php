@@ -1,4 +1,10 @@
-<?php require '../../includes/login-info.php'; ?>
+<?php
+require '../../includes/login-info.php';
+if ($_COOKIE['user-type'] == 'Tamu') {
+  header("Location: /errors/403.php");
+  exit();
+}
+?>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -6,7 +12,6 @@
     <title>Catat Mobil | TUKP Data Keeper</title>
     <link rel="stylesheet" href="../../assets/css/style.css" />
     <link rel="stylesheet" href="../../assets/css/style-dark.css" />
-    <!-- Pisahkan bagian ini -->
     <link rel="stylesheet" href="../../assets/css/navmenu.css" />
   </head>
   <body>
@@ -29,7 +34,11 @@
         <div class="main-content">
           <div class="formulir">
             <h1>Catat Mobil</h1>
-            <form action="">
+            <form
+              action="/function/data-manager.php"
+              method="post"
+              name="catat-mobil"
+            >
               <div class="form-field">
                 <label for="nama-driver">Nama Driver</label>
                 <input type="text" id="nama-driver" name="nama-driver" />
@@ -39,11 +48,14 @@
                 <label for="merek-kendaraan">Merek Kendaraan</label>
                 <select name="merek-kendaraan" id="merek-kendaraan">
                   <option value=""></option>
-                  <option value="Merek 1">Merek 1</option>
-                  <option value="Merek 2">Merek 2</option>
-                  <option value="Merek 3">Merek 3</option>
+                  <option value="Luxio">Luxio</option>
+                  <option value="Grandmax">Grandmax</option>
+                  <option value="Panther">Panther</option>
                   <option value="Lainnya">Lainnya</option>
                 </select>
+                <span class="material-symbols-rounded field-icon"
+                  >local_shipping</span
+                >
               </div>
               <div class="form-field none">
                 <label for="merek-lain">Merek Lain</label>
@@ -64,15 +76,19 @@
               <div class="form-field">
                 <label for="tujuan">Tujuan</label>
                 <input type="text" id="tujuan" name="tujuan" />
-                <span class="material-symbols-rounded field-icon">location_on</span>
+                <span class="material-symbols-rounded field-icon"
+                  >location_on</span
+                >
               </div>
               <div class="form-field">
-                <label for="Keperluan">Keperluan</label>
-                <input type="text" id="Keperluan" name="Keperluan" />
-                <span class="material-symbols-rounded field-icon">task_alt</span>
+                <label for="keperluan">Keperluan</label>
+                <input type="text" id="keperluan" name="keperluan" />
+                <span class="material-symbols-rounded field-icon"
+                  >task_alt</span
+                >
               </div>
               <div class="tombol-aksi">
-                <button name="submit" id="submit">Simpan</button>
+                <button type="submit" name="simpan-mobil">Simpan</button>
               </div>
             </form>
           </div>

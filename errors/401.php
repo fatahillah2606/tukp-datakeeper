@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<?php
+if (!isset($_COOKIE['user-type'])) {
+  header("HTTP/1.1 401");
+  exit;
+} 
+?>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -12,12 +17,30 @@
   <body>
     <div class="container">
       <!-- Sidebar -->
-      <?php require '../templates/guest-sidebar.php'; ?>
+      <?php
+      if (isset($_COOKIE['user-type'])) {
+        if ($_COOKIE['user-type'] !== 'Tamu') {
+          require '../templates/sidebar.php';
+        } else {
+          require '../templates/guest-sidebar.php';
+        }
+      }
+      ?>
       <!-- End Sidebar -->
       <!-- Konten -->
       <div class="konten">
         <!-- Navbar -->
-      <?php require '../templates/guest-navbar.php'; ?>
+        <?php
+          if (isset($_COOKIE['user-type'])) {
+            if ($_COOKIE['user-type'] == 'Admin') {
+              require '../templates/admin-navbar.php';
+            } else if ($_COOKIE['user-type'] == 'User'){
+              require '../templates/user-navbar.php';
+            } else {
+              require '../templates/guest-navbar.php';
+            }
+          }
+        ?>
         <!-- End Navbar -->
         <!-- Main Content -->
         <div class="main-content">
