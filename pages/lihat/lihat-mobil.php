@@ -67,27 +67,34 @@ if ($_COOKIE['user-type'] == 'Tamu') {
                   </tr>
                 </thead>
                 <tbody>
+                  <?php
+                    // ambil data  mobil
+                    $sql = "SELECT * FROM data_mobil";
+                    $hasil = $conn->query($sql);
+                    if ($hasil->num_rows > 0) {
+                      while ($baris = $hasil->fetch_assoc()) {
+                  ?>
                   <tr>
                     <td data-label="No" class="no">
-                      <p class="text-wrap">1</p>
+                      <p class="text-wrap"><?php echo $baris['id']; ?></p>
                     </td>
                     <td data-label="Nama Driver" class="nama-driver">
-                      <p class="text-wrap">Sofian</p>
+                      <p class="text-wrap"><?php echo $baris['nama_driver']; ?></p>
                     </td>
                     <td data-label="Merek Kendaraan" class="merek-kendaraan">
-                      <p class="text-wrap">Buggati Chiron</p>
+                      <p class="text-wrap"><?php echo $baris['merek_kendaraan']; ?></p>
                     </td>
                     <td data-label="KM Awal" class="awal-km">
-                      <p class="text-wrap">100000</p>
+                      <p class="text-wrap"><?php echo $baris['km_awal']; ?></p>
                     </td>
                     <td data-label="KM Akhir" class="akhir-km">
-                      <p class="text-wrap">200000</p>
+                      <p class="text-wrap"><?php echo $baris['km_akhir']; ?></p>
                     </td>
                     <td data-label="Tujuan" class="nama-perusahaan">
-                      <p class="text-wrap">Pt.sofian berkah</p>
+                      <p class="text-wrap"><?php echo $baris['tujuan']; ?></p>
                     </td>
                     <td data-label="Keperluan" class="keperluan">
-                      <p class="text-wrap">Jalan-jalan</p>
+                      <p class="text-wrap"><?php echo $baris['keperluan']; ?></p>
                     </td>
                     <td data-label="Ubah Data" class="buttons">
                       <div class="btn-cont">
@@ -100,6 +107,10 @@ if ($_COOKIE['user-type'] == 'Tamu') {
                       </div>
                     </td>
                   </tr>
+                  <?php 
+                      }
+                    }
+                  ?>
                 </tbody>
               </table>
             </div>

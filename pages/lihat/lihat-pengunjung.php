@@ -65,28 +65,33 @@ if ($_COOKIE['user-type'] == 'Tamu') {
                   </tr>
                 </thead>
                 <tbody>
+                <?php 
+                    //ambil data pengunjung
+                    $sql = "SELECT * FROM data_pengunjung";
+                    $hasil = $conn->query($sql);
+                    if ($hasil->num_rows > 0) {
+                      while ($baris = $hasil->fetch_assoc()) {
+                  ?>
                   <tr>
                     <td data-label="No" class="no">
-                      <p class="text-wrap">1</p>
+                      <p class="text-wrap"><?php echo $baris['id']; ?></p>
                     </td>
                     <td
                       data-label="Nama Pengunjung"
                       class="nama-pengunjung list"
                     >
                       <ul>
-                        <li class="pengunjung">Sofian</li>
-                        <li class="pengunjung">Sofian</li>
-                        <li class="pengunjung">Sofian</li>
+                      <?php echo $baris['nama_pengunjung']; ?>
                       </ul>
                     </td>
                     <td data-label="Nama Perusahaan" class="nama-perusahaan">
-                      <p class="text-wrap">PT. Talan Utama Karisma Perkasa</p>
+                      <p class="text-wrap"><?php echo $baris['nama_perusahaan']; ?></p>
                     </td>
                     <td data-label="Tanggal" class="tanggal">
-                      <p class="text-wrap">2027-01-27</p>
+                      <p class="text-wrap"><?php echo $baris['tanggal']; ?></p>
                     </td>
                     <td data-label="Nomor Telepon" class="no-tlp">
-                      <p class="text-wrap">08123456789</p>
+                      <p class="text-wrap"><?php echo $baris['nomor_telepon']; ?></p>
                     </td>
                     <td data-label="Ubah Data" class="buttons">
                       <div class="btn-cont">
@@ -99,6 +104,10 @@ if ($_COOKIE['user-type'] == 'Tamu') {
                       </div>
                     </td>
                   </tr>
+                  <?php 
+                      }
+                    }
+                  ?>
                 </tbody>
               </table>
             </div>

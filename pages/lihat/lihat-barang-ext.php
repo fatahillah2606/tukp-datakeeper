@@ -69,35 +69,40 @@ if ($_COOKIE['user-type'] == 'Tamu') {
                   </tr>
                 </thead>
                 <tbody>
+                <?php 
+                    //ambil data barang external
+                    $sql = "SELECT * FROM data_barang_external";
+                    $hasil = $conn->query($sql);
+                    if ($hasil->num_rows > 0) {
+                      while ($baris = $hasil->fetch_assoc()) {
+                  ?>
                   <tr>
                     <td data-label="No" class="no">
-                      <p class="text-wrap">1</p>
+                      <p class="text-wrap"><?php echo $baris['id']; ?></p>
                     </td>
                     <td data-label="Tanggal" class="tanggal">
-                      <p class="text-wrap">2027-07-27</p>
+                      <p class="text-wrap"><?php echo $baris['tanggal']; ?></p>
                     </td>
                     <td data-label="Nama Pembawa" class="nama-pembawa">
-                      <p class="text-wrap">Sofian</p>
+                      <p class="text-wrap"><?php echo $baris['nama_driver']; ?></p>
                     </td>
                     <td data-label="Nama Suplier" class="nama-suplier">
-                      <p class="text-wrap">PT. Orang Tua</p>
+                      <p class="text-wrap"><?php echo $baris['nama_suplier']; ?></p>
                     </td>
                     <td data-label="Keperluan" class="keperluan">
-                      <p class="text-wrap">Mengantar Minuman Keras</p>
+                      <p class="text-wrap"><?php echo $baris['keperluan']; ?></p>
                     </td>
                     <td data-label="Barang" class="list">
                       <ul>
-                        <li class="barang">Miras 1, 24lt</li>
-                        <li class="barang">Miras 2, 24lt</li>
-                        <li class="barang">Miras 3, 24lt</li>
+                      <?php echo $baris['nama_jumlah_barang']; ?>
                       </ul>
                     </td>
                     <td data-label="Nomor Kendaraan" class="no-kendaraan">
-                      <p class="text-wrap">K 1234 BR</p>
+                      <p class="text-wrap"><?php echo $baris['nomor_kendaraan']; ?></p>
                     </td>
-                    <td data-label="Jam Kedatangan" class="time-pp">22:00</td>
+                    <td data-label="Jam Kedatangan" class="time-pp"><?php echo $baris['jam_kedatangan']; ?></td>
                     <td data-label="Keterangan" class="keterangan">
-                      <p class="text-wrap">Mengantar Minuman Keras</p>
+                      <p class="text-wrap">keterangan</p>
                     </td>
                     <td data-label="Ubah Data" class="buttons">
                       <div class="btn-cont">
@@ -110,6 +115,10 @@ if ($_COOKIE['user-type'] == 'Tamu') {
                       </div>
                     </td>
                   </tr>
+                  <?php 
+                      }
+                    }
+                  ?>
                 </tbody>
               </table>
             </div>

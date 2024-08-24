@@ -152,25 +152,30 @@ if ($_COOKIE['user-type'] == "Tamu") {
                   </tr>
                 </thead>
                 <tbody>
+                <?php 
+                    //ambil data barang internal
+                    $sql = "SELECT * FROM data_barang_internal";
+                    $hasil = $conn->query($sql);
+                    if ($hasil->num_rows > 0) {
+                      while ($baris = $hasil->fetch_assoc()) {
+                  ?>
                   <tr>
                     <td data-label="No" class="no">
-                      <p class="text-wrap">1</p>
+                      <p class="text-wrap"><?php echo $baris['id']; ?></p>
                     </td>
                     <td data-label="Nama Pembawa" class="nama-pembawa">
-                      <p class="text-wrap">Sofian</p>
+                      <p class="text-wrap"><?php echo $baris['nama_pembawa']; ?></p>
                     </td>
                     <td data-label="Barang" class="list">
                       <ul>
-                        <li class="barang">cuka merah, 24</li>
-                        <li class="barang">cuka merah, 24</li>
-                        <li class="barang">cuka merah, 24</li>
+                      <?php echo $baris['nama_jumlah_barang']; ?>
                       </ul>
                     </td>
                     <td data-label="Tanggal" class="tanggal">
-                      <p class="text-wrap">1221-12-12</p>
+                      <p class="text-wrap"><?php echo $baris['tanggal']; ?></p>
                     </td>
                     <td data-label="Keterangan" class="keterangan">
-                      <p class="text-wrap">pemakai</p>
+                      <p class="text-wrap"><?php echo $baris['keterangan']; ?></p>
                     </td>
                     <td data-label="Ubah Data" class="buttons">
                       <div class="btn-cont">
@@ -183,130 +188,10 @@ if ($_COOKIE['user-type'] == "Tamu") {
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <td data-label="No" class="no">
-                      <p class="text-wrap">2</p>
-                    </td>
-                    <td data-label="Nama Pembawa" class="nama-pembawa">
-                      <p class="text-wrap">Andika</p>
-                    </td>
-                    <td data-label="Barang" class="list">
-                      <ul>
-                        <li class="barang">cuka merah, 24</li>
-                        <li class="barang">cuka merah, 24</li>
-                        <li class="barang">cuka merah, 24</li>
-                      </ul>
-                    </td>
-                    <td data-label="Tanggal" class="tanggal">
-                      <p class="text-wrap">1221-12-12</p>
-                    </td>
-                    <td data-label="Keterangan" class="keterangan">
-                      <p class="text-wrap">pemakai</p>
-                    </td>
-                    <td data-label="Ubah Data" class="buttons">
-                      <div class="btn-cont">
-                        <button class="hapus material-symbols-rounded">
-                          delete
-                        </button>
-                        <button class="edit material-symbols-rounded">
-                          edit
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td data-label="No" class="no">
-                      <p class="text-wrap">3</p>
-                    </td>
-                    <td data-label="Nama Pembawa" class="nama-pembawa">
-                      <p class="text-wrap">Al Aziz</p>
-                    </td>
-                    <td data-label="Barang" class="list">
-                      <ul>
-                        <li class="barang">cuka merah, 24</li>
-                        <li class="barang">cuka merah, 24</li>
-                        <li class="barang">cuka merah, 24</li>
-                      </ul>
-                    </td>
-                    <td data-label="Tanggal" class="tanggal">
-                      <p class="text-wrap">1221-12-12</p>
-                    </td>
-                    <td data-label="Keterangan" class="keterangan">
-                      <p class="text-wrap">pemakai</p>
-                    </td>
-                    <td data-label="Ubah Data" class="buttons">
-                      <div class="btn-cont">
-                        <button class="hapus material-symbols-rounded">
-                          delete
-                        </button>
-                        <button class="edit material-symbols-rounded">
-                          edit
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td data-label="No" class="no">
-                      <p class="text-wrap">4</p>
-                    </td>
-                    <td data-label="Nama Pembawa" class="nama-pembawa">
-                      <p class="text-wrap">Dzaki</p>
-                    </td>
-                    <td data-label="Barang" class="list">
-                      <ul>
-                        <li class="barang">cuka merah, 24</li>
-                        <li class="barang">cuka merah, 24</li>
-                        <li class="barang">cuka merah, 24</li>
-                      </ul>
-                    </td>
-                    <td data-label="Tanggal" class="tanggal">
-                      <p class="text-wrap">1221-12-12</p>
-                    </td>
-                    <td data-label="Keterangan" class="keterangan">
-                      <p class="text-wrap">pemakai</p>
-                    </td>
-                    <td data-label="Ubah Data" class="buttons">
-                      <div class="btn-cont">
-                        <button class="hapus material-symbols-rounded">
-                          delete
-                        </button>
-                        <button class="edit material-symbols-rounded">
-                          edit
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td data-label="No" class="no">
-                      <p class="text-wrap">5</p>
-                    </td>
-                    <td data-label="Nama Pembawa" class="nama-pembawa">
-                      <p class="text-wrap">Galang</p>
-                    </td>
-                    <td data-label="Barang" class="list">
-                      <ul>
-                        <li class="barang">cuka merah, 24</li>
-                        <li class="barang">cuka merah, 24</li>
-                        <li class="barang">cuka merah, 24</li>
-                      </ul>
-                    </td>
-                    <td data-label="Tanggal" class="tanggal">
-                      <p class="text-wrap">1221-12-12</p>
-                    </td>
-                    <td data-label="Keterangan" class="keterangan">
-                      <p class="text-wrap">pemakai</p>
-                    </td>
-                    <td data-label="Ubah Data" class="buttons">
-                      <div class="btn-cont">
-                        <button class="hapus material-symbols-rounded">
-                          delete
-                        </button>
-                        <button class="edit material-symbols-rounded">
-                          edit
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
+                  <?php 
+                      }
+                    }
+                  ?>
                 </tbody>
               </table>
             </div>
