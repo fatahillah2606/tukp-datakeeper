@@ -1,4 +1,3 @@
-<!-- Navbar -->
 <div class="navbar">
   <div class="left-cont">
     <span class="material-symbols-rounded menu-btn">menu</span>
@@ -36,4 +35,9 @@
       </div>
     </div>
   </div>
+</div>
+<!-- Snackbar -->
+<div class="snackbar">
+  <p id="snack-msg">Message here</p>
+  <!-- <a href="#" id="snack-action">Action</a> -->
 </div>

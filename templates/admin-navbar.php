@@ -1,4 +1,3 @@
-<!-- Navbar -->
 <div class="navbar admin">
   <div class="left-cont">
     <span class="material-symbols-rounded menu-btn">menu</span>
@@ -24,54 +23,56 @@
     </div>
     <div class="content">
       <div class="notif-container">
-        <div class="notif-menu">
+        <?php
+          // Ambil data notifikasi
+          $permintaanReset = "SELECT * FROM reset_sandi";
+          $cekPermintaan = $conn->query($permintaanReset);
+          if ($cekPermintaan->num_rows > 0) {
+            while ($barisNotif = $cekPermintaan->fetch_assoc()) {
+              $identitas;
+              if ($barisNotif['userId']) {
+                $identitas = $barisNotif['id_email_user'];
+              } else {
+                $identitas = $barisNotif['nama_user'];
+              }
+        ?>
+        <a href="/pages/users/kelola-pengguna.php?search=<?php echo $identitas ?>" class="notif-menu">
           <span class="material-symbols-rounded">passkey</span>
           <div class="notif-text">
             <h2>Permintaan reset sandi</h2>
-            <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
+            <p><?php echo $barisNotif['nama_user']; ?> meminta untuk mengatur ulang sandinya</p>
           </div>
-        </div>
-        <div class="notif-menu">
-          <span class="material-symbols-rounded">passkey</span>
-          <div class="notif-text">
-            <h2>Permintaan reset sandi</h2>
-            <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
-          </div>
-        </div>
-        <div class="notif-menu">
-          <span class="material-symbols-rounded">passkey</span>
-          <div class="notif-text">
-            <h2>Permintaan reset sandi</h2>
-            <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
-          </div>
-        </div>
-        <div class="notif-menu">
-          <span class="material-symbols-rounded">passkey</span>
-          <div class="notif-text">
-            <h2>Permintaan reset sandi</h2>
-            <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
-          </div>
-        </div>
-        <div class="notif-menu">
-          <span class="material-symbols-rounded">passkey</span>
-          <div class="notif-text">
-            <h2>Permintaan reset sandi</h2>
-            <p>Dzaki Alfandi meminta untuk mengatur ulang sandinya</p>
-          </div>
-        </div>
+        </a>
+        <?php
+            }
+          }
+        ?>
       </div>
       <!-- Tampilkan jika tidak ada notifikasi -->
+       <?php
+        if ($cekPermintaan->num_rows <= 0) {
+       ?>
       <p class="no-notif">Tidak ada Notifikasi</p>
+      <?php
+        }
+      ?>
     </div>
   </div>
   <!-- Profile menu -->
   <div class="profile-menu">
     <span class="material-symbols-rounded close-pf-menu">close</span>
-    <p class="user-id"><?php echo (isset($_COOKIE['user-type'])) ? $_COOKIE['user-name'] : ''; ?></p>
+    <p class="user-id">
+      <?php echo (isset($_COOKIE['user-type'])) ? $_COOKIE['user-id'] : ''; ?>
+    </p>
     <div class="user-image">
       <span class="material-symbols-rounded">person</span>
     </div>
-    <p class="nama">Halo, <span><?php echo (isset($_COOKIE['user-type'])) ? $_COOKIE['user-name'] : ''; ?></span></p>
+    <p class="nama">
+      Halo,
+      <span
+        ><?php echo (isset($_COOKIE['user-type'])) ? $_COOKIE['user-name'] : ''; ?></span
+      >
+    </p>
     <a href="/pages/users/edit.php" class="akun">Kelola akun anda</a>
     <div class="multi-tombol">
       <a href="/pages/users/kelola-pengguna.php" class="kelola-pengguna">
@@ -95,4 +96,9 @@
       </div>
     </div>
   </div>
+</div>
+<!-- Snackbar -->
+<div class="snackbar">
+  <p id="snack-msg">Message here</p>
+  <a href="#" id="snack-action">Action</a>
 </div>

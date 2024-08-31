@@ -138,18 +138,18 @@
 }
 
 /* Create new user */
-.new-user {
+.user-manager-dialog .formulir {
   max-width: 1200px;
 }
-.new-user .content {
+.user-manager-dialog .formulir .content {
   display: flex;
   gap: 50px;
 }
-.new-user .content > * {
+.user-manager-dialog .formulir .content > * {
   width: 100%;
 }
 /* Konten kiri untuk buat pengguna baru */
-.new-user .content .left {
+.user-manager-dialog .formulir .content .left {
   background-color: #ffffff;
   border-radius: 20px;
   display: flex;
@@ -157,7 +157,7 @@
   justify-content: center;
   align-items: center;
 }
-.new-user .content .left .profile-icon {
+.user-manager-dialog .formulir .content .left .profile-icon {
   width: 100px;
   height: 100px;
   background-color: #ecf3e7;
@@ -168,31 +168,31 @@
   justify-content: center;
   margin-bottom: 20px;
 }
-.new-user .content .left .profile-icon span {
+.user-manager-dialog .formulir .content .left .profile-icon span {
   color: #002105;
   font-size: 50px;
   font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
   display: block;
 }
-.new-user .content .left .profile-desc * {
+.user-manager-dialog .formulir .content .left .profile-desc * {
   display: block;
   text-align: center;
   margin: 0;
 }
-.new-user .content .left .profile-desc .userrole {
+.user-manager-dialog .formulir .content .left .profile-desc .userrole {
   margin-top: 20px;
   background-color: #d5e8cf;
   padding: 5px 0;
   border-radius: 50px;
 }
 /* Konten kanan untuk buat pengguna baru */
-.new-user .content .right .show-passwd {
+.user-manager-dialog .formulir .content .right .show-passwd {
   margin-bottom: 20px;
 }
-.new-user .content .right .show-passwd * {
+.user-manager-dialog .formulir .content .right .show-passwd * {
   cursor: pointer;
 }
-.new-user .content .right .show-passwd label {
+.user-manager-dialog .formulir .content .right .show-passwd label {
   color: #002105;
 }
 
@@ -232,7 +232,7 @@
 
 /* Responsive */
 @media screen and (max-width: 1000px) {
-  .new-user .right .multi-field {
+  .user-manager-dialog .formulir .right .multi-field {
     flex-direction: column;
   }
 }
@@ -284,17 +284,17 @@
   .konten-pengguna .head .head-action .tambah {
     justify-content: center;
   }
-  .new-user .content {
+  .user-manager-dialog .formulir .content {
     flex-direction: column;
     gap: 20px;
   }
-  .new-user .content .left {
+  .user-manager-dialog .formulir .content .left {
     background-color: #ecf3e7;
   }
-  .new-user .content .left .profile-icon {
+  .user-manager-dialog .formulir .content .left .profile-icon {
     background-color: #ffffff;
   }
-  .new-user .content .left .profile-desc {
+  .user-manager-dialog .formulir .content .left .profile-desc {
     display: none;
   }
 }

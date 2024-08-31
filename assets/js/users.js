@@ -1,10 +1,12 @@
 // whoiam?
-let userRole = document.querySelectorAll(".role");
-userRole.forEach((e) => {
-  if (e.innerHTML === "Admin") {
-    e.classList.add("admin");
-  }
-});
+function whoAiAm() {
+  let userRole = document.querySelectorAll(".role");
+  userRole.forEach((e) => {
+    if (e.innerHTML === "Admin") {
+      e.classList.add("admin");
+    }
+  });
+}
 
 // focus animation
 function focusAnimation() {
@@ -36,18 +38,19 @@ let barCari = document.querySelector(".bar-cari");
 barCariField.addEventListener("focus", () => {
   barCari.classList.add("aktif");
 });
-barCariField.addEventListener("blur", () => {
+function extendSearchBar() {
   if (barCariField.value !== "") {
     barCari.classList.add("aktif");
   } else {
     barCari.classList.remove("aktif");
   }
-});
+}
+extendSearchBar();
+barCariField.addEventListener("blur", extendSearchBar);
 // search engine
-barCariField.addEventListener("keyup", () => {
+function searchData() {
   const searchValue = barCariField.value.toLowerCase();
   const baris = document.querySelectorAll(".user");
-  console.log(baris);
 
   baris.forEach((row) => {
     let cocok = false;
@@ -80,27 +83,96 @@ barCariField.addEventListener("keyup", () => {
       row.classList.add("hidden");
     }
   });
-});
+}
+searchData();
+barCariField.addEventListener("keyup", searchData);
 
-// create user modal
-let createModalContainer = document.querySelector(
-  ".modal-container.new-user-modal"
-);
+// Buat user
 function newUser() {
-  createModalContainer.classList.add("show");
+  let userManager = document.querySelector(".user-manager-dialog");
+  let confirmBtn = userManager.querySelector(
+    ".formulir .tombol-aksi button[type='submit']"
+  );
+
+  confirmBtn.setAttribute(
+    "onclick",
+    "createNewUser(this.parentElement.parentElement, event)"
+  );
+  userManager.querySelector(".formulir > h1").innerText = "Tambah Pengguna";
+  confirmBtn.innerText = "Buat";
+  userManager.classList.add("show");
 }
 
-// edit user modal
-let tombolEdit = document.querySelectorAll(".edit");
-let hapusData = document.querySelectorAll(".hapus");
-let editModalContainer = document.querySelector(".modal-container.edit-user");
+function createNewUser(dialog, event) {
+  event.preventDefault();
 
-function editModal() {
-  editModalContainer.classList.add("show");
+  let adaYangKosong = false;
+  let adaError = false;
+
+  let kolomIsian = dialog.querySelectorAll("input:not([disabled]), select");
+  let textField = dialog.querySelectorAll(".form-field");
+
+  // Cek jika ada kolom yg kosong
+  kolomIsian.forEach((element) => {
+    if (element.value.trim() === "") {
+      adaYangKosong = true;
+      let elemenKosong = element.parentElement;
+      tampilkanError(elemenKosong, "Wajib diisi");
+    }
+  });
+
+  // cek jika ketentuan belum terpenuhi
+  textField.forEach((element) => {
+    if (element.classList.contains("error")) {
+      adaError = true;
+    }
+  });
+
+  // Proses
+  if (!adaYangKosong && !adaError) {
+    // Ambil data
+    let namaUser = dialog.querySelector("#username").value;
+    let sandiUser = dialog.querySelector("#final-pass").value;
+    let tipeUser = dialog.querySelector("#tipe-pengguna").value;
+    let idUser = dialog.querySelector("#userid").value;
+    let emailUser = dialog.querySelector("#useremail").value;
+
+    let xhrUser = new XMLHttpRequest();
+    xhrUser.open("POST", "/functions/users-manager.php", true);
+    xhrUser.setRequestHeader(
+      "Content-Type",
+      "application/x-www-form-urlencoded"
+    );
+
+    xhrUser.onload = function () {
+      if (xhrUser.status === 200) {
+        console.log(xhrUser.responseText);
+        let respon = JSON.parse(xhrUser.responseText);
+        showUpdate(respon.pesan, respon.atxt, respon.alnk);
+        if (respon.status === "berhasil") {
+          muatData();
+          closeUserManager(dialog);
+        } else {
+          console.log("Kesalahan: " + respon.pesan);
+        }
+      } else {
+        console.log("Kesalahan: " + xhrUser.status);
+      }
+    };
+    xhrUser.send(
+      "TambahUser=true&NamaUser=" +
+        encodeURIComponent(namaUser) +
+        "&SandiUser=" +
+        encodeURIComponent(sandiUser) +
+        "&TipeUser=" +
+        encodeURIComponent(tipeUser) +
+        "&IdUser=" +
+        encodeURIComponent(idUser) +
+        "&EmailUser=" +
+        encodeURIComponent(emailUser)
+    );
+  }
 }
-tombolEdit.forEach((e) => {
-  e.addEventListener("click", editModal);
-});
 
 // popup alert
 let popup = document.querySelector(".popup");
@@ -111,6 +183,32 @@ let alertConfirmBtn = popup.querySelector(".popup-content .controls a");
 function hapusUser(userId, userName) {
   alertDesk.innerHTML = "Anda yakin ingin menghapus pengguna " + userName;
   popup.classList.add("show");
+  alertConfirmBtn.setAttribute("onclick", "deleteUser(" + userId + ")");
+}
+
+function deleteUser(userKey) {
+  let xhrHapusUser = new XMLHttpRequest();
+  xhrHapusUser.open("POST", "/functions/users-manager.php", true);
+  xhrHapusUser.setRequestHeader(
+    "Content-Type",
+    "application/x-www-form-urlencoded"
+  );
+
+  xhrHapusUser.onload = function () {
+    if (xhrHapusUser.status === 200) {
+      console.log(xhrHapusUser.responseText);
+      respon = JSON.parse(xhrHapusUser.responseText);
+      showUpdate(respon.pesan, respon.atxt, respon.alnk);
+      if (respon.status === "berhasil") {
+        muatData();
+        closeModal(popup);
+      }
+    } else {
+      console.log("Kesalahan" + xhrHapusUser.status);
+    }
+  };
+
+  xhrHapusUser.send("hapusUser=true&idUser=" + userKey);
 }
 
 // Reset sandi user
@@ -130,12 +228,6 @@ function closeModal(elementName) {
   elementName.classList.remove("show");
 }
 window.addEventListener("click", (e) => {
-  if (e.target == createModalContainer) {
-    closeModal(createModalContainer);
-  }
-  if (e.target == editModalContainer) {
-    closeModal(editModalContainer);
-  }
   if (e.target == resetPasswdModal) {
     closeModal(resetPasswdModal);
   }

@@ -64,25 +64,25 @@ if ($_COOKIE['user-type'] == "Tamu") {
                 <a href="catat/catat-pengunjung.php">
                   <div class="tmbl">
                     <p>Catat Pengunjung</p>
-                    <span class="material-symbols-rounded">group</span>
+                    <span class="material-symbols-rounded">person_edit</span>
                   </div>
                 </a>
                 <a href="catat/catat-barang-ext.php">
                   <div class="tmbl">
                     <p>Catat Barang Eksternal</p>
-                    <span class="material-symbols-rounded">move_item</span>
+                    <span class="material-symbols-rounded">note_alt</span>
                   </div>
                 </a>
                 <a href="catat/catat-barang-int.php">
                   <div class="tmbl">
                     <p>Catat Barang Internal</p>
-                    <span class="material-symbols-rounded">place_item</span>
+                    <span class="material-symbols-rounded">edit_document</span>
                   </div>
                 </a>
                 <a href="catat/catat-mobil.php">
                   <div class="tmbl">
                     <p>Catat Kilometer Mobil</p>
-                    <span class="material-symbols-rounded">speed</span>
+                    <span class="material-symbols-rounded">edit_road</span>
                   </div>
                 </a>
               </div>
@@ -101,13 +101,15 @@ if ($_COOKIE['user-type'] == "Tamu") {
                 <a href="lihat/lihat-barang-ext.php">
                   <div class="tmbl">
                     <p>Lihat Barang Eksternal</p>
-                    <span class="material-symbols-rounded">move_item</span>
+                    <span class="material-symbols-rounded"
+                      >content_paste_search</span
+                    >
                   </div>
                 </a>
                 <a href="lihat/lihat-barang-int.php">
                   <div class="tmbl">
                     <p>Lihat Barang Internal</p>
-                    <span class="material-symbols-rounded">place_item</span>
+                    <span class="material-symbols-rounded">description</span>
                   </div>
                 </a>
                 <a href="lihat/lihat-mobil.php">
@@ -124,8 +126,23 @@ if ($_COOKIE['user-type'] == "Tamu") {
           <div class="tabel">
             <div class="head">
               <div class="teks">
-                <h2>Data Barang Internal</h2>
-                <p>Berikut adalah catatan hari ini</p>
+                <div class="judul-tabel">
+                  <h2>Data Barang Internal</h2>
+                  <span class="material-symbols-rounded"
+                    >keyboard_arrow_down</span
+                  >
+                  <div class="menu">
+                    <span data-rekaman="dataPengunjung">Data Pengunjung</span>
+                    <span data-rekaman="dataBarangEksternal"
+                      >Data Barang Eksternal</span
+                    >
+                    <span data-rekaman="dataBarangInternal"
+                      >Data Barang Internal</span
+                    >
+                    <span data-rekaman="dataMobil">Data Kilometer Mobil</span>
+                  </div>
+                </div>
+                <p>Berikut adalah 10 catatan terbaru</p>
               </div>
               <div class="bar-cari">
                 <label for="cari" class="material-symbols-rounded"
@@ -140,60 +157,10 @@ if ($_COOKIE['user-type'] == "Tamu") {
               </div>
             </div>
             <div class="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Nama Pembawa</th>
-                    <th scope="col">Nama & Jumlah Barang</th>
-                    <th scope="col">Tanggal</th>
-                    <th scope="col">Keterangan</th>
-                    <th scope="col">Ubah Data</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <?php 
-                    //ambil data barang internal
-                    $sql = "SELECT * FROM data_barang_internal";
-                    $hasil = $conn->query($sql);
-                    if ($hasil->num_rows > 0) {
-                      while ($baris = $hasil->fetch_assoc()) {
-                  ?>
-                  <tr>
-                    <td data-label="No" class="no">
-                      <p class="text-wrap"><?php echo $baris['id']; ?></p>
-                    </td>
-                    <td data-label="Nama Pembawa" class="nama-pembawa">
-                      <p class="text-wrap"><?php echo $baris['nama_pembawa']; ?></p>
-                    </td>
-                    <td data-label="Barang" class="list">
-                      <ul>
-                      <?php echo $baris['nama_jumlah_barang']; ?>
-                      </ul>
-                    </td>
-                    <td data-label="Tanggal" class="tanggal">
-                      <p class="text-wrap"><?php echo $baris['tanggal']; ?></p>
-                    </td>
-                    <td data-label="Keterangan" class="keterangan">
-                      <p class="text-wrap"><?php echo $baris['keterangan']; ?></p>
-                    </td>
-                    <td data-label="Ubah Data" class="buttons">
-                      <div class="btn-cont">
-                        <button class="hapus material-symbols-rounded">
-                          delete
-                        </button>
-                        <button class="edit material-symbols-rounded">
-                          edit
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <?php 
-                      }
-                    }
-                  ?>
-                </tbody>
-              </table>
+              <!-- Ajax -->
+            </div>
+            <div class="view-all">
+              <a href="#">Lihat semua</a>
             </div>
           </div>
           <!-- End Tabel -->
@@ -211,53 +178,11 @@ if ($_COOKIE['user-type'] == "Tamu") {
     </div>
     <!-- End Container -->
     <!-- Modal Box -->
-    <div class="modal-container">
-      <div class="formulir">
-        <h1>Edit Laporan</h1>
-        <form action="">
-          <div class="form-field">
-            <label for="nama-pembawa">Nama Pembawa</label>
-            <input type="text" id="nama-pembawa" name="nama-pembawa" />
-            <span class="material-symbols-rounded field-icon">person</span>
-          </div>
-          <div id="field-barang">
-            <h2>Barang</h2>
-            <div class="multi-field">
-              <div class="form-field">
-                <label for="nama-barang">Nama Barang</label>
-                <input type="text" id="nama-barang" name="nama-barang" />
-              </div>
-              <div class="form-field">
-                <label for="jumlah-barang">Jumlah Barang</label>
-                <input type="number" id="jumlah-barang" name="jumlah-barang" />
-              </div>
-              <span class="material-symbols-rounded field-icon">category</span>
-            </div>
-          </div>
-          <div
-            class="tambah"
-            onclick="tambahMultiField('Barang tambahan', 'Nama Barang', 'Jumlah Barang', 'text', 'number', 'field-barang', 'category')"
-          >
-            <span class="material-symbols-rounded">add</span>
-            <span class="btn-label">Tambah</span>
-          </div>
-          <!-- <div id="field-nama"></div> -->
-          <div class="form-field fokus">
-            <label for="tanggal">Tanggal</label>
-            <input type="date" id="tanggal" name="tanggal" />
-            <span class="material-symbols-rounded field-icon">event</span>
-          </div>
-          <div class="form-field">
-            <label for="keterangan">Keterangan</label>
-            <input type="text" id="keterangan" name="keterangan" />
-            <span class="material-symbols-rounded field-icon">description</span>
-          </div>
-          <div class="tombol-aksi">
-            <span id="cancel" onclick="editModal()">Batal</span>
-            <button name="submit" id="submit">Simpan</button>
-          </div>
-        </form>
-      </div>
+    <div class="modals">
+      <?php require '../templates/modals/edit-pengunjung.php'; ?>
+      <?php require '../templates/modals/edit-barang-ext.php'; ?>
+      <?php require '../templates/modals/edit-barang-int.php'; ?>
+      <?php require '../templates/modals/edit-mobil.php'; ?>
     </div>
     <!-- End Modal Box -->
     <!-- modal alert box-->
@@ -266,8 +191,8 @@ if ($_COOKIE['user-type'] == "Tamu") {
         <h2>Perhatian</h2>
         <p>Anda yakin ingin menghapus rekaman tersebut?</p>
         <div class="controls">
-          <button class="close-btn" onclick="peringatan()">Batal</button>
-          <a href="" class="submit-btn">Hapus</a>
+          <button class="close-btn" onclick="tutupDialog()">Batal</button>
+          <button class="submit-btn">Hapus</button>
         </div>
       </div>
     </div>
@@ -276,5 +201,125 @@ if ($_COOKIE['user-type'] == "Tamu") {
     <script src="../assets/js/tabel.js"></script>
     <script src="../assets/js/script.js"></script>
     <script src="../assets/js/formulir.js"></script>
+    <script src="../assets/js/dialogs.js"></script>
+    <script type="text/javascript">
+      // Cek pengaturan default tabel
+      if (ambilCookie("defaultTabel") == "") {
+        aturCookie("defaultTabel", "dataBarangInternal", 30);
+      }
+
+      // Opsi untuk pilih data yang ingin di tampilkan
+      let judulTabel = document.querySelector(".judul-tabel");
+      let menuTabel = judulTabel.querySelector(".menu");
+      let isiMenuTabel = menuTabel.querySelectorAll("span");
+
+      function bukaMenuTabel() {
+        menuTabel.classList.toggle("show");
+      }
+
+      judulTabel.addEventListener("click", (e) => {
+        e.stopPropagation();
+        bukaMenuTabel();
+      });
+
+      document.addEventListener("click", (e) => {
+        if (
+          menuTabel.classList.contains("show") &&
+          !menuTabel.contains(e.target) &&
+          e.target.id !== "bukaMenuTabel"
+        ) {
+          menuTabel.classList.remove("show");
+        }
+      });
+
+      isiMenuTabel.forEach((element) => {
+        element.addEventListener("click", () => {
+          ambilData(element.getAttribute("data-rekaman"));
+
+          // Set cookie
+          aturCookie("defaultTabel", element.getAttribute("data-rekaman"), 30);
+
+          judulTabel.querySelector("h2").innerHTML = element.innerHTML;
+        });
+      });
+
+      // Proses ambil data
+      let = barisData = document.querySelector(".table-container");
+
+      // Switch untuk fab button dan View all
+      function ambilData(namaData) {
+        let linkHalaman;
+        switch (namaData) {
+          case "dataPengunjung":
+            linkHalaman = "pengunjung.php";
+            break;
+          case "dataBarangEksternal":
+            linkHalaman = "barang-ext.php";
+            break;
+          case "dataBarangInternal":
+            linkHalaman = "barang-int.php";
+            break;
+          case "dataMobil":
+            linkHalaman = "mobil.php";
+            break;
+        }
+
+        let viewAll = document.querySelector(".view-all a");
+        let fabButton = document.querySelector(".fab-button");
+
+        // Mulai request
+        let xhr = new XMLHttpRequest();
+
+        // Metode dan url
+        xhr.open(
+          "GET",
+          "/functions/data-manager.php?" + namaData + "=true&limit=true",
+          true
+        );
+
+        // cek respon server
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            barisData.innerHTML = xhr.responseText;
+
+            // atur view all sesuai table yang ditampilkan
+            viewAll.setAttribute("href", "/pages/lihat/lihat-" + linkHalaman);
+
+            // atur fab button sesuai table yang ditampilkan
+            fabButton.parentElement.setAttribute(
+              "href",
+              "/pages/catat/catat-" + linkHalaman
+            );
+          } else {
+            barisData.innerHTML = "Kesalahan: " + xhr.status;
+          }
+        };
+        // Kirim permintaan
+        xhr.send();
+      }
+
+      // Muat data
+      function muatData() {
+        ambilData(ambilCookie("defaultTabel"));
+        isiMenuTabel.forEach((element) => {
+          if (
+            element.getAttribute("data-rekaman") == ambilCookie("defaultTabel")
+          ) {
+            judulTabel.querySelector("h2").innerHTML = element.innerHTML;
+          }
+        });
+      }
+
+      window.onload = function () {
+        muatData();
+
+        // Update data realtime
+        setInterval(() => {
+          muatData();
+        }, (60000 * 5) /* Update setiam 5 menit sekali */);
+      };
+
+      
+    </script>
   </body>
 </html>

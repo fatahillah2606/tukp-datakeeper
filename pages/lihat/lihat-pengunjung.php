@@ -4,7 +4,15 @@ if ($_COOKIE['user-type'] == 'Tamu') {
   header("Location: /errors/403.php");
   exit();
 }
-?>
+
+// Fungsi
+function konversiTanggal($tgl) {
+  $bln = array(
+    1 =>
+"Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
+"September", "Oktober", "November", "Desember" ); $pecahkan = explode("-",
+$tgl); return $pecahkan[2] . " " . $bln[(int)$pecahkan[1]] . " " . $pecahkan[0];
+} ?>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
@@ -53,63 +61,7 @@ if ($_COOKIE['user-type'] == 'Tamu') {
               </div>
             </div>
             <div class="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Nama Pengunjung</th>
-                    <th scope="col">Nama Perusahaan</th>
-                    <th scope="col">Tanggal</th>
-                    <th scope="col">Nomor Telepon</th>
-                    <th scope="col">Ubah Data</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <?php 
-                    //ambil data pengunjung
-                    $sql = "SELECT * FROM data_pengunjung";
-                    $hasil = $conn->query($sql);
-                    if ($hasil->num_rows > 0) {
-                      while ($baris = $hasil->fetch_assoc()) {
-                  ?>
-                  <tr>
-                    <td data-label="No" class="no">
-                      <p class="text-wrap"><?php echo $baris['id']; ?></p>
-                    </td>
-                    <td
-                      data-label="Nama Pengunjung"
-                      class="nama-pengunjung list"
-                    >
-                      <ul>
-                      <?php echo $baris['nama_pengunjung']; ?>
-                      </ul>
-                    </td>
-                    <td data-label="Nama Perusahaan" class="nama-perusahaan">
-                      <p class="text-wrap"><?php echo $baris['nama_perusahaan']; ?></p>
-                    </td>
-                    <td data-label="Tanggal" class="tanggal">
-                      <p class="text-wrap"><?php echo $baris['tanggal']; ?></p>
-                    </td>
-                    <td data-label="Nomor Telepon" class="no-tlp">
-                      <p class="text-wrap"><?php echo $baris['nomor_telepon']; ?></p>
-                    </td>
-                    <td data-label="Ubah Data" class="buttons">
-                      <div class="btn-cont">
-                        <button class="hapus material-symbols-rounded">
-                          delete
-                        </button>
-                        <button class="edit material-symbols-rounded">
-                          edit
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <?php 
-                      }
-                    }
-                  ?>
-                </tbody>
-              </table>
+              <!-- Ajax -->
             </div>
           </div>
           <!-- End Tabel -->
@@ -127,47 +79,8 @@ if ($_COOKIE['user-type'] == 'Tamu') {
     </div>
     <!-- End Container -->
     <!-- Modal Box -->
-    <div class="modal-container">
-      <div class="formulir">
-        <h1>Edit Laporan</h1>
-        <form action="">
-          <div id="field-nama">
-            <div class="form-field">
-              <label for="nama-pengunjung">Nama Pengunjung</label>
-              <input type="text" id="nama-pengunjung" name="nama-pengunjung" />
-              <span class="material-symbols-rounded field-icon">person</span>
-            </div>
-          </div>
-          <div
-            class="tambah"
-            onclick="tambahSingleField('Tambahan pengunjung', 'Nama Pengunjung', 'text', 'field-nama', 'person')"
-          >
-            <span class="material-symbols-rounded">add</span>
-            <span class="btn-label">Tambah</span>
-          </div>
-          <div id="nama-perusahaan">
-            <div class="form-field">
-              <label for="nama-perusahaan">Nama Perusahaan</label>
-              <input type="text" id="nama-perusahaan" name="nama-perusahaan" />
-              <span class="material-symbols-rounded field-icon">factory</span>
-            </div>
-          </div>
-          <div class="form-field fokus">
-            <label for="tanggal">Tanggal</label>
-            <input type="date" id="tanggal" name="tanggal" />
-            <span class="material-symbols-rounded field-icon">event</span>
-          </div>
-          <div class="form-field">
-            <label for="no-tlp">Nomor Telepon</label>
-            <input type="text" id="no-tlp" name="no-tlp" />
-            <span class="material-symbols-rounded field-icon">call</span>
-          </div>
-          <div class="tombol-aksi">
-            <span id="cancel" onclick="editModal()">Batal</span>
-            <button name="submit" id="submit">Simpan</button>
-          </div>
-        </form>
-      </div>
+    <div class="modals">
+      <?php require '../../templates/modals/edit-pengunjung.php'; ?>
     </div>
     <!-- End Modal Box -->
     <!-- modal alert box-->
@@ -176,8 +89,8 @@ if ($_COOKIE['user-type'] == 'Tamu') {
         <h2>Perhatian</h2>
         <p>Anda yakin ingin menghapus rekaman tersebut?</p>
         <div class="controls">
-          <button class="close-btn" onclick="peringatan()">Batal</button>
-          <a href="" class="submit-btn">Hapus</a>
+          <button class="close-btn" onclick="tutupDialog()">Batal</button>
+          <button class="submit-btn">Hapus</button>
         </div>
       </div>
     </div>
@@ -185,5 +98,28 @@ if ($_COOKIE['user-type'] == 'Tamu') {
     <script src="../../assets/js/navmenu.js"></script>
     <script src="../../assets/js/tabel.js"></script>
     <script src="../../assets/js/formulir.js"></script>
+    <script src="../../assets/js/dialogs.js"></script>
+    <script type="text/javascript">
+      let tableContainer = document.querySelector(".table-container");
+
+      function muatData() {
+        let xhr = new XMLHttpRequest();
+        xhr.open(
+          "GET",
+          "/functions/data-manager.php?dataPengunjung=true",
+          true
+        );
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            tableContainer.innerHTML = xhr.responseText;
+          } else {
+            tableContainer.innerHTML = "Kesalahan: " + xhr.status;
+          }
+        };
+        xhr.send();
+      }
+
+      muatData();
+    </script>
   </body>
 </html>

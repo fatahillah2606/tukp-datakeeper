@@ -7,7 +7,6 @@
   box-sizing: border-box;
   text-decoration: none;
   font-family: "Inter", sans-serif;
-  transition: background 0.3s ease 0s;
 }
 body {
   background-color: #ffffff;
@@ -161,7 +160,7 @@ body {
 .tabel {
   width: 95%;
   height: auto;
-  max-width: 1600px;
+  max-width: 1800px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   display: block;
   margin: 50px auto;
@@ -186,6 +185,43 @@ body {
 .head p {
   color: #002105;
 }
+/* Judul tabel */
+.head .judul-tabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+.head .judul-tabel span {
+  margin-left: 10px;
+  font-size: 28px;
+}
+.head .judul-tabel .menu {
+  position: absolute;
+  top: calc(100% + 20px);
+  left: 0;
+  background-color: #ecf3e7;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+  display: none;
+}
+.head .judul-tabel .menu.show {
+  display: block;
+}
+.head .judul-tabel .menu span {
+  font-size: 16px;
+  display: block;
+  cursor: pointer;
+  padding: 10px 0;
+  margin-left: 0;
+  padding-left: 20px;
+}
+.head .judul-tabel .menu span:hover {
+  background-color: #dee5d9;
+}
+
 .head .bar-cari {
   display: flex;
   align-items: center;
@@ -240,6 +276,8 @@ body {
 .tabel table td .text-wrap {
   width: 150px;
   height: auto;
+  display: block;
+  margin: auto;
   text-wrap: wrap;
 }
 .tabel table tbody tr:hover {
@@ -295,6 +333,18 @@ body {
 .tabel table tr td button:nth-child(2):hover {
   background-color: #d5e8cf;
 }
+.tabel .view-all {
+  display: flex;
+  justify-content: right;
+}
+.tabel .view-all a {
+  padding: 15px 20px;
+  border-radius: 50px;
+  background-color: #3a693a;
+  color: #f6fff0;
+  margin-top: 20px;
+  display: inline-block;
+}
 @keyframes fadein {
   from {
     opacity: 0;
@@ -340,6 +390,7 @@ body {
   }
   .tabel table td .text-wrap {
     text-align: right;
+    margin: 0;
   }
   .tabel table td::before {
     content: attr(data-label);
@@ -382,6 +433,7 @@ body {
     background-color: rgba(0, 0, 0, 0.2);
   }
 }
+
 /* Formulir */
 .formulir {
   width: 95%;
@@ -427,6 +479,7 @@ body {
   margin-left: 5px;
   color: #002105;
 }
+/* Form field */
 .formulir .form-field {
   position: relative;
   width: 100%;
@@ -437,6 +490,8 @@ body {
   position: relative;
   border-radius: 5px 5px 0 0;
   padding: 0 15px;
+  display: flex;
+  align-items: center;
 }
 .formulir .form-field.none {
   display: none;
@@ -497,6 +552,44 @@ body {
 .formulir .form-field select {
   cursor: pointer;
 }
+
+/* Field error */
+.formulir .form-field .field-error {
+  display: none;
+}
+.formulir .form-field.error {
+  margin-bottom: 40px !important;
+  border-color: var(--error-light);
+}
+.formulir .multi-field .form-field.error {
+  margin-bottom: 20px !important;
+}
+.formulir .form-field.error .field-error {
+  display: block;
+  color: var(--error-light);
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+.formulir .form-field.error::before {
+  background-color: var(--error-light);
+}
+.formulir .form-field.fokus.error label,
+.formulir .form-field.error label {
+  color: var(--error-light);
+}
+
+/* Field supporting text */
+.formulir .form-field .supporting-text {
+  display: none;
+  position: absolute;
+  top: calc(100% + 7px);
+  left: 15px;
+  color: var(--error-light);
+  font-size: 12px;
+}
+.formulir .form-field.error .supporting-text {
+  display: block;
+}
+
 .formulir .form-field .field-icon,
 .formulir .multi-field .field-icon {
   position: absolute;
@@ -520,7 +613,7 @@ body {
   padding: 10px;
   border-radius: 50px;
   margin-bottom: 15px;
-  margin-top: -15px;
+  margin-top: -10px;
   cursor: pointer;
 }
 .formulir .tambah span {
@@ -530,7 +623,8 @@ body {
   margin-right: 8px;
 }
 .formulir .tambah:hover,
-.formulir .tombol-aksi span#cancel:hover {
+.formulir .tombol-aksi span#cancel:hover,
+.formulir .tombol-aksi button#reset:hover {
   background-color: #d5e8cf;
 }
 .formulir .multi-field {
@@ -563,7 +657,8 @@ body {
 .formulir .tombol-aksi button:hover {
   background-color: #225025;
 }
-.formulir .tombol-aksi span#cancel {
+.formulir .tombol-aksi button.batal,
+.formulir .tombol-aksi button#reset {
   background: none;
   border-color: #253423;
   color: #3a693a;
@@ -664,7 +759,7 @@ body {
   .modal-container .formulir {
     background-color: #ecf3e7;
     width: 100%;
-    max-height: 100vh;
+    max-height: 80vh;
     border-radius: 30px 30px 0 0;
     margin: 0;
     position: absolute;

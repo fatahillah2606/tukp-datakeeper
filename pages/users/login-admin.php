@@ -32,7 +32,7 @@ if (isset($_COOKIE['user-type'])) {
           </div>
         </div>
         <div class="right-cont">
-          <form action="/function/login-process.php" method="post" id="loginAdmin">
+          <form action="/functions/login-process.php" method="post" id="loginAdmin">
             <div class="input-field">
               <label for="email">Email</label>
               <input type="email" id="email" name="email" />

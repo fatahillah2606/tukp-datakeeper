@@ -32,7 +32,7 @@ if (isset($_COOKIE['user-type'])) {
           </div>
         </div>
         <div class="right-cont">
-          <form action="/function/login-process.php" method="post" id="loginTamu">
+          <form action="/functions/login-process.php" method="post" id="loginTamu">
             <div class="input-field">
               <label for="token">Masukan token</label>
               <input type="text" id="token" name="token" />

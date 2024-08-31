@@ -53,66 +53,7 @@ if ($_COOKIE['user-type'] == 'Tamu') {
               </div>
             </div>
             <div class="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">Nama Driver</th>
-                    <th scope="col">Merek Kendaraan</th>
-                    <th scope="col">KM Awal</th>
-                    <th scope="col">KM Akhir</th>
-                    <th scope="col">Tujuan</th>
-                    <th scope="col">Keperluan</th>
-                    <th scope="col">Ubah Data</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                    // ambil data  mobil
-                    $sql = "SELECT * FROM data_mobil";
-                    $hasil = $conn->query($sql);
-                    if ($hasil->num_rows > 0) {
-                      while ($baris = $hasil->fetch_assoc()) {
-                  ?>
-                  <tr>
-                    <td data-label="No" class="no">
-                      <p class="text-wrap"><?php echo $baris['id']; ?></p>
-                    </td>
-                    <td data-label="Nama Driver" class="nama-driver">
-                      <p class="text-wrap"><?php echo $baris['nama_driver']; ?></p>
-                    </td>
-                    <td data-label="Merek Kendaraan" class="merek-kendaraan">
-                      <p class="text-wrap"><?php echo $baris['merek_kendaraan']; ?></p>
-                    </td>
-                    <td data-label="KM Awal" class="awal-km">
-                      <p class="text-wrap"><?php echo $baris['km_awal']; ?></p>
-                    </td>
-                    <td data-label="KM Akhir" class="akhir-km">
-                      <p class="text-wrap"><?php echo $baris['km_akhir']; ?></p>
-                    </td>
-                    <td data-label="Tujuan" class="nama-perusahaan">
-                      <p class="text-wrap"><?php echo $baris['tujuan']; ?></p>
-                    </td>
-                    <td data-label="Keperluan" class="keperluan">
-                      <p class="text-wrap"><?php echo $baris['keperluan']; ?></p>
-                    </td>
-                    <td data-label="Ubah Data" class="buttons">
-                      <div class="btn-cont">
-                        <button class="hapus material-symbols-rounded">
-                          delete
-                        </button>
-                        <button class="edit material-symbols-rounded">
-                          edit
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                  <?php 
-                      }
-                    }
-                  ?>
-                </tbody>
-              </table>
+              <!-- AJAX -->
             </div>
           </div>
           <!-- End Tabel -->
@@ -130,60 +71,8 @@ if ($_COOKIE['user-type'] == 'Tamu') {
     </div>
     <!-- End Container -->
     <!-- Modal Box -->
-    <div class="modal-container">
-      <div class="formulir">
-        <h1>Edit Laporan</h1>
-        <form action="">
-          <div class="form-field">
-            <label for="nama-driver">Nama Driver</label>
-            <input type="text" id="nama-driver" name="nama-driver" />
-            <span class="material-symbols-rounded field-icon">person</span>
-          </div>
-          <div class="form-field">
-            <label for="merek-kendaraan">Merek Kendaraan</label>
-            <select name="merek-kendaraan" id="merek-kendaraan">
-              <option value=""></option>
-              <option value="Merek 1">Merek 1</option>
-              <option value="Merek 2">Merek 2</option>
-              <option value="Merek 3">Merek 3</option>
-              <option value="Lainnya">Lainnya</option>
-            </select>
-            <span class="material-symbols-rounded field-icon"
-              >local_shipping</span
-            >
-          </div>
-          <div class="form-field none">
-            <label for="merek-lain">Merek Lain</label>
-            <input type="text" id="merek-lain" name="merek-lain" />
-          </div>
-          <h2>Kilometer</h2>
-          <div class="multi-field">
-            <div class="form-field">
-              <label for="awal-km">Awal</label>
-              <input type="number" id="awal-km" name="awal-km" />
-            </div>
-            <div class="form-field">
-              <label for="akhir-km">Akhir</label>
-              <input type="number" id="akhir-km" name="akhir-km" />
-            </div>
-            <span class="material-symbols-rounded field-icon">speed</span>
-          </div>
-          <div class="form-field">
-            <label for="tujuan">Tujuan</label>
-            <input type="text" id="tujuan" name="tujuan" />
-            <span class="material-symbols-rounded field-icon">location_on</span>
-          </div>
-          <div class="form-field">
-            <label for="Keperluan">Keperluan</label>
-            <input type="text" id="Keperluan" name="Keperluan" />
-            <span class="material-symbols-rounded field-icon">task_alt</span>
-          </div>
-          <div class="tombol-aksi">
-            <span id="cancel" onclick="editModal()">Batal</span>
-            <button name="submit" id="submit">Simpan</button>
-          </div>
-        </form>
-      </div>
+    <div class="modals">
+      <?php require '../../templates/modals/edit-mobil.php'; ?>
     </div>
     <!-- End Modal Box -->
     <!-- modal alert box-->
@@ -192,8 +81,8 @@ if ($_COOKIE['user-type'] == 'Tamu') {
         <h2>Perhatian</h2>
         <p>Anda yakin ingin menghapus rekaman tersebut?</p>
         <div class="controls">
-          <button class="close-btn" onclick="peringatan()">Batal</button>
-          <a href="" class="submit-btn">Hapus</a>
+          <button class="close-btn" onclick="tutupDialog()">Batal</button>
+          <button class="submit-btn">Hapus</button>
         </div>
       </div>
     </div>
@@ -201,5 +90,24 @@ if ($_COOKIE['user-type'] == 'Tamu') {
     <script src="../../assets/js/navmenu.js"></script>
     <script src="../../assets/js/tabel.js"></script>
     <script src="../../assets/js/formulir.js"></script>
+    <script src="../../assets/js/dialogs.js"></script>
+    <script type="text/javascript">
+      let tableContainer = document.querySelector(".table-container");
+
+      function muatData() {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", "/functions/data-manager.php?dataMobil=true", true);
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            tableContainer.innerHTML = xhr.responseText;
+          } else {
+            tableContainer.innerHTML = "Kesalahan: " + xhr.status;
+          }
+        };
+        xhr.send();
+      }
+
+      muatData();
+    </script>
   </body>
 </html>

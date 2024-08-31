@@ -278,6 +278,7 @@ body {
 [data-theme="dark"] .konten .main-cont .left-cont .user-options .opsi a:hover {
   background-color: #424940;
 }
+
 /* Formulir */
 [data-theme="dark"] .konten .right-cont .input-field {
   background-color: rgba(255, 255, 255, 0.05);
@@ -292,6 +293,7 @@ body {
 [data-theme="dark"] .konten .right-cont .input-field.fokus label {
   color: #c9ffc3;
 }
+
 /* Field error */
 [data-theme="dark"] .konten .right-cont .input-field.error {
   border-color: var(--error-dark);
@@ -322,6 +324,7 @@ body {
 [data-theme="dark"] .konten .right-cont .radio-option .radio label {
   color: #f6fff0;
 }
+
 /* Buttons */
 [data-theme="dark"] .konten .buttons a {
   color: #c9ffc3;

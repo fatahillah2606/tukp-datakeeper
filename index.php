@@ -31,7 +31,7 @@ if (isset($_COOKIE['user-type'])) {
           </div>
         </div>
         <div class="right-cont">
-          <form action="/function/login-process.php" method="post" id="loginUser">
+          <form action="/functions/login-process.php" method="post" id="loginUser">
             <div class="input-field">
               <label for="no-id">Nomor ID</label>
               <input type="number" id="no-id" name="no-id" />

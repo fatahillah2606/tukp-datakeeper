@@ -4,6 +4,11 @@ if ($_COOKIE['user-type'] !== 'Admin') {
   header("Location: /errors/403.php");
   exit();
 }
+
+$cari = '';
+if (isset($_GET['search'])) {
+  $cari = $_GET['search'];
+}
 ?>
 <html lang="id">
   <head>
@@ -46,6 +51,7 @@ if ($_COOKIE['user-type'] !== 'Admin') {
                     id="cari"
                     name="cari"
                     placeholder="Cari..."
+                    value="<?php echo $cari; ?>"
                   />
                 </div>
                 <div class="tambah" onclick="newUser()">
@@ -55,156 +61,7 @@ if ($_COOKIE['user-type'] !== 'Admin') {
               </div>
             </div>
             <div class="users">
-              <div class="user">
-                <div class="left">
-                  <div class="user-icon">
-                    <span class="material-symbols-rounded">person</span>
-                  </div>
-                  <div class="user-name">
-                    <h2 class="nama">Al Aziz</h2>
-                    <p class="id-email">email@email.com</p>
-                  </div>
-                </div>
-                <div class="right">
-                  <p class="role">Admin</p>
-                  <div class="action-btn">
-                    <div class="btn reset">
-                      <span class="material-symbols-rounded">history</span>
-                      <p onclick="resetPasswd(123, 'Zaki')">Reset</p>
-                    </div>
-                    <div class="btn edit">
-                      <span class="material-symbols-rounded">edit</span>
-                      <p>Edit</p>
-                    </div>
-                    <a
-                      href="#"
-                      class="hapus material-symbols-rounded"
-                      onclick="hapusUser(123, 'Zaki')"
-                      >delete</a
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="user">
-                <div class="left">
-                  <div class="user-icon">
-                    <span class="material-symbols-rounded">person</span>
-                  </div>
-                  <div class="user-name">
-                    <h2 class="nama">Andika</h2>
-                    <p class="id-email">email@email.com</p>
-                  </div>
-                </div>
-                <div class="right">
-                  <p class="role">Admin</p>
-                  <div class="action-btn">
-                    <div class="btn reset">
-                      <span class="material-symbols-rounded">history</span>
-                      <p onclick="resetPasswd(123, 'Zaki')">Reset</p>
-                    </div>
-                    <div class="btn edit">
-                      <span class="material-symbols-rounded">edit</span>
-                      <p>Edit</p>
-                    </div>
-                    <a
-                      href="#"
-                      class="hapus material-symbols-rounded"
-                      onclick="hapusUser(123, 'Zaki')"
-                      >delete</a
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="user">
-                <div class="left">
-                  <div class="user-icon">
-                    <span class="material-symbols-rounded">person</span>
-                  </div>
-                  <div class="user-name">
-                    <h2 class="nama">Galang</h2>
-                    <p class="id-email">128921</p>
-                  </div>
-                </div>
-                <div class="right">
-                  <p class="role">User</p>
-                  <div class="action-btn">
-                    <div class="btn reset">
-                      <span class="material-symbols-rounded">history</span>
-                      <p onclick="resetPasswd(123, 'Zaki')">Reset</p>
-                    </div>
-                    <div class="btn edit">
-                      <span class="material-symbols-rounded">edit</span>
-                      <p>Edit</p>
-                    </div>
-                    <a
-                      href="#"
-                      class="hapus material-symbols-rounded"
-                      onclick="hapusUser(123, 'Zaki')"
-                      >delete</a
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="user">
-                <div class="left">
-                  <div class="user-icon">
-                    <span class="material-symbols-rounded">person</span>
-                  </div>
-                  <div class="user-name">
-                    <h2 class="nama">Fadel</h2>
-                    <p class="id-email">1928731</p>
-                  </div>
-                </div>
-                <div class="right">
-                  <p class="role">User</p>
-                  <div class="action-btn">
-                    <div class="btn reset">
-                      <span class="material-symbols-rounded">history</span>
-                      <p onclick="resetPasswd(123, 'Zaki')">Reset</p>
-                    </div>
-                    <div class="btn edit">
-                      <span class="material-symbols-rounded">edit</span>
-                      <p>Edit</p>
-                    </div>
-                    <a
-                      href="#"
-                      class="hapus material-symbols-rounded"
-                      onclick="hapusUser(123, 'Zaki')"
-                      >delete</a
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="user">
-                <div class="left">
-                  <div class="user-icon">
-                    <span class="material-symbols-rounded">person</span>
-                  </div>
-                  <div class="user-name">
-                    <h2 class="nama">Dzaki Alfandi</h2>
-                    <p class="id-email">185719</p>
-                  </div>
-                </div>
-                <div class="right">
-                  <p class="role">User</p>
-                  <div class="action-btn">
-                    <div class="btn reset">
-                      <span class="material-symbols-rounded">history</span>
-                      <p onclick="resetPasswd(123, 'Zaki')">Reset</p>
-                    </div>
-                    <div class="btn edit">
-                      <span class="material-symbols-rounded">edit</span>
-                      <p>Edit</p>
-                    </div>
-                    <a
-                      href="#"
-                      class="hapus material-symbols-rounded"
-                      onclick="hapusUser(123, 'Zaki')"
-                      >delete</a
-                    >
-                  </div>
-                </div>
-              </div>
+              <!-- Ajax -->
             </div>
           </div>
         </div>
@@ -213,127 +70,10 @@ if ($_COOKIE['user-type'] !== 'Admin') {
       <!-- End Konten -->
     </div>
     <!-- End Container -->
-    <!-- Create new user modal -->
-    <div class="modal-container new-user-modal">
-      <div class="new-user formulir">
-        <h1>Tambah pengguna</h1>
-        <div class="content">
-          <div class="left">
-            <div class="profile-icon">
-              <span class="material-symbols-rounded">person</span>
-            </div>
-            <div class="profile-desc">
-              <h2 class="username">Nama Pengguna</h2>
-              <p class="userid">email/user_id</p>
-              <p class="userrole">Tipe</p>
-            </div>
-          </div>
-          <div class="right">
-            <form action="" method="post" id="tambah-user">
-              <div class="form-field">
-                <label for="username">Nama Pengguna</label>
-                <input type="text" id="username" name="username" />
-                <span class="material-symbols-rounded field-icon">person</span>
-              </div>
-              <h2>Kata sandi</h2>
-              <div class="multi-field">
-                <div class="form-field">
-                  <label for="first-pass">Masukan sandi</label>
-                  <input type="password" id="first-pass" name="first-pass" />
-                </div>
-                <div class="form-field">
-                  <label for="final-pass">Ketikan ulang sandi</label>
-                  <input type="password" id="final-pass" name="final-pass" />
-                </div>
-                <span class="material-symbols-rounded field-icon">vpn_key</span>
-              </div>
-              <div class="show-passwd">
-                <input type="checkbox" name="tampil-sandi" id="tampil-sandi" />
-                <label for="tampil-sandi">Tampilkan sandi</label>
-              </div>
-              <div class="form-field">
-                <label for="tipe-pengguna">Tipe Pengguna</label>
-                <select name="tipe-pengguna" id="tipe-pengguna">
-                  <option value=""></option>
-                  <option value="Admin">Admin</option>
-                  <option value="User">Pengguna Biasa</option>
-                </select>
-                <span class="material-symbols-rounded field-icon"
-                  >assignment_ind</span
-                >
-              </div>
-              <div class="form-field none" id="email">
-                <label for="useremail">Masukan Email</label>
-                <input type="email" id="useremail" name="useremail" disabled />
-                <span class="material-symbols-rounded field-icon">mail</span>
-              </div>
-              <div class="form-field none" id="user-id">
-                <label for="userid">Masukan User ID</label>
-                <input type="number" id="userid" name="userid" disabled />
-                <span class="material-symbols-rounded field-icon">passkey</span>
-              </div>
-              <div class="tombol-aksi">
-                <span id="cancel" onclick="closeModal(createModalContainer)"
-                  >Batal</span
-                >
-                <button name="create-new">Simpan</button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Create new user modal -->
-    <!-- Edit user modal -->
-    <div class="modal-container edit-user">
-      <div class="formulir">
-        <h1>Edit Laporan</h1>
-        <form action="">
-          <div class="form-field">
-            <label for="nama-pembawa">Nama Pembawa</label>
-            <input type="text" id="nama-pembawa" name="nama-pembawa" />
-          </div>
-          <h2>Barang</h2>
-          <div id="field-barang">
-            <div class="multi-field">
-              <div class="form-field">
-                <label for="nama-barang">Nama Barang</label>
-                <input type="text" id="nama-barang" name="nama-barang" />
-              </div>
-              <div class="form-field">
-                <label for="jumlah-barang">Jumlah Barang</label>
-                <input type="text" id="jumlah-barang" name="jumlah-barang" />
-              </div>
-            </div>
-          </div>
-          <div
-            class="tambah"
-            onclick="tambahMultiField('Nama Barang', 'Jumlah Barang', 'text', 'text', 'field-barang')"
-          >
-            <span class="material-symbols-rounded">add</span>
-            <span class="btn-label">Tambah</span>
-          </div>
-          <div id="field-nama"></div>
-          <div class="multi-field">
-            <div class="form-field fokus">
-              <label for="tanggal">Tanggal</label>
-              <input type="date" id="tanggal" name="tanggal" />
-            </div>
-          </div>
-          <div class="form-field">
-            <label for="keterangan">Keterangan</label>
-            <input type="text" id="keterangan" name="keterangan" />
-          </div>
-          <div class="tombol-aksi">
-            <span id="cancel" onclick="closeModal(editModalContainer)"
-              >Batal</span
-            >
-            <button name="save-changes">Simpan</button>
-          </div>
-        </form>
-      </div>
-    </div>
-    <!-- End edit user modal -->
+    <!-- user modal -->
+    <?php require "../../templates/modals/user-manager.php" ?>
+    <!-- End user modal -->
+
     <!-- Reset user passwd modal -->
     <div class="modal-container reset-passwd-modal-container">
       <div class="reset-passwd-modal formulir">
@@ -376,7 +116,7 @@ if ($_COOKIE['user-type'] !== 'Admin') {
         <p>Anda yakin ingin menghapus pengguna ...</p>
         <div class="controls">
           <button class="close-btn" onclick="closeModal(popup)">Batal</button>
-          <a href="" class="submit-btn">Hapus</a>
+          <a href="#" class="submit-btn">Hapus</a>
         </div>
       </div>
     </div>
@@ -384,5 +124,24 @@ if ($_COOKIE['user-type'] !== 'Admin') {
     <script src="/assets/js/navmenu.js"></script>
     <script src="/assets/js/users.js"></script>
     <script src="/assets/js/script.js"></script>
+    <script type="text/javascript">
+      let usersContainer = document.querySelector(".users");
+
+      function muatData() {
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", "/functions/users-manager.php?dataPengguna=true", true);
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            usersContainer.innerHTML = xhr.responseText;
+            whoAiAm();
+          } else {
+            usersContainer.innerHTML = "Kesalahan: " + xhr.status;
+          }
+        };
+        xhr.send();
+      }
+
+      muatData();
+    </script>
   </body>
 </html>

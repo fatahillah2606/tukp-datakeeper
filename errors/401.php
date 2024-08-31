@@ -1,4 +1,5 @@
 <?php
+require '../includes/login-info.php';
 if (!isset($_COOKIE['user-type'])) {
   header("HTTP/1.1 401");
   exit;

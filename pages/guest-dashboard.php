@@ -4,8 +4,8 @@ if (isset($_COOKIE['user-type']) && $_COOKIE['user-type'] !== "Tamu") {
   exit();
 }
 if (isset($_GET["token"])) {
-  require '../function/login-process.php';
-  verifToken($_GET["token"]);
+  require '../functions/login-process.php';
+  verifToken(htmlspecialchars($_GET["token"]), $conn);
 }
 require '../includes/login-info.php';
 ?>
