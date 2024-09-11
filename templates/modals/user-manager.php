@@ -15,33 +15,6 @@
       <div class="right">
         <form action="" method="post" id="tambah-user">
           <div class="form-field">
-            <label for="username">Nama Pengguna</label>
-            <input type="text" id="username" name="username" />
-            <span class="material-symbols-rounded field-error">error</span>
-            <span class="supporting-text">Supporting text</span>
-            <span class="material-symbols-rounded field-icon">person</span>
-          </div>
-          <h2>Kata sandi</h2>
-          <div class="multi-field">
-            <div class="form-field">
-              <label for="first-pass">Masukan sandi</label>
-              <input type="password" id="first-pass" name="first-pass" />
-              <span class="material-symbols-rounded field-error">error</span>
-              <span class="supporting-text">Supporting text</span>
-            </div>
-            <div class="form-field">
-              <label for="final-pass">Ketikan ulang sandi</label>
-              <input type="password" id="final-pass" name="final-pass" />
-              <span class="material-symbols-rounded field-error">error</span>
-              <span class="supporting-text">Supporting text</span>
-            </div>
-            <span class="material-symbols-rounded field-icon">vpn_key</span>
-          </div>
-          <div class="show-passwd">
-            <input type="checkbox" name="tampil-sandi" id="tampil-sandi" />
-            <label for="tampil-sandi">Tampilkan sandi</label>
-          </div>
-          <div class="form-field">
             <label for="tipe-pengguna">Tipe Pengguna</label>
             <select name="tipe-pengguna" id="tipe-pengguna">
               <option value=""></option>
@@ -68,6 +41,39 @@
               <span class="material-symbols-rounded field-error">error</span>
               <span class="supporting-text">Supporting text</span>
               <span class="material-symbols-rounded field-icon">passkey</span>
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="username">Nama Pengguna</label>
+            <input type="text" id="username" name="username" />
+            <span class="material-symbols-rounded field-error">error</span>
+            <span class="supporting-text">Supporting text</span>
+            <span class="material-symbols-rounded field-icon">person</span>
+          </div>
+          <h2>Kata sandi</h2>
+          <div class="kolom-sandi">
+            <div class="multi-field">
+              <div class="form-field">
+                <label for="first-pass">Masukan sandi</label>
+                <input type="password" id="first-pass" name="first-pass" />
+                <span class="material-symbols-rounded field-error">error</span>
+                <span class="supporting-text">Supporting text</span>
+              </div>
+              <div class="form-field">
+                <label for="final-pass">Ketikan ulang sandi</label>
+                <input type="password" id="final-pass" name="final-pass" />
+                <span class="material-symbols-rounded field-error">error</span>
+                <span class="supporting-text">Supporting text</span>
+              </div>
+              <span class="material-symbols-rounded field-icon">vpn_key</span>
+            </div>
+            <div class="reset-passwd-btn">
+              <span class="material-symbols-rounded">history</span>
+              <span class="btn-label">Reset</span>
+            </div>
+            <div class="show-passwd">
+              <input type="checkbox" name="tampil-sandi" id="tampil-sandi" />
+              <label for="tampil-sandi">Tampilkan sandi</label>
             </div>
           </div>
           <div class="tombol-aksi">

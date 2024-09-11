@@ -137,65 +137,6 @@
   padding: 10px;
 }
 
-/* Create new user */
-.user-manager-dialog .formulir {
-  max-width: 1200px;
-}
-.user-manager-dialog .formulir .content {
-  display: flex;
-  gap: 50px;
-}
-.user-manager-dialog .formulir .content > * {
-  width: 100%;
-}
-/* Konten kiri untuk buat pengguna baru */
-.user-manager-dialog .formulir .content .left {
-  background-color: #ffffff;
-  border-radius: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.user-manager-dialog .formulir .content .left .profile-icon {
-  width: 100px;
-  height: 100px;
-  background-color: #ecf3e7;
-  justify-content: center;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-}
-.user-manager-dialog .formulir .content .left .profile-icon span {
-  color: #002105;
-  font-size: 50px;
-  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
-  display: block;
-}
-.user-manager-dialog .formulir .content .left .profile-desc * {
-  display: block;
-  text-align: center;
-  margin: 0;
-}
-.user-manager-dialog .formulir .content .left .profile-desc .userrole {
-  margin-top: 20px;
-  background-color: #d5e8cf;
-  padding: 5px 0;
-  border-radius: 50px;
-}
-/* Konten kanan untuk buat pengguna baru */
-.user-manager-dialog .formulir .content .right .show-passwd {
-  margin-bottom: 20px;
-}
-.user-manager-dialog .formulir .content .right .show-passwd * {
-  cursor: pointer;
-}
-.user-manager-dialog .formulir .content .right .show-passwd label {
-  color: #002105;
-}
-
 /* Reset passwd modal */
 .reset-passwd-modal {
   width: 95%;
@@ -231,11 +172,6 @@
 }
 
 /* Responsive */
-@media screen and (max-width: 1000px) {
-  .user-manager-dialog .formulir .right .multi-field {
-    flex-direction: column;
-  }
-}
 @media screen and (max-width: 850px) {
   .konten-pengguna .users .user {
     justify-content: center;
@@ -283,18 +219,5 @@
   }
   .konten-pengguna .head .head-action .tambah {
     justify-content: center;
-  }
-  .user-manager-dialog .formulir .content {
-    flex-direction: column;
-    gap: 20px;
-  }
-  .user-manager-dialog .formulir .content .left {
-    background-color: #ecf3e7;
-  }
-  .user-manager-dialog .formulir .content .left .profile-icon {
-    background-color: #ffffff;
-  }
-  .user-manager-dialog .formulir .content .left .profile-desc {
-    display: none;
   }
 }

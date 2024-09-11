@@ -115,3 +115,39 @@ if (isset($_POST["hapusUser"])) {
   $conn->close();
 }
 ?>
+
+<?php
+// Reset sandi pengguna
+if (isset($_POST["updatePass"])) {
+  require "../includes/db-connect.php";
+
+  $akun = htmlspecialchars($_POST["akun"]);
+  $sandiBaru = htmlspecialchars($_POST["SandiBaru"]);
+
+  $sql = "SELECT user_passwd FROM users WHERE id = ?";
+
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("i", $akun);
+  $stmt->execute();
+  $stmt->bind_result($sandiLama);
+  $stmt->fetch();
+
+  if (password_verify($sandiBaru, $sandiLama)) {
+    echo json_encode(["status" => "kesalahan", "pesan" => "Sandi baru tidak boleh sama dengan sandi lama", "atxt" => "", "alnk" => ""]);
+  } else {
+    $stmt->close();
+    $hashSandiBaru = password_hash($sandiBaru, PASSWORD_BCRYPT);
+    $sql = "UPDATE users SET user_passwd = ? WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("si", $hashSandiBaru, $akun);
+    if ($stmt->execute()) {
+      echo json_encode(["status" => "berhasil", "pesan" => "Sandi berhasil di reset", "atxt" => "", "alnk" => ""]);
+    } else {
+      echo json_encode(["status" => "kesalahan", "pesan" => "Terjadi kesalahan: " . $conn->error(), "atxt" => "", "alnk" => ""]);
+    }
+  }
+
+  $stmt->close();
+  $conn->close();
+}
+?>

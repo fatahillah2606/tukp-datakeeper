@@ -73,7 +73,7 @@
         ><?php echo (isset($_COOKIE['user-type'])) ? $_COOKIE['user-name'] : ''; ?></span
       >
     </p>
-    <a href="/pages/users/edit.php" class="akun">Kelola akun anda</a>
+    <a href="#" class="akun" onclick="newUser()">Kelola akun anda</a>
     <div class="multi-tombol">
       <a href="/pages/users/kelola-pengguna.php" class="kelola-pengguna">
         <div class="tombol">

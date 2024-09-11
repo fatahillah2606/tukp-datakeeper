@@ -183,6 +183,7 @@ if ($_COOKIE['user-type'] == "Tamu") {
       <?php require '../templates/modals/edit-barang-ext.php'; ?>
       <?php require '../templates/modals/edit-barang-int.php'; ?>
       <?php require '../templates/modals/edit-mobil.php'; ?>
+      <?php require "../templates/modals/user-manager.php" ?>
     </div>
     <!-- End Modal Box -->
     <!-- modal alert box-->

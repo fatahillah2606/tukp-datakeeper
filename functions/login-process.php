@@ -1,57 +1,67 @@
 <?php
-require "../includes/db-connect.php";
 
 // Proses login untuk pengguna biasa
-if (isset($_POST["login-user"])) {
-  $userId = htmlspecialchars($_POST["no-id"]);
-  $userPasswd = htmlspecialchars($_POST["passwd"]);
-  $userPasswd = md5($userPasswd);
+if (isset($_POST["PenggunaBiasa"])) {
+  require "../includes/db-connect.php";
+  $akun = htmlspecialchars($_POST["akun"]);
+  $userPasswd = htmlspecialchars($_POST["SandiUser"]);
+
   // Verifikasi
-  $sql = "SELECT * FROM users WHERE id_user=$userId AND user_passwd='$userPasswd'";
-  $hasil = $conn->query($sql);
-  if ($hasil->num_rows > 0) {
-    $data = $hasil->fetch_assoc();
-    $userType = $data["role_user"];
-    $userName = $data["nama_user"];
-    // buat coockie
-    setcookie("user-type", $userType, time() + (86400 * 30), "/"); //86400 sama dengan 1 hari, 86400 * 30 sama dengan 30 hari
-    setcookie("user-name", $userName, time() + (86400 * 30), "/");
-    setcookie("user-id", $userId, time() + (86400 * 30), "/");
-    // Pindahkan pengguna ke halaman Dashboard
-    header("Location: /pages/dashboard.php");
-    exit();
+  $sql = "SELECT id_user, nama_user, role_user, user_passwd FROM users WHERE id_user = ? AND role_user = 'User'";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("i", $akun);
+  $stmt->execute();
+  $stmt->bind_result($userId, $userName, $userType, $passwd);
+  $stmt->fetch();
+
+  if ($passwd) {
+    if (password_verify($userPasswd, $passwd)) {
+      echo json_encode(["status" => "berhasil", "halaman" => "/pages/dashboard.php"]);
+      // jika berhasil, buat coockie
+      setcookie("user-type", $userType, time() + (86400 * 30), "/"); //86400 sama dengan 1 hari, 86400 * 30 sama dengan 30 hari
+      setcookie("user-name", $userName, time() + (86400 * 30), "/");
+      setcookie("user-id", $userId, time() + (86400 * 30), "/");
+    } else {
+      echo json_encode(["status" => "gagal", "pesan" => "Sandi salah, coba lagi", "elemen" => "#passwd"]);
+    }
   } else {
-    // Kembalikan pengguna ke halaman login jika verifikasi gagal
-    header("Location: /pages/dashboard.php");
-    exit();
+    echo json_encode(["status" => "gagal", "pesan" => "Akun tidak tersedia", "elemen" => "#no-id"]);
   }
-  
+
+  $stmt->close();
+  $conn->close();
 }
 
 // Proses login untuk Admin
-if (isset($_POST["login-admin"])) {
-  $userId = htmlspecialchars($_POST["email"]);
-  $userPasswd = htmlspecialchars($_POST["passwd"]);
-  $userPasswd = md5($userPasswd);
+if (isset($_POST["PenggunaAdmin"])) {
+  require "../includes/db-connect.php";
+  $akun = htmlspecialchars($_POST["akun"]);
+  $userPasswd = htmlspecialchars($_POST["SandiUser"]);
+
   // Verifikasi
-  $sql = "SELECT * FROM users WHERE email_user='$userId' AND user_passwd='$userPasswd'";
-  $hasil = $conn->query($sql);
-  if ($hasil->num_rows > 0) {
-    $data = $hasil->fetch_assoc();
-    $userType =  $data["role_user"];
-    $userName = $data["nama_user"];
-    // buat cookie
-    setcookie("user-type", $userType, time() + (86400 * 30), "/"); //86400 sama dengan 1 hari, 86400 * 30 sama dengan 30 hari
-    setcookie("user-name", $userName, time() + (86400 * 30), "/");
-    setcookie("user-id", $userId, time() + (86400 * 30), "/");
-    // Pindahkan pengguna ke halaman Dashboard
-    header("Location: /pages/dashboard.php");
-    exit();
+  $sql = "SELECT email_user, nama_user, role_user, user_passwd FROM users WHERE email_user = ? AND role_user = 'Admin'";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("s", $akun);
+  $stmt->execute();
+  $stmt->bind_result($userId, $userName, $userType, $passwd);
+  $stmt->fetch();
+
+  if ($passwd) {
+    if (password_verify($userPasswd, $passwd)) {
+      echo json_encode(["status" => "berhasil", "halaman" => "/pages/dashboard.php"]);
+      // jika berhasil, buat coockie
+      setcookie("user-type", $userType, time() + (86400 * 30), "/"); //86400 sama dengan 1 hari, 86400 * 30 sama dengan 30 hari
+      setcookie("user-name", $userName, time() + (86400 * 30), "/");
+      setcookie("user-id", $userId, time() + (86400 * 30), "/");
+    } else {
+      echo json_encode(["status" => "gagal", "pesan" => "Sandi salah, coba lagi", "elemen" => "#passwd"]);
+    }
   } else {
-    // Kembalikan pengguna ke halaman login jika verifikasi gagal
-    header("Location: /pages/users/login-admin.php");
-    exit();
+    echo json_encode(["status" => "gagal", "pesan" => "Akun tidak tersedia", "elemen" => "#email"]);
   }
+
+  $stmt->close();
+  $conn->close();
 }
 
 // Proses login untuk Tamu
@@ -63,6 +73,7 @@ if (isset($_POST["login-tamu"])) {
 
 // Proses login tamu di luar halaman login
 function verifToken($tokenValue, $connect){
+  require "../includes/db-connect.php";
   $token = $tokenValue;
   $token = md5($token);
   // Verifikasi
@@ -79,5 +90,6 @@ function verifToken($tokenValue, $connect){
     header("Location: /users/login-guest.php");
     exit();
   }
+  $conn->close();
 }
 ?>

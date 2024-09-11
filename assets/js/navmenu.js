@@ -109,14 +109,13 @@ function bukaMenuProfil() {
       menuNotifikasi.classList.remove("show");
       notifikasi.classList.remove("aktif");
     }
-
-    if (profileMenu.classList.contains("show")) {
-      profileMenu.classList.remove("show");
-      history.back();
-    } else {
-      profileMenu.classList.add("show");
-      history.pushState({ openProfile: true }, "");
-    }
+  }
+  if (profileMenu.classList.contains("show")) {
+    profileMenu.classList.remove("show");
+    history.back();
+  } else {
+    profileMenu.classList.add("show");
+    history.pushState({ openProfile: true }, "");
   }
 }
 
@@ -289,65 +288,74 @@ function showUpdate(message, actionTxt, actionLnk) {
 
 // User manager
 let KelolaPengguna = document.querySelector(".user-manager-dialog");
-let FirstPass = KelolaPengguna.querySelector("#first-pass");
-let FinalPass = KelolaPengguna.querySelector("#final-pass");
 
-// Pass pertama
-FirstPass.addEventListener("keyup", () => {
-  if (FirstPass.value.trim().length < 8) {
-    tampilkanError(FirstPass.parentElement, "Sandi harus minimal 8 karakter");
-  } else if (/\s/.test(FirstPass.value)) {
-    tampilkanError(
-      FirstPass.parentElement,
-      "Sandi tidak boleh mengandung spasi"
-    );
-  } else {
-    hapusError(FirstPass.parentElement);
-  }
-});
+if (KelolaPengguna) {
+  let FirstPass = KelolaPengguna.querySelector("#first-pass");
+  let FinalPass = KelolaPengguna.querySelector("#final-pass");
+  if (FirstPass && FinalPass) {
+    // Pass pertama
+    FirstPass.addEventListener("keyup", () => {
+      if (FirstPass.value.trim().length < 8) {
+        tampilkanError(
+          FirstPass.parentElement,
+          "Sandi harus minimal 8 karakter"
+        );
+      } else if (/\s/.test(FirstPass.value)) {
+        tampilkanError(
+          FirstPass.parentElement,
+          "Sandi tidak boleh mengandung spasi"
+        );
+      } else {
+        hapusError(FirstPass.parentElement);
+      }
+    });
 
-// Tampilkan sandi
-let ShowPasswdBtn = KelolaPengguna.querySelector(".show-passwd input");
-ShowPasswdBtn.addEventListener("change", () => {
-  if (ShowPasswdBtn.checked) {
-    FirstPass.setAttribute("type", "text");
-    FinalPass.setAttribute("type", "text");
-  } else {
-    FirstPass.setAttribute("type", "password");
-    FinalPass.setAttribute("type", "password");
-  }
-});
+    // Tampilkan sandi
+    let ShowPasswdBtn = KelolaPengguna.querySelector(".show-passwd input");
+    ShowPasswdBtn.addEventListener("change", () => {
+      if (ShowPasswdBtn.checked) {
+        FirstPass.setAttribute("type", "text");
+        FinalPass.setAttribute("type", "text");
+      } else {
+        FirstPass.setAttribute("type", "password");
+        FinalPass.setAttribute("type", "password");
+      }
+    });
 
-// Pass kedua
-FinalPass.addEventListener("keyup", () => {
-  if (FinalPass.value === FirstPass.value) {
-    hapusError(FinalPass.parentElement);
-  } else {
-    tampilkanError(FinalPass.parentElement, "Sandi tidak sama");
+    // Pass kedua
+    FinalPass.addEventListener("keyup", () => {
+      if (FinalPass.value === FirstPass.value) {
+        hapusError(FinalPass.parentElement);
+      } else {
+        tampilkanError(FinalPass.parentElement, "Sandi tidak sama");
+      }
+    });
   }
-});
+}
 
 // Tipe pengguna
 let userLoginMethod = document.querySelector(".user-login-method");
 let tipePengguna = document.getElementById("tipe-pengguna");
 
-tipePengguna.addEventListener("change", () => {
-  userLoginMethod.querySelectorAll(".form-field").forEach((element) => {
-    element.classList.add("none");
-    element.querySelector("input").setAttribute("disabled", "");
+if (userLoginMethod && tipePengguna) {
+  tipePengguna.addEventListener("change", () => {
+    userLoginMethod.querySelectorAll(".form-field").forEach((element) => {
+      element.classList.add("none");
+      element.querySelector("input").setAttribute("disabled", "");
+    });
+    if (tipePengguna.value === "Admin") {
+      userLoginMethod.querySelector("#email").classList.remove("none");
+      userLoginMethod
+        .querySelector("#email #useremail")
+        .removeAttribute("disabled");
+    } else if (tipePengguna.value === "User") {
+      userLoginMethod.querySelector("#user-id").classList.remove("none");
+      userLoginMethod
+        .querySelector("#user-id #userid")
+        .removeAttribute("disabled");
+    }
   });
-  if (tipePengguna.value === "Admin") {
-    userLoginMethod.querySelector("#email").classList.remove("none");
-    userLoginMethod
-      .querySelector("#email #useremail")
-      .removeAttribute("disabled");
-  } else if (tipePengguna.value === "User") {
-    userLoginMethod.querySelector("#user-id").classList.remove("none");
-    userLoginMethod
-      .querySelector("#user-id #userid")
-      .removeAttribute("disabled");
-  }
-});
+}
 
 // Tutup dialog
 function closeUserManager(dialog) {
@@ -356,6 +364,12 @@ function closeUserManager(dialog) {
   );
   textField.forEach((element) => {
     element.parentElement.classList.remove("fokus");
+  });
+  let fieldPass = dialog.querySelectorAll(
+    ".formulir .kolom-sandi .form-field input"
+  );
+  fieldPass.forEach((sandi) => {
+    sandi.setAttribute("type", "password");
   });
   let dialogParent =
     dialog.parentElement.parentElement.parentElement.parentElement;
@@ -382,7 +396,7 @@ window.addEventListener("popstate", (e) => {
     });
   }
 
-  if (notifikasi.classList.contains("aktif")) {
+  if (notifikasi && notifikasi.classList.contains("aktif")) {
     notifikasi.classList.remove("aktif");
     menuNotifikasi.classList.remove("show");
   }

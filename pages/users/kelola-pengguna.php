@@ -82,30 +82,41 @@ if (isset($_GET['search'])) {
           <div class="form-field">
             <label for="new-passwd">Sandi Baru</label>
             <input type="password" id="new-passwd" name="new-passwd" />
+            <span class="material-symbols-rounded field-error">error</span>
+            <span class="supporting-text">Supporting text</span>
           </div>
           <div class="form-field">
             <label for="retype-passwd">Ketik ulang sandi</label>
             <input type="password" id="retype-passwd" name="retype-passwd" />
+            <span class="material-symbols-rounded field-error">error</span>
+            <span class="supporting-text">Supporting text</span>
           </div>
+          <div class="show-passwd">
+            <input type="checkbox" name="tampil-sandi" id="tampilkan-sandi" />
+            <label for="tampilkan-sandi">Tampilkan sandi</label>
+          </div>
+          <p>
+            <strong>Peringatan!</strong> Anda akan melakukan reset sandi untuk
+            pengguna <span class="nama-pengguna"></span> tanpa sepengetahuannya.
+            Mohon beri tahu <span class="nama-pengguna"></span> jika anda telah
+            melakukan reset sandi untuk akunnya.
+          </p>
+          <div class="controls">
+            <button
+              class="close-btn"
+              type="reset"
+              onclick="closeModal(resetPasswdModal)"
+            >
+              Batal
+            </button>
+            <button
+              type="submit"
+              name="reset-sandi"
+              class="submit-btn"
+            >
+              Simpan
+            </button>
         </form>
-        <p>
-          <strong>Peringatan!</strong> Anda akan melakukan reset sandi untuk
-          pengguna <span class="nama-pengguna"></span> tanpa sepengetahuannya.
-          Mohon beri tahu <span class="nama-pengguna"></span> jika anda telah
-          melakukan reset sandi untuk akunnya.
-        </p>
-        <div class="controls">
-          <button class="close-btn" onclick="closeModal(resetPasswdModal)">
-            Batal
-          </button>
-          <button
-            type="submit"
-            name="reset-sandi"
-            class="submit-btn"
-            form="reset-passwd"
-          >
-            Simpan
-          </button>
         </div>
       </div>
     </div>

@@ -151,7 +151,7 @@ function createNewUser(dialog, event) {
         showUpdate(respon.pesan, respon.atxt, respon.alnk);
         if (respon.status === "berhasil") {
           muatData();
-          closeUserManager(dialog);
+          dialog.querySelector(".tombol-aksi .batal").click();
         } else {
           console.log("Kesalahan: " + respon.pesan);
         }
@@ -215,21 +215,136 @@ function deleteUser(userKey) {
 let resetPasswdModal = document.querySelector(
   ".modal-container.reset-passwd-modal-container"
 );
+let NewPasswd = resetPasswdModal.querySelector(
+  ".formulir .form-field #new-passwd"
+);
+let RetypePasswd = resetPasswdModal.querySelector(
+  ".formulir .form-field #retype-passwd"
+);
+
+// Pass pertama
+NewPasswd.addEventListener("keyup", () => {
+  if (NewPasswd.value.trim().length < 8) {
+    tampilkanError(NewPasswd.parentElement, "Sandi harus minimal 8 karakter");
+  } else if (/\s/.test(NewPasswd.value)) {
+    tampilkanError(
+      NewPasswd.parentElement,
+      "Sandi tidak boleh mengandung spasi"
+    );
+  } else {
+    hapusError(NewPasswd.parentElement);
+  }
+});
+
+// Tampilkan sandi
+let tampilkansandi = resetPasswdModal.querySelector(".show-passwd input");
+tampilkansandi.addEventListener("change", () => {
+  if (tampilkansandi.checked) {
+    NewPasswd.setAttribute("type", "text");
+    RetypePasswd.setAttribute("type", "text");
+  } else {
+    NewPasswd.setAttribute("type", "password");
+    RetypePasswd.setAttribute("type", "password");
+  }
+});
+
+// Pass kedua
+RetypePasswd.addEventListener("keyup", () => {
+  if (RetypePasswd.value === NewPasswd.value) {
+    hapusError(RetypePasswd.parentElement);
+  } else {
+    tampilkanError(RetypePasswd.parentElement, "Sandi tidak sama");
+  }
+});
+
 function resetPasswd(userId, userName) {
   let namaUser = resetPasswdModal.querySelectorAll(".nama-pengguna");
   namaUser.forEach((element) => {
     element.innerHTML = userName;
   });
   resetPasswdModal.classList.add("show");
+  resetPasswdModal
+    .querySelector(".formulir .controls .submit-btn")
+    .setAttribute(
+      "onclick",
+      "resetSandi(this.parentElement.parentElement, event, " + userId + ")"
+    );
+}
+
+function resetSandi(x, event, z) {
+  event.preventDefault();
+
+  let adaYangKosong = false;
+  let adaError = false;
+
+  let kolomIsian = x.querySelectorAll("input");
+  let textField = x.querySelectorAll(".form-field");
+
+  // Cek jika ada kolom yg kosong
+  kolomIsian.forEach((element) => {
+    if (element.value.trim() === "") {
+      adaYangKosong = true;
+      let elemenKosong = element.parentElement;
+      tampilkanError(elemenKosong, "Wajib diisi");
+    }
+  });
+
+  // cek jika ketentuan belum terpenuhi
+  textField.forEach((element) => {
+    if (element.classList.contains("error")) {
+      adaError = true;
+    }
+  });
+
+  // proses
+  let sandiBaru = x.querySelector(".form-field #retype-passwd").value;
+
+  let xhrUpdatePass = new XMLHttpRequest();
+  xhrUpdatePass.open("POST", "/functions/users-manager.php", true);
+  xhrUpdatePass.setRequestHeader(
+    "Content-Type",
+    "application/x-www-form-urlencoded"
+  );
+
+  xhrUpdatePass.onload = function () {
+    if (xhrUpdatePass.status === 200) {
+      console.log(xhrUpdatePass.responseText);
+      let respon = JSON.parse(xhrUpdatePass.responseText);
+      showUpdate(respon.pesan, respon.atxt, respon.alnk);
+      if (respon.status == "berhasil") {
+        resetPasswdModal
+          .querySelector(".formulir .controls .close-btn")
+          .click();
+      } else {
+        console.log("Kesalahan: " + respon.pesan);
+      }
+    } else {
+      console.log("Kesalahan: " + xhrUpdatePass.status);
+    }
+  };
+
+  xhrUpdatePass.send("updatePass=true&akun=" + z + "&SandiBaru=" + sandiBaru);
 }
 
 // tutup modal
 function closeModal(elementName) {
+  let PasswdField = elementName.querySelectorAll(".formulir .form-field input");
+  if (PasswdField) {
+    PasswdField.forEach((element) => {
+      element.parentElement.classList.remove("fokus");
+      element.setAttribute("type", "password");
+    });
+  }
   elementName.classList.remove("show");
 }
 window.addEventListener("click", (e) => {
+  let userManager = document.querySelector(".user-manager-dialog");
+
+  if (userManager && e.target == userManager) {
+    userManager.querySelector(".tombol-aksi .batal").click();
+  }
   if (e.target == resetPasswdModal) {
-    closeModal(resetPasswdModal);
+    resetPasswdModal.querySelector(".formulir .controls .close-btn").click();
   }
   if (e.target == popup) {
     closeModal(popup);

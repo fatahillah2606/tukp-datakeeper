@@ -58,7 +58,7 @@ if (isset($_COOKIE['user-type'])) {
       </div>
       <div class="buttons">
         <a href="forget.php">Lupa Sandi</a>
-        <button type="submit" form="loginAdmin" name="login-admin">Login</button>
+        <button type="submit" form="loginAdmin" name="login-admin" onclick="masuk(this.parentElement.parentElement, 'PenggunaAdmin', event)">Login</button>
       </div>
     </div>
     <script src="/assets/js/login.js"></script>

@@ -42,6 +42,11 @@ function focusAnimation() {
         e.parentElement.classList.remove("fokus");
       }
     });
+    e.addEventListener("keyup", () => {
+      if (e.parentElement.classList.contains("error")) {
+        hapusError(e.parentElement);
+      }
+    });
   });
 }
 focusAnimation();
@@ -166,4 +171,93 @@ if (ingatIdEmail) {
         .removeAttribute("disabled");
     });
   });
+}
+
+// Field Error
+function tampilkanError(elemen, pesan) {
+  elemen.classList.add("error");
+  elemen.querySelector(".supporting-text").innerText = pesan;
+}
+
+function hapusError(elemen) {
+  elemen.classList.remove("error");
+  elemen.querySelector(".supporting-text").innerText = "";
+}
+
+// Redirect
+function pindahHalaman(alamat) {
+  window.location.href = alamat;
+}
+
+// Proses login
+function masuk(formulir, jenisPengguna, event) {
+  event.preventDefault();
+
+  let adaYangKosong = false;
+  let adaError = false;
+
+  let kolomIsian = formulir.querySelectorAll("input:not([disabled])");
+  let textField = formulir.querySelectorAll(".input-field");
+
+  // Cek jika ada kolom yg kosong
+  kolomIsian.forEach((element) => {
+    if (element.value.trim() === "") {
+      adaYangKosong = true;
+      let elemenKosong = element.parentElement;
+      tampilkanError(elemenKosong, "Wajib diisi");
+    }
+  });
+
+  // cek jika ketentuan belum terpenuhi
+  textField.forEach((element) => {
+    if (element.classList.contains("error")) {
+      adaError = true;
+    }
+  });
+
+  // Proses login
+  if (!adaYangKosong && !adaError) {
+    // Ambil data
+    let userId = formulir.querySelector("#no-id");
+    let userEmail = formulir.querySelector("#email");
+    let username;
+    let password = formulir.querySelector("#passwd").value;
+
+    if (userId) {
+      username = userId.value;
+    } else if (userEmail) {
+      username = userEmail.value;
+    }
+
+    let xhrLogin = new XMLHttpRequest();
+    xhrLogin.open("POST", "/functions/login-process.php", true);
+    xhrLogin.setRequestHeader(
+      "Content-Type",
+      "application/x-www-form-urlencoded"
+    );
+
+    xhrLogin.onload = function () {
+      if (xhrLogin.status === 200) {
+        let respon = JSON.parse(xhrLogin.responseText);
+        if (respon.status === "berhasil") {
+          pindahHalaman(respon.halaman);
+        } else {
+          tampilkanError(
+            formulir.querySelector(respon.elemen).parentElement,
+            respon.pesan
+          );
+        }
+      } else {
+        console.log("Kesalahan: " + xhrLogin.status);
+      }
+    };
+
+    xhrLogin.send(
+      jenisPengguna +
+        "=true&akun=" +
+        encodeURIComponent(username) +
+        "&SandiUser=" +
+        encodeURIComponent(password)
+    );
+  }
 }
