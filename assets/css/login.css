@@ -1,0 +1,38 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-image: url(../images/login-bg.jpg);
+  background-size: cover;
+  background-position: center center;
+}
+.konten-login {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  display: flex;
+}
+.konten-login .konten-kiri {
+  background: linear-gradient(-45deg, #44bd32, #8c7ae6);
+  padding: 20px;
+  position: relative;
+}
+.konten-login .konten-kiri .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.konten-login > * {
+  width: 50%;
+}
+.konten-login .konten-kiri .center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.konten-login .konten-kiri .center * {
+  text-align: center;
+}
