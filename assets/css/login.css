@@ -9,13 +9,15 @@ body {
 }
 .konten-login {
   width: 100%;
-  max-width: 1200px;
+  max-width: 800px;
   height: auto;
   display: flex;
+  border-radius: 15px;
+  overflow: hidden;
 }
 .konten-login .konten-kiri {
-  background: linear-gradient(-45deg, #44bd32, #8c7ae6);
-  padding: 20px;
+  background: linear-gradient(-45deg, #69cf59, #0c6335);
+  padding: 20px 50px;
   position: relative;
 }
 .konten-login .konten-kiri .logo {
@@ -24,15 +26,26 @@ body {
   align-items: center;
   gap: 10px;
 }
+
+.konten-login .konten-kiri .logo h5 {
+  color: #fff;
+  text-align: center;
+}
 .konten-login > * {
   width: 50%;
 }
 .konten-login .konten-kiri .center {
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 0%;
+  transform: translateY(-50%);
+  width: 100%;
 }
 .konten-login .konten-kiri .center * {
+  color: #fff;
   text-align: center;
+}
+
+.konten-login .konten-kanan {
+  padding: 20px;
 }
