@@ -81,8 +81,8 @@ if (isset($_POST["save"])) {
         <!-- User role -->
         <select class="form-select mb-3" id="roleuser" name="roleuser" required>
           <option selected value="">User Role</option>
-          <option value="admin">Admin</option>
-          <option value="user">User</option>
+          <option value="Admin">Admin</option>
+          <option value="User">User</option>
         </select>
 
         <!-- user id -->
