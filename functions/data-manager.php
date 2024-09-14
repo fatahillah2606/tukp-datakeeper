@@ -44,7 +44,7 @@ if (isset($_POST["DataPengunjung"])) {
   // Simpan
   if (isset($_POST["simpan"])) {
     // masukan ke database
-    $sql = "INSERT INTO data_pengunjung (`id`, `nama_pengunjung`,	`nama_perusahaan`,	`tanggal`,	`nomor_telepon`) VALUES (null, ?, ?, ?, ?);";
+    $sql = "INSERT INTO data_pengunjung (`id`, `nama_pengunjung`,	`nama_perusahaan`,	`tanggal`,	`no_telpon`) VALUES (null, ?, ?, ?, ?);";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssss", $namaPengunjung, $namaPerusahaan, $tanggal, $noTlp);
     if ($stmt->execute()) {
@@ -62,7 +62,7 @@ if (isset($_POST["DataPengunjung"])) {
   if (isset($_POST["ubah"])) {
     $idData = htmlspecialchars($_POST["IdData"]);
     // masukan ke database
-    $sql = "UPDATE data_pengunjung SET `nama_pengunjung` = ?, `nama_perusahaan` = ?, `tanggal` = ?, `nomor_telepon` = ? WHERE `id` = ?;";
+    $sql = "UPDATE data_pengunjung SET `nama_pengunjung` = ?, `nama_perusahaan` = ?, `tanggal` = ?, `no_telpon` = ? WHERE `id` = ?;";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssssi", $namaPengunjung, $namaPerusahaan, $tanggal, $noTlp, $idData);
     if ($stmt->execute()) {
@@ -119,7 +119,7 @@ if (isset($_POST["DataBarangExt"])) {
   // Simpan
   if (isset($_POST["simpan"])) {
     // masukan ke database
-    $sql = "INSERT INTO data_barang_external (`id`,	`tanggal`,	`nama_driver`,	`nama_suplier`,	`keperluan`,	`nama_jumlah_barang`,	`jam_kedatangan`,	`nomor_kendaraan`, `keterangan`) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?);";
+    $sql = "INSERT INTO data_barang_eksternal (`id`,	`tanggal`,	`nama_driver`,	`nama_suplier`,	`keperluan`,	`nama_jumlah_barang`,	`jam_kedatangan`,	`no_kendaraan`, `keterangan`) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssssssss", $tanggal, $namaDriver, $namaSuplier, $keperluan, $barang, $jamKedatangan, $noKendaraan, $keterangan);
     if ($stmt->execute()) {
@@ -137,7 +137,7 @@ if (isset($_POST["DataBarangExt"])) {
   if (isset($_POST["ubah"])) {
     $idData = htmlspecialchars($_POST["IdData"]);
     // masukan ke database
-    $sql = "UPDATE data_barang_external SET `tanggal` = ?, `nama_driver` = ?,	`nama_suplier` = ?,	`keperluan` = ?,	`nama_jumlah_barang` = ?,	`jam_kedatangan` = ?,	`nomor_kendaraan` = ?, `keterangan` = ? WHERE `id` = ?;";
+    $sql = "UPDATE data_barang_eksternal SET `tanggal` = ?, `nama_driver` = ?,	`nama_suplier` = ?,	`keperluan` = ?,	`nama_jumlah_barang` = ?,	`jam_kedatangan` = ?,	`no_kendaraan` = ?, `keterangan` = ? WHERE `id` = ?;";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("ssssssssi", $tanggal, $namaDriver, $namaSuplier, $keperluan, $barang, $jamKedatangan, $noKendaraan, $keterangan, $idData);
     if ($stmt->execute()) {
@@ -331,7 +331,7 @@ if (isset($_GET["dataPengunjung"])) {
         </td>
         <td data-label="Nomor Telepon" class="no-tlp">
           <p class="text-wrap">
-            <?php echo $baris['nomor_telepon']; ?>
+            <?php echo $baris['no_telpon']; ?>
           </p>
         </td>
         <td data-label="Ubah Data" class="buttons">
@@ -370,9 +370,9 @@ if (isset($_GET["dataBarangEksternal"])) {
   require "../includes/db-connect.php";
   $sql = "";
   if (isset($_GET["limit"])) {
-    $sql = "SELECT * FROM data_barang_external ORDER BY id DESC LIMIT 10";
+    $sql = "SELECT * FROM data_barang_eksternal ORDER BY id DESC LIMIT 10";
   } else {
-    $sql = "SELECT * FROM data_barang_external ORDER BY id DESC";
+    $sql = "SELECT * FROM data_barang_eksternal ORDER BY id DESC";
   }
   $hasil = $conn->query($sql);
   if ($hasil->num_rows > 0) {
@@ -426,7 +426,7 @@ if (isset($_GET["dataBarangEksternal"])) {
         </td>
         <td data-label="Nomor Kendaraan" class="no-kendaraan">
           <p class="text-wrap">
-            <?php echo $baris["nomor_kendaraan"]; ?>
+            <?php echo $baris["no_kendaraan"]; ?>
           </p>
         </td>
         <td data-label="Jam Kedatangan" class="time-pp">
@@ -437,7 +437,7 @@ if (isset($_GET["dataBarangEksternal"])) {
         </td>
         <td data-label="Ubah Data" class="buttons">
           <div class="btn-cont">
-            <button class="hapus material-symbols-rounded" onclick="hapusData(<?php echo $baris['id'] ?>, 'data_barang_external')">
+            <button class="hapus material-symbols-rounded" onclick="hapusData(<?php echo $baris['id'] ?>, 'data_barang_eksternal')">
               delete
             </button>
             <button class="edit material-symbols-rounded" onclick="editBarangExt(this, <?php echo $baris['id'] ?>)">
@@ -639,7 +639,7 @@ if (isset($_GET["dataMobil"])) {
 if (isset($_POST["hapusData"])) {
   require "../includes/db-connect.php";
   $namaTabel = htmlspecialchars($_POST["namaTabel"]);
-  $allowedTabel = ["data_pengunjung", "data_barang_external", "data_barang_internal", "data_mobil"];
+  $allowedTabel = ["data_pengunjung", "data_barang_eksternal", "data_barang_internal", "data_mobil"];
   if (!in_array($namaTabel, $allowedTabel)) {
     die("Nama tabel tidak valid!");
   }

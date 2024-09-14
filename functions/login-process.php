@@ -7,7 +7,7 @@ if (isset($_POST["PenggunaBiasa"])) {
   $userPasswd = htmlspecialchars($_POST["SandiUser"]);
 
   // Verifikasi
-  $sql = "SELECT id_user, nama_user, role_user, user_passwd FROM users WHERE id_user = ? AND role_user = 'User'";
+  $sql = "SELECT 'id_user', 'nama_user', 'role', 'password' FROM pengguna WHERE 'id_user' = ? AND 'role' = 'user';";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("i", $akun);
   $stmt->execute();
@@ -39,7 +39,7 @@ if (isset($_POST["PenggunaAdmin"])) {
   $userPasswd = htmlspecialchars($_POST["SandiUser"]);
 
   // Verifikasi
-  $sql = "SELECT email_user, nama_user, role_user, user_passwd FROM users WHERE email_user = ? AND role_user = 'Admin'";
+  $sql = "SELECT email_user, nama_user, role, password FROM pengguna WHERE email_user = ? AND role = 'admin';";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("s", $akun);
   $stmt->execute();

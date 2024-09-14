@@ -2,7 +2,7 @@
 // Tampilkan semua pengguna
 if (isset($_GET["dataPengguna"])) {
   require "../includes/db-connect.php";
-  $sql = "SELECT * FROM users";
+  $sql = "SELECT * FROM pengguna";
   $hasil = $conn->query($sql);
   if ($hasil->num_rows > 0) {
     while ($baris = $hasil->fetch_assoc()) {
@@ -14,7 +14,7 @@ if (isset($_GET["dataPengguna"])) {
             </div>
             <div class="user-name">
               <h2 class="nama"><?php echo $baris['nama_user'] ?></h2>
-              <?php if ($baris['role_user'] === 'Admin') { ?>
+              <?php if ($baris['role'] === 'Admin') { ?>
               <p class="id-email"><?php echo $baris['email_user'] ?></p>
               <?php } else { ?>
               <p class="id-email"><?php echo $baris['id_user'] ?></p>
@@ -22,7 +22,7 @@ if (isset($_GET["dataPengguna"])) {
             </div>
           </div>
           <div class="right">
-            <p class="role"><?php echo $baris['role_user'];?></p>
+            <p class="role"><?php echo $baris['role'];?></p>
             <?php
               $idUser = $baris['id'];
               $namaUser = $baris['nama_user'];
@@ -75,11 +75,11 @@ if (isset($_POST["TambahUser"])) {
     $stmt = "";
 
     if ($idUser === "") {
-      $sql = "INSERT INTO users (`id`, `id_user`, `email_user`, `nama_user`, `role_user`, `user_passwd`) VALUES (null, null, ?, ?, ?, ?)";
+      $sql = "INSERT INTO pengguna (`id`, `id_user`, `email_user`, `nama_user`, `role`, `password`) VALUES (null, null, ?, ?, ?, ?)";
       $stmt = $conn->prepare($sql);
       $stmt->bind_param("ssss", $emailUser, $namaUser, $tipeUser, $sandiUser);
     } else if ($emailUser === "") {
-      $sql = "INSERT INTO users (`id`, `id_user`, `email_user`, `nama_user`, `role_user`, `user_passwd`) VALUES (null, ?, null, ?, ?, ?)";
+      $sql = "INSERT INTO pengguna (`id`, `id_user`, `email_user`, `nama_user`, `role`, `password`) VALUES (null, ?, null, ?, ?, ?)";
       $stmt = $conn->prepare($sql);
       $stmt->bind_param("isss", $idUser, $namaUser, $tipeUser, $sandiUser);
     }
@@ -90,7 +90,7 @@ if (isset($_POST["TambahUser"])) {
     if ($kesalahan->getCode() == 1062) {
       echo json_encode(["status" => "gagal", "pesan" => "Id User atau Email sudah ada!", "atxt" => "", "alnk" => ""]);
     } else {
-      echo json_encode(["status" => "kesalahan", "pesan" => "Terjadi kesalahan pada server", "atxt" => "", "alnk" => ""]);
+      echo json_encode(["status" => "kesalahan", "pesan" => "Terjadi kesalahan pada server", "atxt" => "", "alnk" => "", "error_msg" => " . $conn->error . "]);
     }
   } finally {
     $stmt->close();
@@ -104,7 +104,7 @@ if (isset($_POST["TambahUser"])) {
 if (isset($_POST["hapusUser"])) {
   require "../includes/db-connect.php";
   $idUser = htmlspecialchars($_POST["idUser"]);
-  $sql = "DELETE FROM users WHERE id = ?;";
+  $sql = "DELETE FROM pengguna WHERE id = ?;";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("i", $idUser);
   if ($stmt->execute()) {
@@ -124,7 +124,7 @@ if (isset($_POST["updatePass"])) {
   $akun = htmlspecialchars($_POST["akun"]);
   $sandiBaru = htmlspecialchars($_POST["SandiBaru"]);
 
-  $sql = "SELECT user_passwd FROM users WHERE id = ?";
+  $sql = "SELECT password FROM pengguna WHERE id = ?";
 
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("i", $akun);
@@ -137,7 +137,7 @@ if (isset($_POST["updatePass"])) {
   } else {
     $stmt->close();
     $hashSandiBaru = password_hash($sandiBaru, PASSWORD_BCRYPT);
-    $sql = "UPDATE users SET user_passwd = ? WHERE id = ?";
+    $sql = "UPDATE users SET password = ? WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("si", $hashSandiBaru, $akun);
     if ($stmt->execute()) {
