@@ -178,9 +178,9 @@ if (isset($_POST["save"])) {
       userrole.addEventListener("change", () => {
         disableUnique();
 
-        if (userrole.value === "admin") {
+        if (userrole.value === "Admin") {
           useremail.removeAttribute("disabled");
-        } else if (userrole.value === "user") {
+        } else if (userrole.value === "User") {
           userid.removeAttribute("disabled");
         } else {
           disableUnique();
