@@ -112,6 +112,16 @@
 [data-theme="dark"] .navbar .notifikasi .content .no-notif {
   color: #f6fff0;
 }
+[data-theme="dark"]
+  .navbar
+  .notifikasi
+  .content
+  .notif-container
+  .notif-menu
+  .notif-text
+  span {
+  color: #c9ffc3;
+}
 
 /* Profile Menu */
 [data-theme="dark"] .profile-menu {
@@ -213,6 +223,9 @@
 }
 
 /* Tabel */
+[data-theme="dark"] .table-container h3 {
+  color: #f6fff0;
+}
 [data-theme="dark"] .tabel,
 [data-theme="dark"] .head .judul-tabel .menu {
   background-color: #2c322a;
@@ -387,6 +400,9 @@
 [data-theme="dark"] .head .head-action .tambah:hover {
   color: #f6fff0;
   background-color: #52634f;
+}
+[data-theme="dark"] .konten-pengguna .users h3 {
+  color: #f6fff0;
 }
 [data-theme="dark"] .konten-pengguna .users .user {
   background-color: #171d16;

@@ -22,40 +22,7 @@
       <span class="material-symbols-rounded">close</span>
     </div>
     <div class="content">
-      <div class="notif-container">
-        <?php
-          // Ambil data notifikasi
-          $permintaanReset = "SELECT * FROM reset_sandi";
-          $cekPermintaan = $conn->query($permintaanReset);
-          if ($cekPermintaan->num_rows > 0) {
-            while ($barisNotif = $cekPermintaan->fetch_assoc()) {
-              $identitas;
-              if ($barisNotif['userId']) {
-                $identitas = $barisNotif['id_email_user'];
-              } else {
-                $identitas = $barisNotif['nama_user'];
-              }
-        ?>
-        <a href="/pages/users/kelola-pengguna.php?search=<?php echo $identitas ?>" class="notif-menu">
-          <span class="material-symbols-rounded">passkey</span>
-          <div class="notif-text">
-            <h2>Permintaan reset sandi</h2>
-            <p><?php echo $barisNotif['nama_user']; ?> meminta untuk mengatur ulang sandinya</p>
-          </div>
-        </a>
-        <?php
-            }
-          }
-        ?>
-      </div>
-      <!-- Tampilkan jika tidak ada notifikasi -->
-       <?php
-        if ($cekPermintaan->num_rows <= 0) {
-       ?>
-      <p class="no-notif">Tidak ada Notifikasi</p>
-      <?php
-        }
-      ?>
+      <!-- Ajax -->
     </div>
   </div>
   <!-- Profile menu -->

@@ -364,6 +364,10 @@
 .navbar .notifikasi .content .notif-container .notif-menu .notif-text p {
   font-size: 15px;
 }
+.navbar .notifikasi .content .notif-container .notif-menu .notif-text span {
+  color: #3a693a;
+  font-weight: bold;
+}
 /* Jika tidak ada notifikasi */
 .navbar .notifikasi .content .no-notif {
   display: none;

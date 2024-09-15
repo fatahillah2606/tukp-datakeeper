@@ -53,6 +53,11 @@
   display: flex;
   align-items: center;
 }
+.konten-pengguna .users h3 {
+  justify-content: center;
+  padding: 10px 0;
+  color: #002105;
+}
 .konten-pengguna .users .user {
   background-color: #ffffff;
   justify-content: space-between;

@@ -51,6 +51,8 @@ if (isset($_GET["dataPengguna"])) {
         </div>
       <?php
     }
+  } else {
+    echo "<h3>Pengguna tidak tersedia</h3>";
   }
   $conn->close();
 }
@@ -137,7 +139,7 @@ if (isset($_POST["updatePass"])) {
   } else {
     $stmt->close();
     $hashSandiBaru = password_hash($sandiBaru, PASSWORD_BCRYPT);
-    $sql = "UPDATE users SET password = ? WHERE id = ?";
+    $sql = "UPDATE pengguna SET password = ? WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("si", $hashSandiBaru, $akun);
     if ($stmt->execute()) {
@@ -149,5 +151,58 @@ if (isset($_POST["updatePass"])) {
 
   $stmt->close();
   $conn->close();
+}
+?>
+
+<?php
+// Hapus notif
+if (isset($_POST["HapusNotif"])) {
+  require "../includes/db-connect.php";
+  
+  $notifId = htmlspecialchars($_POST["NotifId"]);
+
+  $sql = "DELETE FROM reset_sandi WHERE id = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("i", $notifId);
+  $stmt->execute();
+
+  $stmt->close();
+  $conn->close();
+}
+?>
+
+<?php
+if (isset($_POST["CekNotif"])) {
+  require "../includes/db-connect.php";
+
+  $sql = "SELECT id, cari_pengguna FROM reset_sandi";
+  $stmt = $conn->prepare($sql);
+  $stmt->execute();
+  $hasil = $stmt->get_result();
+
+  if ($hasil->num_rows > 0) {
+    ?>
+    <div class="notif-container">
+    <?php
+    while ($baris = $hasil->fetch_assoc()) {
+      ?>
+        <a href="/pages/users/kelola-pengguna.php?search=<?php echo $baris['cari_pengguna'] ?>" class="notif-menu">
+          <span class="material-symbols-rounded">passkey</span>
+          <div class="notif-text">
+            <h2>Permintaan reset sandi</h2>
+            <p><?php echo $baris['cari_pengguna']; ?> meminta untuk mengatur ulang sandinya</p>
+            <span onclick="hapusNotif(<?php echo $baris['id']; ?>, event)">Hapus</span>
+          </div>
+        </a>
+      <?php
+    }
+    ?>
+    </div>
+    <?php
+  } else {
+    ?>
+    <p class="no-notif">Tidak ada Notifikasi</p>
+    <?php
+  }
 }
 ?>

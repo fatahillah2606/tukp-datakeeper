@@ -355,7 +355,7 @@ if (isset($_GET["dataPengunjung"])) {
   } else {
     ?>
     <td>
-      <p>Data tidak tersedia</p>
+      <h3>Data tidak tersedia</h3>
     </td>
     <?php
   }
@@ -456,7 +456,7 @@ if (isset($_GET["dataBarangEksternal"])) {
   } else {
     ?>
     <td>
-      <p>Data tidak tersedia</p>
+      <h3>Data tidak tersedia</h3>
     </td>
     <?php
   }
@@ -537,7 +537,7 @@ if (isset($_GET["dataBarangInternal"])) {
   } else {
     ?>
     <td>
-      <p>Data tidak tersedia</p>
+      <h3>Data tidak tersedia</h3>
     </td>
     <?php
   }
@@ -626,7 +626,7 @@ if (isset($_GET["dataMobil"])) {
   } else {
     ?>
     <td>
-      <p>Data tidak tersedia</p>
+      <h3>Data tidak tersedia</h3>
     </td>
     <?php
   }

@@ -47,7 +47,6 @@ function openSideMenu() {
 // Notifikasi
 let notifikasi = document.querySelector(".navbar .right-cont .notif");
 let jumlahNotif = document.querySelector(".notif-count");
-let banyakNotif = document.querySelectorAll(".notif-menu");
 let menuNotifikasi = document.querySelector(".notifikasi");
 let tutupNotifikasi = document.querySelector(
   ".navbar .notifikasi .head span.material-symbols-rounded"
@@ -86,6 +85,7 @@ if (notifikasi && menuNotifikasi) {
 
   // Jumlah notif
   function cekJumlahNotif() {
+    let banyakNotif = document.querySelectorAll(".notif-menu");
     if (banyakNotif.length !== 0) {
       jumlahNotif.innerHTML = banyakNotif.length;
       notifikasi.classList.remove("none");
@@ -97,6 +97,52 @@ if (notifikasi && menuNotifikasi) {
   }
   cekJumlahNotif();
 }
+
+// Hapus notif
+function hapusNotif(id, event) {
+  event.preventDefault();
+  let HapusNotif = new XMLHttpRequest();
+  HapusNotif.open("POST", "/functions/users-manager.php", true);
+  HapusNotif.setRequestHeader(
+    "Content-Type",
+    "application/x-www-form-urlencoded"
+  );
+
+  HapusNotif.onload = function () {
+    if (HapusNotif.status === 200) {
+      cekNotif();
+    }
+  };
+
+  HapusNotif.send("HapusNotif=true&NotifId=" + id);
+}
+
+// Cek notif
+function cekNotif() {
+  let CekNotif = new XMLHttpRequest();
+  CekNotif.open("POST", "/functions/users-manager.php", true);
+  CekNotif.setRequestHeader(
+    "Content-Type",
+    "application/x-www-form-urlencoded"
+  );
+
+  CekNotif.onload = function () {
+    if (CekNotif.status === 200) {
+      let kontenNotif = document.querySelector(".navbar .notifikasi .content");
+      if (kontenNotif) {
+        kontenNotif.innerHTML = CekNotif.responseText;
+        cekJumlahNotif();
+      }
+    }
+  };
+
+  CekNotif.send("CekNotif=true");
+}
+
+cekNotif();
+setInterval(() => {
+  cekNotif();
+}, 1000 * 60 * 5);
 
 // Profile Menu
 let profile = document.querySelector(".profile");

@@ -255,6 +255,11 @@ body {
   overflow-x: auto;
   width: auto;
 }
+.table-container h3 {
+  text-align: center;
+  padding: 10px 0;
+  color: #002105;
+}
 .tabel table {
   width: 100%;
   /* table-layout: fixed; */

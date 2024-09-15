@@ -7,7 +7,7 @@ if (isset($_POST["PenggunaBiasa"])) {
   $userPasswd = htmlspecialchars($_POST["SandiUser"]);
 
   // Verifikasi
-  $sql = "SELECT 'id_user', 'nama_user', 'role', 'password' FROM pengguna WHERE 'id_user' = ? AND 'role' = 'user';";
+  $sql = "SELECT id_user, nama_user, role, password FROM pengguna WHERE id_user = ? AND role = 'user';";
   $stmt = $conn->prepare($sql);
   $stmt->bind_param("i", $akun);
   $stmt->execute();

@@ -22,33 +22,13 @@ if (isset($_COOKIE['user-type'])) {
         </div>
         <div class="right-cont">
           <p>
-            Apakah anda mengingat Nomor ID atau Email yang diberikan oleh Admin?
+            Mohon masukan nama anda. Nama anda akan di tampilkan di laporan
+            reset sandi.
           </p>
-          <div class="radio-option">
-            <div class="radio">
-              <input type="radio" id="ya" name="ingat-id-email" value="Ya" />
-              <label for="ya">Ya</label>
-            </div>
-            <div class="radio">
-              <input
-                type="radio"
-                id="tidak"
-                name="ingat-id-email"
-                value="Tidak"
-              />
-              <label for="tidak">Tidak</label>
-            </div>
-          </div>
           <form action="reset-req.php" method="post" id="resetPasswd">
-            <div class="input-field hide" id="user-account">
-              <label for="akun">Email atau Nomor ID anda</label>
-              <input type="text" id="akun" name="akun" disabled/>
-              <span class="material-symbols-rounded">error</span>
-              <span class="supporting-text">Supporting text</span>
-            </div>
-            <div class="input-field hide" id="user-name">
+            <div class="input-field" id="user-name">
               <label for="nama-user">Masukan nama anda</label>
-              <input type="text" id="nama-user" name="nama-user" disabled/>
+              <input type="text" id="nama-user" name="nama-user" />
               <span class="material-symbols-rounded">error</span>
               <span class="supporting-text">Supporting text</span>
             </div>
@@ -60,9 +40,25 @@ if (isset($_COOKIE['user-type'])) {
         </div>
       </div>
       <div class="buttons">
-        <button type="submit" form="resetPasswd" disabled>Ajukan reset sandi</button>
+        <button type="submit" form="resetPasswd" name="ResetSandi" disabled>
+          Ajukan reset sandi
+        </button>
       </div>
     </div>
     <script src="/assets/js/login.js"></script>
+    <script>
+      let userName = document.getElementById("nama-user");
+      let submitButton = document.querySelector(
+        ".buttons button[type='submit']"
+      );
+
+      userName.addEventListener("keyup", () => {
+        if (userName.value.trim() !== "") {
+          submitButton.removeAttribute("disabled");
+        } else {
+          submitButton.setAttribute("disabled", "");
+        }
+      });
+    </script>
   </body>
 </html>

@@ -140,39 +140,6 @@ window
   });
 //
 
-// Forget password
-let ingatIdEmail = document.getElementsByName("ingat-id-email");
-if (ingatIdEmail) {
-  ingatIdEmail.forEach((pilihan) => {
-    pilihan.addEventListener("click", () => {
-      let formulir = document.querySelector("form");
-      formulir.querySelectorAll(".input-field").forEach((element) => {
-        element.classList.add("hide");
-      });
-
-      formulir.querySelectorAll(".input-field input").forEach((element) => {
-        element.value = "";
-        element.setAttribute("disabled", "");
-        element.parentElement.classList.remove("fokus");
-      });
-
-      // Cek pilihan pengguna
-      if (pilihan.value === "Ya") {
-        let userAccount = document.getElementById("user-account");
-        userAccount.classList.remove("hide");
-        userAccount.querySelector("input").removeAttribute("disabled");
-      } else {
-        let userName = document.getElementById("user-name");
-        userName.classList.remove("hide");
-        userName.querySelector("input").removeAttribute("disabled");
-      }
-      document
-        .querySelector(".konten .buttons button")
-        .removeAttribute("disabled");
-    });
-  });
-}
-
 // Field Error
 function tampilkanError(elemen, pesan) {
   elemen.classList.add("error");

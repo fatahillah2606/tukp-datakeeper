@@ -145,6 +145,7 @@ if (isset($_GET['search'])) {
           if (xhr.status === 200) {
             usersContainer.innerHTML = xhr.responseText;
             whoAiAm();
+            searchData();
           } else {
             usersContainer.innerHTML = "Kesalahan: " + xhr.status;
           }
