@@ -1,66 +1,125 @@
-<?php
-// Cek apakah sudah login
-if (isset($_COOKIE['user-type'])) {
-  header("Location: /pages/dashboard.php");
-  exit();
-}
-?>
-<!DOCTYPE html>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login | TUKP Data Keeper</title>
+    <title>Login | TUKP Datakeeper</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="/assets/css/login.css" />
   </head>
-  <body>
-    <div class="konten">
-      <img src="/assets/images/logo.svg" alt="Logo" class="logo" />
-      <div class="main-cont">
-        <div class="left-cont">
-          <h1>Selamat Datang</h1>
-          <p>Login sebagai:</p>
-          <div class="user-options">
-            <span class="material-symbols-rounded">account_circle</span>
-            <span class="jenis-pengguna">Admin</span>
-            <span class="material-symbols-rounded">arrow_drop_down</span>
-            <div class="opsi">
-              <a href="#">Admin</a>
-              <a href="/">Pengguna Biasa</a>
-              <a href="/pages/users/login-guest.php">Tamu</a>
-            </div>
+  <body data-bs-theme="dark">
+    <!-- Login form -->
+    <div class="login-form">
+      <!-- icon -->
+      <div class="icon">
+        <img src="/assets/images/logo.svg" alt="Logo" />
+        <h3>TUKP Datakeeper</h3>
+      </div>
+      <div class="card shadow bg-body-tertiary rounded">
+        <div class="card-body">
+          <h2 class="card-title mb-4">Login</h2>
+          <!-- Login as -->
+          <h5 class="card-subtitle text-body-secondary mb-3">Login sebagai:</h5>
+          <div class="dropdown mb-4">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Admin
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="/">Pengguna Biasa</a></li>
+              <li>
+                <a class="dropdown-item" href="pages/users/admin.php">Admin</a>
+              </li>
+              <li><a class="dropdown-item" href="#">Tamu</a></li>
+            </ul>
           </div>
-        </div>
-        <div class="right-cont">
-          <form action="/functions/login-process.php" method="post" id="loginAdmin">
-            <div class="input-field">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" />
-              <span class="material-symbols-rounded">error</span>
-              <span class="supporting-text">Supporting text</span>
+          <!-- Form field -->
+          <form action="" class="needs-validation" novalidate>
+            <div class="mb-3">
+              <label for="useremail" class="form-label">Email</label>
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Nama"
+                  aria-label="Username"
+                  required
+                />
+                <span class="input-group-text">@</span>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Email"
+                  aria-label="Server"
+                  required
+                />
+              </div>
+              <div id="bantuanuseremail" class="invalid-feedback">
+                Wajib diisi
+              </div>
             </div>
-            <div class="input-field">
-              <label for="passwd">Masukan Sandi</label>
-              <input type="password" id="passwd" name="passwd" />
-              <span class="material-symbols-rounded">error</span>
-              <span class="supporting-text">Supporting text</span>
+            <div class="mb-3">
+              <label for="sandi" class="form-label">Kata Sandi</label>
+              <input
+                type="password"
+                id="sandi"
+                class="form-control"
+                aria-describedby="bantuansandi"
+                required
+              />
+              <div id="bantuansandi" class="invalid-feedback">Wajib diisi</div>
+            </div>
+            <!-- show passwd -->
+            <div class="form-check mb-3">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="tampilkansandi"
+              />
+              <label class="form-check-label" for="tampilkansandi">
+                Tampilkan sandi
+              </label>
+            </div>
+            <div class="buttons d-flex">
+              <button type="submit" class="btn btn-primary">Login</button>
+              <a href="#" class="btn btn-link">Lupa sandi</a>
             </div>
           </form>
-          <div class="show-passwd">
-            <input type="checkbox" name="tampil-sandi" id="tampil-sandi" />
-            <label for="tampil-sandi">Tampilkan sandi</label>
-          </div>
-          <!-- <p>
-            Halaman login untuk pengguna biasa. Jika anda Admin silahkan login
-            sebagai Admin.
-          </p> -->
         </div>
       </div>
-      <div class="buttons">
-        <a href="forget.php">Lupa Sandi</a>
-        <button type="submit" form="loginAdmin" name="login-admin" onclick="masuk(this.parentElement.parentElement, 'PenggunaAdmin', event)">Login</button>
-      </div>
     </div>
-    <script src="/assets/js/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      // Example starter JavaScript for disabling form submissions if there are invalid fields
+      (() => {
+        "use strict";
+
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        const forms = document.querySelectorAll(".needs-validation");
+
+        // Loop over them and prevent submission
+        Array.from(forms).forEach((form) => {
+          form.addEventListener(
+            "submit",
+            (event) => {
+              if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+              }
+
+              form.classList.add("was-validated");
+            },
+            false
+          );
+        });
+      })();
+    </script>
   </body>
 </html>
