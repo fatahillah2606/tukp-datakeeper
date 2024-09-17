@@ -91,7 +91,12 @@
           <div
             class="buttons mt-3 d-flex flex-row-reverse gap-3 align-items-center"
           >
-            <button type="submit" name="masukUser" class="btn btn-success">
+            <button
+              type="submit"
+              name="masukUser"
+              class="btn btn-success"
+              id="masukuser"
+            >
               Login
             </button>
             <a
@@ -104,5 +109,32 @@
       </div>
     </div>
     <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      let masukUser = document.getElementById("masukuser");
+      masukUser.addEventListener("click", function (event) {
+        event.preventDefault();
+        let userid = document.getElementById("userid").value;
+        let userpswd = document.getElementById("userpassword").value;
+        let xhr = new XMLHttpRequest();
+        xhr.open("POST", "/functions/proses-login.php", true);
+        xhr.setRequestHeader(
+          "Content-Type",
+          "application/x-www-form-urlencoded"
+        );
+
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            console.log(xhr.responseText);
+            let respon = JSON.parse(xhr.responseText);
+          }
+        };
+        xhr.send(
+          "LoginUser=true&userid=" +
+            encodeURIComponent(userid) +
+            "&password=" +
+            encodeURIComponent(userpswd)
+        );
+      });
+    </script>
   </body>
 </html>
