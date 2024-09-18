@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+body {
+  background-color: #f5f7fa;
+}
+.sidebar {
+  height: 100vh;
+  background-color: #158c4c;
+  padding-top: 20px;
+}
+.sidebar a {
+  color: white;
+  font-size: 15px;
+  display: block;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+.sidebar .nav-item > .nav-link:hover {
+  background-color: #ffdd53;
+}
+.sidebar .collapse .nav-item .nav-link:hover {
+  background: none !important;
+  color: #dfb719;
+}
+.sidebar .nav-item .nav-link {
+  color: white;
+}
+.sidebar .nav-item .nav-link.active {
+  background-color: #ddbb2c;
+}
+.content {
+  padding: 20px;
+}
+
+.header h1 {
+  font-size: 36px;
+}
+.card {
+  border-radius: 10px;
+}
+.table-container {
+  margin-top: 20px;
+}
