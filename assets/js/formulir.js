@@ -11,9 +11,6 @@ function focusAnimation() {
     // Jika field tidak kosong
     if (e.value.trim() !== "") {
       e.parentElement.classList.add("fokus");
-      // if (e.parentElement.classList.contains("error")) {
-      //   hapusError(e.parentElement);
-      // }
     }
     e.addEventListener("focus", () => {
       e.parentElement.classList.add("fokus");
@@ -26,10 +23,7 @@ function focusAnimation() {
   });
   allInputField.forEach((e) => {
     e.addEventListener("keyup", () => {
-      if (
-        e.parentElement.classList.contains("error") &&
-        !e.value.trim() === ""
-      ) {
+      if (e.parentElement.classList.contains("error") && e.value.trim()) {
         hapusError(e.parentElement);
       }
     });

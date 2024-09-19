@@ -6,7 +6,7 @@ function ubahPengunjung(formulir, event, idData) {
   let adaYangKosong = false;
   let adaError = false;
 
-  let kolomIsian = formulir.querySelectorAll("input:not([disabled]), select");
+  let kolomIsian = formulir.querySelectorAll("input[required]:not([disabled]), select[required]");
   let textField = formulir.querySelectorAll(".form-field");
 
   // Cek jika ada kolom yg kosong
@@ -96,7 +96,7 @@ function ubahBarangExt(formulir, event, idData) {
   let adaYangKosong = false;
   let adaError = false;
 
-  let kolomIsian = formulir.querySelectorAll("input:not([disabled]), select");
+  let kolomIsian = formulir.querySelectorAll("input[required]:not([disabled]), select[required]");
   let textField = formulir.querySelectorAll(".form-field");
 
   // Cek jika ada kolom yg kosong
@@ -203,7 +203,7 @@ function ubahBarangInt(formulir, event, idData) {
   let adaYangKosong = false;
   let adaError = false;
 
-  let kolomIsian = formulir.querySelectorAll("input:not([disabled]), select");
+  let kolomIsian = formulir.querySelectorAll("input[required]:not([disabled]), select[required]");
   let textField = formulir.querySelectorAll(".form-field");
 
   // Cek jika ada kolom yg kosong
@@ -298,7 +298,7 @@ function ubahMobil(formulir, event, idData) {
   let adaYangKosong = false;
   let adaError = false;
 
-  let kolomIsian = formulir.querySelectorAll("input:not([disabled]), select");
+  let kolomIsian = formulir.querySelectorAll("input[required]:not([disabled]), select[required]");
   let textField = formulir.querySelectorAll(".form-field");
 
   // Cek jika ada kolom yg kosong

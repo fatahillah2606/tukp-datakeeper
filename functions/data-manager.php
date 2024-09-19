@@ -277,9 +277,6 @@ if (isset($_POST["DataMobil"])) {
 ?>
 
 
-
-
-
 <?php
 // Proses ambil data pengunjung
 if (isset($_GET["dataPengunjung"])) {

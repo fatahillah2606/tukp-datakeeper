@@ -13,20 +13,44 @@ function focusAnimation() {
   let inputField = document.querySelectorAll(
     ".formulir .form-field input:not([type='date']), .formulir .form-field select"
   );
+  let allInputField = document.querySelectorAll(
+    ".formulir .form-field input:not(#first-pass):not(#final-pass), .formulir .form-field select"
+  );
 
   inputField.forEach((e) => {
     // Jika field tidak kosong
-    if (e.value !== "") {
+    if (e.value.trim() !== "") {
       e.parentElement.classList.add("fokus");
     }
     e.addEventListener("focus", () => {
       e.parentElement.classList.add("fokus");
     });
     e.addEventListener("blur", () => {
-      if (e.value === "") {
+      if (e.value.trim() === "") {
         e.parentElement.classList.remove("fokus");
       }
     });
+  });
+  allInputField.forEach((e) => {
+    e.addEventListener("keyup", () => {
+      if (e.parentElement.classList.contains("error") && e.value.trim()) {
+        hapusError(e.parentElement);
+      }
+    });
+    // untuk pilihan select
+    e.addEventListener("change", () => {
+      if (e.parentElement.classList.contains("error")) {
+        hapusError(e.parentElement);
+      }
+    });
+
+    // Untuk kasus edit user
+    if (e.parentElement.classList.contains("error") && e.value.trim()) {
+      hapusError(e.parentElement);
+    }
+    if (e.parentElement.classList.contains("error")) {
+      hapusError(e.parentElement);
+    }
   });
 }
 focusAnimation();
@@ -94,12 +118,25 @@ function newUser() {
     ".formulir .tombol-aksi button[type='submit']"
   );
 
+  userManager.querySelector(".formulir > h1").innerText = "Tambah Pengguna";
+
   confirmBtn.setAttribute(
     "onclick",
     "createNewUser(this.parentElement.parentElement, event)"
   );
-  userManager.querySelector(".formulir > h1").innerText = "Tambah Pengguna";
   confirmBtn.innerText = "Buat";
+
+  let passField = userManager.querySelectorAll(
+    "form .kolom-sandi .multi-field .form-field input"
+  );
+  passField.forEach((element) => {
+    element.setAttribute("required", "");
+  });
+
+  aksesPengguna();
+  if (userManager.classList.contains("hidePass")) {
+    userManager.classList.remove("hidePass");
+  }
   userManager.classList.add("show");
 }
 
@@ -109,7 +146,9 @@ function createNewUser(dialog, event) {
   let adaYangKosong = false;
   let adaError = false;
 
-  let kolomIsian = dialog.querySelectorAll("input:not([disabled]), select");
+  let kolomIsian = dialog.querySelectorAll(
+    "input[required]:not([disabled]), select[required]"
+  );
   let textField = dialog.querySelectorAll(".form-field");
 
   // Cek jika ada kolom yg kosong
@@ -338,11 +377,6 @@ function closeModal(elementName) {
   elementName.classList.remove("show");
 }
 window.addEventListener("click", (e) => {
-  let userManager = document.querySelector(".user-manager-dialog");
-
-  if (userManager && e.target == userManager) {
-    userManager.querySelector(".tombol-aksi .batal").click();
-  }
   if (e.target == resetPasswdModal) {
     resetPasswdModal.querySelector(".formulir .controls .close-btn").click();
   }

@@ -52,7 +52,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
             >
               <div class="form-field">
                 <label for="nama-pembawa">Nama Pembawa</label>
-                <input type="text" id="nama-pembawa" name="nama-pembawa" />
+                <input type="text" id="nama-pembawa" name="nama-pembawa" required />
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon">person</span>
@@ -62,7 +62,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
                 <div class="multi-field">
                   <div class="form-field">
                     <label for="nama-barang">Nama Barang</label>
-                    <input type="text" id="nama-barang" name="nama-barang" />
+                    <input type="text" id="nama-barang" name="nama-barang" required />
                     <span class="material-symbols-rounded field-error"
                       >error</span
                     >
@@ -74,6 +74,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
                       type="number"
                       id="jumlah-barang"
                       name="jumlah-barang"
+                      required
                     />
                     <span class="material-symbols-rounded field-error"
                       >error</span
@@ -94,13 +95,13 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
               </div>
               <div class="form-field fokus">
                 <label for="tanggal">Tanggal</label>
-                <input type="date" id="tanggal" name="tanggal" />
+                <input type="date" id="tanggal" name="tanggal" required />
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon">event</span>
               </div>
               <div class="form-field">
                 <label for="keterangan">Keterangan</label>
-                <input type="text" id="keterangan" name="keterangan" />
+                <input type="text" id="keterangan" name="keterangan" required />
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon"
@@ -135,7 +136,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
         let adaError = false;
 
         let kolomIsian = formulir.querySelectorAll(
-          "input:not([disabled]), select"
+          "input[required]:not([disabled]), select[required]"
         );
         let textField = formulir.querySelectorAll(".form-field");
 

@@ -5,7 +5,12 @@
       <div id="field-nama">
         <div class="form-field">
           <label for="nama-pengunjung">Nama Pengunjung</label>
-          <input type="text" id="nama-pengunjung" name="nama-pengunjung" />
+          <input
+            type="text"
+            id="nama-pengunjung"
+            name="nama-pengunjung"
+            required
+          />
           <span class="material-symbols-rounded field-error">error</span>
           <span class="supporting-text">Supporting text</span>
           <span class="material-symbols-rounded field-icon">person</span>
@@ -20,20 +25,25 @@
       </div>
       <div class="form-field">
         <label for="nama-perusahaan">Nama Perusahaan</label>
-        <input type="text" id="nama-perusahaan" name="nama-perusahaan" />
+        <input
+          type="text"
+          id="nama-perusahaan"
+          name="nama-perusahaan"
+          required
+        />
         <span class="material-symbols-rounded field-error">error</span>
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">factory</span>
       </div>
       <div class="form-field fokus">
         <label for="tanggal">Tanggal</label>
-        <input type="date" id="tanggal" name="tanggal" />
+        <input type="date" id="tanggal" name="tanggal" required />
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">event</span>
       </div>
       <div class="form-field">
         <label for="no-tlp">Nomor Telepon</label>
-        <input type="text" id="no-tlp" name="no-tlp" />
+        <input type="text" id="no-tlp" name="no-tlp" required />
         <span class="material-symbols-rounded field-error">error</span>
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">call</span>

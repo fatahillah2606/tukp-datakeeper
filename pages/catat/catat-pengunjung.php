@@ -57,6 +57,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
                     type="text"
                     id="nama-pengunjung"
                     name="nama-pengunjung"
+                    required
                   />
                   <span class="material-symbols-rounded field-error"
                     >error</span
@@ -80,6 +81,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
                   type="text"
                   id="nama-perusahaan"
                   name="nama-perusahaan"
+                  required
                 />
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
@@ -87,13 +89,13 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
               </div>
               <div class="form-field fokus">
                 <label for="tanggal">Tanggal</label>
-                <input type="date" id="tanggal" name="tanggal" />
+                <input type="date" id="tanggal" name="tanggal" required />
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon">event</span>
               </div>
               <div class="form-field">
                 <label for="no-tlp">Nomor Telepon</label>
-                <input type="text" id="no-tlp" name="no-tlp" />
+                <input type="text" id="no-tlp" name="no-tlp" required />
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon">call</span>
@@ -126,7 +128,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
         let adaError = false;
 
         let kolomIsian = formulir.querySelectorAll(
-          "input:not([disabled]), select"
+          "input[required]:not([disabled]), select[required]"
         );
         let textField = formulir.querySelectorAll(".form-field");
 

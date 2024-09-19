@@ -4,7 +4,7 @@
     <form action="">
       <div class="form-field">
         <label for="nama-pembawa">Nama Pembawa</label>
-        <input type="text" id="nama-pembawa" name="nama-pembawa" />
+        <input type="text" id="nama-pembawa" name="nama-pembawa" required/>
         <span class="material-symbols-rounded field-error">error</span>
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">person</span>
@@ -14,13 +14,13 @@
         <div class="multi-field">
           <div class="form-field">
             <label for="nama-barang">Nama Barang</label>
-            <input type="text" id="nama-barang" name="nama-barang" />
+            <input type="text" id="nama-barang" name="nama-barang" required/>
             <span class="material-symbols-rounded field-error">error</span>
             <span class="supporting-text">Supporting text</span>
           </div>
           <div class="form-field">
             <label for="jumlah-barang">Jumlah Barang</label>
-            <input type="number" id="jumlah-barang" name="jumlah-barang" />
+            <input type="number" id="jumlah-barang" name="jumlah-barang" required/>
             <span class="material-symbols-rounded field-error">error</span>
             <span class="supporting-text">Supporting text</span>
           </div>
@@ -36,13 +36,13 @@
       </div>
       <div class="form-field fokus">
         <label for="tanggal">Tanggal</label>
-        <input type="date" id="tanggal" name="tanggal" />
+        <input type="date" id="tanggal" name="tanggal" required/>
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">event</span>
       </div>
       <div class="form-field">
         <label for="keterangan">Keterangan</label>
-        <input type="text" id="keterangan" name="keterangan" />
+        <input type="text" id="keterangan" name="keterangan" required/>
         <span class="material-symbols-rounded field-error">error</span>
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">description</span>

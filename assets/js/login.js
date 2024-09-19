@@ -163,7 +163,7 @@ function masuk(formulir, jenisPengguna, event) {
   let adaYangKosong = false;
   let adaError = false;
 
-  let kolomIsian = formulir.querySelectorAll("input:not([disabled])");
+  let kolomIsian = formulir.querySelectorAll("input[required]:not([disabled])");
   let textField = formulir.querySelectorAll(".input-field");
 
   // Cek jika ada kolom yg kosong

@@ -41,14 +41,14 @@ if ($_COOKIE['user-type'] == 'Tamu') {
             >
               <div class="form-field">
                 <label for="nama-driver">Nama Driver</label>
-                <input type="text" id="nama-driver" name="nama-driver" />
+                <input type="text" id="nama-driver" name="nama-driver" required />
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon">person</span>
               </div>
               <div class="form-field">
                 <label for="merek-kendaraan">Merek Kendaraan</label>
-                <select name="merek-kendaraan" id="merek-kendaraan">
+                <select name="merek-kendaraan" id="merek-kendaraan" required>
                   <option value=""></option>
                   <option value="Luxio">Luxio</option>
                   <option value="Grandmax">Grandmax</option>
@@ -63,7 +63,7 @@ if ($_COOKIE['user-type'] == 'Tamu') {
               </div>
               <div class="form-field none">
                 <label for="merek-lain">Merek Lain</label>
-                <input type="text" id="merek-lain" name="merek-lain" disabled />
+                <input type="text" id="merek-lain" name="merek-lain" disabled required />
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
               </div>
@@ -71,7 +71,7 @@ if ($_COOKIE['user-type'] == 'Tamu') {
               <div class="multi-field">
                 <div class="form-field">
                   <label for="awal-km">Awal</label>
-                  <input type="number" id="awal-km" name="awal-km" />
+                  <input type="number" id="awal-km" name="awal-km" required />
                   <span class="material-symbols-rounded field-error"
                     >error</span
                   >
@@ -79,7 +79,7 @@ if ($_COOKIE['user-type'] == 'Tamu') {
                 </div>
                 <div class="form-field">
                   <label for="akhir-km">Akhir</label>
-                  <input type="number" id="akhir-km" name="akhir-km" />
+                  <input type="number" id="akhir-km" name="akhir-km" required />
                   <span class="material-symbols-rounded field-error"
                     >error</span
                   >
@@ -89,7 +89,7 @@ if ($_COOKIE['user-type'] == 'Tamu') {
               </div>
               <div class="form-field">
                 <label for="tujuan">Tujuan</label>
-                <input type="text" id="tujuan" name="tujuan" />
+                <input type="text" id="tujuan" name="tujuan" required />
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon"
@@ -98,7 +98,7 @@ if ($_COOKIE['user-type'] == 'Tamu') {
               </div>
               <div class="form-field">
                 <label for="keperluan">Keperluan</label>
-                <input type="text" id="keperluan" name="keperluan" />
+                <input type="text" id="keperluan" name="keperluan" required />
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon"
@@ -133,7 +133,7 @@ if ($_COOKIE['user-type'] == 'Tamu') {
         let adaError = false;
 
         let kolomIsian = formulir.querySelectorAll(
-          "input:not([disabled]), select"
+          "input[required]:not([disabled]), select[required]"
         );
         let textField = formulir.querySelectorAll(".form-field");
 

@@ -221,7 +221,6 @@ if (isset($_POST["CekNotif"])) {
 if (isset($_POST["GetUserData"])) {
   require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
 
-  
   $UserType = htmlspecialchars($_POST["UserType"]);
   $UserAcc = htmlspecialchars($_POST["UserAcc"]);
 
@@ -253,6 +252,66 @@ if (isset($_POST["GetUserData"])) {
     }
     $stmt->close();
   }
+  $conn->close();
+}
+?>
+
+<?php
+if (isset($_POST["EditUser"])) {
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
+
+  $id = htmlspecialchars($_POST["Id"]);
+  $userRole = htmlspecialchars($_POST["UserRole"]);
+  $userName = htmlspecialchars($_POST["NamaUser"]);
+  
+  $passUser = isset($_POST["password"]) ? htmlspecialchars($_POST["password"]) : null;
+  $emailUser = isset($_POST["EmailUser"]) ? htmlspecialchars($_POST["EmailUser"]) : null;
+  $idUser = isset($_POST["IdUser"]) ? htmlspecialchars($_POST["IdUser"]) : null;
+
+  $sql = "";
+  $stmt = "";
+  
+  if ($passUser) {
+    // ambil password
+    $sql = "SELECT password FROM pengguna WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->bind_result($passLama);
+    $stmt->fetch();
+
+    // Cek password
+    if (password_verify($passUser, $passLama)) {
+      echo json_encode(["status" => "kesalahan", "pesan" => "Sandi baru tidak boleh sama dengan sandi lama", "atxt" => "", "alnk" => ""]);
+    } else {
+      // Simpan perubahan beserta password baru
+      $stmt->close();
+
+      $hashPassUser = password_hash($passUser, PASSWORD_BCRYPT);
+      $sql = "UPDATE pengguna SET id_user = ?, email_user = ?, nama_user = ?, role = ?, password = ? WHERE id = ?";
+      $stmt = $conn->prepare($sql);
+      $stmt->bind_param("issssi", $idUser, $emailUser, $userName, $userRole, $hashPassUser, $id);
+
+      if ($stmt->execute()) {
+        echo json_encode(["status" => "success", "pesan" => "Data pengguna diubah", "atxt" => "", "alnk" => ""]);
+      } else{
+        echo json_encode(["status" => "success", "pesan" => "Data pengguna diubah", "atxt" => "", "alnk" => ""]);
+      }
+    }
+  } else {
+    // Simpan perubahan tanpa password
+    $sql = "UPDATE pengguna SET id_user = ?, email_user = ?, nama_user = ?, role = ? WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("issssi", $idUser, $emailUser, $userName, $userRole, $id);
+
+    if ($stmt->execute()) {
+      echo json_encode(["status" => "success", "pesan" => "Data pengguna diubah", "atxt" => "", "alnk" => ""]);
+    } else{
+      echo json_encode(["status" => "success", "pesan" => "Data pengguna diubah", "atxt" => "", "alnk" => ""]);
+    }
+  }
+
+  $stmt->close();
   $conn->close();
 }
 ?>

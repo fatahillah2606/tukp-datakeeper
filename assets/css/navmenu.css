@@ -658,19 +658,36 @@
   border-radius: 50px;
 }
 /* Konten kanan untuk buat pengguna baru */
-.user-manager-dialog .formulir .content .right .kolom-sandi.hide .multi-field,
-.user-manager-dialog .formulir .content .right .kolom-sandi.hide .show-passwd {
+.user-manager-dialog.hidePass
+  .formulir
+  .content
+  .right
+  .kolom-sandi
+  .multi-field,
+.user-manager-dialog.hidePass
+  .formulir
+  .content
+  .right
+  .kolom-sandi
+  .show-passwd {
   display: none;
 }
 .user-manager-dialog .formulir .content .right .kolom-sandi .reset-passwd-btn {
   padding: 7px 12px;
-  display: inline-flex;
   align-items: center;
   border: 1px solid #253423;
   border-radius: 50px;
   margin-bottom: 20px;
   cursor: pointer;
   display: none;
+}
+.user-manager-dialog.hidePass
+  .formulir
+  .content
+  .right
+  .kolom-sandi
+  .reset-passwd-btn {
+  display: inline-flex;
 }
 .user-manager-dialog
   .formulir

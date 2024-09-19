@@ -42,14 +42,14 @@ if ($_COOKIE['user-type'] == 'Tamu') {
             >
               <div class="form-field fokus">
                 <label for="tanggal">Tanggal</label>
-                <input type="date" id="tanggal" name="tanggal" />
+                <input type="date" id="tanggal" name="tanggal" required />
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon">event</span>
               </div>
               <div class="multi-field">
                 <div class="form-field">
                   <label for="nama-driver">Nama Driver</label>
-                  <input type="text" id="nama-driver" name="nama-driver" />
+                  <input type="text" id="nama-driver" name="nama-driver" required />
                   <span class="material-symbols-rounded field-error"
                     >error</span
                   >
@@ -57,7 +57,7 @@ if ($_COOKIE['user-type'] == 'Tamu') {
                 </div>
                 <div class="form-field">
                   <label for="nama-suplier">Nama Suplier</label>
-                  <input type="text" id="nama-suplier" name="nama-suplier" />
+                  <input type="text" id="nama-suplier" name="nama-suplier" required />
                   <span class="material-symbols-rounded field-error"
                     >error</span
                   >
@@ -67,7 +67,7 @@ if ($_COOKIE['user-type'] == 'Tamu') {
               </div>
               <div class="form-field">
                 <label for="nama-driver">Keperluan</label>
-                <input type="text" id="keperluan" name="keperluan" />
+                <input type="text" id="keperluan" name="keperluan" required />
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon"
@@ -79,7 +79,7 @@ if ($_COOKIE['user-type'] == 'Tamu') {
                 <div class="multi-field">
                   <div class="form-field">
                     <label for="nama-barang">Nama Barang</label>
-                    <input type="text" id="nama-barang" name="nama-barang" />
+                    <input type="text" id="nama-barang" name="nama-barang" required />
                     <span class="material-symbols-rounded field-error"
                       >error</span
                     >
@@ -91,6 +91,7 @@ if ($_COOKIE['user-type'] == 'Tamu') {
                       type="number"
                       id="jumlah-barang"
                       name="jumlah-barang"
+                      required
                     />
                     <span class="material-symbols-rounded field-error"
                       >error</span
@@ -111,7 +112,7 @@ if ($_COOKIE['user-type'] == 'Tamu') {
               </div>
               <div class="form-field keep-fokus">
                 <label for="time-pp">Jam Kedatangan</label>
-                <input type="time" id="time-pp" name="time-pp" />
+                <input type="time" id="time-pp" name="time-pp" required />
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon"
                   >schedule</span
@@ -119,7 +120,7 @@ if ($_COOKIE['user-type'] == 'Tamu') {
               </div>
               <div class="form-field">
                 <label for="no-kendaraan">Nomor Kendaraan</label>
-                <input type="text" id="no-kendaraan" name="no-kendaraan" />
+                <input type="text" id="no-kendaraan" name="no-kendaraan" required />
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon"
@@ -129,7 +130,7 @@ if ($_COOKIE['user-type'] == 'Tamu') {
 
               <div class="form-field">
                 <label for="keterangan">Keterangan</label>
-                <input type="text" id="keterangan" name="keterangan" />
+                <input type="text" id="keterangan" name="keterangan" required />
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon"
@@ -177,7 +178,7 @@ if ($_COOKIE['user-type'] == 'Tamu') {
         let adaError = false;
 
         let kolomIsian = formulir.querySelectorAll(
-          "input:not([disabled]), select"
+          "input[required]:not([disabled]), select[required]"
         );
         let textField = formulir.querySelectorAll(".form-field");
 

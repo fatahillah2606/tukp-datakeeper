@@ -337,6 +337,13 @@ let KelolaPengguna = document.querySelector(".user-manager-dialog");
 
 // Password
 if (KelolaPengguna) {
+  // Reset pass btn
+  let resetPasswd = KelolaPengguna.querySelector(".reset-passwd-btn");
+  resetPasswd.addEventListener("click", () => {
+    KelolaPengguna.classList.remove("hidePass");
+  });
+
+  // Password
   let FirstPass = KelolaPengguna.querySelector("#first-pass");
   let FinalPass = KelolaPengguna.querySelector("#final-pass");
   if (FirstPass && FinalPass) {
@@ -386,22 +393,25 @@ let tipePengguna = document.getElementById("tipe-pengguna");
 
 if (userLoginMethod && tipePengguna) {
   tipePengguna.addEventListener("change", () => {
-    userLoginMethod.querySelectorAll(".form-field").forEach((element) => {
-      element.classList.add("none");
-      element.querySelector("input").setAttribute("disabled", "");
-    });
-    if (tipePengguna.value === "Admin") {
-      userLoginMethod.querySelector("#email").classList.remove("none");
-      userLoginMethod
-        .querySelector("#email #useremail")
-        .removeAttribute("disabled");
-    } else if (tipePengguna.value === "User") {
-      userLoginMethod.querySelector("#user-id").classList.remove("none");
-      userLoginMethod
-        .querySelector("#user-id #userid")
-        .removeAttribute("disabled");
-    }
+    aksesPengguna();
   });
+}
+function aksesPengguna() {
+  userLoginMethod.querySelectorAll(".form-field").forEach((element) => {
+    element.classList.add("none");
+    element.querySelector("input").setAttribute("disabled", "");
+  });
+  if (tipePengguna.value === "Admin") {
+    userLoginMethod.querySelector("#email").classList.remove("none");
+    userLoginMethod
+      .querySelector("#email #useremail")
+      .removeAttribute("disabled");
+  } else if (tipePengguna.value === "User") {
+    userLoginMethod.querySelector("#user-id").classList.remove("none");
+    userLoginMethod
+      .querySelector("#user-id #userid")
+      .removeAttribute("disabled");
+  }
 }
 
 // Tutup dialog
@@ -455,17 +465,6 @@ window.addEventListener("popstate", (e) => {
 
 // Edit pengguna
 function editUser(useracc, usertype) {
-  let confirmBtn = KelolaPengguna.querySelector(
-    ".formulir .tombol-aksi button[type='submit']"
-  );
-
-  confirmBtn.setAttribute(
-    "onclick",
-    "confirmEdit(this.parentElement.parentElement, event)"
-  );
-  KelolaPengguna.querySelector(".formulir > h1").innerText = "Edit Pengguna";
-  confirmBtn.innerText = "Ubah";
-
   // Request pengguna menggunakan ajax
   let reqUser = new XMLHttpRequest();
   reqUser.open("POST", "/functions/users-manager.php", true);
@@ -473,9 +472,54 @@ function editUser(useracc, usertype) {
 
   reqUser.onload = function () {
     if (reqUser.status === 200) {
-      console.log(reqUser.responseText);
       let respon = JSON.parse(reqUser.responseText);
-      console.log(respon.nama_user);
+
+      // profile description
+      KelolaPengguna.querySelector(".profile-desc .username").innerText =
+        respon.nama_user;
+
+      if (respon.role === "Admin") {
+        KelolaPengguna.querySelector(".profile-desc .userid").innerText =
+          respon.email_user;
+        KelolaPengguna.querySelector("form #useremail").value =
+          respon.email_user;
+      } else {
+        KelolaPengguna.querySelector(".profile-desc .userid").innerText =
+          respon.id_user;
+        KelolaPengguna.querySelector("form #userid").value = respon.id_user;
+      }
+
+      KelolaPengguna.querySelector(".profile-desc .userrole").innerText =
+        respon.role;
+
+      // Text-field
+      KelolaPengguna.querySelector("form #tipe-pengguna").value = respon.role;
+      KelolaPengguna.querySelector("form #username").value = respon.nama_user;
+
+      let passField = KelolaPengguna.querySelectorAll(
+        "form .kolom-sandi .multi-field .form-field input"
+      );
+      passField.forEach((element) => {
+        element.removeAttribute("required");
+      });
+
+      // submit button
+      let confirmBtn = KelolaPengguna.querySelector(
+        ".formulir .tombol-aksi button[type='submit']"
+      );
+
+      confirmBtn.setAttribute(
+        "onclick",
+        "confirmEdit(this.parentElement.parentElement, " +
+          respon.id +
+          ", event)"
+      );
+      KelolaPengguna.querySelector(".formulir > h1").innerText =
+        "Edit Pengguna";
+      confirmBtn.innerText = "Ubah";
+
+      aksesPengguna();
+      focusAnimation();
     }
   };
 
@@ -486,5 +530,114 @@ function editUser(useracc, usertype) {
       encodeURIComponent(useracc)
   );
 
-  KelolaPengguna.classList.add("show");
+  KelolaPengguna.classList.add("show", "hidePass");
 }
+
+function confirmEdit(editModal, Id, event) {
+  event.preventDefault();
+
+  let adaYangKosong = false;
+  let adaError = false;
+
+  let kolomIsian = editModal.querySelectorAll(
+    "input[required]:not([disabled]), select[required]"
+  );
+  let textField = editModal.querySelectorAll(".form-field");
+
+  // Cek jika ada kolom yg kosong
+  kolomIsian.forEach((element) => {
+    if (element.value.trim() === "") {
+      adaYangKosong = true;
+      let elemenKosong = element.parentElement;
+      tampilkanError(elemenKosong, "Wajib diisi");
+    }
+  });
+
+  // cek jika ketentuan belum terpenuhi
+  textField.forEach((element) => {
+    if (element.classList.contains("error")) {
+      adaError = true;
+    }
+  });
+
+  if (!adaYangKosong && !adaError) {
+    // get data
+    let RoleUser = editModal.querySelector("#tipe-pengguna").value;
+    let UserId = editModal.querySelector("#userid").value;
+    let UserEmail = editModal.querySelector("#useremail").value;
+    let NamaUser = editModal.querySelector("#username").value;
+
+    // Password
+    let passwd;
+    if (
+      editModal.querySelector(".kolom-sandi #first-pass").value &&
+      editModal.querySelector(".kolom-sandi #final-pass").value
+    ) {
+      passwd =
+        "&password=" +
+        encodeURIComponent(
+          editModal.querySelector(".kolom-sandi #final-pass").value
+        );
+    }
+
+    // XHttpRequest
+    let reqEdit = new XMLHttpRequest();
+    reqEdit.open("POST", "/functions/users-manager.php", true);
+    reqEdit.setRequestHeader(
+      "Content-Type",
+      "application/x-www-form-urlencoded"
+    );
+
+    reqEdit.onload = function () {
+      if (reqEdit.status === 200) {
+        let respon = JSON.parse(reqEdit.responseText);
+        showUpdate(respon.pesan, respon.atxt, respon.alnk);
+        if (respon.status === "success") {
+          editModal.querySelector(".tombol-aksi .batal").click();
+        }
+      }
+    };
+
+    if (RoleUser === "Admin") {
+      let msgSend =
+        "EditUser=true&Id=" +
+        encodeURIComponent(Id) +
+        "&EmailUser=" +
+        encodeURIComponent(UserEmail) +
+        "&UserRole=" +
+        encodeURIComponent(RoleUser) +
+        "&NamaUser=" +
+        encodeURIComponent(NamaUser);
+
+      if (passwd) {
+        msgSend += passwd;
+      }
+
+      reqEdit.send(msgSend);
+    } else {
+      let msgSend =
+        "EditUser=true&Id=" +
+        encodeURIComponent(Id) +
+        "&IdUser=" +
+        encodeURIComponent(UserId) +
+        "&UserRole=" +
+        encodeURIComponent(RoleUser) +
+        "&NamaUser=" +
+        encodeURIComponent(NamaUser);
+
+      if (passwd) {
+        msgSend += passwd;
+      }
+
+      reqEdit.send(msgSend);
+    }
+  }
+}
+
+window.addEventListener("click", (e) => {
+  let userManager = document.querySelector(".user-manager-dialog");
+
+  if (userManager && e.target == userManager) {
+    userManager.querySelector(".tombol-aksi .batal").click();
+  }
+});
