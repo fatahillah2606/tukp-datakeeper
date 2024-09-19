@@ -1,5 +1,5 @@
 <?php
-require '../../includes/login-info.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
 if ($_COOKIE['user-type'] !== 'Admin') {
   header("Location: /errors/403.php");
   exit();
@@ -24,12 +24,12 @@ if (isset($_GET['search'])) {
   <body>
     <div class="container">
       <!-- Sidebar -->
-      <?php require '../../templates/sidebar.php'; ?>
+      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/sidebar.php'; ?>
       <!-- End Sidebar -->
       <!-- Konten -->
       <div class="konten">
         <!-- Navbar -->
-        <?php require '../../templates/admin-navbar.php'; ?>
+        <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/admin-navbar.php'; ?>
         <!-- End Navbar -->
         <!-- Main Content -->
         <div class="main-content">
@@ -70,9 +70,6 @@ if (isset($_GET['search'])) {
       <!-- End Konten -->
     </div>
     <!-- End Container -->
-    <!-- user modal -->
-    <?php require "../../templates/modals/user-manager.php" ?>
-    <!-- End user modal -->
 
     <!-- Reset user passwd modal -->
     <div class="modal-container reset-passwd-modal-container">

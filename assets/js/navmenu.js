@@ -335,6 +335,7 @@ function showUpdate(message, actionTxt, actionLnk) {
 // User manager
 let KelolaPengguna = document.querySelector(".user-manager-dialog");
 
+// Password
 if (KelolaPengguna) {
   let FirstPass = KelolaPengguna.querySelector("#first-pass");
   let FinalPass = KelolaPengguna.querySelector("#final-pass");
@@ -451,3 +452,39 @@ window.addEventListener("popstate", (e) => {
     profileMenu.classList.remove("show");
   }
 });
+
+// Edit pengguna
+function editUser(useracc, usertype) {
+  let confirmBtn = KelolaPengguna.querySelector(
+    ".formulir .tombol-aksi button[type='submit']"
+  );
+
+  confirmBtn.setAttribute(
+    "onclick",
+    "confirmEdit(this.parentElement.parentElement, event)"
+  );
+  KelolaPengguna.querySelector(".formulir > h1").innerText = "Edit Pengguna";
+  confirmBtn.innerText = "Ubah";
+
+  // Request pengguna menggunakan ajax
+  let reqUser = new XMLHttpRequest();
+  reqUser.open("POST", "/functions/users-manager.php", true);
+  reqUser.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+  reqUser.onload = function () {
+    if (reqUser.status === 200) {
+      console.log(reqUser.responseText);
+      let respon = JSON.parse(reqUser.responseText);
+      console.log(respon.nama_user);
+    }
+  };
+
+  reqUser.send(
+    "GetUserData=true&UserType=" +
+      encodeURIComponent(usertype) +
+      "&UserAcc=" +
+      encodeURIComponent(useracc)
+  );
+
+  KelolaPengguna.classList.add("show");
+}

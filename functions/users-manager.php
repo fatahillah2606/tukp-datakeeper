@@ -1,7 +1,7 @@
 <?php
 // Tampilkan semua pengguna
 if (isset($_GET["dataPengguna"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   $sql = "SELECT * FROM pengguna";
   $hasil = $conn->query($sql);
   if ($hasil->num_rows > 0) {
@@ -14,11 +14,15 @@ if (isset($_GET["dataPengguna"])) {
             </div>
             <div class="user-name">
               <h2 class="nama"><?php echo $baris['nama_user'] ?></h2>
-              <?php if ($baris['role'] === 'Admin') { ?>
-              <p class="id-email"><?php echo $baris['email_user'] ?></p>
-              <?php } else { ?>
-              <p class="id-email"><?php echo $baris['id_user'] ?></p>
-              <?php } ?>
+              <?php
+                $UserAcc = '';
+                if ($baris['role'] === 'Admin') {
+                  $UserAcc = $baris['email_user'];
+                } else {
+                  $UserAcc = $baris['id_user'];
+                }
+              ?>
+              <p class="id-email"><?php echo $UserAcc; ?></p>
             </div>
           </div>
           <div class="right">
@@ -36,7 +40,7 @@ if (isset($_GET["dataPengguna"])) {
                   Reset
                 </p>
               </div>
-              <div class="btn edit" onclick="editUser()">
+              <div class="btn edit" onclick="editUser('<?php echo $UserAcc ?>', '<?php echo $baris['role'] ?>')">
                 <span class="material-symbols-rounded">edit</span>
                 <p>Edit</p>
               </div>
@@ -61,7 +65,7 @@ if (isset($_GET["dataPengguna"])) {
 <?php
 // Tambah pengguna
 if (isset($_POST["TambahUser"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   $namaUser = htmlspecialchars($_POST["NamaUser"]);
   $sandiUser = htmlspecialchars($_POST["SandiUser"]);
   $tipeUser = htmlspecialchars($_POST["TipeUser"]);
@@ -104,7 +108,7 @@ if (isset($_POST["TambahUser"])) {
 <?php
 // Hapus pengguna
 if (isset($_POST["hapusUser"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   $idUser = htmlspecialchars($_POST["idUser"]);
   $sql = "DELETE FROM pengguna WHERE id = ?;";
   $stmt = $conn->prepare($sql);
@@ -114,6 +118,7 @@ if (isset($_POST["hapusUser"])) {
   } else {
     echo json_encode(["status" => "gagal", "pesan" => "Terjadi kesalahan, silahkan cek console", "atxt" => "", "alnk" => "", "pesanError" => $conn->error]);
   }
+  $stmt->close();
   $conn->close();
 }
 ?>
@@ -121,7 +126,7 @@ if (isset($_POST["hapusUser"])) {
 <?php
 // Reset sandi pengguna
 if (isset($_POST["updatePass"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
 
   $akun = htmlspecialchars($_POST["akun"]);
   $sandiBaru = htmlspecialchars($_POST["SandiBaru"]);
@@ -157,7 +162,7 @@ if (isset($_POST["updatePass"])) {
 <?php
 // Hapus notif
 if (isset($_POST["HapusNotif"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   
   $notifId = htmlspecialchars($_POST["NotifId"]);
 
@@ -172,8 +177,9 @@ if (isset($_POST["HapusNotif"])) {
 ?>
 
 <?php
+// Cek notip🧑‍🦰🤳
 if (isset($_POST["CekNotif"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
 
   $sql = "SELECT id, cari_pengguna FROM reset_sandi";
   $stmt = $conn->prepare($sql);
@@ -204,5 +210,49 @@ if (isset($_POST["CekNotif"])) {
     <p class="no-notif">Tidak ada Notifikasi</p>
     <?php
   }
+
+  $stmt->close();
+  $conn->close();
+}
+?>
+
+<?php
+// Request user data
+if (isset($_POST["GetUserData"])) {
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
+
+  
+  $UserType = htmlspecialchars($_POST["UserType"]);
+  $UserAcc = htmlspecialchars($_POST["UserAcc"]);
+
+  $stmt = '';
+  $sql = '';
+  
+  if ($UserType === "Admin") {
+    $sql = "SELECT * FROM pengguna WHERE role = ? AND email_user = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $UserType, $UserAcc);
+    $stmt->execute();
+    $hasil = $stmt->get_result();
+    
+    if ($hasil->num_rows > 0) {
+      $fetchData = $hasil->fetch_assoc();
+      echo json_encode(["id" => $fetchData['id'], "id_user" => $fetchData['id_user'], "email_user" => $fetchData['email_user'], "nama_user" => $fetchData['nama_user'], "role" => $fetchData['role']]);
+    }
+    $stmt->close();
+  } else {
+    $sql = "SELECT * FROM pengguna WHERE role = ? AND id_user = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $UserType, $UserAcc);
+    $stmt->execute();
+    $hasil = $stmt->get_result();
+    
+    if ($hasil->num_rows > 0) {
+      $fetchData = $hasil->fetch_assoc();
+      echo json_encode(["id" => $fetchData['id'], "id_user" => $fetchData['id_user'], "email_user" => $fetchData['email_user'], "nama_user" => $fetchData['nama_user'], "role" => $fetchData['role']]);
+    }
+    $stmt->close();
+  }
+  $conn->close();
 }
 ?>

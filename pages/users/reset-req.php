@@ -7,7 +7,7 @@ if (isset($_COOKIE['user-type'])) {
 
 // Reset Sandi
 if (isset($_POST['ResetSandi'])) {
-  require '../../includes/db-connect.php';
+  require $_SERVER['DOCUMENT_ROOT'] . '/includes/db-connect.php';
   $namaPengguna = htmlspecialchars($_POST['nama-user']);
 
   $sql = "INSERT INTO reset_sandi (`id`, `cari_pengguna`, `dibaca`) VALUES (null, ?, 0)";

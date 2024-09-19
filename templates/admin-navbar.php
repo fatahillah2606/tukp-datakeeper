@@ -40,7 +40,7 @@
         ><?php echo (isset($_COOKIE['user-type'])) ? $_COOKIE['user-name'] : ''; ?></span
       >
     </p>
-    <a href="#" class="akun" onclick="newUser()">Kelola akun anda</a>
+    <a href="#" class="akun" onclick="editUser('<?php echo $_COOKIE['user-id']; ?>', '<?php echo $_COOKIE['user-type']; ?>')">Kelola akun anda</a>
     <div class="multi-tombol">
       <a href="/pages/users/kelola-pengguna.php" class="kelola-pengguna">
         <div class="tombol">
@@ -69,3 +69,6 @@
   <p id="snack-msg">Message here</p>
   <a href="#" id="snack-action">Action</a>
 </div>
+<!-- user modal -->
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/templates/modals/user-manager.php" ?>
+<!-- End user modal -->

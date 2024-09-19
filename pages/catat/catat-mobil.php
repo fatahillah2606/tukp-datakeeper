@@ -1,5 +1,5 @@
 <?php
-require '../../includes/login-info.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
 if ($_COOKIE['user-type'] == 'Tamu') {
   header("Location: /errors/403.php");
   exit();
@@ -10,23 +10,23 @@ if ($_COOKIE['user-type'] == 'Tamu') {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Catat Mobil | TUKP Data Keeper</title>
-    <link rel="stylesheet" href="../../assets/css/style.css" />
-    <link rel="stylesheet" href="../../assets/css/style-dark.css" />
-    <link rel="stylesheet" href="../../assets/css/navmenu.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/style-dark.css" />
+    <link rel="stylesheet" href="/assets/css/navmenu.css" />
   </head>
   <body>
     <div class="container">
       <!-- Sidebar -->
-      <?php require '../../templates/sidebar.php'; ?>
+      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/sidebar.php'; ?>
       <!-- End Sidebar -->
       <!-- Konten -->
       <div class="konten">
         <!-- Navbar -->
         <?php
           if ($_COOKIE['user-type'] === 'Admin') {
-            require '../../templates/admin-navbar.php';
+            require $_SERVER['DOCUMENT_ROOT'] . '/templates/admin-navbar.php';
           } else if ($_COOKIE['user-type'] === 'User') {
-            require '../../templates/user-navbar.php';
+            require $_SERVER['DOCUMENT_ROOT'] . '/templates/user-navbar.php';
           }
         ?>
         <!-- End Navbar -->
@@ -123,8 +123,8 @@ if ($_COOKIE['user-type'] == 'Tamu') {
       <!-- End Konten -->
     </div>
     <!-- End Container -->
-    <script src="../../assets/js/navmenu.js"></script>
-    <script src="../../assets/js/formulir.js"></script>
+    <script src="/assets/js/navmenu.js"></script>
+    <script src="/assets/js/formulir.js"></script>
     <script type="text/javascript">
       function simpanMobil(formulir, event) {
         event.preventDefault();

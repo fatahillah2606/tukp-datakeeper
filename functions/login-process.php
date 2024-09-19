@@ -2,7 +2,7 @@
 
 // Proses login untuk pengguna biasa
 if (isset($_POST["PenggunaBiasa"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   $akun = htmlspecialchars($_POST["akun"]);
   $userPasswd = htmlspecialchars($_POST["SandiUser"]);
 
@@ -34,7 +34,7 @@ if (isset($_POST["PenggunaBiasa"])) {
 
 // Proses login untuk Admin
 if (isset($_POST["PenggunaAdmin"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   $akun = htmlspecialchars($_POST["akun"]);
   $userPasswd = htmlspecialchars($_POST["SandiUser"]);
 
@@ -73,7 +73,7 @@ if (isset($_POST["login-tamu"])) {
 
 // Proses login tamu di luar halaman login
 function verifToken($tokenValue, $connect){
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   $token = $tokenValue;
   $token = md5($token);
   // Verifikasi

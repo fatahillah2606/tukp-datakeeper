@@ -24,7 +24,7 @@ function konversiTanggal($tgl) {
 // Proses simpan data
 // Untuk catat pengunjung
 if (isset($_POST["DataPengunjung"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   // Ambil data dari input pengguna
   $namaPengunjung = '';
   $namaPerusahaan = htmlspecialchars($_POST["NamaPerusahaan"]);
@@ -82,7 +82,7 @@ if (isset($_POST["DataPengunjung"])) {
 
 // Untuk catat barang eksternal
 if (isset($_POST["DataBarangExt"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   // Dapatkan semua field
   $tanggal = htmlspecialchars($_POST["tanggal"]);
   $namaDriver = htmlspecialchars($_POST["NamaDriver"]);
@@ -156,7 +156,7 @@ if (isset($_POST["DataBarangExt"])) {
 
 // Untuk catat barang internal
 if (isset($_POST["DataBarangInt"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   // Dapatkan semua field 
   $namaPembawa = htmlspecialchars($_POST["NamaPembawa"]);
   $barang = '';
@@ -226,7 +226,7 @@ if (isset($_POST["DataBarangInt"])) {
 
 // Untuk catat mobil
 if (isset($_POST["DataMobil"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   // Dapatkan semua field
   $namaDriver = htmlspecialchars($_POST["NamaDriver"]);
   $merek = '';
@@ -283,7 +283,7 @@ if (isset($_POST["DataMobil"])) {
 <?php
 // Proses ambil data pengunjung
 if (isset($_GET["dataPengunjung"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   $sql = "";
   if (isset($_GET["limit"])) {
     $sql = "SELECT * FROM data_pengunjung ORDER BY id DESC LIMIT 10";
@@ -367,7 +367,7 @@ if (isset($_GET["dataPengunjung"])) {
 <?php
 // Proses ambil data barang eksternal
 if (isset($_GET["dataBarangEksternal"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   $sql = "";
   if (isset($_GET["limit"])) {
     $sql = "SELECT * FROM data_barang_eksternal ORDER BY id DESC LIMIT 10";
@@ -468,7 +468,7 @@ if (isset($_GET["dataBarangEksternal"])) {
 <?php
 // Proses ambil data barang internal
 if (isset($_GET["dataBarangInternal"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   $sql = "";
   if (isset($_GET["limit"])) {
     $sql = "SELECT * FROM data_barang_internal ORDER BY id DESC LIMIT 10";
@@ -549,7 +549,7 @@ if (isset($_GET["dataBarangInternal"])) {
 <?php
 // Proses ambil data kilometer mobil
 if (isset($_GET["dataMobil"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   $sql = "";
   if (isset($_GET["limit"])) {
     $sql = "SELECT * FROM data_mobil ORDER BY id DESC LIMIT 10";
@@ -637,7 +637,7 @@ if (isset($_GET["dataMobil"])) {
 <?php
 // Hapus data
 if (isset($_POST["hapusData"])) {
-  require "../includes/db-connect.php";
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   $namaTabel = htmlspecialchars($_POST["namaTabel"]);
   $allowedTabel = ["data_pengunjung", "data_barang_eksternal", "data_barang_internal", "data_mobil"];
   if (!in_array($namaTabel, $allowedTabel)) {

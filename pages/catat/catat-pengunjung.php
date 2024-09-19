@@ -1,28 +1,28 @@
 <?php
 if (isset($_GET["token"])) {
-  require '../../functions/login-process.php';
+  require $_SERVER['DOCUMENT_ROOT'] . '/functions/login-process.php';
   verifToken(htmlspecialchars($_GET["token"]), $conn);
 }
-require '../../includes/login-info.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
 ?>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Catat Pengunjung | TUKP Data Keeper</title>
-    <link rel="stylesheet" href="../../assets/css/style.css" />
-    <link rel="stylesheet" href="../../assets/css/style-dark.css" />
+    <link rel="stylesheet" href="/assets/css/style.css" />
+    <link rel="stylesheet" href="/assets/css/style-dark.css" />
     <!-- Pisahkan bagian ini -->
-    <link rel="stylesheet" href="../../assets/css/navmenu.css" />
+    <link rel="stylesheet" href="/assets/css/navmenu.css" />
   </head>
   <body>
     <div class="container">
       <!-- Sidebar -->
       <?php
         if ($_COOKIE['user-type'] !== "Tamu") {
-          require '../../templates/sidebar.php';
+          require $_SERVER['DOCUMENT_ROOT'] . '/templates/sidebar.php';
         } else {
-          require '../../templates/guest-sidebar.php';
+          require $_SERVER['DOCUMENT_ROOT'] . '/templates/guest-sidebar.php';
         }
       ?>
       <!-- End Sidebar -->
@@ -32,12 +32,12 @@ require '../../includes/login-info.php';
         <?php
           if ($_COOKIE['user-type'] !== "Tamu") {
             if ($_COOKIE['user-type'] === 'Admin') {
-              require '../../templates/admin-navbar.php';
+              require $_SERVER['DOCUMENT_ROOT'] . '/templates/admin-navbar.php';
             } else {
-              require '../../templates/user-navbar.php';
+              require $_SERVER['DOCUMENT_ROOT'] . '/templates/user-navbar.php';
             }
           } else {
-            require '../../templates/guest-navbar.php';
+            require $_SERVER['DOCUMENT_ROOT'] . '/templates/guest-navbar.php';
           }
         ?>
         <!-- End Navbar -->
@@ -116,8 +116,8 @@ require '../../includes/login-info.php';
       <!-- End Konten -->
     </div>
     <!-- End Container -->
-    <script src="../../assets/js/navmenu.js"></script>
-    <script src="../../assets/js/formulir.js"></script>
+    <script src="/assets/js/navmenu.js"></script>
+    <script src="/assets/js/formulir.js"></script>
     <script type="text/javascript">
       function simpanPengunjung(formulir, event) {
         event.preventDefault();

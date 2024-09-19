@@ -1,5 +1,5 @@
 <?php
-require '../includes/login-info.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
 if (!isset($_COOKIE['user-type'])) {
   header("HTTP/1.1 401");
   exit;
@@ -21,9 +21,9 @@ if (!isset($_COOKIE['user-type'])) {
       <?php
       if (isset($_COOKIE['user-type'])) {
         if ($_COOKIE['user-type'] !== 'Tamu') {
-          require '../templates/sidebar.php';
+          require $_SERVER['DOCUMENT_ROOT'] . '/templates/sidebar.php';
         } else {
-          require '../templates/guest-sidebar.php';
+          require $_SERVER['DOCUMENT_ROOT'] . '/templates/guest-sidebar.php';
         }
       }
       ?>
@@ -34,11 +34,11 @@ if (!isset($_COOKIE['user-type'])) {
         <?php
           if (isset($_COOKIE['user-type'])) {
             if ($_COOKIE['user-type'] == 'Admin') {
-              require '../templates/admin-navbar.php';
+              require $_SERVER['DOCUMENT_ROOT'] . '/templates/admin-navbar.php';
             } else if ($_COOKIE['user-type'] == 'User'){
-              require '../templates/user-navbar.php';
+              require $_SERVER['DOCUMENT_ROOT'] . '/templates/user-navbar.php';
             } else {
-              require '../templates/guest-navbar.php';
+              require $_SERVER['DOCUMENT_ROOT'] . '/templates/guest-navbar.php';
             }
           }
         ?>
