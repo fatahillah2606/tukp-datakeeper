@@ -302,7 +302,7 @@ if (isset($_POST["EditUser"])) {
     // Simpan perubahan tanpa password
     $sql = "UPDATE pengguna SET id_user = ?, email_user = ?, nama_user = ?, role = ? WHERE id = ?";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("issssi", $idUser, $emailUser, $userName, $userRole, $id);
+    $stmt->bind_param("isssi", $idUser, $emailUser, $userName, $userRole, $id);
 
     if ($stmt->execute()) {
       echo json_encode(["status" => "success", "pesan" => "Data pengguna diubah", "atxt" => "", "alnk" => ""]);
