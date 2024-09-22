@@ -121,6 +121,20 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
     <script src="/assets/js/navmenu.js"></script>
     <script src="/assets/js/formulir.js"></script>
     <script type="text/javascript">
+      // Cek no tlp
+      let nomorTelepon = document.getElementById("no-tlp");
+      nomorTelepon.addEventListener("keyup", () => {
+        if (nomorTelepon.value.length > 13) {
+          tampilkanError(
+            nomorTelepon.parentElement,
+            "Tidak melebihi 13 karakter"
+          );
+        } else {
+          hapusError(nomorTelepon.parentElement);
+        }
+      });
+
+      // Simpan
       function simpanPengunjung(formulir, event) {
         event.preventDefault();
 

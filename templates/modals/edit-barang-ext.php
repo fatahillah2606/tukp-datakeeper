@@ -76,7 +76,7 @@
 
       <div class="form-field">
         <label for="keterangan">Keterangan</label>
-        <input type="text" id="keterangan" name="keterangan" required />
+        <input type="text" id="keterangan" name="keterangan" />
         <span class="material-symbols-rounded field-error">error</span>
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">description</span>

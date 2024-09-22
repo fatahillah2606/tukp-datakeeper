@@ -8,7 +8,7 @@
 
 /* Navmenu */
 .navmenu {
-  width: 70px;
+  width: 80px;
   height: 100vh;
   background-color: #ecf3e7;
   padding: 15px;
@@ -18,8 +18,10 @@
   overflow-x: hidden;
   overflow-y: auto;
 }
-.navmenu.active {
-  width: 270px;
+.navmenu.active,
+.navmenu:hover {
+  width: 300px;
+  padding-left: 0;
 }
 
 /* Scroll bar */
@@ -40,13 +42,14 @@
 
 /* Konten nav-menu */
 .navmenu .navmenu-content {
-  width: 40px;
+  width: 50px;
   height: auto;
   transition: 0.3s ease;
   overflow: hidden;
 }
-.navmenu.active .navmenu-content {
-  width: 240px;
+.navmenu.active .navmenu-content,
+.navmenu:hover .navmenu-content {
+  width: 285px;
 }
 
 /* Links */
@@ -55,6 +58,12 @@
   align-items: center;
   border-radius: 50px;
   cursor: pointer;
+  transition: 0.3s ease;
+}
+.navmenu.active .links .link,
+.navmenu:hover .links .link {
+  border-radius: 0 50px 50px 0;
+  padding-left: 15px;
 }
 .navmenu .links a > .link:hover:not(.active),
 .navmenu .links .dropdown:hover:not(.active) > .link,
@@ -80,24 +89,25 @@
 /* Menu Text */
 .navmenu .links .link p {
   display: none;
+  flex-shrink: 0;
+  width: 173px;
 }
-.navmenu.active .links .link p {
+.navmenu.active .links .link p,
+.navmenu:hover .links .link p {
   display: block;
 }
 
 /* Menu Icon */
 .navmenu .links .link span {
   font-size: 20px;
-  padding: 10px;
-  border-radius: 10px;
-}
-.navmenu .links .link span {
+  padding: 15px;
   margin-right: 15px;
+  border-radius: 10px;
 }
 .navmenu .links > a,
 .navmenu .links .admin-menu > a {
   display: block;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 }
 
 /* Menu Button */
@@ -111,23 +121,29 @@
   width: 95%;
   display: block;
   margin: auto;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+.navmenu.active .links .batas,
+.navmenu:hover .links .batas {
+  margin-left: 15px;
 }
 .navmenu .links .batas .garis-batas {
   width: 100%;
   height: 1px;
-  background-color: #002105;
+  background-color: #b9ccb4;
   border-radius: 50px;
 }
 .navmenu .links .batas h2 {
   color: #002105;
   display: none;
   font-size: 16px;
-  margin-top: 20px;
+  margin-top: 15px;
 }
-.navmenu.active .links .batas h2 {
+/* .navmenu.active .links .batas h2,
+.navmenu:hover .links .batas h2 {
   display: block;
-}
+} */
 
 /* dropdown */
 .navmenu .dropdown {

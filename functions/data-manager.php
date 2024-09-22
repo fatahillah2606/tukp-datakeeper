@@ -652,3 +652,118 @@ if (isset($_POST["hapusData"])) {
   $conn->close();
 }
 ?>
+
+<?php
+// Tampilkan pengumuman
+if (isset($_GET["lihatPengumuman"])) {
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
+
+  $sql = "SELECT * FROM pengumuman ORDER BY id DESC";
+  $hasil = $conn->query($sql);
+  
+  if ($hasil->num_rows > 0) {
+    if (isset($_GET["list"])) {
+      while ($baris = $hasil->fetch_assoc()) {
+        ?>
+          <div class="list-pengumuman">
+            <div class="pesan">
+              <h2><?php echo $baris["judul_pengumuman"]; ?></h2>
+              <p>
+                <?php echo $baris["isi_pengumuman"]; ?>
+              </p>
+              <div class="tombol-aksi">
+                <span onclick="editPengumuman(this, <?php echo $baris['id']; ?>)">Edit</span>
+                <span onclick="hapusPengumuman(<?php echo $baris['id']; ?>)">Hapus</span>
+              </div>
+            </div>
+          </div>
+        <?php
+      }
+    } else {
+      while ($baris = $hasil->fetch_assoc()) {
+        ?>
+          <div class="pengumuman">
+            <span class="material-symbols-rounded">campaign</span>
+            <div class="pesan">
+              <h2><?php echo $baris["judul_pengumuman"]; ?></h2>
+              <p>
+                <?php echo $baris["isi_pengumuman"]; ?>
+              </p>
+            </div>
+          </div>
+        <?php
+      }
+    }
+  }
+  $conn->close();
+}
+?>
+
+<?php
+// simpan pengumuman
+if (isset($_POST["SimpanPengumuman"])) {
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
+
+  $judul = htmlspecialchars($_POST["Judul"]);
+  $isi = htmlspecialchars($_POST["Isi"]);
+
+  $sql = "INSERT INTO pengumuman (`id`, `judul_pengumuman`, `isi_pengumuman`) VALUES (null, ?, ?)";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("ss", $judul, $isi);
+
+  if ($stmt->execute()) {
+    echo json_encode(["status" => "berhasil", "pesan" => "Berhasil membuat pengumuman", "atxt" => "", "alnk" => ""]);
+  } else {
+    echo json_encode(["status" => "gagal", "pesan" => "Kesalahan dalam membuat pengumuman", "atxt" => "", "alnk" => ""]);
+  }
+
+  $stmt->close();
+  $conn->close();
+}
+?>
+
+<?php
+// Hapus pengumuman
+if (isset($_POST["HapusPengumuman"])) {
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
+
+  $id = htmlspecialchars($_POST["Id"]);
+
+  $sql = "DELETE FROM pengumuman WHERE id = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("i", $id);
+
+  if ($stmt->execute()) {
+    echo json_encode(["status" => "berhasil", "pesan" => "Berhasil menghapus pengumuman", "atxt" => "", "alnk" => ""]);
+  } else {
+    echo json_encode(["status" => "gagal", "pesan" => "Kesalahan dalam menghapus pengumuman", "atxt" => "", "alnk" => ""]);
+  }
+
+  $stmt->close();
+  $conn->close();
+}
+?>
+
+<?php
+// simpan perubahan
+if (isset($_POST["SimpanPerubahan"])) {
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
+
+  $id = htmlspecialchars($_POST["Id"]);
+  $judul = htmlspecialchars($_POST["Judul"]);
+  $isi = htmlspecialchars($_POST["Isi"]);
+
+  $sql = "UPDATE pengumuman SET `judul_pengumuman` = ?, `isi_pengumuman` = ? WHERE id = ?";
+  $stmt = $conn->prepare($sql);
+  $stmt->bind_param("ssi", $judul, $isi, $id);
+
+  if ($stmt->execute()) {
+    echo json_encode(["status" => "berhasil", "pesan" => "Berhasil mengubah pengumuman", "atxt" => "", "alnk" => ""]);
+  } else {
+    echo json_encode(["status" => "gagal", "pesan" => "Kesalahan dalam mengubah pengumuman", "atxt" => "", "alnk" => ""]);
+  }
+
+  $stmt->close();
+  $conn->close();
+}
+?>

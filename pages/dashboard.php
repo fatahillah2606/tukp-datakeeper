@@ -122,6 +122,11 @@ if ($_COOKIE['user-type'] == "Tamu") {
             </div>
           </div>
           <!-- End Header -->
+          <!-- Pengumuman -->
+          <div class="konten-pengumuman">
+            <!-- ajax -->
+          </div>
+          <!-- Akhir Pengumuman -->
           <!-- tabel -->
           <div class="tabel">
             <div class="head">
@@ -246,8 +251,8 @@ if ($_COOKIE['user-type'] == "Tamu") {
       // Proses ambil data
       let = barisData = document.querySelector(".table-container");
 
-      // Switch untuk fab button dan View all
       function ambilData(namaData) {
+        // Switch untuk fab button dan View all
         let linkHalaman;
         switch (namaData) {
           case "dataPengunjung":
@@ -310,16 +315,35 @@ if ($_COOKIE['user-type'] == "Tamu") {
         });
       }
 
+      // tampilkan pengumuman
+      function tampilkanPengumuman() {
+        let pengumuman = new XMLHttpRequest();
+        pengumuman.open(
+          "GET",
+          "/functions/data-manager.php?lihatPengumuman=true",
+          true
+        );
+
+        pengumuman.onload = function () {
+          if (pengumuman.status === 200) {
+            let kontenPengumuman = document.querySelector(".konten-pengumuman");
+            kontenPengumuman.innerHTML = pengumuman.responseText;
+          }
+        };
+
+        pengumuman.send();
+      }
+
       window.onload = function () {
         muatData();
+        tampilkanPengumuman();
 
         // Update data realtime
         setInterval(() => {
           muatData();
-        }, (60000 * 5) /* Update setiam 5 menit sekali */);
+          tampilkanPengumuman();
+        }, 60000 * 5 /* Update setiam 5 menit sekali */);
       };
-
-      
     </script>
   </body>
 </html>

@@ -27,7 +27,7 @@
   background-color: #c9ffc3;
 }
 [data-theme="dark"] .navmenu .links .batas .garis-batas {
-  background-color: #f6fff0;
+  background-color: #52634f;
 }
 [data-theme="dark"] .navmenu .links .link p,
 [data-theme="dark"] .navmenu .links .link span,
@@ -220,6 +220,15 @@
 }
 [data-theme="dark"] .header .tombol .pilihan .tmbl span {
   background-color: #171d16;
+}
+
+/* Pengumuman */
+[data-theme="dark"] .pengumuman {
+  background-color: #2c322a;
+}
+[data-theme="dark"] .pengumuman > span,
+[data-theme="dark"] .pengumuman .pesan * {
+  color: #c9ffc3;
 }
 
 /* Tabel */

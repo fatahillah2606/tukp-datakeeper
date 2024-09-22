@@ -84,6 +84,23 @@
           <p>Lihat Kilometer Mobil</p>
         </div>
       </a>
+      <?php
+      if ($_COOKIE['user-type'] === "Admin") {
+        ?>
+          <div class="batas">
+            <div class="garis-batas"></div>
+          </div>
+          <a href="/pages/kelola-pengumuman.php">
+            <div
+              class="link <?php echo basename($_SERVER['PHP_SELF']) == 'kelola-pengumuman.php' ? 'active' : ''; ?>"
+            >
+              <span class="material-symbols-rounded">campaign</span>
+              <p>Kelola Pengumuman</p>
+            </div>
+          </a>
+        <?php
+      }
+      ?>
       <!-- <div class="dropdown">
         <div class="link">
           <span class="material-symbols-rounded">edit_document</span>
