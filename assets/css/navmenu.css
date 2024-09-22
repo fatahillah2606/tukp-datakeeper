@@ -238,6 +238,7 @@
   color: #002105;
   padding: 10px;
   border-radius: 50%;
+  cursor: pointer;
 }
 .navbar .menu-btn:hover {
   background-color: #dee5d9;

@@ -13,14 +13,14 @@
         <h2>Barang</h2>
         <div class="multi-field">
           <div class="form-field">
-            <label for="nama-barang">Nama Barang</label>
-            <input type="text" id="nama-barang" name="nama-barang" required/>
+            <label for="nama-barang-int">Nama Barang</label>
+            <input type="text" id="nama-barang-int" name="nama-barang-int" required/>
             <span class="material-symbols-rounded field-error">error</span>
             <span class="supporting-text">Supporting text</span>
           </div>
           <div class="form-field">
-            <label for="jumlah-barang">Jumlah Barang</label>
-            <input type="number" id="jumlah-barang" name="jumlah-barang" required/>
+            <label for="jumlah-barang-int">Jumlah Barang</label>
+            <input type="number" id="jumlah-barang-int" name="jumlah-barang-int" required/>
             <span class="material-symbols-rounded field-error">error</span>
             <span class="supporting-text">Supporting text</span>
           </div>
@@ -29,20 +29,20 @@
       </div>
       <div
         class="tambah"
-        onclick="tambahMultiField('Barang tambahan', 'Nama Barang', 'Jumlah Barang', 'text', 'number', 'field-barang-int', 'category')"
+        onclick="tambahMultiField('Barang tambahan', 'Nama Barang Int', 'Jumlah Barang Int', 'text', 'number', 'field-barang-int', 'category')"
       >
         <span class="material-symbols-rounded">add</span>
         <span class="btn-label">Tambah</span>
       </div>
       <div class="form-field fokus">
-        <label for="tanggal">Tanggal</label>
-        <input type="date" id="tanggal" name="tanggal" required/>
+        <label for="tanggal-int">Tanggal</label>
+        <input type="date" id="tanggal-int" name="tanggal-int" required/>
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">event</span>
       </div>
       <div class="form-field">
-        <label for="keterangan">Keterangan</label>
-        <input type="text" id="keterangan" name="keterangan"/>
+        <label for="keterangan-int">Keterangan</label>
+        <input type="text" id="keterangan-int" name="keterangan-int"/>
         <span class="material-symbols-rounded field-error">error</span>
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">description</span>

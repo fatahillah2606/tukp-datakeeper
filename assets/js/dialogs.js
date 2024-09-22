@@ -32,7 +32,7 @@ function ubahPengunjung(formulir, event, idData) {
     // ambil data dari form
     let namaPengunjung;
     let namaPerusahaan = formulir.querySelector("#nama-perusahaan").value;
-    let tanggal = formulir.querySelector("#tanggal").value;
+    let tanggal = formulir.querySelector("#tanggal-kunjung").value;
     let nomorTlp = formulir.querySelector("#no-tlp").value;
 
     // Jika pengunjung lebih dari satu
@@ -122,14 +122,14 @@ function ubahBarangExt(formulir, event, idData) {
   // Proses
   if (!adaYangKosong && !adaError) {
     // ambil data dari form
-    let tanggal = formulir.querySelector("#tanggal").value;
-    let namaDriver = formulir.querySelector("#nama-driver").value;
+    let tanggal = formulir.querySelector("#tanggal-ext").value;
+    let namaDriver = formulir.querySelector("#nama-driver-ext").value;
     let namaSuplier = formulir.querySelector("#nama-suplier").value;
-    let keperluan = formulir.querySelector("#keperluan").value;
+    let keperluan = formulir.querySelector("#keperluan-ext").value;
     let namaJumlahBarang;
     let jamKedatangan = formulir.querySelector("#time-pp").value;
     let noKendaraan = formulir.querySelector("#no-kendaraan").value;
-    let keterangan = formulir.querySelector("#keterangan").value;
+    let keterangan = formulir.querySelector("#keterangan-ext").value;
 
     // Jika field barang dan jumlah lebih dari satu
     let namaBarang = formulir.querySelectorAll(
@@ -233,8 +233,8 @@ function ubahBarangInt(formulir, event, idData) {
     // ambil data dari form
     let namaPembawa = formulir.querySelector("#nama-pembawa").value;
     let namaJumlahBarang;
-    let tanggal = formulir.querySelector("#tanggal").value;
-    let keterangan = formulir.querySelector("#keterangan").value;
+    let tanggal = formulir.querySelector("#tanggal-int").value;
+    let keterangan = formulir.querySelector("#keterangan-int").value;
 
     // Jika field barang dan jumlah lebih dari satu
     let namaBarang = formulir.querySelectorAll(
@@ -328,13 +328,13 @@ function ubahMobil(formulir, event, idData) {
   // Proses
   if (!adaYangKosong && !adaError) {
     // ambil data dari form
-    let namaDriver = formulir.querySelector("#nama-driver").value;
+    let namaDriver = formulir.querySelector("#nama-driver-mobil").value;
     let merekKendaraan = formulir.querySelector("#merek-kendaraan").value;
     let merekLain = formulir.querySelector("#merek-lain").value;
     let awalKm = formulir.querySelector("#awal-km").value;
     let akhirKm = formulir.querySelector("#akhir-km").value;
     let tujuan = formulir.querySelector("#tujuan").value;
-    let keperluan = formulir.querySelector("#keperluan").value;
+    let keperluan = formulir.querySelector("#keperluan-mobil").value;
 
     // Buat objek XMLHttpRequest
     let xhr = new XMLHttpRequest();
@@ -449,7 +449,7 @@ function editPengunjung(elm, idData) {
     barisData.querySelector("td.nama-perusahaan p").innerText;
 
   // Tanggal
-  editModal.querySelector(".formulir .form-field #tanggal").value =
+  editModal.querySelector(".formulir .form-field #tanggal-kunjung").value =
     konversiTanggal(barisData.querySelector("td.tanggal p").innerText);
 
   // Nomor telepon
@@ -475,11 +475,11 @@ function editBarangExt(elm, idData) {
   let barisData = elm.parentElement.parentElement.parentElement;
 
   // Tanggal
-  editModal.querySelector(".formulir .form-field #tanggal").value =
+  editModal.querySelector(".formulir .form-field #tanggal-ext").value =
     konversiTanggal(barisData.querySelector("td.tanggal p").innerText);
 
   //Nama Driver
-  editModal.querySelector(".formulir .form-field #nama-driver").value =
+  editModal.querySelector(".formulir .form-field #nama-driver-ext").value =
     barisData.querySelector("td.nama-pembawa p").innerText;
 
   // Nama suplier
@@ -487,7 +487,7 @@ function editBarangExt(elm, idData) {
     barisData.querySelector("td.nama-suplier p").innerText;
 
   // Keperluan
-  editModal.querySelector(".formulir .form-field #keperluan").value =
+  editModal.querySelector(".formulir .form-field #keperluan-ext").value =
     barisData.querySelector("td.keperluan p").innerText;
 
   // Barang
@@ -495,10 +495,10 @@ function editBarangExt(elm, idData) {
   let kolomBarang = editModal.querySelector(".formulir #field-barang-ext");
 
   editModal.querySelector(
-    ".formulir #field-barang-ext .multi-field .form-field #nama-barang"
+    ".formulir #field-barang-ext .multi-field .form-field #nama-barang-ext"
   ).value = barang[0].innerText.split(", ")[0];
   editModal.querySelector(
-    ".formulir #field-barang-ext .multi-field .form-field #jumlah-barang"
+    ".formulir #field-barang-ext .multi-field .form-field #jumlah-barang-ext"
   ).value = barang[0].innerText.split(", ")[1];
 
   // Jika barang lebih dari 1
@@ -543,7 +543,7 @@ function editBarangExt(elm, idData) {
     barisData.querySelector("td.time-pp p").innerText;
 
   // keterangan
-  editModal.querySelector(".formulir .form-field #keterangan").value =
+  editModal.querySelector(".formulir .form-field #keterangan-ext").value =
     barisData.querySelector("td.keterangan p").innerText;
 
   // tombol
@@ -573,10 +573,10 @@ function editBarangInt(elm, idData) {
   let kolomBarang = editModal.querySelector(".formulir #field-barang-int");
 
   editModal.querySelector(
-    ".formulir #field-barang-int .multi-field .form-field #nama-barang"
+    ".formulir #field-barang-int .multi-field .form-field #nama-barang-int"
   ).value = barang[0].innerText.split(", ")[0];
   editModal.querySelector(
-    ".formulir #field-barang-int .multi-field .form-field #jumlah-barang"
+    ".formulir #field-barang-int .multi-field .form-field #jumlah-barang-int"
   ).value = barang[0].innerText.split(", ")[1];
 
   // Jika barang lebih dari 1
@@ -613,11 +613,11 @@ function editBarangInt(elm, idData) {
   }
 
   //Tanggal
-  editModal.querySelector(".formulir .form-field #tanggal").value =
+  editModal.querySelector(".formulir .form-field #tanggal-int").value =
     konversiTanggal(barisData.querySelector("td.tanggal p").innerText);
 
   //Keterangan
-  editModal.querySelector(".formulir .form-field #keterangan").value =
+  editModal.querySelector(".formulir .form-field #keterangan-int").value =
     barisData.querySelector("td.keterangan p").innerText;
 
   // tombol
@@ -640,7 +640,7 @@ function editMobil(elm, idData) {
   let barisData = elm.parentElement.parentElement.parentElement;
 
   //Nama driver
-  editModal.querySelector(".formulir .form-field #nama-driver").value =
+  editModal.querySelector(".formulir .form-field #nama-driver-mobil").value =
     barisData.querySelector("td.nama-driver p").innerText;
 
   //Merek kendaraan
@@ -671,7 +671,7 @@ function editMobil(elm, idData) {
     barisData.querySelector("td.tujuan p").innerText;
 
   //Keperluan
-  editModal.querySelector(".formulir .form-field #keperluan").value =
+  editModal.querySelector(".formulir .form-field #keperluan-mobil").value =
     barisData.querySelector("td.keperluan p").innerText;
 
   // tombol

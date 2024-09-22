@@ -36,8 +36,8 @@
         <span class="material-symbols-rounded field-icon">factory</span>
       </div>
       <div class="form-field fokus">
-        <label for="tanggal">Tanggal</label>
-        <input type="date" id="tanggal" name="tanggal" required />
+        <label for="tanggal-kunjung">Tanggal</label>
+        <input type="date" id="tanggal-kunjung" name="tanggal-kunjung" required />
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">event</span>
       </div>

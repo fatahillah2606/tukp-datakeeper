@@ -3,8 +3,8 @@
     <h1>Edit laporan kilometer mobil</h1>
     <form action="">
       <div class="form-field">
-        <label for="nama-driver">Nama Driver</label>
-        <input type="text" id="nama-driver" name="nama-driver" required />
+        <label for="nama-driver-mobil">Nama Driver</label>
+        <input type="text" id="nama-driver-mobil" name="nama-driver-mobil" required />
         <span class="material-symbols-rounded field-error">error</span>
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">person</span>
@@ -58,8 +58,8 @@
         <span class="material-symbols-rounded field-icon">location_on</span>
       </div>
       <div class="form-field">
-        <label for="keperluan">Keperluan</label>
-        <input type="text" id="keperluan" name="keperluan" required />
+        <label for="keperluan-mobil">Keperluan</label>
+        <input type="text" id="keperluan-mobil" name="keperluan-mobil" required />
         <span class="material-symbols-rounded field-error">error</span>
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">task_alt</span>
