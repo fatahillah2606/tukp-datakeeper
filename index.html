@@ -82,9 +82,9 @@
               class="form-check-input"
               type="checkbox"
               value=""
-              id="flexCheckDefault"
+              id="tampilkan-sandi"
             />
-            <label class="form-check-label" for="flexCheckDefault">
+            <label class="form-check-label" for="tampilkan-sandi">
               Tampilkan Sandi
             </label>
           </div>
@@ -126,6 +126,9 @@
           if (xhr.status === 200) {
             console.log(xhr.responseText);
             let respon = JSON.parse(xhr.responseText);
+            if (respon.status === "berhasil") {
+              alihkan(respon.alihkan);
+            }
           }
         };
         xhr.send(
@@ -134,6 +137,22 @@
             "&password=" +
             encodeURIComponent(userpswd)
         );
+      });
+
+      function alihkan(link) {
+        location.href = link;
+      }
+
+      // untuk menampilkan sandi
+      let userpassword = document.getElementById("userpassword");
+      let TampilkanSandi = document.getElementById("tampilkan-sandi");
+
+      TampilkanSandi.addEventListener("change", function () {
+        if (TampilkanSandi.checked) {
+          userpassword.setAttribute("type", "text");
+        } else {
+          userpassword.setAttribute("type", "password");
+        }
       });
     </script>
   </body>
