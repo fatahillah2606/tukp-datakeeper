@@ -15,7 +15,7 @@ if (isset($_POST["LoginUser"])) {
     $stmt->fetch();
 
     if ($password && password_verify($password, $Password)) {
-        $_SESSION["id"] = $Id;
+        $_SESSION["id"] = $id;
         $_SESSION["user_id"] = $UserId;
         $_SESSION["nama_user"] = $NamaUser;
         $_SESSION["user_role"] = $Role;
@@ -26,12 +26,12 @@ if (isset($_POST["LoginUser"])) {
         $hashedToken = password_hash($token,PASSWORD_BCRYPT);
       
 
-        $sql = "UPDATE pengguna SET token_login = ? WHERE id_user = ?";
+        $sql = "UPDATE pengguna SET token_login = ? WHERE id = ?";
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param("si", $hashedToken, $UserId);
+        $stmt->bind_param("si", $hashedToken, $Id);
         $stmt->execute();
 
-        setcookie("ingat_saya", $UserId.":".$token, time() + (30*24*60*60),"/");
+        setcookie("ingat_saya", $Id.":".$token, time() + (30*24*60*60),"/");
 
         echo json_encode(["status" => "berhasil", "alihkan" => "/pages/dashboard.php"]);
 
@@ -41,4 +41,5 @@ echo "error Tolol";
 }
 $stmt->close();
 $conn->close();
+
 ?>
