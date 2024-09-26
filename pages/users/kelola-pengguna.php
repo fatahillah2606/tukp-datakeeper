@@ -1,6 +1,6 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
-if ($_COOKIE['user-type'] !== 'Admin') {
+if ($_SESSION['peran_pengguna'] !== 'Admin') {
   header("Location: /errors/403.php");
   exit();
 }
@@ -74,7 +74,7 @@ if (isset($_GET['search'])) {
     <!-- Reset user passwd modal -->
     <div class="modal-container reset-passwd-modal-container">
       <div class="reset-passwd-modal formulir">
-        <h2>Reset sandi pengguna <span class="nama-pengguna"></span></h2>
+        <h2>Reset sandi <span class="nama-pengguna"></span></h2>
         <form action="" method="post" name="reset-passwd">
           <div class="form-field">
             <label for="new-passwd">Sandi Baru</label>
@@ -92,12 +92,12 @@ if (isset($_GET['search'])) {
             <input type="checkbox" name="tampil-sandi" id="tampilkan-sandi" />
             <label for="tampilkan-sandi">Tampilkan sandi</label>
           </div>
-          <p>
+          <!-- <p>
             <strong>Peringatan!</strong> Anda akan melakukan reset sandi untuk
             pengguna <span class="nama-pengguna"></span> tanpa sepengetahuannya.
             Mohon beri tahu <span class="nama-pengguna"></span> jika anda telah
             melakukan reset sandi untuk akunnya.
-          </p>
+          </p> -->
           <div class="controls">
             <button
               class="close-btn"

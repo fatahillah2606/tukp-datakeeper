@@ -32,6 +32,7 @@ if (isset($_GET["dataPengguna"])) {
               $namaUser = $baris['nama_user'];
             ?>
             <div class="action-btn">
+              <!-- Jika tamu -->
               <div class="btn reset">
                 <span class="material-symbols-rounded">history</span>
                 <p
@@ -40,10 +41,23 @@ if (isset($_GET["dataPengguna"])) {
                   Reset
                 </p>
               </div>
+              <?php
+              if ($baris['role'] === 'Tamu') {
+              ?>
+              <div class="btn edit" style="visibility: hidden;" onclick="editUser('<?php echo $UserAcc ?>', '<?php echo $baris['role'] ?>')">
+                <span class="material-symbols-rounded">edit</span>
+                <p>Edit</p>
+              </div>
+              <?php
+              } else {
+              ?>
+              <!-- Jika bukan tamu -->
               <div class="btn edit" onclick="editUser('<?php echo $UserAcc ?>', '<?php echo $baris['role'] ?>')">
                 <span class="material-symbols-rounded">edit</span>
                 <p>Edit</p>
               </div>
+              <?php } ?>
+              <!-- Tombol hapus -->
               <a
                 href="#"
                 class="hapus material-symbols-rounded"

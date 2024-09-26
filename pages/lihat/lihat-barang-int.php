@@ -1,6 +1,6 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
-if ($_COOKIE['user-type'] == 'Tamu') {
+if ($_SESSION['peran_pengguna'] == 'Tamu') {
   header("Location: /errors/403.php");
   exit();
 }
@@ -32,9 +32,9 @@ $tgl); return $pecahkan[2] . " " . $bln[(int)$pecahkan[1]] . " " . $pecahkan[0];
       <div class="konten">
         <!-- Navbar -->
         <?php
-          if ($_COOKIE['user-type'] === 'Admin') {
+          if ($_SESSION['peran_pengguna'] === 'Admin') {
             require $_SERVER['DOCUMENT_ROOT'] . '/templates/admin-navbar.php';
-          } else if ($_COOKIE['user-type'] === 'User') {
+          } else if ($_SESSION['peran_pengguna'] === 'User') {
             require $_SERVER['DOCUMENT_ROOT'] . '/templates/user-navbar.php';
           }
         ?>

@@ -1,6 +1,6 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
-if (!isset($_COOKIE['user-type'])) {
+if (!isset($_SESSION['peran_pengguna'])) {
   header("HTTP/1.1 500");
   exit;
 }
@@ -19,8 +19,8 @@ if (!isset($_COOKIE['user-type'])) {
     <div class="container">
       <!-- Sidebar -->
       <?php
-      if (isset($_COOKIE['user-type'])) {
-        if ($_COOKIE['user-type'] !== 'Tamu') {
+      if (isset($_SESSION['peran_pengguna'])) {
+        if ($_SESSION['peran_pengguna'] !== 'Tamu') {
           require $_SERVER['DOCUMENT_ROOT'] . '/templates/sidebar.php';
         } else {
           require $_SERVER['DOCUMENT_ROOT'] . '/templates/guest-sidebar.php';
@@ -32,10 +32,10 @@ if (!isset($_COOKIE['user-type'])) {
       <div class="konten">
         <!-- Navbar -->
         <?php
-          if (isset($_COOKIE['user-type'])) {
-            if ($_COOKIE['user-type'] == 'Admin') {
+          if (isset($_SESSION['peran_pengguna'])) {
+            if ($_SESSION['peran_pengguna'] == 'Admin') {
               require $_SERVER['DOCUMENT_ROOT'] . '/templates/admin-navbar.php';
-            } else if ($_COOKIE['user-type'] == 'User'){
+            } else if ($_SESSION['peran_pengguna'] == 'User'){
               require $_SERVER['DOCUMENT_ROOT'] . '/templates/user-navbar.php';
             } else {
               require $_SERVER['DOCUMENT_ROOT'] . '/templates/guest-navbar.php';
@@ -48,7 +48,7 @@ if (!isset($_COOKIE['user-type'])) {
           <h1>500</h1>
           <h3>Internal Server Error</h3>
           <?php
-            if (isset($_COOKIE['user-type'])) {
+            if (isset($_SESSION['peran_pengguna'])) {
               echo '<p>Situs tidak dapat menangani permintaan saat untuk saat ini. Silahkan hubungi <a href="wa.me/6285217488289" target="_blank">Andhika Kurniawan</a></p>';
             } else {
               echo '<p>Situs tidak dapat menangani permintaan saat untuk saat ini. Silahkan hubungi <a href="wa.me/6285217488289" target="_blank">Andhika Kurniawan</a></p>';

@@ -1,8 +1,9 @@
 <?php
-if (isset($_GET["token"])) {
-  require $_SERVER['DOCUMENT_ROOT'] . '/functions/login-process.php';
-  verifToken(htmlspecialchars($_GET["token"]), $conn);
+if (isset($_GET["sandi"])) {
+  header ("Location: /functions/login-process.php?sandi=" . htmlspecialchars($_GET["sandi"]));
+  exit();
 }
+
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
 ?>
 <html lang="id">
@@ -19,7 +20,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
     <div class="container">
       <!-- Sidebar -->
       <?php
-        if ($_COOKIE['user-type'] !== "Tamu") {
+        if ($_SESSION['peran_pengguna'] !== "Tamu") {
           require $_SERVER['DOCUMENT_ROOT'] . '/templates/sidebar.php';
         } else {
           require $_SERVER['DOCUMENT_ROOT'] . '/templates/guest-sidebar.php';
@@ -30,8 +31,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
       <div class="konten">
         <!-- Navbar -->
         <?php
-          if ($_COOKIE['user-type'] !== "Tamu") {
-            if ($_COOKIE['user-type'] === 'Admin') {
+          if ($_SESSION['peran_pengguna'] !== "Tamu") {
+            if ($_SESSION['peran_pengguna'] === 'Admin') {
               require $_SERVER['DOCUMENT_ROOT'] . '/templates/admin-navbar.php';
             } else {
               require $_SERVER['DOCUMENT_ROOT'] . '/templates/user-navbar.php';

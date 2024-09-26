@@ -85,7 +85,7 @@
         </div>
       </a>
       <?php
-      if ($_COOKIE['user-type'] === "Admin") {
+      if ($_SESSION['peran_pengguna'] === "Admin") {
         ?>
           <div class="batas">
             <div class="garis-batas"></div>

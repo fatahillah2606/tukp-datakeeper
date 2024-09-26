@@ -29,7 +29,7 @@
   <div class="profile-menu">
     <span class="material-symbols-rounded close-pf-menu">close</span>
     <p class="user-id">
-      <?php echo (isset($_COOKIE['user-type'])) ? $_COOKIE['user-id'] : ''; ?>
+      <?php echo $_SESSION['email_pengguna']; ?>
     </p>
     <div class="user-image">
       <span class="material-symbols-rounded">person</span>
@@ -37,10 +37,10 @@
     <p class="nama">
       Halo,
       <span
-        ><?php echo (isset($_COOKIE['user-type'])) ? $_COOKIE['user-name'] : ''; ?></span
+        ><?php echo $_SESSION['nama_pengguna']; ?></span
       >
     </p>
-    <a href="#" class="akun" onclick="editUser('<?php echo $_COOKIE['user-id']; ?>', '<?php echo $_COOKIE['user-type']; ?>')">Kelola akun anda</a>
+    <a href="#" class="akun" onclick="editUser('<?php echo $_SESSION['email_pengguna']; ?>', '<?php echo $_SESSION['peran_pengguna']; ?>')">Kelola akun anda</a>
     <div class="multi-tombol">
       <a href="/pages/users/kelola-pengguna.php" class="kelola-pengguna">
         <div class="tombol">

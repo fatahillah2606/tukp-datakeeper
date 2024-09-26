@@ -1,6 +1,6 @@
 <?php
 // Cek apakah sudah login
-if (isset($_COOKIE['user-type'])) {
+if (isset($_COOKIE['login'])) {
   header("Location: /pages/dashboard.php");
   exit();
 }

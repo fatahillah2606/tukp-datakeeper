@@ -14,11 +14,11 @@
   <!-- Profile menu -->
   <div class="profile-menu">
     <span class="material-symbols-rounded close-pf-menu">close</span>
-    <p class="user-id"><?php echo (isset($_COOKIE['user-id'])) ? "UID: " . $_COOKIE['user-id'] : ''; ?></p>
+    <p class="user-id"><?php echo $_SESSION['nomor_id']; ?></p>
     <div class="user-image">
       <span class="material-symbols-rounded">person</span>
     </div>
-    <p class="nama">Halo, <span><?php echo (isset($_COOKIE['user-type'])) ? $_COOKIE['user-name'] : ''; ?></span></p>
+    <p class="nama">Halo, <span><?php echo $_SESSION['nama_pengguna']; ?></span></p>
     <a href="/pages/users/edit.html" class="akun">Kelola akun anda</a>
     <div class="multi-tombol">
       <a href="/logout.php">

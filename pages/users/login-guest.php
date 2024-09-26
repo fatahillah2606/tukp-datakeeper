@@ -1,6 +1,6 @@
 <?php
 // Cek apakah sudah login
-if (isset($_COOKIE['user-type'])) {
+if (isset($_COOKIE['login'])) {
   header("Location: /pages/dashboard.php");
   exit();
 }
@@ -32,10 +32,10 @@ if (isset($_COOKIE['user-type'])) {
           </div>
         </div>
         <div class="right-cont">
-          <form action="/functions/login-process.php" method="post" id="loginTamu">
+          <form action="/functions/login-process.php" method="get" id="loginTamu">
             <div class="input-field">
               <label for="token">Masukan token</label>
-              <input type="text" id="token" name="token" />
+              <input type="text" id="token" name="sandi" />
               <span class="material-symbols-rounded">error</span>
               <span class="supporting-text">Supporting text</span>
             </div>
@@ -47,7 +47,7 @@ if (isset($_COOKIE['user-type'])) {
         </div>
       </div>
       <div class="buttons">
-        <button type="submit" form="loginTamu" name="login-tamu">Login</button>
+        <button type="submit" form="loginTamu">Login</button>
       </div>
     </div>
     <script src="/assets/js/login.js"></script>

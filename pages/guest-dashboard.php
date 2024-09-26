@@ -1,13 +1,16 @@
 <?php
-if (isset($_COOKIE['user-type']) && $_COOKIE['user-type'] !== "Tamu") {
-  header ("Location: dashboard.php");
+
+if (isset($_GET['sandi'])) {
+  header ('Location: /functions/login-process.php?sandi=' . htmlspecialchars($_GET['sandi']));
   exit();
 }
-if (isset($_GET["token"])) {
-  require $_SERVER['DOCUMENT_ROOT'] . '/functions/login-process.php';
-  verifToken(htmlspecialchars($_GET["token"]), $conn);
-}
+
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
+
+if ($_SESSION['peran_pengguna'] !== 'Tamu') {
+  header ('Location: dashboard.php');
+  exit();
+}
 ?>
 <html lang="id">
   <head>
@@ -23,7 +26,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
     <div class="container">
       <!-- Sidebar -->
       <?php
-        if ($_COOKIE['user-type'] !== "Tamu") {
+        if ($_SESSION['peran_pengguna'] !== "Tamu") {
           require $_SERVER['DOCUMENT_ROOT'] . '/templates/sidebar.php';
         } else {
           require $_SERVER['DOCUMENT_ROOT'] . '/templates/guest-sidebar.php';
@@ -34,8 +37,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
       <div class="konten">
         <!-- Navbar -->
         <?php
-          if ($_COOKIE['user-type'] !== "Tamu") {
-            if ($_COOKIE['user-type'] === 'Admin') {
+          if ($_SESSION['peran_pengguna'] !== "Tamu") {
+            if ($_SESSION['peran_pengguna'] === 'Admin') {
               require $_SERVER['DOCUMENT_ROOT'] . '/templates/admin-navbar.php';
             } else {
               require $_SERVER['DOCUMENT_ROOT'] . '/templates/user-navbar.php';
@@ -56,7 +59,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
             </div>
             <div class="tombol">
               <!-- Pilihan awal -->
-              <div class="pilihan awal show">
+              <div class="pilihan awal show" style="flex-wrap: wrap;">
                 <a href="catat/catat-pengunjung.php">
                   <div class="tmbl">
                     <p>Catat Pengunjung</p>

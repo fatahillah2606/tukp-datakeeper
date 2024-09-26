@@ -1,6 +1,6 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
-if ($_COOKIE['user-type'] == "Tamu") {
+if ($_SESSION['peran_pengguna'] == "Tamu") {
   header ("Location: guest-dashboard.php");
   exit();
 }
@@ -24,9 +24,9 @@ if ($_COOKIE['user-type'] == "Tamu") {
       <div class="konten">
         <!-- Navbar -->
         <?php
-          if ($_COOKIE['user-type'] === 'Admin') {
+          if ($_SESSION['peran_pengguna'] === 'Admin') {
             require $_SERVER['DOCUMENT_ROOT'] . '/templates/admin-navbar.php';
-          } else if ($_COOKIE['user-type'] === 'User') {
+          } else if ($_SESSION['peran_pengguna'] === 'User') {
             require $_SERVER['DOCUMENT_ROOT'] . '/templates/user-navbar.php';
           }
         ?>
@@ -37,7 +37,7 @@ if ($_COOKIE['user-type'] == "Tamu") {
           <div class="header">
             <h1 class="nama">
               Selamat datang,
-              <?php echo (isset($_COOKIE['user-type'])) ? $_COOKIE['user-name'] : ''; ?>
+              <?php echo (isset($_SESSION['peran_pengguna'])) ? $_SESSION['nama_pengguna'] : ''; ?>
             </h1>
             <div class="kata-sambutan">
               <h1>Mau apa kamu hari ini?</h1>

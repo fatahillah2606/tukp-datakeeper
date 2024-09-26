@@ -1,6 +1,6 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
-if ($_COOKIE['user-type'] !== 'Admin') {
+if ($_SESSION['peran_pengguna'] !== 'Admin') {
   header("Location: /errors/403.php");
   exit();
 }
