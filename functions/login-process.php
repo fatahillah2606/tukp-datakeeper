@@ -11,13 +11,15 @@ if (isset($_POST["PenggunaBiasa"]) || isset($_POST["PenggunaAdmin"])) {
   // Cek siapa yang login
   if (isset($_POST["PenggunaAdmin"])) {
     $sql = "SELECT id, id_user, email_user, nama_user, role, password FROM pengguna WHERE email_user = ? AND role = 'Admin'";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $akun);
   } else if (isset($_POST["PenggunaBiasa"])) {
     $sql = "SELECT id, id_user, email_user, nama_user, role, password FROM pengguna WHERE id_user = ? AND role = 'User'";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $akun);
   }
 
   // Verifikasi
-  $stmt = $conn->prepare($sql);
-  $stmt->bind_param("i", $akun);
   $stmt->execute();
   $stmt->bind_result($id, $nomorId, $emailPengguna, $namaPengguna, $peranPengguna, $passwd);
   $stmt->fetch();
