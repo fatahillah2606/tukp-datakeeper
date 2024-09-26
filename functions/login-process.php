@@ -77,8 +77,9 @@ if (isset($_GET["sandi"])) {
   $stmt->fetch();
 
   if ($passwd && password_verify($sandi, $passwd)) {
-    
     // jika berhasil, buat sesi dan cookie
+    session_start();
+    
     $_SESSION["user_id"] = $id;
     $_SESSION["nomor_id"] = $nomorId;
     $_SESSION["email_pengguna"] = $emailPengguna;
