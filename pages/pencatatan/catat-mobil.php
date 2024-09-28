@@ -26,7 +26,7 @@
             <h3 class="text-center mb-4">Catat Mobil</h3>
             <form>
               <div class="mb-3">
-                <label for="namapembawa" class="form-label">Driver</label>
+                <label for="driver" class="form-label">Driver</label>
                 <div class="d-flex align-items-center gap-1">
                   <span class="material-symbols-outlined"> person </span>
                   <input
@@ -38,7 +38,7 @@
                 </div>
               </div>
               <div class="mb-3">
-                <label for="namabarang" class="form-label">Merk Mobil</label>
+                <label for="merekmobil" class="form-label">Merek Mobil</label>
                 <div class="d-flex align-items-center gap-1">
                   <span class="material-symbols-outlined">
                     directions_car
@@ -46,25 +46,42 @@
                   <input
                     type="text"
                     class="form-control"
-                    id="merkmobil"
-                    placeholder="Masukan Merk Mobil"
+                    id="merekmobil"
+                    placeholder="Masukan Merek Mobil"
                   />
                 </div>
               </div>
-              <div class="mb-3">
-                <label for="kilometer" class="form-label">Kilometer</label>
-                <div class="d-flex align-items-center gap-1">
-                  <span class="material-symbols-outlined"> speed </span>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="Kilometer"
-                    placeholder="Masukan Kilometer Awal"
-                  />
+              <div class="d-flex gap-2">
+                <div class="mb-3 w-100">
+                  <label for="kilometerawal" class="form-label"
+                    >Kilometer Awal</label
+                  >
+                  <div class="d-flex align-items-center gap-1">
+                    <span class="material-symbols-outlined"> speed </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="kilometerawal"
+                      placeholder="KM Awal"
+                    />
+                  </div>
+                </div>
+                <div class="mb-3 w-100">
+                  <label for="kilometerakhir" class="form-label"
+                    >Kilometer Akhir</label
+                  >
+                  <div class="d-flex align-items-center gap-1">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="kilometerakhir"
+                      placeholder="KM Akhir"
+                    />
+                  </div>
                 </div>
               </div>
               <div class="mb-3">
-                <label for="notelpon" class="form-label">Tujuan</label>
+                <label for="tujuan" class="form-label">Tujuan</label>
                 <div class="d-flex align-items-center gap-1">
                   <span class="material-symbols-outlined"> location_on </span>
                   <input
@@ -76,7 +93,7 @@
                 </div>
               </div>
               <div class="mb-3">
-                <label for="notelpon" class="form-label">Keperluan</label>
+                <label for="keperluan" class="form-label">Keperluan</label>
                 <div class="d-flex align-items-center gap-1">
                   <span class="material-symbols-outlined"> task_alt </span>
                   <input

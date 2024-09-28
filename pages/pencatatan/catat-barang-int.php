@@ -67,7 +67,7 @@
                 </div>
               </div>
               <div class="mb-3">
-                <label for="notelpon" class="form-label">Keterangan</label>
+                <label for="keterangan" class="form-label">Keterangan</label>
                 <div class="d-flex align-items-center gap-1">
                   <span class="material-symbols-outlined"> description </span>
                   <input

@@ -25,22 +25,49 @@
           <div class="card p-4">
             <h3 class="text-center mb-4">Catat Barang External</h3>
             <form>
+              <div class="d-flex gap-2">
+                <div class="mb-3 w-100">
+                  <label for="namadriver" class="form-label">Nama Driver</label>
+                  <div class="d-flex align-items-center gap-1">
+                    <span class="material-symbols-outlined"> person </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="namadriver"
+                      placeholder="Nama Driver"
+                    />
+                  </div>
+                </div>
+                <div class="mb-3 w-100">
+                  <label for="namasuplier" class="form-label"
+                    >Nama Supplier</label
+                  >
+                  <div class="d-flex align-items-center gap-1">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="namasuplier"
+                      placeholder="Nama Supplier"
+                    />
+                  </div>
+                </div>
+              </div>
               <div class="mb-3">
-                <label for="namapembawa" class="form-label"
-                  >Nama Supplier</label
-                >
+                <label for="platnomor" class="form-label">Plat Nomor</label>
                 <div class="d-flex align-items-center gap-1">
-                  <span class="material-symbols-outlined"> person </span>
+                  <span class="material-symbols-outlined">
+                    local_shipping
+                  </span>
                   <input
                     type="text"
                     class="form-control"
-                    id="namasuplier"
-                    placeholder="Masukan Nama Supplier"
+                    id="platnomor"
+                    placeholder="Plat Nomor"
                   />
                 </div>
               </div>
               <div class="mb-3">
-                <label for="notelpon" class="form-label">Keperluan</label>
+                <label for="keperluan" class="form-label">Keperluan</label>
                 <div class="d-flex align-items-center gap-1">
                   <span class="material-symbols-outlined"> task_alt </span>
                   <input
@@ -51,16 +78,31 @@
                   />
                 </div>
               </div>
-              <div class="mb-3">
-                <label for="namabarang" class="form-label">Nama Barang</label>
-                <div class="d-flex align-items-center gap-1">
-                  <span class="material-symbols-outlined"> category </span>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="namabarang"
-                    placeholder="Masukan Nama Barang"
-                  />
+              <div class="d-flex gap-2">
+                <div class="mb-3 w-100">
+                  <label for="namabarang" class="form-label">Nama Barang</label>
+                  <div class="d-flex align-items-center gap-1">
+                    <span class="material-symbols-outlined"> category </span>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="namabarang"
+                      placeholder="Nama Barang"
+                    />
+                  </div>
+                </div>
+                <div class="mb-3 w-100">
+                  <label for="jumlahbarang" class="form-label"
+                    >Jumlah Barang</label
+                  >
+                  <div class="d-flex align-items-center gap-1">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="jumlahbarang"
+                      placeholder="Jumlah Barang"
+                    />
+                  </div>
                 </div>
               </div>
               <button type="button" class="btn btn-outline-dark mb-3">
@@ -81,7 +123,7 @@
                 </div>
               </div>
               <div class="mb-3">
-                <label for="tanggalkunjungan" class="form-label"
+                <label for="jamkedatangan" class="form-label"
                   >Jam Kedatangan</label
                 >
                 <div class="d-flex align-items-center gap-1">
@@ -90,7 +132,7 @@
                 </div>
               </div>
               <div class="mb-3">
-                <label for="notelpon" class="form-label">Keterangan</label>
+                <label for="keterangan" class="form-label">Keterangan</label>
                 <div class="d-flex align-items-center gap-1">
                   <span class="material-symbols-outlined"> description </span>
                   <input
