@@ -52,9 +52,7 @@
                 </div>
               </div>
               <div class="mb-3">
-                <label for="tanggalkunjungan" class="form-label"
-                  >Kilometer</label
-                >
+                <label for="kilometer" class="form-label">Kilometer</label>
                 <div class="d-flex align-items-center gap-1">
                   <span class="material-symbols-outlined"> speed </span>
                   <input
@@ -66,7 +64,7 @@
                 </div>
               </div>
               <div class="mb-3">
-                <label for="notelpon" class="form-label">tujuan</label>
+                <label for="notelpon" class="form-label">Tujuan</label>
                 <div class="d-flex align-items-center gap-1">
                   <span class="material-symbols-outlined"> location_on </span>
                   <input
