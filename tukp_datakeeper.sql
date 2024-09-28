@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 22, 2024 at 11:47 AM
+-- Generation Time: Sep 28, 2024 at 04:37 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -101,7 +101,7 @@ CREATE TABLE `pengguna` (
   `id_user` int(11) DEFAULT NULL,
   `email_user` varchar(255) DEFAULT NULL,
   `nama_user` varchar(255) NOT NULL,
-  `role` varchar(255) NOT NULL,
+  `role` enum('Admin','User','Tamu') NOT NULL,
   `password` varchar(255) NOT NULL,
   `token_login` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -111,7 +111,9 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id`, `id_user`, `email_user`, `nama_user`, `role`, `password`, `token_login`) VALUES
-(2, NULL, 'andika@admin', 'Andika', 'Admin', '$2y$10$dwPoxT2i95z/PsBxKaf.teQEi9r4eQcUswspqjdgAY4Gt4MwrVvwu', NULL);
+(2, NULL, 'andika@admin', 'Andika', 'Admin', '$2y$10$Rq1XpfSihvZ4ZnWpJiASHO8XkHxNCsiEYy2FIVsNFgTLgNk8.DNyW', NULL),
+(6, NULL, 'mei@raiden', 'Raiden Mei', 'Admin', '$2y$10$77RdRcSgvQ5jyTRI9y0UMuwH5qrbymOUvFrx0nDLvEH.wUNt582XC', '$2y$10$fEFPi/Y2ywZLTT7A/W.eKealLUXuF95dyloLK.E5.sDK5bZqjEf7e'),
+(9, NULL, NULL, 'Tamu', 'Tamu', '$2y$10$LX7LImtD3NMs9rwAncE8r.7Wu7ejY/LHrcuP3RqsOTTpros34iY5S', '$2y$10$TA4Xk0ybs0awOuuDB.impOKB0/N3iRaKvrvpe.wTir7xqI3tTGy6m');
 
 -- --------------------------------------------------------
 
@@ -221,7 +223,7 @@ ALTER TABLE `data_pengunjung`
 -- AUTO_INCREMENT for table `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `pengumuman`
