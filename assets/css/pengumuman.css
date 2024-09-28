@@ -63,10 +63,12 @@
   padding: 20px;
 }
 .konten-pengumuman .list-pengumuman h2 {
+  word-wrap: break-word;
   font-weight: 400;
 }
 .konten-pengumuman .list-pengumuman p {
   margin: 20px 0;
+  word-wrap: break-word;
 }
 .konten-pengumuman .list-pengumuman h2,
 .konten-pengumuman .list-pengumuman p {

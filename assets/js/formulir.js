@@ -4,7 +4,7 @@ function focusAnimation() {
     ".formulir .form-field input:not([type='date']), .formulir .form-field select"
   );
   let allInputField = document.querySelectorAll(
-    ".formulir .form-field input:not(#no-tlp), .formulir .form-field select"
+    ".formulir .form-field input:not(#first-pass):not(#final-pass), .formulir .form-field select"
   );
 
   inputField.forEach((e) => {

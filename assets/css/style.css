@@ -171,7 +171,7 @@ body {
   height: auto;
   display: flex;
   margin: auto;
-  /* justify-content: center; */
+  overflow: hidden;
   background-color: #ecf3e7;
   padding: 20px;
   border-radius: 10px;
@@ -182,6 +182,7 @@ body {
 }
 .pengumuman .pesan {
   display: block;
+  overflow: hidden;
 }
 .pengumuman .pesan * {
   color: #3a693a;
@@ -189,6 +190,10 @@ body {
 .pengumuman .pesan h2 {
   margin-bottom: 10px;
   font-weight: 400;
+  word-wrap: break-word;
+}
+.pengumuman .pesan p {
+  word-wrap: break-word;
 }
 
 /* Tabel */

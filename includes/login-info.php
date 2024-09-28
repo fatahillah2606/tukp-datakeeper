@@ -27,6 +27,8 @@ if (!isset($_SESSION["user_id"]) && isset($_COOKIE["login"])) {
   } else {
     // jika token tidak valid, maka hapus cookie
     setcookie("login", "", time() - 3600, "/");
+    header("Location: /");
+    exit();
   }
 
 // Jika belum

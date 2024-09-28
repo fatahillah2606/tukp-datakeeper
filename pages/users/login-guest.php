@@ -51,5 +51,11 @@ if (isset($_COOKIE['login'])) {
       </div>
     </div>
     <script src="/assets/js/login.js"></script>
+    <?php
+    // Jika token/password salah
+    if (isset($_GET["sandi"]) && $_GET["sandi"] == 'false') {
+      echo "<script>tampilkanError(document.querySelector('.input-field'), 'Token salah, coba lagi');</script>";
+    }
+    ?>
   </body>
 </html>

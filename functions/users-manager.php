@@ -95,11 +95,11 @@ if (isset($_POST["TambahUser"])) {
     $stmt = "";
 
     if ($idUser === "") {
-      $sql = "INSERT INTO pengguna (`id`, `id_user`, `email_user`, `nama_user`, `role`, `password`) VALUES (null, null, ?, ?, ?, ?)";
+      $sql = "INSERT INTO pengguna (`id`, `id_user`, `email_user`, `nama_user`, `role`, `password`, `token_login`) VALUES (null, null, ?, ?, ?, ?, null)";
       $stmt = $conn->prepare($sql);
       $stmt->bind_param("ssss", $emailUser, $namaUser, $tipeUser, $sandiUser);
     } else if ($emailUser === "") {
-      $sql = "INSERT INTO pengguna (`id`, `id_user`, `email_user`, `nama_user`, `role`, `password`) VALUES (null, ?, null, ?, ?, ?)";
+      $sql = "INSERT INTO pengguna (`id`, `id_user`, `email_user`, `nama_user`, `role`, `password`, `token_login`) VALUES (null, ?, null, ?, ?, ?, null)";
       $stmt = $conn->prepare($sql);
       $stmt->bind_param("isss", $idUser, $namaUser, $tipeUser, $sandiUser);
     }
@@ -158,7 +158,7 @@ if (isset($_POST["updatePass"])) {
   } else {
     $stmt->close();
     $hashSandiBaru = password_hash($sandiBaru, PASSWORD_BCRYPT);
-    $sql = "UPDATE pengguna SET password = ? WHERE id = ?";
+    $sql = "UPDATE pengguna SET password = ?, token_login = null WHERE id = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("si", $hashSandiBaru, $akun);
     if ($stmt->execute()) {
@@ -271,6 +271,7 @@ if (isset($_POST["GetUserData"])) {
 ?>
 
 <?php
+// Edit user
 if (isset($_POST["EditUser"])) {
   require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
 
@@ -302,7 +303,7 @@ if (isset($_POST["EditUser"])) {
       $stmt->close();
 
       $hashPassUser = password_hash($passUser, PASSWORD_BCRYPT);
-      $sql = "UPDATE pengguna SET id_user = ?, email_user = ?, nama_user = ?, role = ?, password = ? WHERE id = ?";
+      $sql = "UPDATE pengguna SET id_user = ?, email_user = ?, nama_user = ?, role = ?, password = ?, token_login = null WHERE id = ?";
       $stmt = $conn->prepare($sql);
       $stmt->bind_param("issssi", $idUser, $emailUser, $userName, $userRole, $hashPassUser, $id);
 
