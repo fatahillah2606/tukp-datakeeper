@@ -4,7 +4,7 @@ function focusAnimation() {
     ".formulir .form-field input:not([type='date']), .formulir .form-field select"
   );
   let allInputField = document.querySelectorAll(
-    ".formulir .form-field input:not(#first-pass):not(#final-pass), .formulir .form-field select"
+    ".formulir .form-field input:not(#first-pass):not(#final-pass):not([name='no-tlp']):not([name='no-kendaraan']), .formulir .form-field select"
   );
 
   inputField.forEach((e) => {
@@ -37,13 +37,40 @@ function focusAnimation() {
 }
 focusAnimation();
 
+// Cek no tlp
+let formNomorTelepon = document.getElementById("no-tlp");
+if (formNomorTelepon) {
+  formNomorTelepon.addEventListener("keyup", () => {
+    if (formNomorTelepon.value.length > 13) {
+      tampilkanError(
+        formNomorTelepon.parentElement,
+        "Tidak melebihi 13 karakter"
+      );
+    } else {
+      hapusError(formNomorTelepon.parentElement);
+    }
+  });
+}
+
+// Cek nomor kendaraan
+let formNomorKendaraan = document.getElementById("no-kendaraan");
+if (formNomorKendaraan) {
+  formNomorKendaraan.addEventListener("keyup", () => {
+    if (formNomorKendaraan.value.length > 12) {
+      tampilkanError(
+        formNomorKendaraan.parentElement,
+        "Tidak melebihi 12 karakter"
+      );
+    } else {
+      hapusError(formNomorKendaraan.parentElement);
+    }
+  });
+}
+
 // Generate single Element
 let singleField = 1;
 function tambahSingleField(judulField, nama, tipe, idBungkus, labelIcon) {
   let singleFieldCont = document.getElementById(idBungkus);
-  // Buat judul field menggunakan h2
-  // const judul = document.createElement("h2");
-  // judul.innerText = judulField;
   // pisahkan isi parameter
   let x = nama.toLowerCase().split(" ");
   let namaField = x[0] + "-" + x[1];
@@ -95,9 +122,6 @@ function tambahSingleField(judulField, nama, tipe, idBungkus, labelIcon) {
   // masukan tombol hapus dan icon field
   formField.appendChild(hapusField);
   formField.appendChild(fieldIcon);
-
-  // Masukan judul
-  // singleFieldCont.appendChild(judul);
 
   singleFieldCont.appendChild(formField);
   focusAnimation();

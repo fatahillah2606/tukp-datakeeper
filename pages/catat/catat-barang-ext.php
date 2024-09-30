@@ -159,18 +159,6 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
     <script src="/assets/js/navmenu.js"></script>
     <script src="/assets/js/formulir.js"></script>
     <script type="text/javascript">
-      let nomorKendaraan = document.getElementById("no-kendaraan");
-      nomorKendaraan.addEventListener("keyup", () => {
-        if (nomorKendaraan.value.length > 12) {
-          tampilkanError(
-            nomorKendaraan.parentElement,
-            "Tidak melebihi 12 karakter"
-          );
-        } else {
-          hapusError(nomorKendaraan.parentElement);
-        }
-      });
-
       function simpanBarangExt(formulir, event) {
         event.preventDefault();
 
