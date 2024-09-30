@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<?php
+  require $_SERVER["DOCUMENT_ROOT"] . "/includes/cek-login.php";
+?>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />

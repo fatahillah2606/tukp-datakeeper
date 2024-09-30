@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<?php
+  if (isset($_COOKIE["ingat_saya"])) {
+    header("Location: /pages/dashboard.php");
+    exit();
+  }
+?>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
