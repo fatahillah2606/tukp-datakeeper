@@ -55,3 +55,17 @@ body {
 .table-container {
   margin-top: 20px;
 }
+input {
+  position: relative;
+}
+input::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 95%;
+  height: 5px;
+  border-radius: 0 0 5px 5px;
+  background-color: #158c4c;
+}

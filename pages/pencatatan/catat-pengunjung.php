@@ -17,15 +17,16 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
     />
+
   </head>
-  <body class="bg-success">
+  <body class="bg-body">
     <div class="container">
       <div class="row justify-content-center mt-5">
         <div class="col-md-6">
-          <div class="card p-4">
+          <div class="card p-4 formulir">
             <h3 class="text-center mb-4">Catat Pengunjung</h3>
             <form>
-              <div class="mb-3">
+              <div class="mb-3 >
                 <label for="namapengunjung" class="form-label"
                   >Nama Pengunjung</label
                 >
@@ -33,7 +34,7 @@
                   <span class="material-symbols-outlined"> person </span>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control bg-secondary-subtle border-success shadow-sm"
                     id="namapengunjung"
                     placeholder="Masukan Nama Pengunjung"
                   />
@@ -50,9 +51,10 @@
                   <span class="material-symbols-outlined"> domain </span>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control bg-secondary-subtle"
                     id="namaperusahaan"
-                    placeholder="Masukan Nama Perusahaan"
+                    placeholder="Masukan Nama Perusahaan "
+                    
                   />
                 </div>
               </div>
@@ -64,7 +66,7 @@
                   </span>
                   <input
                     type="date"
-                    class="form-control"
+                    class="form-control bg-secondary-subtle"
                     id="tanggalkunjungan"
                     placeholder="Masukan Tanggal"
                   />
@@ -76,7 +78,7 @@
                   <span class="material-symbols-outlined"> call </span>
                   <input
                     type="text"
-                    class="form-control"
+                    class="form-control bg-secondary-subtle"
                     id="notelpon"
                     placeholder="Masukan No Telpon"
                   />

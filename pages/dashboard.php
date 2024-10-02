@@ -72,24 +72,33 @@
                     <li class="nav-item">
                       <a
                         class="nav-link"
-                        href="#"
+                        href="pencatatan/catat-pengunjung.php"
                         ><i class="bi bi-person-check"></i> Catat Pengunjung</a
                       >
                     </li>
+                    
                     <li class="nav-item">
                       <a
                         class="nav-link"
-                        href="#"
-                        ><i class="bi bi-box"></i> Catat Barang</a
-                      >
-                    </li>
-                    <li class="nav-item">
-                      <a
-                        class="nav-link"
-                        href="#"
+                        href="pencatatan/catat-mobil.php"
                         ><i class="bi bi-truck"></i> Catat Mobil</a
                       >
                     </li>
+                    <li class="nav-item">
+                      <a
+                        class="nav-link"
+                        href="pencatatan/catat-barang-int.php"
+                        ><i class="bi bi-box"></i> Catat barang-int</a
+                      >
+                    </li>
+                    <li class="nav-item">
+                      <a
+                        class="nav-link"
+                        href="pencatatan/catat-barang-ext.php"
+                        ><i class="bi bi-box"></i> Catat Barang-ext.php</a
+                      >
+                    </li>
+
                   </ul>
                 </div>
               </li>
