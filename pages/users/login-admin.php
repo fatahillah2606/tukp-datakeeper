@@ -9,7 +9,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>login andika</title>
-    <link rel="stylesheet" href="assets/css/login.css" />
+    <link rel="stylesheet" href="/assets/css/login.css" />
     <link
       rel="stylesheet"
       href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -21,7 +21,7 @@
       <div class="konten-kiri">
         <div class="logo">
           <img
-            src="assets/images/logo.svg"
+            src="/assets/images/logo.svg"
             alt=""
             class="bg-light rounded-circle p-1"
           />
@@ -47,15 +47,15 @@
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
-              Pengguna Biasa
+              Admin
             </a>
 
             <ul class="dropdown-menu">
               <li>
-                <a class="dropdown-item" href="#">Pengguna biasa</a>
+                <a class="dropdown-item" href="/">Pengguna biasa</a>
               </li>
               <li>
-                <a class="dropdown-item" href="/pages/users/login-admin.php">Admin</a>
+                <a class="dropdown-item" href="#">Admin</a>
               </li>
               <li>
                 <a class="dropdown-item" href="#">Tamu</a>
@@ -64,13 +64,13 @@
           </div>
           <div class="form-floating mb-3">
             <input
-              type="number"
+              type="email"
               class="form-control"
-              id="userid"
-              placeholder="no.id"
+              id="email"
+              placeholder="email"
               required
             />
-            <label for="userid" class="form-label">Nomor Id</label>
+            <label for="email" class="form-label">Email</label>
           </div>
           <div class="form-floating">
             <input
@@ -118,7 +118,7 @@
       let masukUser = document.getElementById("masukuser");
       masukUser.addEventListener("click", function (event) {
         event.preventDefault();
-        let userid = document.getElementById("userid").value;
+        let email = document.getElementById("email").value;
         let userpswd = document.getElementById("userpassword").value;
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "/functions/proses-login.php", true);
@@ -137,8 +137,8 @@
           }
         };
         xhr.send(
-          "LoginUser=true&userid=" +
-            encodeURIComponent(userid) +
+          "LoginAdmin=true&email=" +
+            encodeURIComponent(email) +
             "&password=" +
             encodeURIComponent(userpswd)
         );
