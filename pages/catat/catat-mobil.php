@@ -41,7 +41,12 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
             >
               <div class="form-field">
                 <label for="nama-driver">Nama Driver</label>
-                <input type="text" id="nama-driver" name="nama-driver" required />
+                <input
+                  type="text"
+                  id="nama-driver"
+                  name="nama-driver"
+                  required
+                />
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon">person</span>
@@ -63,9 +68,27 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
               </div>
               <div class="form-field none">
                 <label for="merek-lain">Merek Lain</label>
-                <input type="text" id="merek-lain" name="merek-lain" disabled required />
+                <input
+                  type="text"
+                  id="merek-lain"
+                  name="merek-lain"
+                  disabled
+                  required
+                />
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
+              </div>
+              <div class="form-field">
+                <label for="no-kendaraan">Nomor Kendaraan</label>
+                <input
+                  type="text"
+                  id="no-kendaraan"
+                  name="no-kendaraan"
+                  required
+                />
+                <span class="material-symbols-rounded field-error">error</span>
+                <span class="supporting-text">Supporting text</span>
+                <span class="material-symbols-rounded field-icon">pin</span>
               </div>
               <h2>Kilometer</h2>
               <div class="multi-field">
@@ -159,6 +182,7 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
           let namaDriver = formulir.querySelector("#nama-driver").value;
           let merekKendaraan = formulir.querySelector("#merek-kendaraan").value;
           let merekLain = formulir.querySelector("#merek-lain").value;
+          let noKendaraan = formulir.querySelector("#no-kendaraan").value;
           let awalKm = formulir.querySelector("#awal-km").value;
           let akhirKm = formulir.querySelector("#akhir-km").value;
           let tujuan = formulir.querySelector("#tujuan").value;
@@ -201,6 +225,8 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
               encodeURIComponent(merekKendaraan) +
               "&MerekLain=" +
               encodeURIComponent(merekLain) +
+              "&NoKendaraan=" +
+              encodeURIComponent(noKendaraan) +
               "&AwalKm=" +
               encodeURIComponent(awalKm) +
               "&AkhirKm=" +

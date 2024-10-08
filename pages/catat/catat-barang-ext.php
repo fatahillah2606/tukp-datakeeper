@@ -124,7 +124,7 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon"
-                  >local_shipping</span
+                  >pin</span
                 >
               </div>
 

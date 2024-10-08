@@ -35,9 +35,26 @@
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">factory</span>
       </div>
+      <div class="form-field">
+        <label for="no-kendaraan-pengunjung">Nomor Kendaraan</label>
+        <input
+          type="text"
+          id="no-kendaraan-pengunjung"
+          name="no-kendaraan-pengunjung"
+          required
+        />
+        <span class="material-symbols-rounded field-error">error</span>
+        <span class="supporting-text">Supporting text</span>
+        <span class="material-symbols-rounded field-icon">pin</span>
+      </div>
       <div class="form-field fokus">
         <label for="tanggal-kunjung">Tanggal</label>
-        <input type="date" id="tanggal-kunjung" name="tanggal-kunjung" required />
+        <input
+          type="date"
+          id="tanggal-kunjung"
+          name="tanggal-kunjung"
+          required
+        />
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">event</span>
       </div>

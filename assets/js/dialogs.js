@@ -32,6 +32,7 @@ function ubahPengunjung(formulir, event, idData) {
     // ambil data dari form
     let namaPengunjung;
     let namaPerusahaan = formulir.querySelector("#nama-perusahaan").value;
+    let noKendaraan = formulir.querySelector("#no-kendaraan-pengunjung").value;
     let tanggal = formulir.querySelector("#tanggal-kunjung").value;
     let nomorTlp = formulir.querySelector("#no-tlp").value;
 
@@ -83,6 +84,8 @@ function ubahPengunjung(formulir, event, idData) {
         namaPengunjung +
         "NamaPerusahaan=" +
         encodeURIComponent(namaPerusahaan) +
+        "&NoKendaraan=" +
+        encodeURIComponent(noKendaraan) +
         "&tanggal=" +
         encodeURIComponent(tanggal) +
         "&NomorTlp=" +
@@ -331,6 +334,7 @@ function ubahMobil(formulir, event, idData) {
     let namaDriver = formulir.querySelector("#nama-driver-mobil").value;
     let merekKendaraan = formulir.querySelector("#merek-kendaraan").value;
     let merekLain = formulir.querySelector("#merek-lain").value;
+    let noKendaraan = formulir.querySelector("#no-kendaraan-mobil").value;
     let awalKm = formulir.querySelector("#awal-km").value;
     let akhirKm = formulir.querySelector("#akhir-km").value;
     let tujuan = formulir.querySelector("#tujuan").value;
@@ -373,6 +377,8 @@ function ubahMobil(formulir, event, idData) {
         encodeURIComponent(merekKendaraan) +
         "&MerekLain=" +
         encodeURIComponent(merekLain) +
+        "&NoKendaraan=" +
+        encodeURIComponent(noKendaraan) +
         "&AwalKm=" +
         encodeURIComponent(awalKm) +
         "&AkhirKm=" +
@@ -447,6 +453,11 @@ function editPengunjung(elm, idData) {
   // Nama perusahaan
   editModal.querySelector(".formulir .form-field #nama-perusahaan").value =
     barisData.querySelector("td.nama-perusahaan p").innerText;
+
+  // Nomor kendaraan
+  editModal.querySelector(
+    ".formulir .form-field #no-kendaraan-pengunjung"
+  ).value = barisData.querySelector("td.no-kendaraan p").innerText;
 
   // Tanggal
   editModal.querySelector(".formulir .form-field #tanggal-kunjung").value =
@@ -657,6 +668,10 @@ function editMobil(elm, idData) {
     editModal.querySelector(".formulir .form-field #merek-lain").value =
       merekData;
   }
+
+  // Nomor kendaraan
+  editModal.querySelector(".formulir .form-field #no-kendaraan-mobil").value =
+    barisData.querySelector("td.no-kendaraan p").innerText;
 
   //Awal KM
   editModal.querySelector(".formulir .form-field #awal-km").value =

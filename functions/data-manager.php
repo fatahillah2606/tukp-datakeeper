@@ -28,6 +28,7 @@ if (isset($_POST["DataPengunjung"])) {
   // Ambil data dari input pengguna
   $namaPengunjung = '';
   $namaPerusahaan = htmlspecialchars($_POST["NamaPerusahaan"]);
+  $noKendaraan = htmlspecialchars($_POST["NoKendaraan"]);
   $tanggal = htmlspecialchars($_POST["tanggal"]);
   $noTlp = htmlspecialchars($_POST["NomorTlp"]);
 
@@ -44,9 +45,9 @@ if (isset($_POST["DataPengunjung"])) {
   // Simpan
   if (isset($_POST["simpan"])) {
     // masukan ke database
-    $sql = "INSERT INTO data_pengunjung (`id`, `nama_pengunjung`,	`nama_perusahaan`,	`tanggal`,	`no_telpon`) VALUES (null, ?, ?, ?, ?);";
+    $sql = "INSERT INTO data_pengunjung (`id`, `nama_pengunjung`,	`nama_perusahaan`,	`no_kendaraan`, `tanggal`,	`no_telpon`) VALUES (null, ?, ?, ?, ?, ?);";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssss", $namaPengunjung, $namaPerusahaan, $tanggal, $noTlp);
+    $stmt->bind_param("sssss", $namaPengunjung, $namaPerusahaan, $noKendaraan, $tanggal, $noTlp);
     if ($stmt->execute()) {
       // Kembalikan info berupa JSON
       echo json_encode(["status" => "success", "pesan" => "Data tersimpan", "atxt" => "Lihat", "alnk" => "/pages/lihat/lihat-pengunjung.php"]);
@@ -62,9 +63,9 @@ if (isset($_POST["DataPengunjung"])) {
   if (isset($_POST["ubah"])) {
     $idData = htmlspecialchars($_POST["IdData"]);
     // masukan ke database
-    $sql = "UPDATE data_pengunjung SET `nama_pengunjung` = ?, `nama_perusahaan` = ?, `tanggal` = ?, `no_telpon` = ? WHERE `id` = ?;";
+    $sql = "UPDATE data_pengunjung SET `nama_pengunjung` = ?, `nama_perusahaan` = ?, `no_kendaraan` = ?, `tanggal` = ?, `no_telpon` = ? WHERE `id` = ?;";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssssi", $namaPengunjung, $namaPerusahaan, $tanggal, $noTlp, $idData);
+    $stmt->bind_param("sssssi", $namaPengunjung, $namaPerusahaan, $noKendaraan, $tanggal, $noTlp, $idData);
     if ($stmt->execute()) {
       // Kembalikan info berupa JSON
       echo json_encode(["status" => "success", "pesan" => "Data diubah", "atxt" => "Lihat", "alnk" => "/pages/lihat/lihat-pengunjung.php"]);
@@ -230,6 +231,7 @@ if (isset($_POST["DataMobil"])) {
   // Dapatkan semua field
   $namaDriver = htmlspecialchars($_POST["NamaDriver"]);
   $merek = '';
+  $noKendaraan = htmlspecialchars($_POST["NoKendaraan"]);
   $awalKm = htmlspecialchars($_POST["AwalKm"]);
   $akhirKm = htmlspecialchars($_POST["AkhirKm"]);
   $tujuan = htmlspecialchars($_POST["tujuan"]);
@@ -245,9 +247,9 @@ if (isset($_POST["DataMobil"])) {
   // simpan
   if (isset($_POST["simpan"])) {
     // masukan ke database
-    $sql = "INSERT INTO data_mobil (`id`, `nama_driver`, `merek_kendaraan`,	`km_awal`, `km_akhir`, `tujuan`, `keperluan`) VALUES (null, ?, ?, ?, ?, ?, ?);";
+    $sql = "INSERT INTO data_mobil (`id`, `nama_driver`, `merek_kendaraan`, `no_kendaraan`,	`km_awal`, `km_akhir`, `tujuan`, `keperluan`) VALUES (null, ?, ?, ?, ?, ?, ?, ?);";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssiiss", $namaDriver, $merek, $awalKm, $akhirKm, $tujuan, $keperluan);
+    $stmt->bind_param("sssiiss", $namaDriver, $merek, $noKendaraan, $awalKm, $akhirKm, $tujuan, $keperluan);
     if ($stmt->execute()) {
       // Kembalikan info berupa JSON
       echo json_encode(["status" => "success", "pesan" => "Data tersimpan", "atxt" => "Lihat", "alnk" => "/pages/lihat/lihat-mobil.php"]);
@@ -261,9 +263,9 @@ if (isset($_POST["DataMobil"])) {
   if (isset($_POST["ubah"])) {
     $idData = htmlspecialchars($_POST["IdData"]);
     // masukan ke database
-    $sql = "UPDATE data_mobil SET `nama_driver` = ?, `merek_kendaraan` = ?,	`km_awal` = ?, `km_akhir` = ?, `tujuan` = ?, `keperluan` = ? WHERE `id` = ?;";
+    $sql = "UPDATE data_mobil SET `nama_driver` = ?, `merek_kendaraan` = ?, `no_kendaraan` = ?,	`km_awal` = ?, `km_akhir` = ?, `tujuan` = ?, `keperluan` = ? WHERE `id` = ?;";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("ssiissi", $namaDriver, $merek, $awalKm, $akhirKm, $tujuan, $keperluan, $idData);
+    $stmt->bind_param("sssiissi", $namaDriver, $merek, $noKendaraan, $awalKm, $akhirKm, $tujuan, $keperluan, $idData);
     if ($stmt->execute()) {
       // Kembalikan info berupa JSON
       echo json_encode(["status" => "success", "pesan" => "Data diubah", "atxt" => "Lihat", "alnk" => "/pages/lihat/lihat-mobil.php"]);
@@ -297,6 +299,7 @@ if (isset($_GET["dataPengunjung"])) {
           <th scope="col">No</th>
           <th scope="col">Nama Pengunjung</th>
           <th scope="col">Nama Perusahaan</th>
+          <th scope="col">Nomor Kendaraan</th>
           <th scope="col">Tanggal</th>
           <th scope="col">Nomor Telepon</th>
           <th scope="col">Ubah Data</th>
@@ -321,6 +324,11 @@ if (isset($_GET["dataPengunjung"])) {
         <td data-label="Nama Perusahaan" class="nama-perusahaan">
           <p class="text-wrap">
             <?php echo $baris['nama_perusahaan']; ?>
+          </p>
+        </td>
+        <td data-label="Nomor Kendaraan" class="no-kendaraan">
+          <p class="text-wrap">
+            <?php echo $baris["no_kendaraan"]; ?>
           </p>
         </td>
         <td data-label="Tanggal" class="tanggal">
@@ -563,6 +571,7 @@ if (isset($_GET["dataMobil"])) {
           <th scope="col">No</th>
           <th scope="col">Nama Driver</th>
           <th scope="col">Merek Kendaraan</th>
+          <th scope="col">Nomor Kendaraan</th>
           <th scope="col">KM Awal</th>
           <th scope="col">KM Akhir</th>
           <th scope="col">Tujuan</th>
@@ -586,6 +595,11 @@ if (isset($_GET["dataMobil"])) {
         <td data-label="Merek Kendaraan" class="merek-kendaraan">
           <p class="text-wrap">
             <?php echo $baris['merek_kendaraan']; ?>
+          </p>
+        </td>
+        <td data-label="Nomor Kendaraan" class="no-kendaraan">
+          <p class="text-wrap">
+            <?php echo $baris["no_kendaraan"]; ?>
           </p>
         </td>
         <td data-label="KM Awal" class="awal-km">

@@ -4,7 +4,12 @@
     <form action="">
       <div class="form-field">
         <label for="nama-driver-mobil">Nama Driver</label>
-        <input type="text" id="nama-driver-mobil" name="nama-driver-mobil" required />
+        <input
+          type="text"
+          id="nama-driver-mobil"
+          name="nama-driver-mobil"
+          required
+        />
         <span class="material-symbols-rounded field-error">error</span>
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">person</span>
@@ -34,6 +39,13 @@
         <span class="material-symbols-rounded field-error">error</span>
         <span class="supporting-text">Supporting text</span>
       </div>
+      <div class="form-field">
+        <label for="no-kendaraan-mobil">Nomor Kendaraan</label>
+        <input type="text" id="no-kendaraan-mobil" name="no-kendaraan-mobil" required />
+        <span class="material-symbols-rounded field-error">error</span>
+        <span class="supporting-text">Supporting text</span>
+        <span class="material-symbols-rounded field-icon">pin</span>
+      </div>
       <h2>Kilometer</h2>
       <div class="multi-field">
         <div class="form-field">
@@ -59,7 +71,12 @@
       </div>
       <div class="form-field">
         <label for="keperluan-mobil">Keperluan</label>
-        <input type="text" id="keperluan-mobil" name="keperluan-mobil" required />
+        <input
+          type="text"
+          id="keperluan-mobil"
+          name="keperluan-mobil"
+          required
+        />
         <span class="material-symbols-rounded field-error">error</span>
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">task_alt</span>

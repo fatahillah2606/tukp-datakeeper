@@ -88,6 +88,18 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon">factory</span>
               </div>
+              <div class="form-field">
+                <label for="no-kendaraan">Nomor Kendaraan</label>
+                <input
+                  type="text"
+                  id="no-kendaraan"
+                  name="no-kendaraan"
+                  required
+                />
+                <span class="material-symbols-rounded field-error">error</span>
+                <span class="supporting-text">Supporting text</span>
+                <span class="material-symbols-rounded field-icon">pin</span>
+              </div>
               <div class="form-field fokus">
                 <label for="tanggal">Tanggal</label>
                 <input type="date" id="tanggal" name="tanggal" required />
@@ -154,8 +166,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
         if (!adaYangKosong && !adaError) {
           // ambil data dari form
           let namaPengunjung;
-          let namaPerusahaan =
-            formulir.querySelector("#nama-perusahaan").value;
+          let namaPerusahaan = formulir.querySelector("#nama-perusahaan").value;
+          let noKendaraan = formulir.querySelector("#no-kendaraan").value;
           let tanggal = formulir.querySelector("#tanggal").value;
           let nomorTlp = formulir.querySelector("#no-tlp").value;
 
@@ -167,7 +179,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
           namaPengunjung = `NamaPengunjung0=${encodeURIComponent(
             pengunjung[0].value
           )}&`;
-          
+
           for (let i = 1; i < pengunjung.length; i++) {
             namaPengunjung += `NamaPengunjung${i}=${encodeURIComponent(
               pengunjung[i].value
@@ -207,8 +219,10 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
           xhr.send(
             "DataPengunjung=true&simpan=true&" +
               namaPengunjung +
-              "NamaPerusahaan=" +
+              "&NamaPerusahaan=" +
               encodeURIComponent(namaPerusahaan) +
+              "&NoKendaraan=" +
+              encodeURIComponent(noKendaraan) +
               "&tanggal=" +
               encodeURIComponent(tanggal) +
               "&NomorTlp=" +
