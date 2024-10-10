@@ -134,3 +134,8 @@
     </div>
   </div>
 </div>
+<!-- Snackbar -->
+<div class="snackbar">
+  <p id="snack-msg">Message here</p>
+  <a href="#" id="snack-action">Action</a>
+</div>

@@ -14,7 +14,7 @@ function focusAnimation() {
     ".formulir .form-field input:not([type='date']), .formulir .form-field select"
   );
   let allInputField = document.querySelectorAll(
-    ".formulir .form-field input:not(#first-pass):not(#final-pass), .formulir .form-field select"
+    ".formulir .form-field input:not(#first-pass):not(#final-pass):not(#new-passwd):not(#retype-passwd), .formulir .form-field select"
   );
 
   inputField.forEach((e) => {
@@ -137,7 +137,11 @@ function newUser() {
   if (userManager.classList.contains("hidePass")) {
     userManager.classList.remove("hidePass");
   }
+
   userManager.classList.add("show");
+  setTimeout(() => {
+    userManager.classList.add("animate");
+  }, 10);
 }
 
 function createNewUser(dialog, event) {
@@ -221,7 +225,13 @@ let alertConfirmBtn = popup.querySelector(".popup-content .controls a");
 // Hapus user
 function hapusUser(userId, userName) {
   alertDesk.innerHTML = "Anda yakin ingin menghapus pengguna " + userName;
+
+  // tampilkan dialog
   popup.classList.add("show");
+  setTimeout(() => {
+    popup.classList.add("animate");
+  }, 10);
+
   alertConfirmBtn.setAttribute("onclick", "deleteUser(" + userId + ")");
 }
 
@@ -301,7 +311,12 @@ function resetPasswd(userId, userName) {
   namaUser.forEach((element) => {
     element.innerHTML = userName;
   });
+
   resetPasswdModal.classList.add("show");
+  setTimeout(() => {
+    resetPasswdModal.classList.add("animate");
+  }, 10);
+
   resetPasswdModal
     .querySelector(".formulir .controls .submit-btn")
     .setAttribute(
@@ -374,7 +389,10 @@ function closeModal(elementName) {
       element.setAttribute("type", "password");
     });
   }
-  elementName.classList.remove("show");
+  elementName.classList.remove("animate");
+  setTimeout(() => {
+    elementName.classList.remove("show");
+  }, 300);
 }
 window.addEventListener("click", (e) => {
   if (e.target == resetPasswdModal) {

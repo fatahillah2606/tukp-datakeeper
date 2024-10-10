@@ -319,23 +319,39 @@ window
 let snackbar = document.querySelector(".snackbar");
 let snackMsg = document.getElementById("snack-msg");
 let snackAction = document.getElementById("snack-action");
+let snackTime;
+let snackAnimate;
 
 function showUpdate(message, actionTxt, actionLnk) {
+  // hapus timeout
+  clearTimeout(snackAnimate);
+  clearTimeout(snackTime);
+
+  // pesan snackbar
   snackMsg.innerHTML = message;
   if (snackAction) {
     snackAction.innerHTML = actionTxt;
     snackAction.setAttribute("href", actionLnk);
   }
+
+  // tampilkan snackbar
   snackbar.classList.add("show");
   setTimeout(() => {
-    snackbar.classList.remove("show");
+    snackbar.classList.add("animate");
+  }, 10);
+
+  // hilangkan snackbar
+  snackAnimate = setTimeout(() => {
+    snackbar.classList.remove("animate");
+    snackTime = setTimeout(() => {
+      snackbar.classList.remove("show");
+    }, 300);
   }, 5000);
 }
 
 // User manager
 let KelolaPengguna = document.querySelector(".user-manager-dialog");
 
-// Password
 if (KelolaPengguna) {
   // Reset pass btn
   let resetPasswd = KelolaPengguna.querySelector(".reset-passwd-btn");
@@ -416,6 +432,15 @@ function aksesPengguna() {
 
 // Tutup dialog
 function closeUserManager(dialog) {
+  // profile description
+  KelolaPengguna.querySelector(".profile-desc .username").innerText =
+    "Nama Pengguna";
+
+  KelolaPengguna.querySelector(".profile-desc .userid").innerText =
+    "email/user_id";
+
+  KelolaPengguna.querySelector(".profile-desc .userrole").innerText = "Tipe";
+
   let textField = dialog.querySelectorAll(
     ".formulir .form-field input, .formulir .form-field select"
   );
@@ -430,7 +455,11 @@ function closeUserManager(dialog) {
   });
   let dialogParent =
     dialog.parentElement.parentElement.parentElement.parentElement;
-  dialogParent.classList.remove("show");
+
+  dialogParent.classList.remove("animate");
+  setTimeout(() => {
+    dialogParent.classList.remove("show");
+  }, 300);
 }
 
 // Field Error
@@ -531,6 +560,9 @@ function editUser(useracc, usertype) {
   );
 
   KelolaPengguna.classList.add("show", "hidePass");
+  setTimeout(() => {
+    KelolaPengguna.classList.add("animate");
+  }, 10);
 }
 
 function confirmEdit(editModal, Id, event) {

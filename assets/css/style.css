@@ -464,12 +464,17 @@ body {
   z-index: 1000;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0);
+  transition: 0.3s ease;
   animation: fade 0.5s ease;
 }
 .modal-container.show {
   display: flex;
 }
+.modal-container.animate {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 @keyframes fade {
   from {
     background-color: rgba(0, 0, 0, 0);
@@ -499,6 +504,14 @@ body {
   overflow-y: auto;
   width: 95%;
   max-height: 95vh;
+  animation: none;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: 0.3s ease;
+}
+.modal-container.animate .formulir {
+  transform: translateY(0);
+  opacity: 1;
 }
 .formulir h1 {
   font-size: 28px;
@@ -719,10 +732,14 @@ body {
   height: 100%;
   z-index: 1000;
   display: none;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: rgba(0, 0, 0, 0);
+  transition: 0.3s ease;
 }
 .popup.show {
   display: flex;
+}
+.popup.animate {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .popup .popup-content {
   width: 95%;
@@ -730,7 +747,13 @@ body {
   background-color: #ecf3e7;
   padding: 25px 30px;
   border-radius: 30px;
-  animation: fadein 0.5s ease;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: 0.3s ease;
+}
+.popup.animate .popup-content {
+  transform: translateY(0);
+  opacity: 1;
 }
 .popup .popup-content h2 {
   margin: 10px 0px;
@@ -804,15 +827,20 @@ body {
   .modal-container .formulir {
     background-color: #ecf3e7;
     width: 100%;
-    max-height: 80vh;
+    max-height: 85vh;
     border-radius: 30px 30px 0 0;
     margin: 0;
     position: absolute;
     bottom: 0;
     left: 0;
-    animation: slideUp 0.3s ease;
+    opacity: 1;
+    transform: translateY(100%);
+  }
+  .modal-container.animate .formulir {
+    transform: translateY(0);
   }
 }
+
 @keyframes slideUp {
   from {
     transform: translateY(100%);
@@ -821,6 +849,7 @@ body {
     transform: translateY(0);
   }
 }
+
 /* Untuk kata sambutan */
 @media screen and (max-width: 378px) {
   .header .kata-sambutan {

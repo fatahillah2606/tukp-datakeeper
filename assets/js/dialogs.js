@@ -476,7 +476,7 @@ function editPengunjung(elm, idData) {
     );
 
   focusAnimation();
-  editModal.classList.add("show");
+  modalEdit(editModal);
   history.pushState({ editDialog: true }, "");
 }
 
@@ -566,7 +566,7 @@ function editBarangExt(elm, idData) {
     );
 
   focusAnimation();
-  editModal.classList.add("show");
+  modalEdit(editModal);
   history.pushState({ editDialog: true }, "");
 }
 
@@ -640,7 +640,7 @@ function editBarangInt(elm, idData) {
     );
 
   focusAnimation();
-  editModal.classList.add("show");
+  modalEdit(editModal);
   history.pushState({ editDialog: true }, "");
 }
 
@@ -698,8 +698,16 @@ function editMobil(elm, idData) {
     );
 
   focusAnimation();
-  editModal.classList.add("show");
+  modalEdit(editModal);
   history.pushState({ editDialog: true }, "");
+}
+
+// Buka modal
+function modalEdit(namaModal) {
+  namaModal.classList.add("show");
+  setTimeout(() => {
+    namaModal.classList.add("animate");
+  }, 10);
 }
 
 // Tutup modal
@@ -714,8 +722,13 @@ function batalEdit(namaModal) {
   inputField.forEach((element) => {
     element.parentElement.classList.remove("fokus");
   });
-  namaModal.classList.remove("show");
-  history.back();
+
+  // Hilangkan modal
+  namaModal.classList.remove("animate");
+  setTimeout(() => {
+    namaModal.classList.remove("show");
+    history.back();
+  }, 300);
 }
 
 // dialogs alert
@@ -723,15 +736,24 @@ let dialogs = document.querySelector(".popup");
 
 function tutupDialog() {
   if (dialogs.classList.contains("show")) {
-    dialogs.classList.remove("show");
-    history.back();
+    dialogs.classList.remove("animate");
+    setTimeout(() => {
+      dialogs.classList.remove("show");
+      history.back();
+    }, 300);
   }
 }
 
 // Fungsi hapus
 // Dialog hapus
 function hapusData(idData, tabelData) {
+  // tampilkan dialog
   dialogs.classList.add("show");
+  setTimeout(() => {
+    dialogs.classList.add("animate");
+  }, 10);
+
+  // Histori
   history.pushState({ dialogHapus: true }, "");
   let confirmDelete = dialogs.querySelector(".submit-btn");
   confirmDelete.setAttribute(
@@ -789,7 +811,10 @@ window.addEventListener("click", (e) => {
 
 window.addEventListener("popstate", (e) => {
   if (dialogs.classList.contains("show")) {
-    dialogs.classList.remove("show");
+    dialogs.classList.remove("animate");
+    setTimeout(() => {
+      dialogs.classList.remove("show");
+    }, 300);
   }
 
   modals.querySelectorAll(".modal-container").forEach((element) => {
@@ -804,7 +829,12 @@ window.addEventListener("popstate", (e) => {
       inputField.forEach((elementInput) => {
         elementInput.parentElement.classList.remove("fokus");
       });
-      element.classList.remove("show");
+
+      // Hilangkan modal
+      element.classList.remove("animate");
+      setTimeout(() => {
+        element.classList.remove("show");
+      }, 300);
     }
   });
 });
