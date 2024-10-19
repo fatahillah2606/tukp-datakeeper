@@ -663,6 +663,9 @@ body {
   left: calc(100% + 12px);
   cursor: pointer;
 }
+.formulir .form-radio label {
+  color: #002105;
+}
 .formulir .tambah {
   display: flex;
   width: 120px;

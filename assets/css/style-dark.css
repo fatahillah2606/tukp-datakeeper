@@ -324,6 +324,9 @@
 [data-theme="dark"] .formulir .multi-field .field-icon {
   color: #f6fff0;
 }
+[data-theme="dark"] .formulir .form-radio label {
+  color: #f6fff0;
+}
 
 /* Field error */
 [data-theme="dark"] .formulir .form-field.error {

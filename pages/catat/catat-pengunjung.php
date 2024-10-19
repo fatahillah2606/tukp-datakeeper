@@ -113,6 +113,36 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon">call</span>
               </div>
+              <div class="form-field">
+                <label for="keperluan">Keperluan</label>
+                <input type="text" id="keperluan" name="keperluan" required />
+                <span class="material-symbols-rounded field-error">error</span>
+                <span class="supporting-text">Supporting text</span>
+                <span class="material-symbols-rounded field-icon"
+                  >task_alt</span
+                >
+              </div>
+              <h2>Apakah Sudah Dilakukan Safety Induction Oleh Security ?</h2>
+              <div class="form-radio">
+                <input
+                  type="radio"
+                  id="ya"
+                  name="safety_induction"
+                  value="Ya"
+                  required
+                />
+                <label for="ya">Ya</label>
+              </div>
+              <div class="form-radio" style="margin-bottom: 20px">
+                <input
+                  type="radio"
+                  id="tidak"
+                  name="safety_induction"
+                  value="Tidak"
+                  required
+                />
+                <label for="tidak">Tidak</label>
+              </div>
               <div class="tombol-aksi">
                 <button type="reset" id="reset">Bersihkan</button>
                 <button
@@ -144,7 +174,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
         let kolomIsian = formulir.querySelectorAll(
           "input[required]:not([disabled]), select[required]"
         );
-        let textField = formulir.querySelectorAll(".form-field");
+        let textField = formulir.querySelectorAll(".form-field, .form-radio");
 
         // Cek jika ada kolom yg kosong
         kolomIsian.forEach((element) => {
@@ -152,6 +182,11 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
             adaYangKosong = true;
             let elemenKosong = element.parentElement;
             tampilkanError(elemenKosong, "Wajib diisi");
+          }
+
+          // untuk radio button
+          if (element.type == "radio") {
+            // code here
           }
         });
 
