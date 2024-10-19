@@ -1,0 +1,26 @@
+.main-content * {
+  text-align: center;
+  color: #002105;
+}
+.main-content h1 {
+  font-family: "Audiowide", sans-serif;
+  font-size: 100px;
+}
+.main-content h3 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+.main-content p a {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #3a693a;
+}
+
+/* Dark mode */
+[data-theme="dark"] .main-content * {
+  color: #f6fff0;
+}
+
+[data-theme="dark"] .main-content p a {
+  color: #c9ffc3;
+}

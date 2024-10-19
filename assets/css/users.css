@@ -1,0 +1,228 @@
+.user-manager h1 {
+  margin-bottom: 10px;
+  color: #002105;
+}
+.konten-pengguna {
+  width: 95%;
+  max-width: 1200px;
+  height: auto;
+  background-color: #ecf3e7;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 50px auto;
+}
+.konten-pengguna .head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  margin-bottom: 0;
+}
+.konten-pengguna .head .head-action {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.konten-pengguna .head .head-action .tambah {
+  display: flex;
+  align-items: center;
+  border: 1px solid #253423;
+  padding: 10px;
+  color: #3a693a;
+  border-radius: 50px;
+  cursor: pointer;
+}
+
+.konten-pengguna .head .head-action .tambah * {
+  margin-right: 8px;
+}
+.konten-pengguna .head .head-action .tambah:hover {
+  background-color: #d5e8cf;
+}
+.konten-pengguna .users {
+  margin: 20px;
+  margin-top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-radius: 20px;
+  overflow: hidden !important;
+  height: auto;
+}
+.konten-pengguna .users * {
+  display: flex;
+  align-items: center;
+}
+.konten-pengguna .users h3 {
+  justify-content: center;
+  padding: 10px 0;
+  color: #002105;
+}
+.konten-pengguna .users .user {
+  background-color: #ffffff;
+  justify-content: space-between;
+  padding: 20px;
+  position: relative;
+  border-radius: 5px;
+}
+.konten-pengguna .users .user.hidden {
+  display: none;
+}
+.konten-pengguna .users .user .left .user-icon {
+  width: 50px;
+  height: 50px;
+  background-color: #ecf3e7;
+  justify-content: center;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+.konten-pengguna .users .user .left .user-icon span {
+  color: #002105;
+  font-size: 28px;
+  font-variation-settings: "FILL" 1, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+.konten-pengguna .users .user .left .user-name {
+  flex-direction: column;
+  align-items: last baseline;
+}
+.konten-pengguna .users .user .left .user-name * {
+  color: #002105;
+}
+.konten-pengguna .users .user .right p.role {
+  margin-right: 50px;
+  width: 80px;
+  display: block;
+  text-align: center;
+  color: #002105;
+  padding: 5px 0;
+  border-radius: 50px;
+}
+.konten-pengguna .users .user .right p.role.admin {
+  background-color: #d5e8cf;
+}
+.konten-pengguna .users .user .right .action-btn {
+  gap: 10px;
+  /* align-items: normal; */
+}
+.konten-pengguna .users .user .right .action-btn > * {
+  width: auto;
+  height: auto;
+  padding: 10px;
+  text-align: center;
+  outline: none;
+  border-radius: 50px;
+  color: #3a693a;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.konten-pengguna .users .user .right .action-btn .reset span {
+  transform: translateY(1px);
+}
+.konten-pengguna .users .user .right .action-btn .reset:hover {
+  background-color: #d5e8cf;
+}
+.konten-pengguna .users .user .right .action-btn .edit {
+  border: 1px solid #253423;
+  padding: 7px 12px;
+  display: flex;
+  align-items: center;
+}
+.konten-pengguna .users .user .right .action-btn .btn * {
+  margin-right: 8px;
+}
+.konten-pengguna .users .user .right .action-btn .edit:hover {
+  background-color: #d5e8cf;
+}
+.konten-pengguna .users .user .right .action-btn .hapus {
+  color: var(--on-error-light);
+  background-color: var(--error-light);
+  transition: none;
+  padding: 10px;
+}
+
+/* Reset passwd modal */
+.reset-passwd-modal {
+  width: 95%;
+  max-width: 500px;
+  background-color: #ecf3e7;
+  border-radius: 30px;
+  overflow: hidden;
+  padding: 30px;
+}
+.reset-passwd-modal h2 {
+  font-size: 30px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.reset-passwd-modal .controls {
+  display: flex;
+  justify-content: right;
+  gap: 10px;
+  margin: 20px 0px 0x;
+}
+.reset-passwd-modal .controls button,
+.reset-passwd-modal .controls a {
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  color: #3a693a;
+  background: none;
+  font-size: 15px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+/* Responsive */
+@media screen and (max-width: 850px) {
+  .konten-pengguna .users .user {
+    justify-content: center;
+    flex-direction: column;
+  }
+  .konten-pengguna .users .user .left {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .konten-pengguna .users .user .left .user-icon {
+    width: 100px;
+    height: 100px;
+    margin: 0;
+  }
+  .konten-pengguna .users .user .left .user-icon span {
+    font-size: 50px;
+  }
+  .konten-pengguna .users .user .left .user-name {
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+  }
+  .konten-pengguna .users .user .right {
+    flex-direction: column;
+  }
+  .konten-pengguna .users .user .right p.role {
+    margin: 20px 0;
+  }
+  .konten-pengguna .users .user .right .action-btn .hapus {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .konten-pengguna .head {
+    flex-direction: column;
+    align-items: normal;
+    justify-content: unset;
+    gap: 20px;
+  }
+  .konten-pengguna .head .head-action {
+    flex-direction: column;
+    align-items: normal;
+  }
+  .konten-pengguna .head .head-action .tambah {
+    justify-content: center;
+  }
+}

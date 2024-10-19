@@ -1,0 +1,59 @@
+:root {
+  /* Light Mode */
+  --primary-light: #328e3d;
+  --on-primary-light: #ffffff;
+  --primary-container-light: #a9d8b0;
+  --on-primary-container-light: #00200e;
+  --secondary-light: #6c9f76;
+  --on-secondary-light: #ffffff;
+  --secondary-container-light: #cfe3d0;
+  --on-secondary-container-light: #1b3d2b;
+  --tertiary-light: #4f8b89;
+  --on-tertiary-light: #ffffff;
+  --tertiary-container-light: #c5e3e0;
+  --on-tertiary-container-light: #05201f;
+  --error-light: #ba1a1a;
+  --on-error-light: #ffffff;
+  --error-container-light: #ffdad4;
+  --on-error-container-light: #410001;
+  --background-light: #fdfdf6;
+  --on-background-light: #191c1b;
+  --surface-light: #fdfdf6;
+  --on-surface-light: #191c1b;
+  --surface-variant-light: #e0e4db;
+  --on-surface-variant-light: #43483f;
+  --outline-light: #72796f;
+  --inverse-on-surface-light: #eff1ec;
+  --inverse-surface-light: #2e312f;
+  --inverse-primary-light: #91b594;
+}
+
+[data-theme="dark"] {
+  /* Dark Mode */
+  --primary-dark: #91b594;
+  --on-primary-dark: #003918;
+  --primary-container-dark: #1b552b;
+  --on-primary-container-dark: #a9d8b0;
+  --secondary-dark: #b3cdb5;
+  --on-secondary-dark: #233527;
+  --secondary-container-dark: #394c3d;
+  --on-secondary-container-dark: #cfe3d0;
+  --tertiary-dark: #a9cecc;
+  --on-tertiary-dark: #0b3534;
+  --tertiary-container-dark: #2e4b4a;
+  --on-tertiary-container-dark: #c5e3e0;
+  --error-dark: #ffb4ab;
+  --on-error-dark: #690005;
+  --error-container-dark: #93000a;
+  --on-error-container-dark: #ffdad4;
+  --background-dark: #191c1b;
+  --on-background-dark: #e0e3df;
+  --surface-dark: #191c1b;
+  --on-surface-dark: #e0e3df;
+  --surface-variant-dark: #43483f;
+  --on-surface-variant-dark: #c4c9c1;
+  --outline-dark: #8e938b;
+  --inverse-on-surface-dark: #191c1b;
+  --inverse-surface-dark: #e0e3df;
+  --inverse-primary-dark: #328e3d;
+}
