@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2024 at 05:41 AM
+-- Generation Time: Oct 23, 2024 at 03:54 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -88,7 +88,8 @@ CREATE TABLE `data_pengunjung` (
   `nama_perusahaan` varchar(255) NOT NULL,
   `no_kendaraan` varchar(255) NOT NULL,
   `tanggal` date NOT NULL,
-  `no_telpon` varchar(13) NOT NULL
+  `no_telpon` varchar(13) NOT NULL,
+  `safety_induction` enum('Ya','Tidak') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -113,7 +114,7 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id`, `id_user`, `email_user`, `nama_user`, `role`, `password`, `token_login`) VALUES
-(2, NULL, 'andika@admin', 'Andika', 'Admin', '$2y$10$Rq1XpfSihvZ4ZnWpJiASHO8XkHxNCsiEYy2FIVsNFgTLgNk8.DNyW', '$2y$10$ufgwGvJEONEDQKpoUFpJq.0tKYDW4A3SnxXLHIKdNRPEkUH01opH2'),
+(2, NULL, 'andika@admin', 'Andika', 'Admin', '$2y$10$Rq1XpfSihvZ4ZnWpJiASHO8XkHxNCsiEYy2FIVsNFgTLgNk8.DNyW', '$2y$10$7QJM1MuXmpbeqhI/BBAv5uo3tCxK9X7hP0Uiq2Tc2flitrj6x1n4u'),
 (6, NULL, 'mei@raiden', 'Raiden Mei', 'Admin', '$2y$10$77RdRcSgvQ5jyTRI9y0UMuwH5qrbymOUvFrx0nDLvEH.wUNt582XC', '$2y$10$fEFPi/Y2ywZLTT7A/W.eKealLUXuF95dyloLK.E5.sDK5bZqjEf7e'),
 (9, NULL, NULL, 'Tamu', 'Tamu', '$2y$10$LX7LImtD3NMs9rwAncE8r.7Wu7ejY/LHrcuP3RqsOTTpros34iY5S', '$2y$10$TA4Xk0ybs0awOuuDB.impOKB0/N3iRaKvrvpe.wTir7xqI3tTGy6m');
 
