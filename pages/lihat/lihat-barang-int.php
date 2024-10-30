@@ -80,7 +80,7 @@ $tgl); return $pecahkan[2] . " " . $bln[(int)$pecahkan[1]] . " " . $pecahkan[0];
     <!-- End Container -->
     <!-- Modal Box -->
     <div class="modals">
-      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-barang-int.php'; ?>
+      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-barang-int.html'; ?>
     </div>
     <!-- End Modal Box -->
     <!-- modal alert box-->

@@ -38,7 +38,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
               require $_SERVER['DOCUMENT_ROOT'] . '/templates/user-navbar.php';
             }
           } else {
-            require $_SERVER['DOCUMENT_ROOT'] . '/templates/guest-navbar.php';
+            require $_SERVER['DOCUMENT_ROOT'] . '/templates/guest-navbar.html';
           }
         ?>
         <!-- End Navbar -->
@@ -122,26 +122,29 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
                   >task_alt</span
                 >
               </div>
-              <h2>Apakah Sudah Dilakukan Safety Induction Oleh Security ?</h2>
-              <div class="form-radio">
-                <input
-                  type="radio"
-                  id="ya"
-                  name="safety_induction"
-                  value="Ya"
-                  required
-                />
-                <label for="ya">Ya</label>
-              </div>
-              <div class="form-radio" style="margin-bottom: 20px">
-                <input
-                  type="radio"
-                  id="tidak"
-                  name="safety_induction"
-                  value="Tidak"
-                  required
-                />
-                <label for="tidak">Tidak</label>
+              <div class="safety">
+                <h2>Apakah Sudah Dilakukan Safety Induction Oleh Security ?</h2>
+                <div class="form-radio">
+                  <input
+                    type="radio"
+                    id="ya"
+                    name="safety_induction"
+                    value="Ya"
+                    required
+                  />
+                  <label for="ya">Ya</label>
+                </div>
+                <div class="form-radio" style="margin-bottom: 10px">
+                  <input
+                    type="radio"
+                    id="tidak"
+                    name="safety_induction"
+                    value="Tidak"
+                    required
+                  />
+                  <label for="tidak">Tidak</label>
+                </div>
+                <span class="supporting-text">Supporting text</span>
               </div>
               <div class="tombol-aksi">
                 <button type="reset" id="reset">Bersihkan</button>
@@ -174,7 +177,18 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
         let kolomIsian = formulir.querySelectorAll(
           "input[required]:not([disabled]), select[required]"
         );
-        let textField = formulir.querySelectorAll(".form-field, .form-radio");
+        let textField = formulir.querySelectorAll(".form-field, .safety");
+        let safetyInductionValue = document.querySelector(
+          "input[name='safety_induction']:checked"
+        );
+
+        // Cek jika tidak memilih
+        if (safetyInductionValue) {
+          adaYangKosong = false;
+        } else {
+          adaYangKosong = true;
+          tampilkanError(safetyInduction, "Wajib diisi");
+        }
 
         // Cek jika ada kolom yg kosong
         kolomIsian.forEach((element) => {
@@ -182,11 +196,6 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
             adaYangKosong = true;
             let elemenKosong = element.parentElement;
             tampilkanError(elemenKosong, "Wajib diisi");
-          }
-
-          // untuk radio button
-          if (element.type == "radio") {
-            // code here
           }
         });
 
@@ -261,7 +270,9 @@ require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
               "&tanggal=" +
               encodeURIComponent(tanggal) +
               "&NomorTlp=" +
-              encodeURIComponent(nomorTlp)
+              encodeURIComponent(nomorTlp) +
+              "&SafetyInduction=" +
+              encodeURIComponent(safetyInductionValue.value)
           );
         }
       }

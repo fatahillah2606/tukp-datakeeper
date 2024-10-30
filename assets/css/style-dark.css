@@ -342,7 +342,8 @@
 [data-theme="dark"] .formulir .form-field.error label {
   color: var(--error-dark);
 }
-[data-theme="dark"] .formulir .form-field .supporting-text {
+[data-theme="dark"] .formulir .form-field .supporting-text,
+[data-theme="dark"] .formulir .safety .supporting-text {
   color: var(--error-dark);
 }
 

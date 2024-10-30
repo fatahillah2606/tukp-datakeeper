@@ -184,10 +184,10 @@ if ($_SESSION['peran_pengguna'] == "Tamu") {
     <!-- End Container -->
     <!-- Modal Box -->
     <div class="modals">
-      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-pengunjung.php'; ?>
-      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-barang-ext.php'; ?>
-      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-barang-int.php'; ?>
-      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-mobil.php'; ?>
+      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-pengunjung.html'; ?>
+      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-barang-ext.html'; ?>
+      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-barang-int.html'; ?>
+      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-mobil.html'; ?>
     </div>
     <!-- End Modal Box -->
     <!-- modal alert box-->

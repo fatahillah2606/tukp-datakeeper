@@ -72,7 +72,7 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
     <!-- End Container -->
     <!-- Modal Box -->
     <div class="modals">
-      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-mobil.php'; ?>
+      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-mobil.html'; ?>
     </div>
     <!-- End Modal Box -->
     <!-- modal alert box-->

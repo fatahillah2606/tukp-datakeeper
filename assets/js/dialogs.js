@@ -9,7 +9,18 @@ function ubahPengunjung(formulir, event, idData) {
   let kolomIsian = formulir.querySelectorAll(
     "input[required]:not([disabled]), select[required]"
   );
-  let textField = formulir.querySelectorAll(".form-field");
+  let textField = formulir.querySelectorAll(".form-field, .safety");
+  let safetyInductionValue = document.querySelector(
+    "input[name='safety_induction']:checked"
+  );
+
+  // Cek jika tidak memilih
+  if (safetyInductionValue) {
+    adaYangKosong = false;
+  } else {
+    adaYangKosong = true;
+    tampilkanError(safetyInduction, "Wajib diisi");
+  }
 
   // Cek jika ada kolom yg kosong
   kolomIsian.forEach((element) => {
@@ -89,7 +100,9 @@ function ubahPengunjung(formulir, event, idData) {
         "&tanggal=" +
         encodeURIComponent(tanggal) +
         "&NomorTlp=" +
-        encodeURIComponent(nomorTlp)
+        encodeURIComponent(nomorTlp) +
+        "&SafetyInduction=" +
+        encodeURIComponent(safetyInductionValue.value)
     );
   }
 }
@@ -466,6 +479,13 @@ function editPengunjung(elm, idData) {
   // Nomor telepon
   editModal.querySelector(".formulir .form-field #no-tlp").value =
     barisData.querySelector("td.no-tlp p").innerText;
+
+  // Safety Induction
+  editModal.querySelector(
+    ".formulir .form-radio input[name='safety_induction'][value='" +
+      barisData.querySelector("td.safety-induction p").innerText +
+      "']"
+  ).checked = true;
 
   // tombol
   editModal

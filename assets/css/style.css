@@ -636,7 +636,8 @@ body {
 }
 
 /* Field supporting text */
-.formulir .form-field .supporting-text {
+.formulir .form-field .supporting-text,
+.formulir .safety .supporting-text {
   display: none;
   position: absolute;
   top: calc(100% + 7px);
@@ -644,7 +645,8 @@ body {
   color: var(--error-light);
   font-size: 12px;
 }
-.formulir .form-field.error .supporting-text {
+.formulir .form-field.error .supporting-text,
+.formulir .safety.error .supporting-text {
   display: block;
 }
 
@@ -663,8 +665,15 @@ body {
   left: calc(100% + 12px);
   cursor: pointer;
 }
+.formulir .form-radio * {
+  cursor: pointer;
+}
 .formulir .form-radio label {
   color: #002105;
+}
+.formulir .safety {
+  margin-bottom: 35px;
+  position: relative;
 }
 .formulir .tambah {
   display: flex;

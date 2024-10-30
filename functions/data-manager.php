@@ -31,6 +31,7 @@ if (isset($_POST["DataPengunjung"])) {
   $noKendaraan = htmlspecialchars($_POST["NoKendaraan"]);
   $tanggal = htmlspecialchars($_POST["tanggal"]);
   $noTlp = htmlspecialchars($_POST["NomorTlp"]);
+  $safetyInduction = htmlspecialchars($_POST["SafetyInduction"]);
 
   // Dapatkan semua field nama pengunjung
   $pengunjung_fields = array_filter($_POST, function($key) {
@@ -45,9 +46,9 @@ if (isset($_POST["DataPengunjung"])) {
   // Simpan
   if (isset($_POST["simpan"])) {
     // masukan ke database
-    $sql = "INSERT INTO data_pengunjung (`id`, `nama_pengunjung`,	`nama_perusahaan`,	`no_kendaraan`, `tanggal`,	`no_telpon`) VALUES (null, ?, ?, ?, ?, ?);";
+    $sql = "INSERT INTO data_pengunjung (`id`, `nama_pengunjung`,	`nama_perusahaan`,	`no_kendaraan`, `tanggal`,	`no_telpon`, `safety_induction`) VALUES (null, ?, ?, ?, ?, ?, ?);";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss", $namaPengunjung, $namaPerusahaan, $noKendaraan, $tanggal, $noTlp);
+    $stmt->bind_param("ssssss", $namaPengunjung, $namaPerusahaan, $noKendaraan, $tanggal, $noTlp, $safetyInduction);
     if ($stmt->execute()) {
       // Kembalikan info berupa JSON
       echo json_encode(["status" => "success", "pesan" => "Data tersimpan", "atxt" => "Lihat", "alnk" => "/pages/lihat/lihat-pengunjung.php"]);
@@ -63,9 +64,9 @@ if (isset($_POST["DataPengunjung"])) {
   if (isset($_POST["ubah"])) {
     $idData = htmlspecialchars($_POST["IdData"]);
     // masukan ke database
-    $sql = "UPDATE data_pengunjung SET `nama_pengunjung` = ?, `nama_perusahaan` = ?, `no_kendaraan` = ?, `tanggal` = ?, `no_telpon` = ? WHERE `id` = ?;";
+    $sql = "UPDATE data_pengunjung SET `nama_pengunjung` = ?, `nama_perusahaan` = ?, `no_kendaraan` = ?, `tanggal` = ?, `no_telpon` = ?, `safety_induction` = ? WHERE `id` = ?;";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssi", $namaPengunjung, $namaPerusahaan, $noKendaraan, $tanggal, $noTlp, $idData);
+    $stmt->bind_param("ssssssi", $namaPengunjung, $namaPerusahaan, $noKendaraan, $tanggal, $noTlp, $safetyInduction, $idData);
     if ($stmt->execute()) {
       // Kembalikan info berupa JSON
       echo json_encode(["status" => "success", "pesan" => "Data diubah", "atxt" => "Lihat", "alnk" => "/pages/lihat/lihat-pengunjung.php"]);
@@ -302,6 +303,7 @@ if (isset($_GET["dataPengunjung"])) {
           <th scope="col">Nomor Kendaraan</th>
           <th scope="col">Tanggal</th>
           <th scope="col">Nomor Telepon</th>
+          <th scope="col">Safety Induction</th>
           <th scope="col">Ubah Data</th>
         </tr>
       </thead>
@@ -337,6 +339,11 @@ if (isset($_GET["dataPengunjung"])) {
         <td data-label="Nomor Telepon" class="no-tlp">
           <p class="text-wrap">
             <?php echo $baris['no_telpon']; ?>
+          </p>
+        </td>
+        <td data-label="Safety Induction" class="safety-induction">
+          <p class="text-wrap">
+            <?php echo $baris['safety_induction']; ?>
           </p>
         </td>
         <td data-label="Ubah Data" class="buttons">
