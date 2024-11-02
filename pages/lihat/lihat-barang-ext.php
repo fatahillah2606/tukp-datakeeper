@@ -46,7 +46,7 @@ $tgl); return $pecahkan[2] . " " . $bln[(int)$pecahkan[1]] . " " . $pecahkan[0];
             <div class="head">
               <div class="teks">
                 <h2>Data Barang Eksternal</h2>
-                <p>Berikut sekilas catatan hari ini</p>
+                <!-- <p>Berikut sekilas catatan hari ini</p> -->
               </div>
               <div class="bar-cari">
                 <label for="cari" class="material-symbols-rounded"

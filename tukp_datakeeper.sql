@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 23, 2024 at 03:54 PM
+-- Generation Time: Nov 02, 2024 at 10:42 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -39,7 +39,7 @@ CREATE TABLE `data_barang_eksternal` (
   `nama_jumlah_barang` varchar(255) NOT NULL,
   `no_kendaraan` varchar(255) NOT NULL,
   `jam_kedatangan` time NOT NULL,
-  `keterangan` varchar(255) NOT NULL
+  `keterangan` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -66,6 +66,7 @@ CREATE TABLE `data_barang_internal` (
 DROP TABLE IF EXISTS `data_mobil`;
 CREATE TABLE `data_mobil` (
   `id` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
   `nama_driver` varchar(255) NOT NULL,
   `merek_kendaraan` varchar(255) NOT NULL,
   `no_kendaraan` varchar(25) NOT NULL,
@@ -114,7 +115,7 @@ CREATE TABLE `pengguna` (
 --
 
 INSERT INTO `pengguna` (`id`, `id_user`, `email_user`, `nama_user`, `role`, `password`, `token_login`) VALUES
-(2, NULL, 'andika@admin', 'Andika', 'Admin', '$2y$10$Rq1XpfSihvZ4ZnWpJiASHO8XkHxNCsiEYy2FIVsNFgTLgNk8.DNyW', '$2y$10$7QJM1MuXmpbeqhI/BBAv5uo3tCxK9X7hP0Uiq2Tc2flitrj6x1n4u'),
+(2, NULL, 'andika@admin', 'Andika', 'Admin', '$2y$10$Rq1XpfSihvZ4ZnWpJiASHO8XkHxNCsiEYy2FIVsNFgTLgNk8.DNyW', '$2y$10$GoLPCwx79CXUvzkGbqy.ze.XqQzwkR3fSS6JigfALK8HM.JKFPEXi'),
 (6, NULL, 'mei@raiden', 'Raiden Mei', 'Admin', '$2y$10$77RdRcSgvQ5jyTRI9y0UMuwH5qrbymOUvFrx0nDLvEH.wUNt582XC', '$2y$10$fEFPi/Y2ywZLTT7A/W.eKealLUXuF95dyloLK.E5.sDK5bZqjEf7e'),
 (9, NULL, NULL, 'Tamu', 'Tamu', '$2y$10$LX7LImtD3NMs9rwAncE8r.7Wu7ejY/LHrcuP3RqsOTTpros34iY5S', '$2y$10$TA4Xk0ybs0awOuuDB.impOKB0/N3iRaKvrvpe.wTir7xqI3tTGy6m');
 
@@ -131,6 +132,19 @@ CREATE TABLE `pengumuman` (
   `isi_pengumuman` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `pengumuman`
+--
+
+INSERT INTO `pengumuman` (`id`, `judul_pengumuman`, `isi_pengumuman`) VALUES
+(2, 'Update 9/22/24', 'Fix non-unique id'),
+(4, 'Update 9/26/24', 'Change the login system using sessions'),
+(6, 'Update 9/28/24', '	\nUsers will be logged out if their password is reset.'),
+(7, 'Update 10/8/2024', 'Added &quot;Nomor Kendaraan&quot; on &quot;Data Pengunjung&quot; and &quot;Data Kilometer Mobil&quot;'),
+(18, 'Update 10/10/2024', 'Transition improvement'),
+(19, 'Update 10/30/2024', 'Added Safety Induction check to &quot;Data Pengunjung&quot;'),
+(20, 'Update 2/11/2024', 'Create a service record form and add a date column to the vehicle kilometers form.');
+
 -- --------------------------------------------------------
 
 --
@@ -142,6 +156,24 @@ CREATE TABLE `reset_sandi` (
   `id` int(11) NOT NULL,
   `cari_pengguna` varchar(255) NOT NULL,
   `dibaca` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `service_record`
+--
+
+DROP TABLE IF EXISTS `service_record`;
+CREATE TABLE `service_record` (
+  `id` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `nama_pelaksana` varchar(255) NOT NULL,
+  `merek_kendaraan` varchar(255) NOT NULL,
+  `no_kendaraan` varchar(25) NOT NULL,
+  `km_service` int(11) NOT NULL,
+  `nama_bengkel` varchar(255) NOT NULL,
+  `rincian` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -195,6 +227,12 @@ ALTER TABLE `reset_sandi`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `service_record`
+--
+ALTER TABLE `service_record`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -232,12 +270,18 @@ ALTER TABLE `pengguna`
 -- AUTO_INCREMENT for table `pengumuman`
 --
 ALTER TABLE `pengumuman`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `reset_sandi`
 --
 ALTER TABLE `reset_sandi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `service_record`
+--
+ALTER TABLE `service_record`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 

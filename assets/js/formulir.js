@@ -274,12 +274,14 @@ if (pilihMerek !== null) {
 }
 function merekKendaraan() {
   let merekLain = document.getElementById("merek-lain");
-  if (pilihMerek.value === "Lainnya") {
-    merekLain.removeAttribute("disabled");
-    merekLain.parentElement.classList.remove("none");
-  } else {
-    merekLain.setAttribute("disabled", "");
-    merekLain.parentElement.classList.add("none");
+  if (merekLain) {
+    if (pilihMerek.value === "Lainnya") {
+      merekLain.removeAttribute("disabled");
+      merekLain.parentElement.classList.remove("none");
+    } else {
+      merekLain.setAttribute("disabled", "");
+      merekLain.parentElement.classList.add("none");
+    }
   }
 }
 

@@ -344,6 +344,7 @@ function ubahMobil(formulir, event, idData) {
   // Proses
   if (!adaYangKosong && !adaError) {
     // ambil data dari form
+    let tanggal = formulir.querySelector("#tanggal-mobil").value;
     let namaDriver = formulir.querySelector("#nama-driver-mobil").value;
     let merekKendaraan = formulir.querySelector("#merek-kendaraan").value;
     let merekLain = formulir.querySelector("#merek-lain").value;
@@ -384,6 +385,8 @@ function ubahMobil(formulir, event, idData) {
     xhr.send(
       "DataMobil=true&ubah=true&IdData=" +
         idData +
+        "&tanggal=" +
+        encodeURIComponent(tanggal) +
         "&NamaDriver=" +
         encodeURIComponent(namaDriver) +
         "&MerekKendaraan=" +
@@ -400,6 +403,96 @@ function ubahMobil(formulir, event, idData) {
         encodeURIComponent(tujuan) +
         "&keperluan=" +
         encodeURIComponent(keperluan)
+    );
+  }
+}
+
+// Update Service
+function ubahService(formulir, event, idData) {
+  event.preventDefault();
+
+  let adaYangKosong = false;
+  let adaError = false;
+
+  let kolomIsian = formulir.querySelectorAll(
+    "input[required]:not([disabled]), select[required]"
+  );
+  let textField = formulir.querySelectorAll(".form-field");
+
+  // Cek jika ada kolom yg kosong
+  kolomIsian.forEach((element) => {
+    if (element.value.trim() === "") {
+      adaYangKosong = true;
+      let elemenKosong = element.parentElement;
+      tampilkanError(elemenKosong, "Wajib diisi");
+    }
+  });
+
+  // cek jika ketentuan belum terpenuhi
+  textField.forEach((element) => {
+    if (element.classList.contains("error")) {
+      adaError = true;
+    }
+  });
+
+  // Proses
+  if (!adaYangKosong && !adaError) {
+    // ambil data dari form
+    let tanggal = formulir.querySelector("#tanggal-service").value;
+    let namaPelaksana = formulir.querySelector("#nama-pelaksana").value;
+    let merekKendaraan = formulir.querySelector(
+      "#merek-kendaraan-service"
+    ).value;
+    let noKendaraan = formulir.querySelector("#no-kendaraan-service").value;
+    let kmService = formulir.querySelector("#km-service").value;
+    let namaBengkel = formulir.querySelector("#nama-bengkel").value;
+    let rincian = formulir.querySelector("#rincian").value;
+
+    // Buat objek XMLHttpRequest
+    let xhr = new XMLHttpRequest();
+
+    // menentukan method dan url
+    xhr.open("POST", "/functions/data-manager.php", true);
+
+    // Set header
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    // tanggapan ketika request selesai
+    xhr.onload = function () {
+      if (xhr.status === 200) {
+        // JSON parsing response
+        let respon = JSON.parse(xhr.responseText);
+        showUpdate(respon.pesan, respon.atxt, respon.alnk);
+
+        if (respon.status === "success") {
+          formulir.querySelector(".batal").click();
+          muatData();
+        } else {
+          console.log(respon.errorMsg);
+        }
+      } else {
+        console.log(xhr.status);
+      }
+    };
+
+    // Kirim data ke server
+    xhr.send(
+      "DataService=true&ubah=true&IdData=" +
+        idData +
+        "&tanggal=" +
+        encodeURIComponent(tanggal) +
+        "&NamaPelaksana=" +
+        encodeURIComponent(namaPelaksana) +
+        "&MerekKendaraan=" +
+        encodeURIComponent(merekKendaraan) +
+        "&NoKendaraan=" +
+        encodeURIComponent(noKendaraan) +
+        "&KmService=" +
+        encodeURIComponent(kmService) +
+        "&NamaBengkel=" +
+        encodeURIComponent(namaBengkel) +
+        "&rincian=" +
+        encodeURIComponent(rincian)
     );
   }
 }
@@ -665,10 +758,61 @@ function editBarangInt(elm, idData) {
 }
 
 // edit km mobil
+function editService(elm, idData) {
+  let editModal = modals.querySelector(".edit-service");
+  let barisData = elm.parentElement.parentElement.parentElement;
+
+  // Tanggal
+  editModal.querySelector(".formulir .form-field #tanggal-service").value =
+    konversiTanggal(barisData.querySelector("td.tanggal p").innerText);
+
+  //Nama pelaksana
+  editModal.querySelector(".formulir .form-field #nama-pelaksana").value =
+    barisData.querySelector("td.nama-pelaksana p").innerText;
+
+  //Merek kendaraan
+  editModal.querySelector(
+    ".formulir .form-field #merek-kendaraan-service"
+  ).value = barisData.querySelector("td.merek-kendaraan p").innerText;
+
+  // Nomor kendaraan
+  editModal.querySelector(".formulir .form-field #no-kendaraan-service").value =
+    barisData.querySelector("td.no-kendaraan p").innerText;
+
+  //KM Service
+  editModal.querySelector(".formulir .form-field #km-service").value =
+    barisData.querySelector("td.km-service p").innerText;
+
+  //Nama bengkel
+  editModal.querySelector(".formulir .form-field #nama-bengkel").value =
+    barisData.querySelector("td.nama-bengkel p").innerText;
+
+  //Rincian service
+  editModal.querySelector(".formulir .form-field #rincian").value =
+    barisData.querySelector("td.rincian p").innerText;
+
+  // tombol
+  editModal
+    .querySelector(".formulir .tombol-aksi button[type='submit']")
+    .setAttribute(
+      "onclick",
+      "ubahService(this.parentElement.parentElement, event, " + idData + ")"
+    );
+
+  focusAnimation();
+  modalEdit(editModal);
+  history.pushState({ editDialog: true }, "");
+}
+
+// edit km mobil
 function editMobil(elm, idData) {
   merekKendaraan();
   let editModal = modals.querySelector(".edit-mobil");
   let barisData = elm.parentElement.parentElement.parentElement;
+
+  // Tanggal
+  editModal.querySelector(".formulir .form-field #tanggal-mobil").value =
+    konversiTanggal(barisData.querySelector("td.tanggal p").innerText);
 
   //Nama driver
   editModal.querySelector(".formulir .form-field #nama-driver-mobil").value =

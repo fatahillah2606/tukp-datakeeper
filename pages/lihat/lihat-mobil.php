@@ -38,7 +38,7 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
             <div class="head">
               <div class="teks">
                 <h2>Data Kilometer Mobil</h2>
-                <p>Berikut adalah catatan hari ini</p>
+                <!-- <p>Berikut adalah catatan hari ini</p> -->
               </div>
               <div class="bar-cari">
                 <label for="cari" class="material-symbols-rounded"

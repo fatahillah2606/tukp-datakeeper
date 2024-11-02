@@ -85,6 +85,12 @@ if ($_SESSION['peran_pengguna'] == "Tamu") {
                     <span class="material-symbols-rounded">edit_road</span>
                   </div>
                 </a>
+                <a href="catat/catat-perbaikan.php">
+                  <div class="tmbl">
+                    <p>Catat service record</p>
+                    <span class="material-symbols-rounded">construction</span>
+                  </div>
+                </a>
               </div>
               <!-- Pilihan Lihat data -->
               <div class="pilihan lihat">
@@ -118,6 +124,14 @@ if ($_SESSION['peran_pengguna'] == "Tamu") {
                     <span class="material-symbols-rounded">speed</span>
                   </div>
                 </a>
+                <a href="lihat/lihat-perbaikan.php">
+                  <div class="tmbl">
+                    <p>Lihat service record</p>
+                    <span class="material-symbols-rounded"
+                      >home_repair_service</span
+                    >
+                  </div>
+                </a>
               </div>
             </div>
           </div>
@@ -145,6 +159,7 @@ if ($_SESSION['peran_pengguna'] == "Tamu") {
                       >Data Barang Internal</span
                     >
                     <span data-rekaman="dataMobil">Data Kilometer Mobil</span>
+                    <span data-rekaman="dataService">Service Record</span>
                   </div>
                 </div>
                 <p>Berikut adalah 10 catatan terbaru</p>
@@ -188,6 +203,7 @@ if ($_SESSION['peran_pengguna'] == "Tamu") {
       <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-barang-ext.html'; ?>
       <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-barang-int.html'; ?>
       <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-mobil.html'; ?>
+      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-service.html'; ?>
     </div>
     <!-- End Modal Box -->
     <!-- modal alert box-->
@@ -266,6 +282,9 @@ if ($_SESSION['peran_pengguna'] == "Tamu") {
             break;
           case "dataMobil":
             linkHalaman = "mobil.php";
+            break;
+          case "dataService":
+            linkHalaman = "perbaikan.php";
             break;
         }
 
