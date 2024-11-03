@@ -38,7 +38,7 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
             <div class="head">
               <div class="teks">
                 <h2>Data Kilometer Mobil</h2>
-                <p>Berikut adalah catatan hari ini</p>
+                <!-- <p>Berikut adalah catatan hari ini</p> -->
               </div>
               <div class="bar-cari">
                 <label for="cari" class="material-symbols-rounded"
@@ -72,7 +72,7 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
     <!-- End Container -->
     <!-- Modal Box -->
     <div class="modals">
-      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-mobil.php'; ?>
+      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-mobil.html'; ?>
     </div>
     <!-- End Modal Box -->
     <!-- modal alert box-->

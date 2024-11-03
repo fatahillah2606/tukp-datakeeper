@@ -44,7 +44,7 @@ if ($_SESSION['peran_pengguna'] !== 'Tamu') {
               require $_SERVER['DOCUMENT_ROOT'] . '/templates/user-navbar.php';
             }
           } else {
-            require $_SERVER['DOCUMENT_ROOT'] . '/templates/guest-navbar.php';
+            require $_SERVER['DOCUMENT_ROOT'] . '/templates/guest-navbar.html';
           }
         ?>
         <!-- End Navbar -->

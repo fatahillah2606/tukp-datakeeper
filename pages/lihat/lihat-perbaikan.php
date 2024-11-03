@@ -4,20 +4,12 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
   header("Location: /errors/403.php");
   exit();
 }
-
-// fungsi
-function konversiTanggal($tgl) {
-  $bln = array(
-    1 =>
-"Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus",
-"September", "Oktober", "November", "Desember" ); $pecahkan = explode("-",
-$tgl); return $pecahkan[2] . " " . $bln[(int)$pecahkan[1]] . " " . $pecahkan[0];
-} ?>
+?>
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lihat Barang Internal | TUKP Data Keeper</title>
+    <title>Service Record | TUKP Data Keeper</title>
     <link rel="stylesheet" href="/assets/css/style.css" />
     <link rel="stylesheet" href="/assets/css/style-dark.css" />
     <!-- Pisahkan bagian ini -->
@@ -45,7 +37,7 @@ $tgl); return $pecahkan[2] . " " . $bln[(int)$pecahkan[1]] . " " . $pecahkan[0];
           <div class="tabel">
             <div class="head">
               <div class="teks">
-                <h2>Data Barang Internal</h2>
+                <h2>Service Record</h2>
                 <!-- <p>Berikut adalah catatan hari ini</p> -->
               </div>
               <div class="bar-cari">
@@ -66,7 +58,7 @@ $tgl); return $pecahkan[2] . " " . $bln[(int)$pecahkan[1]] . " " . $pecahkan[0];
           </div>
           <!-- End Tabel -->
           <!-- fab button -->
-          <a href="../catat/catat-barang-int.php">
+          <a href="../catat/catat-perbaikan.php">
             <div class="fab-button">
               <span class="material-symbols-rounded">edit</span>
               <span>Catat</span>
@@ -80,7 +72,7 @@ $tgl); return $pecahkan[2] . " " . $bln[(int)$pecahkan[1]] . " " . $pecahkan[0];
     <!-- End Container -->
     <!-- Modal Box -->
     <div class="modals">
-      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-barang-int.html'; ?>
+      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/modals/edit-service.html'; ?>
     </div>
     <!-- End Modal Box -->
     <!-- modal alert box-->
@@ -104,11 +96,7 @@ $tgl); return $pecahkan[2] . " " . $bln[(int)$pecahkan[1]] . " " . $pecahkan[0];
 
       function muatData() {
         let xhr = new XMLHttpRequest();
-        xhr.open(
-          "GET",
-          "/functions/data-manager.php?dataBarangInternal=true",
-          true
-        );
+        xhr.open("GET", "/functions/data-manager.php?dataService=true", true);
         xhr.onload = function () {
           if (xhr.status === 200) {
             tableContainer.innerHTML = xhr.responseText;

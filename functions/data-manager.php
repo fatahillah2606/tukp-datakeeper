@@ -31,6 +31,7 @@ if (isset($_POST["DataPengunjung"])) {
   $noKendaraan = htmlspecialchars($_POST["NoKendaraan"]);
   $tanggal = htmlspecialchars($_POST["tanggal"]);
   $noTlp = htmlspecialchars($_POST["NomorTlp"]);
+  $safetyInduction = htmlspecialchars($_POST["SafetyInduction"]);
 
   // Dapatkan semua field nama pengunjung
   $pengunjung_fields = array_filter($_POST, function($key) {
@@ -45,9 +46,9 @@ if (isset($_POST["DataPengunjung"])) {
   // Simpan
   if (isset($_POST["simpan"])) {
     // masukan ke database
-    $sql = "INSERT INTO data_pengunjung (`id`, `nama_pengunjung`,	`nama_perusahaan`,	`no_kendaraan`, `tanggal`,	`no_telpon`) VALUES (null, ?, ?, ?, ?, ?);";
+    $sql = "INSERT INTO data_pengunjung (`id`, `nama_pengunjung`,	`nama_perusahaan`,	`no_kendaraan`, `tanggal`,	`no_telpon`, `safety_induction`) VALUES (null, ?, ?, ?, ?, ?, ?);";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssss", $namaPengunjung, $namaPerusahaan, $noKendaraan, $tanggal, $noTlp);
+    $stmt->bind_param("ssssss", $namaPengunjung, $namaPerusahaan, $noKendaraan, $tanggal, $noTlp, $safetyInduction);
     if ($stmt->execute()) {
       // Kembalikan info berupa JSON
       echo json_encode(["status" => "success", "pesan" => "Data tersimpan", "atxt" => "Lihat", "alnk" => "/pages/lihat/lihat-pengunjung.php"]);
@@ -63,9 +64,9 @@ if (isset($_POST["DataPengunjung"])) {
   if (isset($_POST["ubah"])) {
     $idData = htmlspecialchars($_POST["IdData"]);
     // masukan ke database
-    $sql = "UPDATE data_pengunjung SET `nama_pengunjung` = ?, `nama_perusahaan` = ?, `no_kendaraan` = ?, `tanggal` = ?, `no_telpon` = ? WHERE `id` = ?;";
+    $sql = "UPDATE data_pengunjung SET `nama_pengunjung` = ?, `nama_perusahaan` = ?, `no_kendaraan` = ?, `tanggal` = ?, `no_telpon` = ?, `safety_induction` = ? WHERE `id` = ?;";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssssi", $namaPengunjung, $namaPerusahaan, $noKendaraan, $tanggal, $noTlp, $idData);
+    $stmt->bind_param("ssssssi", $namaPengunjung, $namaPerusahaan, $noKendaraan, $tanggal, $noTlp, $safetyInduction, $idData);
     if ($stmt->execute()) {
       // Kembalikan info berupa JSON
       echo json_encode(["status" => "success", "pesan" => "Data diubah", "atxt" => "Lihat", "alnk" => "/pages/lihat/lihat-pengunjung.php"]);
@@ -229,6 +230,7 @@ if (isset($_POST["DataBarangInt"])) {
 if (isset($_POST["DataMobil"])) {
   require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   // Dapatkan semua field
+  $tanggal = htmlspecialchars($_POST["tanggal"]);
   $namaDriver = htmlspecialchars($_POST["NamaDriver"]);
   $merek = '';
   $noKendaraan = htmlspecialchars($_POST["NoKendaraan"]);
@@ -247,9 +249,9 @@ if (isset($_POST["DataMobil"])) {
   // simpan
   if (isset($_POST["simpan"])) {
     // masukan ke database
-    $sql = "INSERT INTO data_mobil (`id`, `nama_driver`, `merek_kendaraan`, `no_kendaraan`,	`km_awal`, `km_akhir`, `tujuan`, `keperluan`) VALUES (null, ?, ?, ?, ?, ?, ?, ?);";
+    $sql = "INSERT INTO data_mobil (`id`, `tanggal`, `nama_driver`, `merek_kendaraan`, `no_kendaraan`,	`km_awal`, `km_akhir`, `tujuan`, `keperluan`) VALUES (null, ?, ?, ?, ?, ?, ?, ?, ?);";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssiiss", $namaDriver, $merek, $noKendaraan, $awalKm, $akhirKm, $tujuan, $keperluan);
+    $stmt->bind_param("ssssiiss", $tanggal, $namaDriver, $merek, $noKendaraan, $awalKm, $akhirKm, $tujuan, $keperluan);
     if ($stmt->execute()) {
       // Kembalikan info berupa JSON
       echo json_encode(["status" => "success", "pesan" => "Data tersimpan", "atxt" => "Lihat", "alnk" => "/pages/lihat/lihat-mobil.php"]);
@@ -263,12 +265,58 @@ if (isset($_POST["DataMobil"])) {
   if (isset($_POST["ubah"])) {
     $idData = htmlspecialchars($_POST["IdData"]);
     // masukan ke database
-    $sql = "UPDATE data_mobil SET `nama_driver` = ?, `merek_kendaraan` = ?, `no_kendaraan` = ?,	`km_awal` = ?, `km_akhir` = ?, `tujuan` = ?, `keperluan` = ? WHERE `id` = ?;";
+    $sql = "UPDATE data_mobil SET `tanggal` = ?, `nama_driver` = ?, `merek_kendaraan` = ?, `no_kendaraan` = ?,	`km_awal` = ?, `km_akhir` = ?, `tujuan` = ?, `keperluan` = ? WHERE `id` = ?;";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sssiissi", $namaDriver, $merek, $noKendaraan, $awalKm, $akhirKm, $tujuan, $keperluan, $idData);
+    $stmt->bind_param("ssssiissi", $tanggal, $namaDriver, $merek, $noKendaraan, $awalKm, $akhirKm, $tujuan, $keperluan, $idData);
     if ($stmt->execute()) {
       // Kembalikan info berupa JSON
       echo json_encode(["status" => "success", "pesan" => "Data diubah", "atxt" => "Lihat", "alnk" => "/pages/lihat/lihat-mobil.php"]);
+    } else {
+      echo json_encode(["status" => "error", "pesan" => "Terjadi kesalahan", "atxt" => "", "alnk" => "", "errorMsg" => " . $conn->error ."]);
+    }
+    $stmt->close();
+  }
+  $conn->close();
+}
+
+
+// Untuk service record
+if (isset($_POST["DataService"])) {
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
+  // Dapatkan semua field
+  $tanggal = htmlspecialchars($_POST["tanggal"]);
+  $namaPelaksana = htmlspecialchars($_POST["NamaPelaksana"]);
+  $merek = htmlspecialchars($_POST["MerekKendaraan"]);
+  $noKendaraan = htmlspecialchars($_POST["NoKendaraan"]);
+  $kmService = htmlspecialchars($_POST["KmService"]);
+  $namaBengkel = htmlspecialchars($_POST["NamaBengkel"]);
+  $rincian = htmlspecialchars($_POST["rincian"]);
+
+  // simpan
+  if (isset($_POST["simpan"])) {
+    // masukan ke database
+    $sql = "INSERT INTO service_record (`id`, `tanggal`, `nama_pelaksana`, `merek_kendaraan`, `no_kendaraan`,	`km_service`, `nama_bengkel`, `rincian`) VALUES (null, ?, ?, ?, ?, ?, ?, ?);";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssiss", $tanggal, $namaPelaksana, $merek, $noKendaraan, $kmService, $namaBengkel, $rincian);
+    if ($stmt->execute()) {
+      // Kembalikan info berupa JSON
+      echo json_encode(["status" => "success", "pesan" => "Data tersimpan", "atxt" => "Lihat", "alnk" => "/pages/lihat/lihat-perbaikan.php"]);
+    } else {
+      echo json_encode(["status" => "error", "pesan" => "Terjadi kesalahan", "atxt" => "", "alnk" => "", "errorMsg" => " . $conn->error ."]);
+    }
+    $stmt->close();
+  }
+
+  // Ubah
+  if (isset($_POST["ubah"])) {
+    $idData = htmlspecialchars($_POST["IdData"]);
+    // masukan ke database
+    $sql = "UPDATE service_record SET `tanggal` = ?, `nama_pelaksana` = ?, `merek_kendaraan` = ?, `no_kendaraan` = ?,	`km_service` = ?, `nama_bengkel` = ?, `rincian` = ? WHERE `id` = ?;";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ssssissi", $tanggal, $namaPelaksana, $merek, $noKendaraan, $kmService, $namaBengkel, $rincian, $idData);
+    if ($stmt->execute()) {
+      // Kembalikan info berupa JSON
+      echo json_encode(["status" => "success", "pesan" => "Data diubah", "atxt" => "Lihat", "alnk" => "/pages/lihat/lihat-perbaikan.php"]);
     } else {
       echo json_encode(["status" => "error", "pesan" => "Terjadi kesalahan", "atxt" => "", "alnk" => "", "errorMsg" => " . $conn->error ."]);
     }
@@ -302,6 +350,7 @@ if (isset($_GET["dataPengunjung"])) {
           <th scope="col">Nomor Kendaraan</th>
           <th scope="col">Tanggal</th>
           <th scope="col">Nomor Telepon</th>
+          <th scope="col">Safety Induction</th>
           <th scope="col">Ubah Data</th>
         </tr>
       </thead>
@@ -337,6 +386,11 @@ if (isset($_GET["dataPengunjung"])) {
         <td data-label="Nomor Telepon" class="no-tlp">
           <p class="text-wrap">
             <?php echo $baris['no_telpon']; ?>
+          </p>
+        </td>
+        <td data-label="Safety Induction" class="safety-induction">
+          <p class="text-wrap">
+            <?php echo $baris['safety_induction']; ?>
           </p>
         </td>
         <td data-label="Ubah Data" class="buttons">
@@ -569,6 +623,7 @@ if (isset($_GET["dataMobil"])) {
       <thead>
         <tr>
           <th scope="col">No</th>
+          <th scope="col">Tanggal</th>
           <th scope="col">Nama Driver</th>
           <th scope="col">Merek Kendaraan</th>
           <th scope="col">Nomor Kendaraan</th>
@@ -586,6 +641,9 @@ if (isset($_GET["dataMobil"])) {
       <tr>
         <td data-label="No" class="no">
           <p class="text-wrap"><?php echo $nomor; ?></p>
+        </td>
+        <td data-label="Tanggal" class="tanggal">
+          <p class="text-wrap"><?php echo konversiTanggal($baris["tanggal"]); ?></p>
         </td>
         <td data-label="Nama Driver" class="nama-driver">
           <p class="text-wrap">
@@ -645,12 +703,108 @@ if (isset($_GET["dataMobil"])) {
 }
 ?>
 
+
+<?php
+// Proses ambil data service
+if (isset($_GET["dataService"])) {
+  require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
+  $sql = "";
+  if (isset($_GET["limit"])) {
+    $sql = "SELECT * FROM service_record ORDER BY id DESC LIMIT 10";
+  } else {
+    $sql = "SELECT * FROM service_record ORDER BY id DESC";
+  }
+  $hasil = $conn->query($sql);
+  if ($hasil->num_rows > 0) {
+    $nomor = 1;
+    ?>
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">No</th>
+          <th scope="col">Tanggal</th>
+          <th scope="col">Nama Pelaksana</th>
+          <th scope="col">Merek Kendaraan</th>
+          <th scope="col">Nomor Kendaraan</th>
+          <th scope="col">Kilometer saat service</th>
+          <th scope="col">Nama bengkel</th>
+          <th scope="col">Rincian service</th>
+          <th scope="col">Ubah Data</th>
+        </tr>
+      </thead>
+      <tbody>
+    <?php
+    while ($baris = $hasil->fetch_assoc()) {
+      ?>
+      <tr>
+        <td data-label="No" class="no">
+          <p class="text-wrap"><?php echo $nomor; ?></p>
+        </td>
+        <td data-label="Tanggal" class="tanggal">
+          <p class="text-wrap"><?php echo konversiTanggal($baris["tanggal"]); ?></p>
+        </td>
+        <td data-label="Nama Driver" class="nama-pelaksana">
+          <p class="text-wrap">
+            <?php echo $baris['nama_pelaksana']; ?>
+          </p>
+        </td>
+        <td data-label="Merek Kendaraan" class="merek-kendaraan">
+          <p class="text-wrap">
+            <?php echo $baris['merek_kendaraan']; ?>
+          </p>
+        </td>
+        <td data-label="Nomor Kendaraan" class="no-kendaraan">
+          <p class="text-wrap">
+            <?php echo $baris["no_kendaraan"]; ?>
+          </p>
+        </td>
+        <td data-label="Kilometer saat service" class="km-service">
+          <p class="text-wrap"><?php echo $baris['km_service']; ?></p>
+        </td>
+        <td data-label="Nama Bengkel" class="nama-bengkel">
+          <p class="text-wrap"><?php echo $baris['nama_bengkel']; ?></p>
+        </td>
+        <td data-label="Rincian Service" class="rincian">
+          <p class="text-wrap">
+            <?php echo $baris['rincian']; ?>
+          </p>
+        </td>
+        <td data-label="Ubah Data" class="buttons">
+          <div class="btn-cont">
+            <button class="hapus material-symbols-rounded" onclick="hapusData(<?php echo $baris['id'] ?>, 'service_record')">
+              delete
+            </button>
+            <button class="edit material-symbols-rounded" onclick="editService(this, <?php echo $baris['id'] ?>)">
+              edit
+            </button>
+          </div>
+        </td>
+      </tr>
+      <?php
+      $nomor++;
+    }
+    ?>
+      </tbody>
+    </table>
+    <?php
+  } else {
+    ?>
+    <td>
+      <h3>Data tidak tersedia</h3>
+    </td>
+    <?php
+  }
+  $conn->close();
+}
+?>
+
+
 <?php
 // Hapus data
 if (isset($_POST["hapusData"])) {
   require $_SERVER['DOCUMENT_ROOT'] . "/includes/db-connect.php";
   $namaTabel = htmlspecialchars($_POST["namaTabel"]);
-  $allowedTabel = ["data_pengunjung", "data_barang_eksternal", "data_barang_internal", "data_mobil"];
+  $allowedTabel = ["data_pengunjung", "data_barang_eksternal", "data_barang_internal", "data_mobil", "service_record"];
   if (!in_array($namaTabel, $allowedTabel)) {
     die("Nama tabel tidak valid!");
   }
