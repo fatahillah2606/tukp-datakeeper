@@ -67,6 +67,17 @@ if (formNomorKendaraan) {
   });
 }
 
+// Radio button
+let safetyInduction = document.querySelector(".safety");
+
+if (safetyInduction) {
+  safetyInduction.querySelectorAll(".form-radio input").forEach((element) => {
+    element.addEventListener("click", () => {
+      hapusError(safetyInduction);
+    });
+  });
+}
+
 // Generate single Element
 let singleField = 1;
 function tambahSingleField(judulField, nama, tipe, idBungkus, labelIcon) {
@@ -263,12 +274,14 @@ if (pilihMerek !== null) {
 }
 function merekKendaraan() {
   let merekLain = document.getElementById("merek-lain");
-  if (pilihMerek.value === "Lainnya") {
-    merekLain.removeAttribute("disabled");
-    merekLain.parentElement.classList.remove("none");
-  } else {
-    merekLain.setAttribute("disabled", "");
-    merekLain.parentElement.classList.add("none");
+  if (merekLain) {
+    if (pilihMerek.value === "Lainnya") {
+      merekLain.removeAttribute("disabled");
+      merekLain.parentElement.classList.remove("none");
+    } else {
+      merekLain.setAttribute("disabled", "");
+      merekLain.parentElement.classList.add("none");
+    }
   }
 }
 

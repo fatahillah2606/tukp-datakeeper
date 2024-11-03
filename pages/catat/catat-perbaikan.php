@@ -9,7 +9,7 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Catat Mobil | TUKP Data Keeper</title>
+    <title>Service Record | TUKP Data Keeper</title>
     <link rel="stylesheet" href="/assets/css/style.css" />
     <link rel="stylesheet" href="/assets/css/style-dark.css" />
     <link rel="stylesheet" href="/assets/css/navmenu.css" />
@@ -33,7 +33,7 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
         <!-- Main Content -->
         <div class="main-content">
           <div class="formulir">
-            <h1>Catat Mobil</h1>
+            <h1>Service Record</h1>
             <form
               action="/functions/data-manager.php"
               method="post"
@@ -46,11 +46,11 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
                 <span class="material-symbols-rounded field-icon">event</span>
               </div>
               <div class="form-field">
-                <label for="nama-driver">Nama Driver</label>
+                <label for="nama-pelaksana">Nama Pelaksana</label>
                 <input
                   type="text"
-                  id="nama-driver"
-                  name="nama-driver"
+                  id="nama-pelaksana"
+                  name="nama-pelaksana"
                   required
                 />
                 <span class="material-symbols-rounded field-error">error</span>
@@ -59,30 +59,17 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
               </div>
               <div class="form-field">
                 <label for="merek-kendaraan">Merek Kendaraan</label>
-                <select name="merek-kendaraan" id="merek-kendaraan" required>
-                  <option value=""></option>
-                  <option value="Luxio">Luxio</option>
-                  <option value="Grandmax">Grandmax</option>
-                  <option value="Panther">Panther</option>
-                  <option value="Lainnya">Lainnya</option>
-                </select>
+                <input
+                  type="text"
+                  id="merek-kendaraan"
+                  name="merek-kendaraan"
+                  required
+                />
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon"
                   >local_shipping</span
                 >
-              </div>
-              <div class="form-field none">
-                <label for="merek-lain">Merek Lain</label>
-                <input
-                  type="text"
-                  id="merek-lain"
-                  name="merek-lain"
-                  disabled
-                  required
-                />
-                <span class="material-symbols-rounded field-error">error</span>
-                <span class="supporting-text">Supporting text</span>
               </div>
               <div class="form-field">
                 <label for="no-kendaraan">Nomor Kendaraan</label>
@@ -96,43 +83,38 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon">pin</span>
               </div>
-              <h2>Kilometer</h2>
-              <div class="multi-field">
-                <div class="form-field">
-                  <label for="awal-km">Awal</label>
-                  <input type="number" id="awal-km" name="awal-km" required />
-                  <span class="material-symbols-rounded field-error"
-                    >error</span
-                  >
-                  <span class="supporting-text">Supporting text</span>
-                </div>
-                <div class="form-field">
-                  <label for="akhir-km">Akhir</label>
-                  <input type="number" id="akhir-km" name="akhir-km" required />
-                  <span class="material-symbols-rounded field-error"
-                    >error</span
-                  >
-                  <span class="supporting-text">Supporting text</span>
-                </div>
+              <div class="form-field">
+                <label for="km-service">Kilometer saat service</label>
+                <input
+                  type="number"
+                  id="km-service"
+                  name="km-service"
+                  required
+                />
+                <span class="material-symbols-rounded field-error">error</span>
+                <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon">speed</span>
               </div>
               <div class="form-field">
-                <label for="tujuan">Tujuan</label>
-                <input type="text" id="tujuan" name="tujuan" required />
+                <label for="nama-bengkel">Nama Bengkel</label>
+                <input
+                  type="text"
+                  id="nama-bengkel"
+                  name="nama-bengkel"
+                  required
+                />
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon"
-                  >location_on</span
+                  >precision_manufacturing</span
                 >
               </div>
               <div class="form-field">
-                <label for="keperluan">Keperluan</label>
-                <input type="text" id="keperluan" name="keperluan" required />
+                <label for="rincian">Rincian Service</label>
+                <input type="text" id="rincian" name="rincian" required />
                 <span class="material-symbols-rounded field-error">error</span>
                 <span class="supporting-text">Supporting text</span>
-                <span class="material-symbols-rounded field-icon"
-                  >task_alt</span
-                >
+                <span class="material-symbols-rounded field-icon">info</span>
               </div>
               <div class="tombol-aksi">
                 <button type="reset" id="reset">Bersihkan</button>
@@ -186,14 +168,12 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
         if (!adaYangKosong && !adaError) {
           // ambil data dari form
           let tanggal = formulir.querySelector("#tanggal").value;
-          let namaDriver = formulir.querySelector("#nama-driver").value;
+          let namaPelaksana = formulir.querySelector("#nama-pelaksana").value;
           let merekKendaraan = formulir.querySelector("#merek-kendaraan").value;
-          let merekLain = formulir.querySelector("#merek-lain").value;
           let noKendaraan = formulir.querySelector("#no-kendaraan").value;
-          let awalKm = formulir.querySelector("#awal-km").value;
-          let akhirKm = formulir.querySelector("#akhir-km").value;
-          let tujuan = formulir.querySelector("#tujuan").value;
-          let keperluan = formulir.querySelector("#keperluan").value;
+          let kmService = formulir.querySelector("#km-service").value;
+          let namaBengkel = formulir.querySelector("#nama-bengkel").value;
+          let rincian = formulir.querySelector("#rincian").value;
 
           // Buat objek XMLHttpRequest
           let xhr = new XMLHttpRequest();
@@ -226,24 +206,20 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
 
           // Kirim data ke server
           xhr.send(
-            "DataMobil=true&simpan=true&tanggal=" +
+            "DataService=true&simpan=true&tanggal=" +
               encodeURIComponent(tanggal) +
-              "&NamaDriver=" +
-              encodeURIComponent(namaDriver) +
+              "&NamaPelaksana=" +
+              encodeURIComponent(namaPelaksana) +
               "&MerekKendaraan=" +
               encodeURIComponent(merekKendaraan) +
-              "&MerekLain=" +
-              encodeURIComponent(merekLain) +
               "&NoKendaraan=" +
               encodeURIComponent(noKendaraan) +
-              "&AwalKm=" +
-              encodeURIComponent(awalKm) +
-              "&AkhirKm=" +
-              encodeURIComponent(akhirKm) +
-              "&tujuan=" +
-              encodeURIComponent(tujuan) +
-              "&keperluan=" +
-              encodeURIComponent(keperluan)
+              "&KmService=" +
+              encodeURIComponent(kmService) +
+              "&NamaBengkel=" +
+              encodeURIComponent(namaBengkel) +
+              "&rincian=" +
+              encodeURIComponent(rincian)
           );
         }
       }

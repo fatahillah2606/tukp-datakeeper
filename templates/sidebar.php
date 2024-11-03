@@ -48,6 +48,14 @@
           <p>Catat Kilometer Mobil</p>
         </div>
       </a>
+      <a href="/pages/catat/catat-perbaikan.php">
+        <div
+          class="link <?php echo basename($_SERVER['PHP_SELF']) == 'catat-perbaikan.php' ? 'active' : ''; ?>"
+        >
+          <span class="material-symbols-rounded">construction</span>
+          <p>Service Record</p>
+        </div>
+      </a>
       <div class="batas">
         <div class="garis-batas"></div>
         <h2>Rekaman data</h2>
@@ -82,6 +90,14 @@
         >
           <span class="material-symbols-rounded">speed</span>
           <p>Lihat Kilometer Mobil</p>
+        </div>
+      </a>
+      <a href="/pages/lihat/lihat-perbaikan.php">
+        <div
+          class="link <?php echo basename($_SERVER['PHP_SELF']) == 'lihat-perbaikan.php' ? 'active' : ''; ?>"
+        >
+          <span class="material-symbols-rounded">home_repair_service</span>
+          <p>Service Record</p>
         </div>
       </a>
       <?php

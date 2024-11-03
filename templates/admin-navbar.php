@@ -65,5 +65,5 @@
   </div>
 </div>
 <!-- user modal -->
-<?php require $_SERVER['DOCUMENT_ROOT'] . "/templates/modals/user-manager.php" ?>
+<?php require $_SERVER['DOCUMENT_ROOT'] . "/templates/modals/user-manager.html" ?>
 <!-- End user modal -->

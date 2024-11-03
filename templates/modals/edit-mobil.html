@@ -2,6 +2,12 @@
   <div class="formulir">
     <h1>Edit laporan kilometer mobil</h1>
     <form action="">
+      <div class="form-field fokus">
+        <label for="tanggal-mobil">Tanggal</label>
+        <input type="date" id="tanggal-mobil" name="tanggal-mobil" required />
+        <span class="supporting-text">Supporting text</span>
+        <span class="material-symbols-rounded field-icon">event</span>
+      </div>
       <div class="form-field">
         <label for="nama-driver-mobil">Nama Driver</label>
         <input
@@ -41,7 +47,12 @@
       </div>
       <div class="form-field">
         <label for="no-kendaraan-mobil">Nomor Kendaraan</label>
-        <input type="text" id="no-kendaraan-mobil" name="no-kendaraan-mobil" required />
+        <input
+          type="text"
+          id="no-kendaraan-mobil"
+          name="no-kendaraan-mobil"
+          required
+        />
         <span class="material-symbols-rounded field-error">error</span>
         <span class="supporting-text">Supporting text</span>
         <span class="material-symbols-rounded field-icon">pin</span>

@@ -1,0 +1,95 @@
+<div class="modal-container edit-service">
+  <div class="formulir">
+    <h1>Service Record</h1>
+    <form action="">
+      <div id="field-nama">
+        <div class="form-field fokus">
+          <label for="tanggal-service">Tanggal</label>
+          <input type="date" id="tanggal-service" name="tanggal-service" required />
+          <span class="supporting-text">Supporting text</span>
+          <span class="material-symbols-rounded field-icon">event</span>
+        </div>
+        <div class="form-field">
+          <label for="nama-pelaksana">Nama Pelaksana</label>
+          <input
+            type="text"
+            id="nama-pelaksana"
+            name="nama-pelaksana"
+            required
+          />
+          <span class="material-symbols-rounded field-error">error</span>
+          <span class="supporting-text">Supporting text</span>
+          <span class="material-symbols-rounded field-icon">person</span>
+        </div>
+        <div class="form-field">
+          <label for="merek-kendaraan-service">Merek Kendaraan</label>
+          <input
+            type="text"
+            id="merek-kendaraan-service"
+            name="merek-kendaraan-service"
+            required
+          />
+          <span class="material-symbols-rounded field-error">error</span>
+          <span class="supporting-text">Supporting text</span>
+          <span class="material-symbols-rounded field-icon"
+            >local_shipping</span
+          >
+        </div>
+        <div class="form-field">
+          <label for="no-kendaraan-service">Nomor Kendaraan</label>
+          <input
+            type="text"
+            id="no-kendaraan-service"
+            name="no-kendaraan-service"
+            required
+          />
+          <span class="material-symbols-rounded field-error">error</span>
+          <span class="supporting-text">Supporting text</span>
+          <span class="material-symbols-rounded field-icon">pin</span>
+        </div>
+        <div class="form-field">
+          <label for="km-service">Kilometer saat service</label>
+          <input
+            type="number"
+            id="km-service"
+            name="km-service"
+            required
+          />
+          <span class="material-symbols-rounded field-error">error</span>
+          <span class="supporting-text">Supporting text</span>
+          <span class="material-symbols-rounded field-icon">speed</span>
+        </div>
+        <div class="form-field">
+          <label for="nama-bengkel">Nama Bengkel</label>
+          <input
+            type="text"
+            id="nama-bengkel"
+            name="nama-bengkel"
+            required
+          />
+          <span class="material-symbols-rounded field-error">error</span>
+          <span class="supporting-text">Supporting text</span>
+          <span class="material-symbols-rounded field-icon"
+            >precision_manufacturing</span
+          >
+        </div>
+        <div class="form-field">
+          <label for="rincian">Rincian Service</label>
+          <input type="text" id="rincian" name="rincian" required />
+          <span class="material-symbols-rounded field-error">error</span>
+          <span class="supporting-text">Supporting text</span>
+          <span class="material-symbols-rounded field-icon">info</span>
+        </div>
+      <div class="tombol-aksi">
+        <button
+          type="reset"
+          class="batal"
+          onclick="batalEdit(this.parentElement.parentElement.parentElement.parentElement)"
+        >
+          Batal
+        </button>
+        <button name="updateService" type="submit">Simpan</button>
+      </div>
+    </form>
+  </div>
+</div>
