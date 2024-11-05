@@ -33,13 +33,9 @@ if (isset($_GET["dataPengguna"])) {
             ?>
             <div class="action-btn">
               <!-- Jika tamu -->
-              <div class="btn reset">
+              <div class="btn reset" onclick="resetPasswd(<?php echo $idUser; ?>, '<?php echo $namaUser; ?>')">
                 <span class="material-symbols-rounded">history</span>
-                <p
-                  onclick="resetPasswd(<?php echo $idUser; ?>, '<?php echo $namaUser; ?>')"
-                >
-                  Reset
-                </p>
+                <p>Reset</p>
               </div>
               <?php
               if ($baris['role'] === 'Tamu') {

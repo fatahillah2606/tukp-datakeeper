@@ -351,33 +351,34 @@ function resetSandi(x, event, z) {
   });
 
   // proses
-  let sandiBaru = x.querySelector(".form-field #retype-passwd").value;
+  if (!adaYangKosong && !adaError) {
+    let sandiBaru = x.querySelector(".form-field #retype-passwd").value;
 
-  let xhrUpdatePass = new XMLHttpRequest();
-  xhrUpdatePass.open("POST", "/functions/users-manager.php", true);
-  xhrUpdatePass.setRequestHeader(
-    "Content-Type",
-    "application/x-www-form-urlencoded"
-  );
+    let xhrUpdatePass = new XMLHttpRequest();
+    xhrUpdatePass.open("POST", "/functions/users-manager.php", true);
+    xhrUpdatePass.setRequestHeader(
+      "Content-Type",
+      "application/x-www-form-urlencoded"
+    );
 
-  xhrUpdatePass.onload = function () {
-    if (xhrUpdatePass.status === 200) {
-      console.log(xhrUpdatePass.responseText);
-      let respon = JSON.parse(xhrUpdatePass.responseText);
-      showUpdate(respon.pesan, respon.atxt, respon.alnk);
-      if (respon.status == "berhasil") {
-        resetPasswdModal
-          .querySelector(".formulir .controls .close-btn")
-          .click();
+    xhrUpdatePass.onload = function () {
+      if (xhrUpdatePass.status === 200) {
+        let respon = JSON.parse(xhrUpdatePass.responseText);
+        showUpdate(respon.pesan, respon.atxt, respon.alnk);
+        if (respon.status == "berhasil") {
+          resetPasswdModal
+            .querySelector(".formulir .controls .close-btn")
+            .click();
+        } else {
+          console.log("Kesalahan: " + respon.pesan);
+        }
       } else {
-        console.log("Kesalahan: " + respon.pesan);
+        console.log("Kesalahan: " + xhrUpdatePass.status);
       }
-    } else {
-      console.log("Kesalahan: " + xhrUpdatePass.status);
-    }
-  };
+    };
 
-  xhrUpdatePass.send("updatePass=true&akun=" + z + "&SandiBaru=" + sandiBaru);
+    xhrUpdatePass.send("updatePass=true&akun=" + z + "&SandiBaru=" + sandiBaru);
+  }
 }
 
 // tutup modal
