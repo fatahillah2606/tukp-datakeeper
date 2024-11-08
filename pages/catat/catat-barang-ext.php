@@ -79,7 +79,7 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
                 <div class="multi-field">
                   <div class="form-field">
                     <label for="nama-barang">Nama Barang</label>
-                    <input type="text" id="nama-barang" name="nama-barang" required />
+                    <input type="text" id="nama-barang" name="nama-barang"  />
                     <span class="material-symbols-rounded field-error"
                       >error</span
                     >
@@ -91,7 +91,6 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
                       type="number"
                       id="jumlah-barang"
                       name="jumlah-barang"
-                      required
                     />
                     <span class="material-symbols-rounded field-error"
                       >error</span
@@ -111,7 +110,8 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
                 <span class="btn-label">Tambah</span>
               </div>
               <div class="form-field keep-fokus">
-                <label for="time-pp">Jam Kedatangan</label>
+                <label for="time-pp">Jam Kedatangan / Keberangkatan
+                </label>
                 <input type="time" id="time-pp" name="time-pp" required />
                 <span class="supporting-text">Supporting text</span>
                 <span class="material-symbols-rounded field-icon"
