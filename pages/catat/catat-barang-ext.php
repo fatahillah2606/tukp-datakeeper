@@ -1,9 +1,5 @@
 <?php
 require $_SERVER['DOCUMENT_ROOT'] . '/includes/login-info.php';
-if ($_SESSION['peran_pengguna'] == 'Tamu') {
-  header("Location: /errors/403.php");
-  exit();
-}
 ?>
 <html lang="id">
   <head>
@@ -18,16 +14,26 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
   <body>
     <div class="container">
       <!-- Sidebar -->
-      <?php require $_SERVER['DOCUMENT_ROOT'] . '/templates/sidebar.php'; ?>
+      <?php
+        if ($_SESSION['peran_pengguna'] !== "Tamu") {
+          require $_SERVER['DOCUMENT_ROOT'] . '/templates/sidebar.php';
+        } else {
+          require $_SERVER['DOCUMENT_ROOT'] . '/templates/guest-sidebar.php';
+        }
+      ?>
       <!-- End Sidebar -->
       <!-- Konten -->
       <div class="konten">
         <!-- Navbar -->
         <?php
-          if ($_SESSION['peran_pengguna'] === 'Admin') {
-            require $_SERVER['DOCUMENT_ROOT'] . '/templates/admin-navbar.php';
-          } else if ($_SESSION['peran_pengguna'] === 'User') {
-            require $_SERVER['DOCUMENT_ROOT'] . '/templates/user-navbar.php';
+          if ($_SESSION['peran_pengguna'] !== "Tamu") {
+            if ($_SESSION['peran_pengguna'] === 'Admin') {
+              require $_SERVER['DOCUMENT_ROOT'] . '/templates/admin-navbar.php';
+            } else {
+              require $_SERVER['DOCUMENT_ROOT'] . '/templates/user-navbar.php';
+            }
+          } else {
+            require $_SERVER['DOCUMENT_ROOT'] . '/templates/guest-navbar.html';
           }
         ?>
         <!-- End Navbar -->

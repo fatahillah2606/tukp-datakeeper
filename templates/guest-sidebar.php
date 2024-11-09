@@ -30,6 +30,14 @@
           <p>Catat Barang Internal</p>
         </div>
       </a>
+      <a href="/pages/catat/catat-barang-ext.php">
+        <div
+          class="link <?php echo basename($_SERVER['PHP_SELF']) == 'catat-barang-ext.php' ? 'active' : ''; ?>"
+        >
+          <span class="material-symbols-rounded">note_alt</span>
+          <p>Catat Barang Eksternal</p>
+        </div>
+      </a>
     </div>
   </div>
 </div>
