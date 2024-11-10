@@ -38,7 +38,7 @@ if (!isset($_SESSION['peran_pengguna'])) {
             } else if ($_SESSION['peran_pengguna'] == 'User'){
               require $_SERVER['DOCUMENT_ROOT'] . '/templates/user-navbar.php';
             } else {
-              require $_SERVER['DOCUMENT_ROOT'] . '/templates/guest-navbar.php';
+              require $_SERVER['DOCUMENT_ROOT'] . '/templates/guest-navbar.html';
             }
           }
         ?>

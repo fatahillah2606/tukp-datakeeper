@@ -72,6 +72,12 @@ if ($_SESSION['peran_pengguna'] !== 'Tamu') {
                     <span class="material-symbols-rounded">place_item</span>
                   </div>
                 </a>
+                <a href="catat/catat-barang-ext.php">
+                  <div class="tmbl">
+                    <p>Catat Barang Eksternal</p>
+                    <span class="material-symbols-rounded">note_alt</span>
+                  </div>
+                </a>
               </div>
             </div>
           </div>

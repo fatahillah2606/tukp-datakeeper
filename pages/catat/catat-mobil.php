@@ -108,7 +108,7 @@ if ($_SESSION['peran_pengguna'] == 'Tamu') {
                 </div>
                 <div class="form-field">
                   <label for="akhir-km">Akhir</label>
-                  <input type="number" id="akhir-km" name="akhir-km" required />
+                  <input type="number" id="akhir-km" name="akhir-km" />
                   <span class="material-symbols-rounded field-error"
                     >error</span
                   >
