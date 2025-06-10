@@ -4,7 +4,7 @@ require "../connection/db_tukp.php";
 // Ambil fungsi untuk membuat API
 require "generate_api.php";
 
-// Bagian untuk request dengan method POST
+// Bagian untuk request dengan method POST test commit
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Jika request adalah register
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $type_user = htmlspecialchars($_POST ["selecttype"]);
         $user_id = ($_POST ["user-id"] == null) ? null : htmlspecialchars($_POST["user-id"]);    
         $user_email = ($_POST ["user-email"] == null) ? null : htmlspecialchars($_POST["user-email"]);    
-        $nama = htmlspecialchars($_POST["nama"]);
+        $nama = htmlspecialchars($_POST["nama"]});
         $sandi = password_hash(htmlspecialchars($_POST["password"]), PASSWORD_BCRYPT);
 
         // Coba masukan datanya ke database
