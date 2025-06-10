@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
-$db_name = "latihan_tukp";
+$db_name = "tukp-datakeeper";
 $username = "andikakurniawan";
 $password = "CODOTERSNA29";
 

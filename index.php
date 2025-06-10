@@ -21,7 +21,7 @@
                 <p class="h2">PT Taland Utama Karisma Perkasa</p>
             </div>
             <div class="card-body">
-                <form action="" method="post">
+                <form action="" method="post" id="login" name="login">
                     <p class="h3">Login</p>
                     <select
                         class="form-select mb-3"
@@ -74,6 +74,7 @@
                 </form>
             </div>
         </div>
+        <script src="assets/scripts/login.js"></script>
         <script src="assets/bootstrap-5.3.5-dist/js/bootstrap.bundle.min.js"></script>
     </body>
 </html>
