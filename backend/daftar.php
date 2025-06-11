@@ -4,7 +4,7 @@ require "../connection/db_tukp.php";
 // Ambil fungsi untuk membuat API
 require "generate_api.php";
 
-// Bagian untuk request dengan method POST test commit
+// Bagian untuk request dengan method POST 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     // Jika request adalah register
