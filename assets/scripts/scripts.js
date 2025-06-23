@@ -40,7 +40,7 @@ selectType.addEventListener("change", function () {
     if (selectType.value === "Admin") {
         kolomAdmin.classList.remove("hidden");
         kolomAdmin.querySelector("#user-email").removeAttribute("disabled");
-    } else if (selectType.value === "User") {
+    } else if (selectType.value === "Security") {
         kolomUser.classList.remove("hidden");
         kolomUser.querySelector("#user-id").removeAttribute("disabled");
     }

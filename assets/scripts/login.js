@@ -1,3 +1,29 @@
+// Cek opsi role
+let peran = document.getElementById("role");
+peran.addEventListener("change", () => {
+    if (peran.value === "Admin") {
+        location.href = "login-admin,php";
+    } else if (peran.value === "Security") {
+        location.href = "index.php";
+    } else {
+        location.href = "login-tamu.php";
+    }
+});
+
+//Tombol Tampilkan Sandi
+let showpw = document.getElementById("showpw");
+let userPassword = document.getElementById("userpassword");
+
+showpw.addEventListener("change", () => {
+    if (showpw.checked) {
+        userPassword.setAttribute("type", "text");
+    } else {
+        userPassword.setAttribute("type", "password");
+    }
+});
+
+// Fungsi Sistem Otentikasi
+// Fungsu Daftar
 function daftar(event) {
     // cegah tombol submit memproses submit secara default
     event.preventDefault();

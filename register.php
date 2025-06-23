@@ -19,7 +19,7 @@
                             <select name="selecttype" id="selecttype" required>
                                 <option value="" selected>-- Pilih --</option>
                                 <option value="Admin">Admin</option>
-                                <option value="User">User</option>
+                                <option value="Security">Security</option>
                                 <option value="Tamu">Tamu</option>
                             </select>
                         </td>
