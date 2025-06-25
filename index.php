@@ -1,3 +1,14 @@
+<?php
+// cek sesi 
+session_start();
+if (isset($_SESSION["role"])) {
+
+    // Pindah user ke halaman login
+    header("Location: /pages/dashboard.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -51,6 +62,8 @@
                             class="form-control"
                             id="userid"
                             placeholder="123456"
+                            name="id_user"
+                            required
                         />
                     </div>
 
@@ -64,6 +77,8 @@
                             class="form-control"
                             id="userpassword"
                             placeholder=""
+                            name="password"
+                            required
                         />
                     </div>
 
@@ -86,7 +101,7 @@
                         <button
                             type="submit"
                             class="btn btn-success"
-                            onclick="SecurityLogin()"
+                            onclick="SecurityLogin(event)"
                         >
                             Submit
                         </button>

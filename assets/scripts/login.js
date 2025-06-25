@@ -23,7 +23,7 @@ showpw.addEventListener("change", () => {
 });
 
 // Fungsi Sistem Otentikasi
-// Fungsu Daftar
+// Fungsi Daftar
 function daftar(event) {
     // cegah tombol submit memproses submit secara default
     event.preventDefault();
@@ -74,5 +74,54 @@ function daftar(event) {
                 }
             }
         };
+    }
+}
+
+// Fungsi Login security
+function SecurityLogin(event) {
+    event.preventDefault();
+
+    let formLoginSecuririty = document.getElementById("login");
+    const LoginSecurity = new FormData(formLoginSecuririty);
+    LoginSecurity.append("security", true);
+
+    // Untuk Mengecek Kolom Isian
+    let validasi = true;
+    let KolomIsian = document.querySelectorAll("Input[reuqired]");
+
+    KolomIsian.forEach((kolom) => {
+        if (kolom.value === "") {
+            validasi = false;
+        }
+    });
+
+    // Proses
+    if (validasi) {
+        // Kirim Request API
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", "/backend/login.php", true);
+
+        xhr.send(LoginSecurity);
+
+        xhr.onload = () => {
+            if (xhr.status === 200) {
+                try {
+                    const respon = JSON.parse(xhr.responseText);
+                    if (respon.status === "success") {
+                        // Jika berhasil, alihkan kehalaman dashboard
+                        location.href = "/pages/dashboard.php";
+                    } else {
+                        alert("Login gagal: " + respon.message);
+                    }
+                } catch (error) {
+                    alert("Terjadi Kesalahan");
+                    console.error(error);
+                    console.error(xhr.responseText);
+                }
+            } else {
+            }
+        };
+    } else {
+        alert("Kolom Isian Tidak Boleh Kosong");
     }
 }

@@ -1,3 +1,16 @@
+<?php
+// reuire $_SERVER['DOCUMENT_ROOT'] . ''
+
+// cek sesi 
+session_start();
+if (!isset($_SESSION["role"])) {
+
+    // Pindah user ke halaman login
+    header("Location: /");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>

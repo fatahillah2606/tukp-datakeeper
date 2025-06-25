@@ -1,0 +1,67 @@
+<?php
+
+//Mulai sesi
+session_start(); 
+
+// Ambil database
+require "../connection/db_tukp.php";
+// Ambil fungsi untuk membuat API
+require "generate_api.php";
+
+// Jika request yang diterima menggunakan method "POST"
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+
+    // Cek apakah yang login security
+    if (isset($_POST["security"])) {
+        
+        // Ambil data dari form
+        $pengguna =  htmlspecialchars($_POST["pengguna"]);
+        $id_user = htmlspecialchars($_POST["id_user"]);
+        $password = htmlspecialchars($_POST["password"]);
+
+        // Proses Validasi
+        $query_sql = "SELECT * FROM pengguna WHERE id_user = :id_user";
+        $stmt = $pdo->prepare($query_sql);
+        $stmt->execute(["id_user"=> $id_user]);
+        $hasil =  $stmt->fetch();
+        
+        // Cek jika akun tersedia 
+        if (empty($hasil)) {
+             echo json_encode(generateAPI("failed", 403, "Akun Tidak Terdaftar", []));
+        } else {
+
+            // Verifikasi Password
+            if (password_verify($password, $hasil["password"])) {
+
+                // Jika Berhasil, buat sesi
+                $_SESSION["id_user"] = $hasil["id_user"];
+                $_SESSION["nama_user"] = $hasil["nama_user"];
+                $_SESSION["role"] = $hasil["role"];
+
+                // Buat Token untuk menyimpan cookies
+                $token = bin2hex(random_bytes(32));
+                $cacahToken = password_hash($token, PASSWORD_BCRYPT);
+
+                // Simpan sesi ke database
+                $query_sql = "UPDATE pengguna SET token_login = :token_login WHERE id= :id";
+                $stmt = $pdo->prepare($query_sql);
+                $stmt->execute([
+                    "token_login" => $cacahToken,
+                    "id" => $hasil["id"]
+                ]);
+
+                // Atur Cookie
+                setcookie("login", $hasil["id"] . ":" . $token, time() + (86400 * 30), "/");
+
+                // Berikan respon jika berhasil login
+               echo json_encode(generateAPI("success", 200, "Berhasil Login", []));
+             } else {
+
+                // Jika Gagal, Kasih Keterangan
+                echo json_encode(generateAPI("failed", 403, "Id Pengguna atau Sandi Salah", []));
+            }
+        }
+        
+    }
+}
+?>
