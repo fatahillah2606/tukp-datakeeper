@@ -1,0 +1,69 @@
+:root {
+    /* --- Primary Color (berbasis Hijau: #328E3D) --- */
+    --md-sys-color-primary: #328e3d; /* Hijau utama Anda */
+    --md-sys-color-on-primary: #ffffff; /* Teks di atas primary (putih) */
+    --md-sys-color-primary-container: #b9f8c6; /* Kontainer primary (hijau muda) */
+    --md-sys-color-on-primary-container: #00210a; /* Teks di atas primary container (hijau gelap) */
+
+    /* --- Secondary Color (berbasis Kuning: #DCBA2B) --- */
+    --md-sys-color-secondary: #dcba2b; /* Kuning utama Anda */
+    --md-sys-color-on-secondary: #000000; /* Teks di atas secondary (hitam/gelap untuk kontras) */
+    --md-sys-color-secondary-container: #fff7b3; /* Kontainer secondary (kuning sangat muda) */
+    --md-sys-color-on-secondary-container: #221b00; /* Teks di atas secondary container (coklat gelap) */
+
+    /* --- Tertiary Color (untuk aksen, saya pilih biru/cyan sebagai pelengkap hijau & kuning) --- */
+    --md-sys-color-tertiary: #52634f; /* Contoh warna tersier (hijau kebiruan/abu-abu) */
+    --md-sys-color-on-tertiary: #ffffff;
+    --md-sys-color-tertiary-container: #d5e8ce;
+    --md-sys-color-on-tertiary-container: #101f10;
+
+    /* --- Neutral Colors (berbasis Putih) --- */
+    --md-sys-color-background: #ffffff; /* Latar belakang utama (putih) */
+    --md-sys-color-on-background: #1c1b1f; /* Teks di atas background (hampir hitam) */
+    --md-sys-color-surface: #ffffff; /* Permukaan elemen (putih) */
+    --md-sys-color-on-surface: #1c1b1f; /* Teks di atas surface */
+    --md-sys-color-surface-variant: #e8e0ec; /* Varian permukaan (abu-abu terang) */
+    --md-sys-color-on-surface-variant: #4c444f; /* Teks di atas surface variant (abu-abu gelap) */
+    --md-sys-color-outline: #7d747e; /* Garis tepi (abu-abu sedang) */
+    --md-sys-color-shadow: #000000; /* Bayangan */
+    --md-sys-color-inverse-surface: #313034; /* Permukaan invers (untuk dark mode) */
+    --md-sys-color-inverse-on-surface: #f4eff4; /* Teks di atas inverse surface */
+    --md-sys-color-inverse-primary: #7bdd8c; /* Primary invers (untuk dark mode) */
+
+    /* --- Error Colors --- */
+    --md-sys-color-error: #ba1a1a; /* Merah untuk error */
+    --md-sys-color-on-error: #ffffff;
+    --md-sys-color-error-container: #ffdad6;
+    --md-sys-color-on-error-container: #410002;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    height: 100vh;
+}
+
+.sidebar {
+    background-color: var(--md-sys-color-primary-container);
+}
+.sidebar a {
+    display: block;
+}
+
+.main {
+    display: grid;
+    grid-template-rows: 60px 1fr;
+}
+
+.content {
+    overflow-y: auto;
+}
+
+.tabel {
+    background-color: var(--md-sys-color-primary-container);
+}
+
+.tabel table tr th,
+.tabel table tr td {
+    background-color: var(--md-sys-color-primary-container);
+}
