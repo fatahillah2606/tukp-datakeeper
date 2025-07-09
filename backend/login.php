@@ -1,7 +1,7 @@
 <?php
 
 //Mulai sesi
-session_start(); 
+session_start();
 
 // Ambil database
 require "../connection/db_tukp.php";
