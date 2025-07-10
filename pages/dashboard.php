@@ -47,39 +47,39 @@ if (!isset($_SESSION["role"])) {
                 </a>
                 <hr />
                 <!-- Pencatatan -->
-                <a href="dashboard.php">
+                <a href="catat-data/pengunjung.php">
                     <span class="material-symbols-rounded">person_edit</span>
                     <span class="menu-title">Catat Pengunjung</span>
                 </a>
-                <a href="dashboard.php">
+                <a href="catat-data/barang-internal.php">
                     <span class="material-symbols-rounded">note_alt</span>
                     <span class="menu-title">Catat Barang Internal</span>
                 </a>
-                <a href="dashboard.php">
+                <a href="catat-data/barang-eksternal.php">
                     <span class="material-symbols-rounded">edit_document</span>
                     <span class="menu-title">Catat Barang Eksternal</span>
                 </a>
-                <a href="dashboard.php">
+                <a href="catat-data/mobil.php">
                     <span class="material-symbols-rounded">edit_road</span>
                     <span class="menu-title">Catat Mobil</span>
                 </a>
                 <hr />
                 <!-- Lihat laporan -->
-                <a href="dashboard.php">
+                <a href="lihat-data/pengunjung.php">
                     <span class="material-symbols-rounded">group</span>
                     <span class="menu-title">Lihat Pengunjung</span>
                 </a>
-                <a href="dashboard.php">
+                <a href="lihat-data/barang-internal.php">
                     <span class="material-symbols-rounded"
                         >content_paste_search</span
                     >
                     <span class="menu-title">Lihat Barang Internal</span>
                 </a>
-                <a href="dashboard.php">
+                <a href="lihat-data/barang-eksternal.php">
                     <span class="material-symbols-rounded">description</span>
                     <span class="menu-title">Lihat Barang Eksternal</span>
                 </a>
-                <a href="dashboard.php">
+                <a href="lihat-data/mobil.php">
                     <span class="material-symbols-rounded">speed</span>
                     <span class="menu-title">Lihat Mobil</span>
                 </a>

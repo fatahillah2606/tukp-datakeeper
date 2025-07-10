@@ -101,6 +101,7 @@ a {
     overflow: auto;
 }
 
+/* Tabel */
 .tabel {
     background-color: var(--md-sys-color-primary-container);
 }
@@ -114,5 +115,15 @@ a {
 
 .tabel table tr th,
 .tabel table tr td {
+    background-color: var(--md-sys-color-primary-container);
+}
+
+/* Formulir */
+#formulir {
+    max-width: 500px;
+    margin: auto;
+}
+
+#formulir .card-header {
     background-color: var(--md-sys-color-primary-container);
 }
