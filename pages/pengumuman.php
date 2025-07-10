@@ -16,7 +16,7 @@ if (!isset($_SESSION["role"])) {
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Lihat Barang Internal - TUKP Data Keeper</title>
+        <title>Kelola Pengumuman - TUKP Data Keeper</title>
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -41,50 +41,50 @@ if (!isset($_SESSION["role"])) {
                         menu
                     </button>
                 </div>
-                <a href="../dashboard.php">
+                <a href="dashboard.php">
                     <span class="material-symbols-rounded">dashboard</span>
                     <span class="menu-title">Dashboard</span>
                 </a>
                 <hr />
                 <!-- Pencatatan -->
-                <a href="../catat-data/pengunjung.php">
+                <a href="catat-data/pengunjung.php">
                     <span class="material-symbols-rounded">person_edit</span>
                     <span class="menu-title">Catat Pengunjung</span>
                 </a>
-                <a href="../catat-data/barang-internal.php">
+                <a href="catat-data/barang-internal.php">
                     <span class="material-symbols-rounded">note_alt</span>
                     <span class="menu-title">Catat Barang Internal</span>
                 </a>
-                <a href="../catat-data/barang-eksternal.php">
+                <a href="catat-data/barang-eksternal.php">
                     <span class="material-symbols-rounded">edit_document</span>
                     <span class="menu-title">Catat Barang Eksternal</span>
                 </a>
-                <a href="../catat-data/mobil.php">
+                <a href="catat-data/mobil.php">
                     <span class="material-symbols-rounded">edit_road</span>
                     <span class="menu-title">Catat Mobil</span>
                 </a>
                 <hr />
                 <!-- Lihat laporan -->
-                <a href="../lihat-data/pengunjung.php">
+                <a href="lihat-data/pengunjung.php">
                     <span class="material-symbols-rounded">group</span>
                     <span class="menu-title">Lihat Pengunjung</span>
                 </a>
-                <a href="../lihat-data/barang-internal.php">
+                <a href="lihat-data/barang-internal.php">
                     <span class="material-symbols-rounded"
                         >content_paste_search</span
                     >
                     <span class="menu-title">Lihat Barang Internal</span>
                 </a>
-                <a href="../lihat-data/barang-eksternal.php">
+                <a href="lihat-data/barang-eksternal.php">
                     <span class="material-symbols-rounded">description</span>
                     <span class="menu-title">Lihat Barang Eksternal</span>
                 </a>
-                <a href="../lihat-data/mobil.php">
+                <a href="lihat-data/mobil.php">
                     <span class="material-symbols-rounded">speed</span>
                     <span class="menu-title">Lihat Mobil</span>
                 </a>
                 <hr />
-                <a href="../pengumuman.php">
+                <a href="pengumuman.php">
                     <span class="material-symbols-rounded">campaign</span>
                     <span class="menu-title">Pengumuman</span>
                 </a>
@@ -107,78 +107,75 @@ if (!isset($_SESSION["role"])) {
                     </div>
                 </nav>
                 <main class="content p-4">
-                    <!-- Tabel -->
-                    <div class="tabel p-4 rounded-4">
-                        <div class="tabel-head">
-                            <h3>Data Barang Internal</h3>
-
-                            <!-- search bar -->
-                            <form class="row g-3">
-                                <div class="col-auto">
+                    <!-- Formulir -->
+                    <div class="card overflow-hidden" id="formulir">
+                        <h5 class="card-header">Buat Pengumuman</h5>
+                        <div class="card-body">
+                            <form action="" method="post" id="form-pencatatan">
+                                <div class="mb-3">
                                     <label
-                                        for="search-bar"
-                                        class="visually-hidden"
-                                        >Cari</label
+                                        for="judul-pengumuman"
+                                        class="form-label"
+                                        >Judul Pengumuman</label
                                     >
                                     <input
                                         type="text"
                                         class="form-control"
-                                        id="search-bar"
-                                        placeholder="Cari..."
+                                        id="judul-pengumuman"
+                                        placeholder=""
                                     />
                                 </div>
-                                <div class="col-auto">
-                                    <button
-                                        type="submit"
-                                        class="btn mb-3"
-                                        id="search"
+                                <div class="mb-3">
+                                    <label
+                                        for="isi-pengumuman"
+                                        class="form-label"
+                                        >Isi Pengumuman</label
                                     >
-                                        <span class="material-symbols-rounded">
-                                            search
-                                        </span>
-                                    </button>
+                                    <textarea
+                                        class="form-control"
+                                        id="isi-pengumuman"
+                                        rows="3"
+                                    ></textarea>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <button
+                                            type="button"
+                                            class="btn btn-outline-success my-3 w-100"
+                                        >
+                                            Bersihkan
+                                        </button>
+                                    </div>
+                                    <div class="col">
+                                        <button
+                                            type="button"
+                                            class="btn btn-success my-3 w-100"
+                                        >
+                                            Simpan
+                                        </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
+                    </div>
 
-                        <!-- Tabel data -->
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Nama Pembawa</th>
-                                    <th scope="col">Nama dan Jumlah Barang</th>
-                                    <th scope="col">Tanggal</th>
-                                    <th scope="col">Keterangan</th>
-                                    <th scope="col"></th>
-                                </tr>
-                            </thead>
-                            <tbody class="table-group-divider" id="isi-tabel">
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Driver_51</td>
-                                    <td><li>Minyak, 500</li></td>
-                                    <td>2025-03-12</td>
-                                    <td>Barang diterima dalam kondisi baik</td>
-                                    <td class="action-btn">
-                                        <button class="btn btn-success">
-                                            <span
-                                                class="material-symbols-rounded"
-                                            >
-                                                edit
-                                            </span>
-                                        </button>
-                                        <button class="btn btn-danger">
-                                            <span
-                                                class="material-symbols-rounded"
-                                            >
-                                                delete
-                                            </span>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
+                    <!-- List pengumuman -->
+                    <div id="list-pengumuman">
+                        <h2 class="mb-3">List Pengumuman</h2>
+                        <div class="alert alert-success" role="alert">
+                            <h1 class="fs-3">Pengumuman</h1>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur
+                                adipisicing elit. Voluptatem, sit! Aspernatur,
+                                dignissimos iure temporibus perferendis, et, ad
+                                voluptate laboriosam esse neque debitis
+                                reprehenderit. Nulla cumque facere autem veniam
+                                dolorem voluptas!
+                            </p>
+                            <button type="button" class="btn btn-danger my-2">
+                                Hapus
+                            </button>
+                        </div>
                     </div>
                 </main>
             </div>

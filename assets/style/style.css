@@ -127,3 +127,24 @@ a {
 #formulir .card-header {
     background-color: var(--md-sys-color-primary-container);
 }
+
+/* Pengumuman */
+#list-pengumuman {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+/* List pengguna */
+#list-pengguna {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+#list-pengguna .material-symbols-rounded {
+    font-size: 100px;
+    text-align: center;
+}
