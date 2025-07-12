@@ -165,12 +165,7 @@ if (!isset($_SESSION["role"])) {
                         <div class="alert alert-success" role="alert">
                             <h1 class="fs-3">Pengumuman</h1>
                             <p>
-                                Lorem ipsum dolor sit amet consectetur
-                                adipisicing elit. Voluptatem, sit! Aspernatur,
-                                dignissimos iure temporibus perferendis, et, ad
-                                voluptate laboriosam esse neque debitis
-                                reprehenderit. Nulla cumque facere autem veniam
-                                dolorem voluptas!
+                                Token Untuk Login Tanggal 01 Juli 2025 : JL1225
                             </p>
                             <button type="button" class="btn btn-danger my-2">
                                 Hapus

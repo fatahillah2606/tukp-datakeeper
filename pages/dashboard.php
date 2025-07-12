@@ -107,18 +107,15 @@ if (!isset($_SESSION["role"])) {
                     </div>
                 </nav>
                 <main class="content p-4">
-                    <h1 class="display-2 mb-5 ms-3">Selamat Datang, <?php echo $_SESSION["nama_user"]; ?></h1>
+                    <h1 class="display-2 mb-5 ms-3">
+                        Selamat Datang,
+                        <?php echo $_SESSION["nama_user"]; ?>
+                    </h1>
 
                     <!-- Pengumuman -->
                     <div class="alert alert-success" role="alert">
                         <h1 class="fs-3">Pengumuman</h1>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Voluptatem, sit! Aspernatur, dignissimos iure
-                            temporibus perferendis, et, ad voluptate laboriosam
-                            esse neque debitis reprehenderit. Nulla cumque
-                            facere autem veniam dolorem voluptas!
-                        </p>
+                        <p>Token Untuk Login Tanggal 01 Juli 2025 : JL1225</p>
                     </div>
 
                     <!-- Tabel -->

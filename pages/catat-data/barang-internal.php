@@ -129,7 +129,7 @@ if (!isset($_SESSION["role"])) {
                                         <label
                                             for="nama-barang"
                                             class="form-label"
-                                            >Nama Pembawa</label
+                                            >Nama Barang</label
                                         >
                                         <input
                                             type="text"
@@ -142,7 +142,7 @@ if (!isset($_SESSION["role"])) {
                                         <label
                                             for="jumlah-barang"
                                             class="form-label"
-                                            >Nama Pembawa</label
+                                            >Jumlah Barang</label
                                         >
                                         <input
                                             type="number"
