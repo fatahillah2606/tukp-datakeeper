@@ -136,7 +136,7 @@ if (!isset($_SESSION["role"])) {
                                     <label
                                         for="email-pengguna"
                                         class="form-label"
-                                        >Email</label
+                                        >Id Pengguna</label
                                     >
                                     <input
                                         type="email"

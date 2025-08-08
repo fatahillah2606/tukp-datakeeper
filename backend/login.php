@@ -43,15 +43,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $cacahToken = password_hash($token, PASSWORD_BCRYPT);
 
                 // Simpan sesi ke database
-                $query_sql = "UPDATE pengguna SET token_login = :token_login WHERE id= :id";
+                $query_sql = "UPDATE pengguna SET token_login = :token_login WHERE id_pengguna= :id_pengguna";
                 $stmt = $pdo->prepare($query_sql);
                 $stmt->execute([
                     "token_login" => $cacahToken,
-                    "id" => $hasil["id"]
+                    "id_pengguna" => $hasil["id_pengguna"]
                 ]);
 
                 // Atur Cookie
-                setcookie("login", $hasil["id"] . ":" . $token, time() + (86400 * 30), "/");
+                setcookie("login", $hasil["id_pengguna"] . ":" . $token, time() + (86400 * 30), "/");
 
                 // Berikan respon jika berhasil login
                echo json_encode(generateAPI("success", 200, "Berhasil Login", []));
@@ -95,15 +95,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $cacahToken = password_hash($token, PASSWORD_BCRYPT);
 
                 // Simpan sesi ke database
-                $query_sql = "UPDATE pengguna SET token_login = :token_login WHERE id= :id";
+                $query_sql = "UPDATE pengguna SET token_login = :token_login WHERE id_pengguna = :id_pengguna";
                 $stmt = $pdo->prepare($query_sql);
                 $stmt->execute([
                     "token_login" => $cacahToken,
-                    "id" => $hasil["id"]
+                    "id_pengguna" => $hasil["id_pengguna"]
                 ]);
 
                 // Atur Cookie
-                setcookie("login", $hasil["id"] . ":" . $token, time() + (86400 * 30), "/");
+                setcookie("login", $hasil["id_pengguna"] . ":" . $token, time() + (86400 * 30), "/");
 
                 // Berikan respon jika berhasil login
                echo json_encode(generateAPI("success", 200, "Berhasil Login", []));
@@ -146,15 +146,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $cacahToken = password_hash($token, PASSWORD_BCRYPT);
 
                 // Simpan sesi ke database
-                $query_sql = "UPDATE pengguna SET token_login = :token_login WHERE id= :id";
+                $query_sql = "UPDATE pengguna SET token_login = :token_login WHERE id_pengguna= :id_pengguna";
                 $stmt = $pdo->prepare($query_sql);
                 $stmt->execute([
                     "token_login" => $cacahToken,
-                    "id" => $hasil["id"]
+                    "id_pengguna" => $hasil["id_pengguna"]
                 ]);
 
                 // Atur Cookie
-                setcookie("login", $hasil["id"] . ":" . $token, time() + (86400 * 30), "/");
+                setcookie("login", $hasil["id_pengguna"] . ":" . $token, time() + (86400 * 30), "/");
 
                 // Berikan respon jika berhasil login
                echo json_encode(generateAPI("success", 200, "Berhasil Login", []));

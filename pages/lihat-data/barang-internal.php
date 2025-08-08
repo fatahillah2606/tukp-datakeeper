@@ -145,7 +145,7 @@ if (!isset($_SESSION["role"])) {
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">No</th>
                                     <th scope="col">Nama Pembawa</th>
                                     <th scope="col">Nama dan Jumlah Barang</th>
                                     <th scope="col">Tanggal</th>
