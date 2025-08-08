@@ -174,7 +174,7 @@ if (!isset($_SESSION["role"])) {
                                     />
                                 </div>
                                  <div class="safety">
-                                    <h2>Apakah Sudah Dilakukan Safety Induction Oleh Security ?</h2>
+                                    <p>Apakah Sudah Dilakukan Safety Induction Oleh Security ?</p>
                                     <div class="form-radio">
                                     <input
                                         type="radio"

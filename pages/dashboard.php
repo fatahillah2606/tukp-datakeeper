@@ -41,7 +41,7 @@ if (!isset($_SESSION["role"])) {
                         menu
                     </button>
                 </div>
-                <a href="dashboard.php">
+                <a href="dashboard.php" title="Dashboard">
                     <span class="material-symbols-rounded">dashboard</span>
                     <span class="menu-title">Dashboard</span>
                 </a>

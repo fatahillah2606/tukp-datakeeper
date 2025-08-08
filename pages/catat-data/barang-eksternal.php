@@ -139,6 +139,7 @@ if (!isset($_SESSION["role"])) {
                                             placeholder=""
                                         />
                                     </div>
+                                </div>
                                 <h5>Barang</h5>
                                 <div class="row align-items-end">
                                     <div class="col">
@@ -194,8 +195,10 @@ if (!isset($_SESSION["role"])) {
                                         placeholder=""
                                     />
                                 </div>
-                                 <div class="mb-3">
-                                    <label for="jam-kedatangan" class="form-label"
+                                <div class="mb-3">
+                                    <label
+                                        for="jam-kedatangan"
+                                        class="form-label"
                                         >Jam Kedatangan</label
                                     >
                                     <input
@@ -205,8 +208,10 @@ if (!isset($_SESSION["role"])) {
                                         placeholder=""
                                     />
                                 </div>
-                                 <div class="mb-3">
-                                    <label for="nomor-kendaraan" class="form-label"
+                                <div class="mb-3">
+                                    <label
+                                        for="nomor-kendaraan"
+                                        class="form-label"
                                         >Nomor Kendaraan</label
                                     >
                                     <input

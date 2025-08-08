@@ -37,6 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION["id_user"] = $hasil["id_user"];
                 $_SESSION["nama_user"] = $hasil["nama_user"];
                 $_SESSION["role"] = $hasil["role"];
+                $_SESSION["id_pengguna"] = $hasil["id_pengguna"];
 
                 // Buat Token untuk menyimpan cookies
                 $token = bin2hex(random_bytes(32));
@@ -89,6 +90,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $_SESSION["email_user"] = $hasil["email_user"];
                 $_SESSION["nama_user"] = $hasil["nama_user"];
                 $_SESSION["role"] = $hasil["role"];
+                $_SESSION["id_pengguna"] = $hasil["id_pengguna"];
 
                 // Buat Token untuk menyimpan cookies
                 $token = bin2hex(random_bytes(32));
@@ -140,6 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
                 $_SESSION["nama_user"] = $hasil["nama_user"];
                 $_SESSION["role"] = $hasil["role"];
+                $_SESSION["id_pengguna"] = $hasil["id_pengguna"];
 
                 // Buat Token untuk menyimpan cookies
                 $token = bin2hex(random_bytes(32));
