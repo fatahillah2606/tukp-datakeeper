@@ -164,6 +164,7 @@ if (!isset($_SESSION["role"])) {
                                     <td>B 1234 ABC</td>
                                     <td>2025-03-12</td>
                                     <td>081111222333</td>
+                                    <td>Survey</td>
                                     <td>Ya</td>
                                     <td class="action-btn">
                                         <button class="btn btn-success">
