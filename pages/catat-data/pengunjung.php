@@ -123,12 +123,23 @@ if (!isset($_SESSION["role"])) {
                                         placeholder=""
                                     />
                                 </div>
-                                 <button
+                                <button
                                     type="button"
                                     class="btn btn-outline-success my-3"
                                 >
                                     Tambah
                                 </button>
+                                 <div class="mb-3">
+                                    <label for="nama-perusahaan" class="form-label"
+                                        >Nama Perusahaan</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="nama-perusahaan"
+                                        placeholder=""
+                                    />
+                                </div>
                                 <div class="mb-3">
                                     <label for="nomor-kendaraan" class="form-label"
                                         >Nomor Kendaraan</label
@@ -163,13 +174,13 @@ if (!isset($_SESSION["role"])) {
                                     />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="keterangan" class="form-label"
-                                        >Keterangan</label
+                                    <label for="keperluan" class="form-label"
+                                        >Keperluan</label
                                     >
                                     <input
                                         type="text"
                                         class="form-control"
-                                        id="keterangan"
+                                        id="keperluan"
                                         placeholder=""
                                     />
                                 </div>
