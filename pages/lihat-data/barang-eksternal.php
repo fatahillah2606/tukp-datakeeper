@@ -151,6 +151,7 @@ if (!isset($_SESSION["role"])) {
                                     <th scope="col">Nama dan Jumlah Barang</th>
                                     <th scope="col">Tanggal</th>
                                     <th scope="col">Jam Kedatangan</th>
+                                    <th scope="col">Nomor Kendaraan</th>
                                     <th scope="col">Keterangan</th>
                                     <th scope="col"></th>
                                 </tr>
@@ -163,6 +164,7 @@ if (!isset($_SESSION["role"])) {
                                     <td><li>Minyak, 500</li></td>
                                     <td>2025-03-12</td>
                                     <td>15:00</td>
+                                    <td>DK 1234 OPQ</td>
                                     <td>Barang diterima dalam kondisi baik</td>
                                     <td class="action-btn">
                                         <button class="btn btn-success">
