@@ -55,12 +55,96 @@ function muatDataBarangInternal(limit) {
                 laporan = data.data;
                 nomor = 1;
                 data.data.forEach((laporan) => {
+                    let dataBarang = "";
+                    let isiDataBarang = JSON.parse(laporan.nama_jumlah_barang);
+
+                    isiDataBarang.forEach((barang) => {
+                        dataBarang += `
+                        <li>${barang.nama_barang}, ${barang.jumlah_barang} </li>
+                        `;
+                    });
+
                     konten += `
                         <tr>
                             <th scope="row">${nomor}</th>
                             <td>${laporan.nama_pembawa}</td>
-                            <td>${laporan.nama_jumlah_barang}</td>
+                            <td>${dataBarang}</td>
                             <td>${formatTanggal(laporan.tanggal)}</td>
+                            <td>${laporan.keterangan}</td>
+                            <td class="action-btn">
+                                <button class="btn btn-success">
+                                    <span
+                                        class="material-symbols-rounded"
+                                    >
+                                        edit
+                                    </span>
+                                </button>
+                                <button class="btn btn-danger">
+                                    <span
+                                        class="material-symbols-rounded"
+                                    >
+                                        delete
+                                    </span>
+                                </button>
+                            </td>
+                        </tr>
+                    `;
+                    nomor++;
+                });
+                isiTabel.innerHTML = konten;
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+}
+
+// Muat data barang eksternal
+function muatDataBarangEksternal(limit) {
+    let url;
+    let isiTabel = document.getElementById("isi-tabel");
+    let konten = "";
+
+    // Jika diminta limit
+    if (limit) {
+        url = "/backend/kelola_data.php?data_eksternal&limit=" + limit;
+    } else {
+        url = "/backend/kelola_data.php?data_eksternal";
+    }
+
+    // Fetch API
+    fetch(url, {
+        method: "GET",
+    })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error("Gagal terhubung ke server");
+            }
+            return response.json();
+        })
+        .then((data) => {
+            if (data.code === 200) {
+                laporan = data.data;
+                nomor = 1;
+                data.data.forEach((laporan) => {
+                    let dataBarang = "";
+                    let isiDataBarang = JSON.parse(laporan.nama_jumlah_barang);
+
+                    isiDataBarang.forEach((barang) => {
+                        dataBarang += `
+                        <li>${barang.nama_barang}, ${barang.jumlah_barang} </li>
+                        `;
+                    });
+
+                    konten += `
+                        <tr>
+                            <th scope="row">${nomor}</th>
+                            <td>${laporan.nama_driver}</td>
+                            <td>${laporan.nama_suplier}</td>
+                            <td>${dataBarang}</td>
+                            <td>${formatTanggal(laporan.tanggal)}</td>
+                            <td>${laporan.jam_kedatangan}</td>
+                            <td>${laporan.no_kendaraan}</td>
                             <td>${laporan.keterangan}</td>
                             <td class="action-btn">
                                 <button class="btn btn-success">

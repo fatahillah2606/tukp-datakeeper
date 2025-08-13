@@ -186,7 +186,7 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/kelola_data.js"></script>
         <script src="/assets/scripts/navigation.js"></script>
         <script>
-            muatDataBarangInternal(10);
+            muatDataBarangInternal();
         </script>
     </body>
 </html>
