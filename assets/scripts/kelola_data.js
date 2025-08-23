@@ -282,11 +282,10 @@ function muatDataPengunjung(limit) {
                         <tr>
                             <th scope="row">${nomor}</th>
                             <td>${dataPengunjung}</td>
-                            <td>${laporan.nama_pengunjung}</td>
                             <td>${laporan.nama_perusahaan}</td>
                             <td>${laporan.no_kendaraan}</td>
                             <td>${formatTanggal(laporan.tanggal)}</td>
-                            <td>${laporan.nomor_telepon}</td>
+                            <td>${laporan.no_telpon}</td>
                             <td>${laporan.keperluan}</td>
                             <td>${laporan.safety_induction}</td>
                             <td class="action-btn">

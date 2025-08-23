@@ -1,6 +1,6 @@
 // toggle menu
 let menuBtn = document.getElementById("menu-btn");
 let layout = document.querySelector(".layout");
-menuBtn.addEventListener("click", () => {
+function togglemenu() {
     layout.classList.toggle("menu-active");
-});
+}

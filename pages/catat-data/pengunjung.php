@@ -233,7 +233,7 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/kelola_data.js"></script>
         <script src="/assets/scripts/navigation.js"></script>
         <script>
-            // muatDataPengunjung(10);
+            // muatDataPengunjung();
         </script>
     </body>
 </html>

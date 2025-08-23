@@ -29,7 +29,7 @@ if (!isset($_SESSION["role"])) {
         <link rel="stylesheet" href="/assets/style/style.css" />
     </head>
     <body>
-        <div class="layout">
+        <div class="layout default">
             <!-- Sidebar -->
             <aside class="sidebar p-2">
                 <!-- buttons -->
@@ -93,6 +93,11 @@ if (!isset($_SESSION["role"])) {
                 <!-- Navbar -->
                 <nav class="navbar px-4 overflow-hidden">
                     <div class="logo d-flex gap-2 align-items-center">
+                        <button
+                            class="material-symbols-rounded bg-transparent border border-0 p-2"
+                            id="menu-btn-mobile"
+                            onclick="togglemenu()"
+                        ></button>
                         <img src="/assets/images/logo.svg" alt="Logo TUKP" />
                         <span>TUKP Data Keeper</span>
                     </div>
