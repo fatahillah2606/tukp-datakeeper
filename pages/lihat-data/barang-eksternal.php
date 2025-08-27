@@ -158,30 +158,7 @@ if (!isset($_SESSION["role"])) {
                             </thead>
                             <tbody class="table-group-divider" id="isi-tabel">
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Driver_51</td>
-                                    <td>PT A</td>
-                                    <td><li>Minyak, 500</li></td>
-                                    <td>2025-03-12</td>
-                                    <td>15:00</td>
-                                    <td>DK 1234 OPQ</td>
-                                    <td>Barang diterima dalam kondisi baik</td>
-                                    <td class="action-btn">
-                                        <button class="btn btn-success">
-                                            <span
-                                                class="material-symbols-rounded"
-                                            >
-                                                edit
-                                            </span>
-                                        </button>
-                                        <button class="btn btn-danger">
-                                            <span
-                                                class="material-symbols-rounded"
-                                            >
-                                                delete
-                                            </span>
-                                        </button>
-                                    </td>
+                                    <td colspan="9">Memuat Data</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -163,30 +163,7 @@ if (!isset($_SESSION["role"])) {
                             </thead>
                             <tbody class="table-group-divider" id="isi-tabel">
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Pengunjung 1</td>
-                                    <td>PT Abc</td>
-                                    <td>B 1234 ABC</td>
-                                    <td>2025-03-12</td>
-                                    <td>081111222333</td>
-                                    <td>Survey</td>
-                                    <td>Ya</td>
-                                    <td class="action-btn">
-                                        <button class="btn btn-success">
-                                            <span
-                                                class="material-symbols-rounded"
-                                            >
-                                                edit
-                                            </span>
-                                        </button>
-                                        <button class="btn btn-danger">
-                                            <span
-                                                class="material-symbols-rounded"
-                                            >
-                                                delete
-                                            </span>
-                                        </button>
-                                    </td>
+                                    <td colspan="9">Memuat Data</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -197,7 +174,7 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/kelola_data.js"></script>
         <script src="/assets/scripts/navigation.js"></script>
         <script>
-            muatDataPengunjung();
+            muatDataPengunjung(10);
         </script>
     </body>
 </html>

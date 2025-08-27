@@ -109,9 +109,91 @@ if (!isset($_SESSION["role"])) {
                         <span class="material-symbols-rounded">
                             notifications
                         </span>
-                        <span class="material-symbols-rounded" id="profile"
+                        <span
+                            class="material-symbols-rounded"
+                            id="profile"
+                            data-bs-toggle="modal"
+                            data-bs-target="#accountPopup"
                             >account_circle</span
                         >
+                    </div>
+                    <!-- Tombol trigger (contoh) -->
+                    <div class="container mt-5 text-end">
+                        <button class="btn btn-primary">Profile</button>
+                    </div>
+                    <!-- Modal -->
+                    <div
+                        class="modal fade"
+                        id="accountPopup"
+                        tabindex="-1"
+                        aria-hidden="true"
+                    >
+                        <div class="modal-dialog modal-dialog-end">
+                            <div class="modal-content rounded-4 shadow">
+                                <div class="modal-header position-relative">
+                                    <!-- Teks di tengah -->
+                                    <span
+                                        class="fw-bold small position-absolute top-50 start-50 translate-middle"
+                                    >
+                                        muhaimin@admin
+                                    </span>
+                                    <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal"
+                                    ></button>
+                                </div>
+
+                                <div class="modal-body text-center">
+                                    <!-- Avatar -->
+                                    <div class="mb-3">
+                                        <img
+                                            src="https://img.icons8.com/ios-filled/50/user.png"
+                                            alt="avatar"
+                                            class="rounded-circle p-2 bg-light"
+                                            width="70"
+                                        />
+                                    </div>
+                                    <!-- Welcome -->
+                                    <h5 class="fw-semibold">
+                                        Halo, Muhaimin Al Aziz
+                                    </h5>
+
+                                    <!-- Kelola akun -->
+                                    <button
+                                        class="btn btn-outline-dark btn-sm mt-2 rounded-pill"
+                                    >
+                                        Kelola akun anda
+                                    </button>
+
+                                    <!-- Action buttons (Sampingan) -->
+                                    <div
+                                        class="d-flex justify-content-center gap-2 mt-3"
+                                    >
+                                        <a
+                                            href="/html/account.html"
+                                            class="btn btn-light d-flex align-items-center gap-2 px-3 rounded-pill"
+                                        >
+                                            <i class="bx bx-user-plus fs-4"></i>
+                                            Kelola Pengguna
+                                        </a>
+                                        <a
+                                            href="/html/login.html"
+                                            class="btn btn-light d-flex align-items-center gap-2 px-3 rounded-pill"
+                                        >
+                                            <i class="bx bx-exit fs-4"></i>
+                                            Keluar
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="modal-footer text-center d-block">
+                                    <small class="text-muted"
+                                        >©2025 - CV Taketaka Machinery
+                                        Sejahtera</small
+                                    >
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </nav>
                 <main class="content p-4">
@@ -174,8 +256,7 @@ if (!isset($_SESSION["role"])) {
                             </thead>
                             <tbody class="table-group-divider" id="isi-tabel">
                                 <tr>
-                                    <th scope="row">1</th>
-                                    <td>Driver_51</td>
+                                    <td cols>Driver_51</td>
                                     <td><li>Minyak, 500</li></td>
                                     <td>2025-03-12</td>
                                     <td>Barang diterima dalam kondisi baik</td>
