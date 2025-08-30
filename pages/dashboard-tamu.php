@@ -27,56 +27,17 @@ if (!isset($_SESSION["role"])) {
         />
         <!-- local css -->
         <link rel="stylesheet" href="/assets/style/style.css" />
+        <style>.layout {grid-template-columns: 0px 1fr !important;}</style>
     </head>
     <body>
         <div class="layout default">
             <!-- Sidebar -->
             <aside class="sidebar p-2">
-                <!-- buttons -->
-                <div class="mb-3">
-                    <button
-                        class="material-symbols-rounded bg-transparent border border-0 p-2"
-                        id="menu-btn"
-                        onclick="togglemenu()"
-                    >
-                        menu
-                    </button>
-                </div>
-                <a href="dashboard-tamu.php">
-                    <span class="material-symbols-rounded">dashboard</span>
-                    <span class="menu-title">Dashboard</span>
-                </a>
-                <hr />
-                <!-- Pencatatan -->
-                <a href="catat-data/pengunjung-tamu.php">
-                    <span class="material-symbols-rounded">person_edit</span>
-                    <span class="menu-title">Catat Pengunjung</span>
-                </a>
-                <a href="catat-data/barang-internal-tamu.php">
-                    <span class="material-symbols-rounded">note_alt</span>
-                    <span class="menu-title">Catat Barang Internal</span>
-                </a>
-                <a href="catat-data/barang-eksternal-tamu.php">
-                    <span class="material-symbols-rounded">edit_document</span>
-                    <span class="menu-title">Catat Barang Eksternal</span>
-                </a>
-                <a href="catat-data/mobil-tamu.php">
-                    <span class="material-symbols-rounded">edit_road</span>
-                    <span class="menu-title">Catat Mobil</span>
-                </a>
-                <hr />
             </aside>
             <div class="main">
                 <!-- Navbar -->
                 <nav class="navbar px-4 overflow-hidden">
                     <div class="logo d-flex gap-2 align-items-center">
-                        <button
-                            class="material-symbols-rounded bg-transparent border border-0 p-2"
-                            id="menu-btn-mobile"
-                            onclick="togglemenu()"
-                        >
-                            menu
-                        </button>
                         <img src="/assets/images/logo.svg" alt="Logo TUKP" />
                         <span>TUKP Data Keeper</span>
                     </div>

@@ -37,6 +37,7 @@ if (!isset($_SESSION["role"])) {
                     <button
                         class="material-symbols-rounded bg-transparent border border-0 p-2"
                         id="menu-btn"
+                        onclick="togglemenu()"
                     >
                         menu
                     </button>
@@ -93,6 +94,13 @@ if (!isset($_SESSION["role"])) {
                 <!-- Navbar -->
                 <nav class="navbar px-4 overflow-hidden">
                     <div class="logo d-flex gap-2 align-items-center">
+                        <button
+                            class="material-symbols-rounded bg-transparent border border-0 p-2"
+                            id="menu-btn-mobile"
+                            onclick="togglemenu()"
+                        >
+                            menu
+                        </button>
                         <img src="/assets/images/logo.svg" alt="Logo TUKP" />
                         <span>TUKP Data Keeper</span>
                     </div>
@@ -199,7 +207,7 @@ if (!isset($_SESSION["role"])) {
                                         placeholder=""
                                     />
                                 </div>
-                                                                <div class="mb-3">
+                                    <div class="mb-3">
                                     <label for="keperluan" class="form-label"
                                         >Keperluan</label
                                     >

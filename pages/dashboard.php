@@ -29,7 +29,7 @@ if (!isset($_SESSION["role"])) {
         <link rel="stylesheet" href="/assets/style/style.css" />
     </head>
     <body>
-        <div class="layout default">
+        <div class="layout ">
             <!-- Sidebar -->
             <aside class="sidebar p-2">
                 <!-- buttons -->
