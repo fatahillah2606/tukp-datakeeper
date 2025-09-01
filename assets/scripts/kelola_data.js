@@ -86,6 +86,13 @@ function muatDataBarangInternal(limit) {
                                         delete
                                     </span>
                                 </button>
+                                <button class="btn btn-primary">
+                                    <span
+                                        class="material-symbols-rounded"
+                                    >
+                                        print
+                                    </span>
+                                </button>
                             </td>
                         </tr>
                     `;

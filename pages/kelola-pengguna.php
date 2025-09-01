@@ -113,6 +113,84 @@ if (!isset($_SESSION["role"])) {
                             >account_circle</span
                         >
                     </div>
+                    <!-- Tombol trigger (contoh) -->
+                    <div class="container mt-5 text-end">
+                        <button class="btn btn-primary">Profile</button>
+                    </div>
+                    <!-- Modal -->
+                    <div
+                        class="modal fade"
+                        id="accountPopup"
+                        tabindex="-1"
+                        aria-hidden="true"
+                        data-bs-backdrop="false"
+                    >
+                        <div class="modal-dialog modal-dialog-end-top">
+                            <div
+                                class="modal-content rounded-4 shadow"
+                                style="width: 350px"
+                            >
+                                <div class="modal-header position-relative">
+                                    <span
+                                        class="fw-bold small position-absolute top-50 start-50 translate-middle"
+                                    >
+                                        <?php echo $_SESSION["nama_user"]; ?>
+                                    </span>
+                                    <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal"
+                                    ></button>
+                                </div>
+
+                                <div class="modal-body text-center">
+                                    <!-- Avatar -->
+                                    <div class="mb-3">
+                                        <img
+                                            src="https://img.icons8.com/ios-filled/50/user.png"
+                                            alt="avatar"
+                                            class="rounded-circle p-2 bg-light"
+                                            width="70"
+                                        />
+                                    </div>
+                                    <!-- Welcome -->
+                                    <h5 class="fw-semibold">
+                                        Halo,
+                                        <?php echo $_SESSION["nama_user"]; ?>
+                                    </h5>
+                                    <!-- Action buttons -->
+                                    <div
+                                        class="d-flex justify-content-center gap-2 mt-3"
+                                    >
+                                        <a
+                                            href="/pages/logout.php"
+                                            class="btn btn-light d-flex align-items-center gap-2 px-3 rounded-pill"
+                                        >
+                                            <i class="bx bx-exit fs-4"></i>
+                                            Keluar
+                                        </a>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer text-center d-block">
+                                    <small class="text-muted"
+                                        >©2025 - PT Taland Utama Karisma
+                                        Perkasa</small
+                                    >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Custom CSS untuk pojok kanan atas -->
+                    <style>
+                        .modal-dialog.modal-dialog-end-top {
+                            position: fixed;
+                            top: 40px; /* jarak dari atas */
+                            right: 30px; /* jarak dari kanan */
+                            margin: 0;
+                        }
+                    </style>
                 </nav>
                 <main class="content p-4">
                     <!-- Formulir -->
@@ -298,6 +376,7 @@ if (!isset($_SESSION["role"])) {
         </div>
         <script src="/assets/scripts/kelola_data.js"></script>
         <script src="/assets/scripts/navigation.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             muatDataBarangInternal(10);
         </script>
