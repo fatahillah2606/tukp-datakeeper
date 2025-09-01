@@ -79,7 +79,7 @@ function daftar(event) {
     }
 }
 
-// Fungsi Login security
+// Fungsi Login Admin
 function AdminLogin(event) {
     event.preventDefault();
 
@@ -159,7 +159,7 @@ function SecurityLogin(event) {
                     const respon = JSON.parse(xhr.responseText);
                     if (respon.status === "success") {
                         // Jika berhasil, alihkan kehalaman dashboard
-                        location.href = "/pages/dashboard.php";
+                        location.href = "/pages/dashboard-security.php";
                     } else {
                         alert("Login gagal: " + respon.message);
                     }

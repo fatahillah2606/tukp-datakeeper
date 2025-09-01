@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION["role"])) {
 
     // Pindah user ke halaman login
-    header("Location: /pages/dashboard.php");
+    header("Location: /pages/dashboard-tamu.php");
     exit();
 }
 ?>

@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Coba masukan datanya ke database
         try {
-            $sql = "INSERT INTO `pengguna` (`id`, `id_user`, `email_user`, `nama_user`, `role`, `password`) VALUES (null, :idUser, :emailUser, :namaUser, :typeUser, :sandi)";
+            $sql = "INSERT INTO `pengguna` (`id_pengguna`, `id_user`, `email_user`, `nama_user`, `role`, `password`) VALUES (null, :idUser, :emailUser, :namaUser, :typeUser, :sandi)";
        
             //siapkan query nya
             $stmt = $pdo->prepare($sql);

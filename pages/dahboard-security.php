@@ -16,7 +16,7 @@ if (!isset($_SESSION["role"])) {
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Dashboard - TUKP Data Keeper</title>
+        <title>Dashboard - TUKP Data Keeper scrty </title>
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -299,7 +299,7 @@ if (!isset($_SESSION["role"])) {
                 </nav>
                 <main class="content p-4">
                     <h1 class="display-2 mb-5 ms-3">
-                        Selamat Datang,
+                        Selamat Datang (security tes),
                         <?php echo $_SESSION["nama_user"]; ?>
                     </h1>
 
