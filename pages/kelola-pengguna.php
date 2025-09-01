@@ -109,7 +109,10 @@ if (!isset($_SESSION["role"])) {
                         <span class="material-symbols-rounded">
                             notifications
                         </span>
-                        <span class="material-symbols-rounded" id="profile"
+                        <span
+                            class="material-symbols-rounded"
+                            cursor-pointer
+                            id="profile"
                             >account_circle</span
                         >
                     </div>
