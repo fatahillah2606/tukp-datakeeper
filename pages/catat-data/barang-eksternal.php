@@ -109,7 +109,11 @@ if (!isset($_SESSION["role"])) {
                         <span class="material-symbols-rounded">
                             notifications
                         </span>
-                        <span class="material-symbols-rounded" id="profile"
+                        <span
+                            class="material-symbols-rounded"
+                            id="profile"
+                            data-bs-toggle="modal"
+                            data-bs-target="#accountPopup"
                             >account_circle</span
                         >
                     </div>
