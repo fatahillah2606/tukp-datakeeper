@@ -106,17 +106,80 @@ if (!isset($_SESSION["role"])) {
                     </div>
                     <!-- button -->
                     <div class="d-flex gap-3 align-items-center">
-                        <span class="material-symbols-rounded">
-                            notifications
-                        </span>
-                        <span
-                            class="material-symbols-rounded"
-                            id="profile"
-                            data-bs-toggle="modal"
-                            data-bs-target="#accountPopup"
-                            >account_circle</span
-                        >
+                        <button type="button" class="btn btn-light">
+                            <span
+                                class="material-symbols-rounded"
+                                id="notif"
+                                data-bs-toggle="modal"
+                                data-bs-target="#accountPopup1"
+                                >notifications</span
+                            >
+                        </button>
+                        <button type="button" class="btn btn-light">
+                            <span
+                                class="material-symbols-rounded"
+                                id="profile"
+                                data-bs-toggle="modal"
+                                data-bs-target="#accountPopup"
+                                >account_circle</span
+                            >
+                        </button>
                     </div>
+                    <!-- Tombol trigger (contoh) -->
+                    <div class="container mt-5 text-end">
+                        <button class="btn btn-primary">Notifications</button>
+                    </div>
+                    <!-- Modal -->
+                    <div
+                        class="modal fade"
+                        id="accountPopup1"
+                        tabindex="-1"
+                        aria-hidden="true"
+                        data-bs-backdrop="false"
+                    >
+                        <div
+                            class="modal-dialog modal-dialog-end-top notif-dialog"
+                        >
+                            <div
+                                class="modal-content rounded-4 shadow"
+                                style="width: 350px"
+                            >
+                                <div class="modal-header position-relative">
+                                    <span
+                                        class="fw-bold small position-absolute top-50 start-50 translate-middle"
+                                    >
+                                        Notifikasi
+                                    </span>
+                                    <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal"
+                                    ></button>
+                                </div>
+
+                                <div class="modal-body text-center">
+                                    <!-- Welcome -->
+                                    <h5 class="fw-semibold">
+                                        Tidak Ada Notifikasi
+                                    </h5>
+                                    <!-- Action buttons -->
+                                    <div
+                                        class="d-flex justify-content-center gap-2 mt-3"
+                                    ></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Custom CSS notifikasi untuk pojok kanan atas -->
+                    <style>
+                        .modal-dialog.modal-dialog-end-top.notif-dialog {
+                            position: fixed;
+                            top: 60px; /* jarak dari atas */
+                            right: 100px; /* jarak dari kanan */
+                            margin: 0;
+                        }
+                    </style>
                     <!-- Tombol trigger (contoh) -->
                     <div class="container mt-5 text-end">
                         <button class="btn btn-primary">Profile</button>
@@ -129,7 +192,9 @@ if (!isset($_SESSION["role"])) {
                         aria-hidden="true"
                         data-bs-backdrop="false"
                     >
-                        <div class="modal-dialog modal-dialog-end-top">
+                        <div
+                            class="modal-dialog modal-dialog-end-top profile-dialog"
+                        >
                             <div
                                 class="modal-content rounded-4 shadow"
                                 style="width: 350px"
@@ -186,11 +251,11 @@ if (!isset($_SESSION["role"])) {
                         </div>
                     </div>
 
-                    <!-- Custom CSS untuk pojok kanan atas -->
+                    <!-- Custom CSS profile untuk pojok kanan atas -->
                     <style>
-                        .modal-dialog.modal-dialog-end-top {
+                        .modal-dialog.modal-dialog-end-top.profile-dialog {
                             position: fixed;
-                            top: 40px; /* jarak dari atas */
+                            top: 60px; /* jarak dari atas */
                             right: 30px; /* jarak dari kanan */
                             margin: 0;
                         }

@@ -86,13 +86,9 @@ function muatDataBarangInternal(limit) {
                                         delete
                                     </span>
                                 </button>
-                                <button class="btn btn-primary">
-                                    <span
-                                        class="material-symbols-rounded"
-                                    >
-                                        print
-                                    </span>
-                                </button>
+                                <a href="../print/print-barang-internal.php" target="_blank" class="btn btn-primary">
+                                   <span class="material-symbols-rounded">print</span>
+                                </a>
                             </td>
                         </tr>
                     `;

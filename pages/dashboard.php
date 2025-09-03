@@ -109,7 +109,7 @@ if (!isset($_SESSION["role"])) {
                         <button type="button" class="btn btn-light">
                             <span
                                 class="material-symbols-rounded"
-                                id="profile"
+                                id="notif"
                                 data-bs-toggle="modal"
                                 data-bs-target="#accountPopup1"
                                 >notifications</span
@@ -127,7 +127,7 @@ if (!isset($_SESSION["role"])) {
                     </div>
                     <!-- Tombol trigger (contoh) -->
                     <div class="container mt-5 text-end">
-                        <button class="btn btn-primary">Profile</button>
+                        <button class="btn btn-primary">Notifications</button>
                     </div>
                     <!-- Modal -->
                     <div
@@ -137,7 +137,9 @@ if (!isset($_SESSION["role"])) {
                         aria-hidden="true"
                         data-bs-backdrop="false"
                     >
-                        <div class="modal-dialog modal-dialog-end-top">
+                        <div
+                            class="modal-dialog modal-dialog-end-top notif-dialog"
+                        >
                             <div
                                 class="modal-content rounded-4 shadow"
                                 style="width: 350px"
@@ -146,7 +148,7 @@ if (!isset($_SESSION["role"])) {
                                     <span
                                         class="fw-bold small position-absolute top-50 start-50 translate-middle"
                                     >
-                                        <?php echo $_SESSION["nama_user"]; ?>
+                                        Notifikasi
                                     </span>
                                     <button
                                         type="button"
@@ -156,50 +158,25 @@ if (!isset($_SESSION["role"])) {
                                 </div>
 
                                 <div class="modal-body text-center">
-                                    <!-- Avatar -->
-                                    <div class="mb-3">
-                                        <img
-                                            src="https://img.icons8.com/ios-filled/50/user.png"
-                                            alt="avatar"
-                                            class="rounded-circle p-2 bg-light"
-                                            width="70"
-                                        />
-                                    </div>
                                     <!-- Welcome -->
                                     <h5 class="fw-semibold">
-                                        Halo tes,
-                                        <?php echo $_SESSION["nama_user"]; ?>
+                                        Tidak Ada Notifikasi
                                     </h5>
                                     <!-- Action buttons -->
                                     <div
                                         class="d-flex justify-content-center gap-2 mt-3"
-                                    >
-                                        <a
-                                            href="/pages/logout.php"
-                                            class="btn btn-light d-flex align-items-center gap-2 px-3 rounded-pill"
-                                        >
-                                            <i class="bx bx-exit fs-4"></i>
-                                            Keluar
-                                        </a>
-                                    </div>
-                                </div>
-
-                                <div class="modal-footer text-center d-block">
-                                    <small class="text-muted"
-                                        >©2025 - PT Taland Utama Karisma
-                                        Perkasa</small
-                                    >
+                                    ></div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Custom CSS untuk pojok kanan atas -->
+                    <!-- Custom CSS notifikasi untuk pojok kanan atas -->
                     <style>
-                        .modal-dialog.modal-dialog-end-top {
+                        .modal-dialog.modal-dialog-end-top.notif-dialog {
                             position: fixed;
-                            top: 40px; /* jarak dari atas */
-                            right: 30px; /* jarak dari kanan */
+                            top: 60px; /* jarak dari atas */
+                            right: 100px; /* jarak dari kanan */
                             margin: 0;
                         }
                     </style>
@@ -215,7 +192,9 @@ if (!isset($_SESSION["role"])) {
                         aria-hidden="true"
                         data-bs-backdrop="false"
                     >
-                        <div class="modal-dialog modal-dialog-end-top">
+                        <div
+                            class="modal-dialog modal-dialog-end-top profile-dialog"
+                        >
                             <div
                                 class="modal-content rounded-4 shadow"
                                 style="width: 350px"
@@ -272,11 +251,11 @@ if (!isset($_SESSION["role"])) {
                         </div>
                     </div>
 
-                    <!-- Custom CSS untuk pojok kanan atas -->
+                    <!-- Custom CSS profile untuk pojok kanan atas -->
                     <style>
-                        .modal-dialog.modal-dialog-end-top {
+                        .modal-dialog.modal-dialog-end-top.profile-dialog {
                             position: fixed;
-                            top: 40px; /* jarak dari atas */
+                            top: 60px; /* jarak dari atas */
                             right: 30px; /* jarak dari kanan */
                             margin: 0;
                         }
