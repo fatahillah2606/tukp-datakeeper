@@ -267,7 +267,9 @@ if (!isset($_SESSION["role"])) {
                         <div class="card-body">
                             <form action="" method="post" id="form-pencatatan">
                                 <div class="mb-3">
-                                    <label for="nama-pengunjung" class="form-label"
+                                    <label
+                                        for="nama-pengunjung"
+                                        class="form-label"
                                         >Nama Pengunjung</label
                                     >
                                     <input
@@ -283,8 +285,10 @@ if (!isset($_SESSION["role"])) {
                                 >
                                     Tambah
                                 </button>
-                                 <div class="mb-3">
-                                    <label for="nama-perusahaan" class="form-label"
+                                <div class="mb-3">
+                                    <label
+                                        for="nama-perusahaan"
+                                        class="form-label"
                                         >Nama Perusahaan</label
                                     >
                                     <input
@@ -295,7 +299,9 @@ if (!isset($_SESSION["role"])) {
                                     />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="nomor-kendaraan" class="form-label"
+                                    <label
+                                        for="nomor-kendaraan"
+                                        class="form-label"
                                         >Nomor Kendaraan</label
                                     >
                                     <input
@@ -316,8 +322,10 @@ if (!isset($_SESSION["role"])) {
                                         placeholder=""
                                     />
                                 </div>
-                                 <div class="mb-3">
-                                    <label for="nomor-telepon" class="form-label"
+                                <div class="mb-3">
+                                    <label
+                                        for="nomor-telepon"
+                                        class="form-label"
                                         >Nomor Telepon</label
                                     >
                                     <input
@@ -338,28 +346,35 @@ if (!isset($_SESSION["role"])) {
                                         placeholder=""
                                     />
                                 </div>
-                                 <div class="safety">
-                                    <p>Apakah Sudah Dilakukan Safety Induction Oleh Security ?</p>
+                                <div class="safety">
+                                    <p>
+                                        Apakah Sudah Dilakukan Safety Induction
+                                        Oleh Security ?
+                                    </p>
                                     <div class="form-radio">
-                                    <input
-                                        type="radio"
-                                        id="ya"
-                                        name="safety_induction"
-                                        value="Ya"
-                                        required
-                                    />
-                                    <label for="ya">Ya</label>
+                                        <input
+                                            type="radio"
+                                            id="ya"
+                                            name="safety_induction"
+                                            value="Ya"
+                                            required
+                                        />
+                                        <label for="ya">Ya</label>
                                     </div>
-                                    <div class="form-radio" style="margin-bottom: 1px">
-                                    <input
-                                        type="radio"
-                                        id="tidak"
-                                        name="safety_induction"
-                                        value="Tidak"
-                                        required
-                                    />
-                                    <label for="tidak">Tidak</label>
+                                    <div
+                                        class="form-radio"
+                                        style="margin-bottom: 1px"
+                                    >
+                                        <input
+                                            type="radio"
+                                            id="tidak"
+                                            name="safety_induction"
+                                            value="Tidak"
+                                            required
+                                        />
+                                        <label for="tidak">Tidak</label>
                                     </div>
+                                </div>
                                 <div class="row">
                                     <div class="col">
                                         <button
@@ -386,7 +401,7 @@ if (!isset($_SESSION["role"])) {
         </div>
         <script src="/assets/scripts/kelola_data.js"></script>
         <script src="/assets/scripts/navigation.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             // muatDataPengunjung();
         </script>

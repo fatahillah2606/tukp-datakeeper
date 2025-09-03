@@ -100,8 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
         }
     }
     // Request data pengunjung
-    if (isset($_GET["data_pengunjung
-    "])) {
+    if (isset($_GET["data_pengunjung"])) {
 
         $query = null;
         $stmt = null;

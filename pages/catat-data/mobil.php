@@ -279,37 +279,35 @@ if (!isset($_SESSION["role"])) {
                                     />
                                 </div>
                                 <div class="col">
-                                        <label
-                                            for="merek-kendaraan-"
-                                            class="form-label"
-                                            >Merek Kendaraan</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            id="merek-kendaraan"
-                                            placeholder=""
-                                        />
-                                    </div>
-                                    <div class="col">
-                                        <label
-                                            for="nomor-kendaraan"
-                                            class="form-label"
-                                            >Nomor Kendaraan</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            id="nomor-kendaraan"
-                                            placeholder=""
-                                        />
-                                    </div>
+                                    <label
+                                        for="merek-kendaraan-"
+                                        class="form-label"
+                                        >Merek Kendaraan</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="merek-kendaraan"
+                                        placeholder=""
+                                    />
+                                </div>
+                                <div class="col">
+                                    <label
+                                        for="nomor-kendaraan"
+                                        class="form-label"
+                                        >Nomor Kendaraan</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="nomor-kendaraan"
+                                        placeholder=""
+                                    />
+                                </div>
                                 <h5>Kilometer</h5>
                                 <div class="row align-items-end">
                                     <div class="col">
-                                        <label
-                                            for="awal"
-                                            class="form-label"
+                                        <label for="awal" class="form-label"
                                             >Awal</label
                                         >
                                         <input
@@ -320,9 +318,7 @@ if (!isset($_SESSION["role"])) {
                                         />
                                     </div>
                                     <div class="col">
-                                        <label
-                                            for="akhir"
-                                            class="form-label"
+                                        <label for="akhir" class="form-label"
                                             >Akhir</label
                                         >
                                         <input
@@ -332,6 +328,7 @@ if (!isset($_SESSION["role"])) {
                                             placeholder=""
                                         />
                                     </div>
+                                </div>
                                 <div class="mb-3">
                                     <label for="tanggal" class="form-label"
                                         >Tanggal</label
@@ -354,7 +351,7 @@ if (!isset($_SESSION["role"])) {
                                         placeholder=""
                                     />
                                 </div>
-                                    <div class="mb-3">
+                                <div class="mb-3">
                                     <label for="keperluan" class="form-label"
                                         >Keperluan</label
                                     >
@@ -391,7 +388,7 @@ if (!isset($_SESSION["role"])) {
         </div>
         <script src="/assets/scripts/kelola_data.js"></script>
         <script src="/assets/scripts/navigation.js"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             // muatDataMobil(10);
         </script>

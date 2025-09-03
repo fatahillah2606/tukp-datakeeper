@@ -261,11 +261,12 @@ function muatDataPengunjung(limit) {
     fetch(url, {
         method: "GET",
     })
-        .then((response) => {
+        .then(async (response) => {
+            const data = await response.json();
             if (!response.ok) {
                 throw new Error("Gagal terhubung ke server");
             }
-            return response.json();
+            return data;
         })
         .then((data) => {
             if (data.code === 200) {
