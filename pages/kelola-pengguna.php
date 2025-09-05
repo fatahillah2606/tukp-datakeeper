@@ -89,6 +89,12 @@ if (!isset($_SESSION["role"])) {
                     <span class="material-symbols-rounded">campaign</span>
                     <span class="menu-title">Pengumuman</span>
                 </a>
+                <a href="kelola-pengguna.php">
+                    <span class="material-symbols-rounded"
+                        >manage_accounts</span
+                    >
+                    <span class="menu-title">Kelola Pengguna</span>
+                </a>
             </aside>
             <div class="main">
                 <!-- Navbar -->
@@ -106,21 +112,23 @@ if (!isset($_SESSION["role"])) {
                     </div>
                     <!-- button -->
                     <div class="d-flex gap-3 align-items-center">
-                        <button type="button" class="btn btn-light">
-                            <span
-                                class="material-symbols-rounded"
-                                id="notif"
-                                data-bs-toggle="modal"
-                                data-bs-target="#accountPopup1"
+                        <button
+                            type="button"
+                            class="btn btn-light"
+                            data-bs-toggle="modal"
+                            data-bs-target="#accountPopup1"
+                        >
+                            <span class="material-symbols-rounded" id="notif"
                                 >notifications</span
                             >
                         </button>
-                        <button type="button" class="btn btn-light">
-                            <span
-                                class="material-symbols-rounded"
-                                id="profile"
-                                data-bs-toggle="modal"
-                                data-bs-target="#accountPopup"
+                        <button
+                            type="button"
+                            class="btn btn-light"
+                            data-bs-toggle="modal"
+                            data-bs-target="#accountPopup"
+                        >
+                            <span class="material-symbols-rounded" id="profile"
                                 >account_circle</span
                             >
                         </button>
@@ -363,7 +371,7 @@ if (!isset($_SESSION["role"])) {
                     </div>
 
                     <!-- List pengguna -->
-                    <div id="list-pengguna">
+                    <div id="list-pengguna" class="mb-5">
                         <h2 class="mb-3 text-center">List Pengguna</h2>
                         <div
                             class="d-flex flex-wrap justify-content-center gap-3"

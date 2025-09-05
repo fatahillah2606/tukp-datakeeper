@@ -89,6 +89,12 @@ if (!isset($_SESSION["role"])) {
                     <span class="material-symbols-rounded">campaign</span>
                     <span class="menu-title">Pengumuman</span>
                 </a>
+                <a href="kelola-pengguna.php">
+                    <span class="material-symbols-rounded"
+                        >manage_accounts</span
+                    >
+                    <span class="menu-title">Kelola Pengguna</span>
+                </a>
             </aside>
             <div class="main">
                 <nav class="navbar px-4 overflow-hidden">
@@ -105,21 +111,23 @@ if (!isset($_SESSION["role"])) {
                     </div>
                     <!-- button -->
                     <div class="d-flex gap-3 align-items-center">
-                        <button type="button" class="btn btn-light">
-                            <span
-                                class="material-symbols-rounded"
-                                id="profile"
-                                data-bs-toggle="modal"
-                                data-bs-target="#accountPopup1"
+                        <button
+                            type="button"
+                            class="btn btn-light"
+                            data-bs-toggle="modal"
+                            data-bs-target="#accountPopup1"
+                        >
+                            <span class="material-symbols-rounded" id="notif"
                                 >notifications</span
                             >
                         </button>
-                        <button type="button" class="btn btn-light">
-                            <span
-                                class="material-symbols-rounded"
-                                id="profile"
-                                data-bs-toggle="modal"
-                                data-bs-target="#accountPopup"
+                        <button
+                            type="button"
+                            class="btn btn-light"
+                            data-bs-toggle="modal"
+                            data-bs-target="#accountPopup"
+                        >
+                            <span class="material-symbols-rounded" id="profile"
                                 >account_circle</span
                             >
                         </button>
@@ -232,7 +240,7 @@ if (!isset($_SESSION["role"])) {
                                     >
                                         <a
                                             href="/pages/logout.php"
-                                            class="btn btn-light d-flex align-items-center gap-2 px-3 rounded-pill"
+                                            class="btn btn-danger d-flex align-items-center gap-2 px-3 rounded-pill"
                                         >
                                             <i class="bx bx-exit fs-4"></i>
                                             Keluar
