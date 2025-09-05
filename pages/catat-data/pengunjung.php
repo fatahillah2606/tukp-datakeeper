@@ -274,22 +274,31 @@ if (!isset($_SESSION["role"])) {
                         <h5 class="card-header">Catat Pengunjung</h5>
                         <div class="card-body">
                             <form action="" method="post" id="form-pencatatan">
-                                <div class="mb-3">
-                                    <label
-                                        for="nama-pengunjung"
-                                        class="form-label"
-                                        >Nama Pengunjung</label
-                                    >
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="nama-pengunjung"
-                                        placeholder=""
-                                    />
+                                <div id="form-container">
+                                    <div class="flex-grow-1">
+                                        <label
+                                            for="nama-pengunjung-1"
+                                            class="form-label"
+                                            >Nama Pengunjung</label
+                                        >
+                                        <div
+                                            class="mb-3 d-flex align-items-center"
+                                        >
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="nama-pengunjung-1"
+                                                name="nama_pengunjung[]"
+                                                placeholder=""
+                                            />
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <button
                                     type="button"
                                     class="btn btn-outline-success my-3"
+                                    id="btn-tambah"
                                 >
                                     Tambah
                                 </button>
@@ -303,6 +312,7 @@ if (!isset($_SESSION["role"])) {
                                         type="text"
                                         class="form-control"
                                         id="nama-perusahaan"
+                                        name="nama_perusahaan"
                                         placeholder=""
                                     />
                                 </div>
@@ -316,6 +326,7 @@ if (!isset($_SESSION["role"])) {
                                         type="text"
                                         class="form-control"
                                         id="nomor-kendaraan"
+                                        name="nomor_kendaraan"
                                         placeholder=""
                                     />
                                 </div>
@@ -327,6 +338,7 @@ if (!isset($_SESSION["role"])) {
                                         type="date"
                                         class="form-control"
                                         id="tanggal"
+                                        name="tanggal"
                                         placeholder=""
                                     />
                                 </div>
@@ -340,6 +352,7 @@ if (!isset($_SESSION["role"])) {
                                         type="text"
                                         class="form-control"
                                         id="nomor-telepon"
+                                        name="nomor_telepon"
                                         placeholder=""
                                     />
                                 </div>
@@ -351,6 +364,7 @@ if (!isset($_SESSION["role"])) {
                                         type="text"
                                         class="form-control"
                                         id="keperluan"
+                                        name="keperluan"
                                         placeholder=""
                                     />
                                 </div>
@@ -396,6 +410,7 @@ if (!isset($_SESSION["role"])) {
                                         <button
                                             type="button"
                                             class="btn btn-success my-3 w-100"
+                                            onclick="simpan(event)"
                                         >
                                             Simpan
                                         </button>
@@ -412,6 +427,99 @@ if (!isset($_SESSION["role"])) {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             // muatDataPengunjung();
+            let counter = 1;
+
+            // Fungsi untuk bikin kolom baru
+            function buatKolom(nomor) {
+                const div = document.createElement("div");
+
+                div.innerHTML = `
+                    <div class="flex-grow-1">
+                        <label
+                            for="nama-pengunjung-${nomor}"
+                            class="form-label"
+                            >Nama Pengunjung</label
+                        >
+                        <div
+                            class="mb-3 d-flex align-items-center"
+                        >
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nama-pengunjung-${nomor}"
+                                name="nama_pengunjung[]"
+                                placeholder=""
+                            />
+                            <button
+                                type="button"
+                                class="btn btn-danger btn-sm ms-2 btn-hapus"
+                            >
+                                <span
+                                    class="material-symbols-rounded"
+                                    >delete</span
+                                >
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                return div;
+            }
+
+            // Event tambah
+            document
+                .getElementById("btn-tambah")
+                .addEventListener("click", function () {
+                    counter++;
+                    const kolomBaru = buatKolom(counter);
+                    document
+                        .getElementById("form-container")
+                        .appendChild(kolomBaru);
+                });
+
+            // Event hapus (delegasi ke parent)
+            document
+                .getElementById("form-container")
+                .addEventListener("click", function (e) {
+                    if (e.target.closest(".btn-hapus")) {
+                        e.target.closest(".flex-grow-1").remove();
+                        counter--;
+                    }
+                });
+
+            // Simpan data ke database
+            function simpan(event) {
+                event.preventDefault();
+
+                const elmForm = document.getElementById("form-pencatatan");
+                const dataForm = new FormData(elmForm);
+                dataForm.append("kirim_data_pengunjung", true);
+
+                for (const [name, value] of dataForm) {
+                    console.log(`${name}: ${value}`);
+                }
+
+                fetch("/backend/kelola_data.php", {
+                    method: "POST",
+                    body: dataForm,
+                })
+                    .then(async (respon) => {
+                        const data = await respon.text();
+                        console.log(data);
+                        if (!respon.ok) {
+                            throw new Error(
+                                data.message || "Terjadi kesalahan"
+                            );
+                        }
+                        return data;
+                    })
+                    .then((data) => {
+                        alert(data.message);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
         </script>
     </body>
 </html>

@@ -86,7 +86,9 @@ function muatDataBarangInternal(limit) {
                                         delete
                                     </span>
                                 </button>
-                                <a href="/pages/print/print-barang-internal.php" target="_blank" class="btn btn-primary">
+                                <a href="/pages/print/print-barang-internal.php?id_barang=${
+                                    laporan.id_barang_internal
+                                }" target="_blank" class="btn btn-primary">
                                    <span class="material-symbols-rounded">print</span>
                                 </a>
                             </td>

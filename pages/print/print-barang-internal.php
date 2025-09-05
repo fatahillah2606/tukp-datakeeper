@@ -156,7 +156,7 @@
             }
         </style>
     </head>
-    <body onload="window.print()">
+    <body>
         <div class="wrap">
             <!-- KOP SURAT -->
             <header class="kop">
@@ -285,19 +285,55 @@
             (function initFromQuery() {
                 const p = new URLSearchParams(location.search);
 
-                const id = p.get("id") || "-";
+                const idBarang = p.get("id_barang") || "-";
+
+                fetch("/backend/kelola_data.php?barang_internal=" + idBarang, {
+                    method: "GET",
+                })
+                    .then(async (respon) => {
+                        const data = await respon.json();
+                        if (!respon.ok) {
+                            throw new Error("Terjadi kesalahan");
+                        }
+                        return data;
+                    })
+                    .then((data) => {
+                        const dataBarang = data.data;
+                        let barangDibawa = JSON.parse(
+                            dataBarang.nama_jumlah_barang
+                        );
+
+                        // looping barang yang dibawa biar jadi nomor
+                        let listBarang = "<ol>";
+                        barangDibawa.forEach((barang) => {
+                            listBarang += `
+                                <li>${barang.nama_barang}: ${barang.jumlah_barang}</li>
+                            `;
+                        });
+                        listBarang += "</ol>";
+
+                        // Tampilkan datanya
+                        document.getElementById("tglTransaksi").textContent =
+                            formatTanggalID(dataBarang.tanggal);
+                        document.getElementById("namaPembawa").textContent =
+                            dataBarang.nama_pembawa;
+                        document.getElementById("namaBarang").innerHTML =
+                            listBarang;
+                        document.getElementById("keterangan").textContent =
+                            dataBarang.keterangan;
+
+                        // Print dokumen setelah data dimuat
+                        window.print();
+                    })
+                    .catch((error) => {
+                        console.error("Kesalahan: " + error);
+                    });
+
+                // Dari chatgpt
                 const tanggal = p.get("tanggal") || "-";
                 const namaPembawa = p.get("nama_pembawa") || "-";
                 const namaBarang = p.get("nama_barang") || "-";
                 const keterangan = p.get("keterangan") || "-";
-
-                document.getElementById("noTransaksi").textContent = id;
-                document.getElementById("tglTransaksi").textContent =
-                    formatTanggalID(tanggal);
-                document.getElementById("namaPembawa").textContent =
-                    namaPembawa;
-                document.getElementById("namaBarang").textContent = namaBarang;
-                document.getElementById("keterangan").textContent = keterangan;
             })();
         </script>
     </body>
