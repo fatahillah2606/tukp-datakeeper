@@ -235,7 +235,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
         // Jumlah barang
         $jumlahBarangRaw = array_map("htmlspecialchars", $_POST['jumlah_barang']) ?? [];
-        if (!is_array($jumlahBarangRaw)) $namaPengunjungRaw = [$jumlahbarangRaw];
+        if (!is_array($jumlahBarangRaw)) $namaPengunjungRaw = [$jumlahBarangRaw];
 
         $items = [];
         foreach ($namaBarangRaw as $i => $n) {
