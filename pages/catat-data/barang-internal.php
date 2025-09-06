@@ -400,7 +400,7 @@ if (!isset($_SESSION["role"])) {
                 const div = document.createElement("div");
 
                 div.innerHTML = `
-                    <div class="row align-items-end">
+                    <div class="row align-items-end barang-row">
                         <div class="col">
                             <label
                                 for="nama-barang-${nomor}"
@@ -411,21 +411,21 @@ if (!isset($_SESSION["role"])) {
                                 type="text"
                                 class="form-control"
                                 id="nama-barang-${nomor}"
-                                name="nama_barang"
+                                name="nama_barang[]"
                                 placeholder=""
                             />
                         </div>
                         <div class="col">
                             <label
-                                for="jumlah-barang"
+                                for="jumlah-barang-${nomor}"
                                 class="form-label"
                                 >Jumlah Barang</label
                             >
                             <input
                                 type="number"
                                 class="form-control"
-                                id="jumlah-barang"
-                                name="jumlah_barang"
+                                id="jumlah-barang-${nomor}"
+                                name="jumlah_barang[]"
                                 placeholder=""
                             />
                         </div>
@@ -461,7 +461,6 @@ if (!isset($_SESSION["role"])) {
                 .addEventListener("click", function (e) {
                     if (e.target.closest(".btn-hapus")) {
                         e.target.closest(".align-items-end").remove();
-                        counter--;
                     }
                 });
 
@@ -473,17 +472,16 @@ if (!isset($_SESSION["role"])) {
                 const dataForm = new FormData(elmForm);
                 dataForm.append("kirim_data_barang_internal", true);
 
-                //  for (const [name, value] of dataForm) {
+                // for (const [name, value] of dataForm) {
                 //     console.log(`${name}: ${value}`);
-                //  }
+                // }
 
                 fetch("/backend/kelola_data.php", {
                     method: "POST",
                     body: dataForm,
                 })
                     .then(async (respon) => {
-                        const data = await respon.text();
-                        console.log(data);
+                        const data = await respon.json();
                         if (!respon.ok) {
                             throw new Error(
                                 data.message || "Terjadi kesalahan"

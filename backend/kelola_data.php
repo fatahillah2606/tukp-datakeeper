@@ -227,40 +227,37 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
     // Catat Barang Internal
-    if (isset($_POST["kirim_data_pengunjung"])) {
+    if (isset($_POST["kirim_data_barang_internal"])) {
+        
+        // Nama barang
         $namaBarangRaw = array_map("htmlspecialchars", $_POST['nama_barang']) ?? [];
         if (!is_array($namaBarangRaw)) $namaBarangRaw = [$namaBarangRaw];
+        
+        // Jumlah barang
         $jumlahBarangRaw = array_map("htmlspecialchars", $_POST['jumlah_barang']) ?? [];
         if (!is_array($jumlahBarangRaw)) $namaPengunjungRaw = [$jumlahbarangRaw];
 
-        // rapikan & validasi ringan
-        $namaBarang = array_values(array_filter(array_map(function($v){
-            $v = trim($v);
-            return mb_substr($v, 0, 100);
-        }, $namaBarangRaw), fn($v)=>$v !== ''));
-        $jumlahBarang = array_values(array_filter(array_map(function($v){
-            $v = trim($v);
-            return mb_substr($v, 0, 100);
-        }, $jumlahBarangRaw), fn($v)=>$v !== ''));
-
-        // simpan sebagai JSON -> 
-        $jsonNamaBarang = json_encode($namaBarang, JSON_UNESCAPED_UNICODE);
-        $jsonJumlahBarang = json_encode($jumlahBarang, JSON_UNESCAPED_UNICODE);
+        $items = [];
+        foreach ($namaBarangRaw as $i => $n) {
+            $n = trim((string)$n);
+            $j = isset($jumlahBarangRaw[$i]) ? (int)$jumlahBarangRaw[$i] : 0;
+            if ($n !== '' && $j > 0) {
+                $items[] = ['nama_barang' => $n, 'jumlah_barang' => $j];
+            }
+        }
     
         $namaPembawa = htmlspecialchars($_POST["nama_pembawa"]);
-        $namaBarang = htmlspecialchars($_POST["nama_barang"]);
-        $jumlahBarang = htmlspecialchars($_POST["jumlah_barang"]);
+        $namaJumlahBarang = json_encode($items, JSON_UNESCAPED_UNICODE);
         $tanggal = htmlspecialchars($_POST["tanggal"]);;
         $keterangan = htmlspecialchars($_POST["keterangan"]);
 
         try {
-            $sql = "INSERT INTO data_barang_internal (`id_barang_internal`,  `id_pengguna`,'nama_pembawa', `nama_barang`, `jumlah_barang`, `tanggal`, `keterangan`) VALUES (null, :id_pengguna, :nama_pembawa, :nama_barang, :jumlah_barang, :tanggal, :keterangan)";
+            $sql = "INSERT INTO data_barang_internal (`id_barang_internal`,  `id_pengguna`, `nama_pembawa`, `nama_jumlah_barang`, `tanggal`, `keterangan`) VALUES (null, :id_pengguna, :nama_pembawa, :nama_jumlah_barang, :tanggal, :keterangan)";
             $stmt = $pdo->prepare($sql);
             $dataDikirim = [
                 "id_pengguna" => $_SESSION["id_pengguna"],
-                "nama_pembawa" => $jsonNamaPembawa,
-                "nama_barang" => $jsonNamaBarang,
-                "jumlah_barang" => $jsonJumlahBarang,
+                "nama_pembawa" => $namaPembawa,
+                "nama_jumlah_barang" => $namaJumlahBarang,
                 "tanggal" => $tanggal,
                 "keterangan" => $keterangan,
             ];
