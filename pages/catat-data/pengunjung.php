@@ -317,16 +317,14 @@ if (!isset($_SESSION["role"])) {
                                     />
                                 </div>
                                 <div class="mb-3">
-                                    <label
-                                        for="nomor-kendaraan"
-                                        class="form-label"
+                                    <label for="no-kendaraan" class="form-label"
                                         >Nomor Kendaraan</label
                                     >
                                     <input
                                         type="text"
                                         class="form-control"
-                                        id="nomor-kendaraan"
-                                        name="nomor_kendaraan"
+                                        id="no-kendaraan"
+                                        name="no_kendaraan"
                                         placeholder=""
                                     />
                                 </div>
@@ -354,6 +352,7 @@ if (!isset($_SESSION["role"])) {
                                         id="nomor-telepon"
                                         name="nomor_telepon"
                                         placeholder=""
+                                        maxlength="13"
                                     />
                                 </div>
                                 <div class="mb-3">

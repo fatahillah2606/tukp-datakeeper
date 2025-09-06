@@ -300,7 +300,7 @@ if (!isset($_SESSION["role"])) {
                                                 type="text"
                                                 class="form-control"
                                                 id="nama-barang"
-                                                name="nama_barang"
+                                                name="nama_barang[]"
                                                 placeholder=""
                                             />
                                         </div>
@@ -314,7 +314,7 @@ if (!isset($_SESSION["role"])) {
                                                 type="number"
                                                 class="form-control"
                                                 id="jumlah-barang"
-                                                name="jumlah_barang"
+                                                name="jumlah_barang[]"
                                                 placeholder=""
                                             />
                                         </div>
@@ -366,7 +366,7 @@ if (!isset($_SESSION["role"])) {
                                 <div class="row">
                                     <div class="col">
                                         <button
-                                            type="button"
+                                            type="reset"
                                             class="btn btn-outline-success my-3 w-100"
                                         >
                                             Bersihkan

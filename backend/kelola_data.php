@@ -169,20 +169,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $jsonNama = json_encode($namaPengunjung, JSON_UNESCAPED_UNICODE);
 
         $namaPerusahaan = htmlspecialchars($_POST["nama_perusahaan"]);
-        $nomorKendaraan = htmlspecialchars($_POST["nomor_kendaraan"]);
+        $noKendaraan = htmlspecialchars($_POST["no_kendaraan"]);
         $tanggal = htmlspecialchars($_POST["tanggal"]);
         $nomorTelepon = htmlspecialchars($_POST["nomor_telepon"]);
         $keperluan = htmlspecialchars($_POST["keperluan"]);
         $safetyInduction = $_POST["safety_induction"] ?? false;
 
         try {
-            $sql = "INSERT INTO data_pengunjung (`id_pengunjung`,  `id_pengguna`, `nama_pengunjung`,	`nama_perusahaan`,	`no_kendaraan`, `tanggal`,	`no_telpon`, `keperluan`, `safety_induction`) VALUES (null, :id_pengguna, :nama_pengunjung, :nama_perusahaan, :nomor_kendaraan, :tanggal, :nomor_telepon, :keperluan, :safety_induction)";
+            $sql = "INSERT INTO data_pengunjung (`id_pengunjung`,  `id_pengguna`, `nama_pengunjung`,	`nama_perusahaan`,	`no_kendaraan`, `tanggal`,	`no_telpon`, `keperluan`, `safety_induction`) VALUES (null, :id_pengguna, :nama_pengunjung, :nama_perusahaan, :no_kendaraan, :tanggal, :nomor_telepon, :keperluan, :safety_induction)";
             $stmt = $pdo->prepare($sql);
             $dataDikirim = [
                 "id_pengguna" => $_SESSION["id_pengguna"],
                 "nama_pengunjung" => $jsonNama,
                 "nama_perusahaan" => $namaPerusahaan,
-                "nomor_kendaraan" => $nomorKendaraan,
+                "no_kendaraan" => $noKendaraan,
                 "tanggal" => $tanggal,
                 "nomor_telepon" => $nomorTelepon,
                 "keperluan" => $keperluan,
@@ -199,7 +199,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         $namaDriver   = htmlspecialchars($_POST["nama_driver"]);
         $merekKendaraan   = htmlspecialchars($_POST["merek_kendaraan"]);
-        $nomorKendaraan  = htmlspecialchars($_POST["nomor_kendaraan"]);
+        $noKendaraan  = htmlspecialchars($_POST["no_kendaraan"]);
         $kmAwal          = htmlspecialchars($_POST["km_awal"]);
         $kmAkhir         = htmlspecialchars($_POST["km_akhir"]);
         $tanggal         = htmlspecialchars($_POST["tanggal"]);
@@ -214,7 +214,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 "tanggal"        => $tanggal,
                 "nama_driver"    => $namaDriver,
                 "merek_kendaraan" => $merekKendaraan,
-                "no_kendaraan"   => $nomorKendaraan,
+                "no_kendaraan"   => $noKendaraan,
                 "km_awal"        => $kmAwal,
                 "km_akhir"       => $kmAkhir,
                 "tujuan"         => $tujuan,
@@ -235,7 +235,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         
         // Jumlah barang
         $jumlahBarangRaw = array_map("htmlspecialchars", $_POST['jumlah_barang']) ?? [];
-        if (!is_array($jumlahBarangRaw)) $namaPengunjungRaw = [$jumlahBarangRaw];
+        if (!is_array($jumlahBarangRaw)) $jumlahBarangRaw = [$jumlahBarangRaw];
 
         $items = [];
         foreach ($namaBarangRaw as $i => $n) {
@@ -259,6 +259,53 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 "nama_pembawa" => $namaPembawa,
                 "nama_jumlah_barang" => $namaJumlahBarang,
                 "tanggal" => $tanggal,
+                "keterangan" => $keterangan,
+            ];
+            $stmt->execute($dataDikirim);
+            echo json_encode(generateAPI("success", 200, "Data terkirim", []), JSON_PRETTY_PRINT);
+        } catch (\Throwable $th) {
+            echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
+        }
+    }
+        // Catat Barang Eksternal
+    if (isset($_POST["kirim_data_barang_eksternal"])) {
+        
+        // Nama barang
+        $namaBarangRaw = array_map("htmlspecialchars", $_POST['nama_barang']) ?? [];
+        if (!is_array($namaBarangRaw)) $namaBarangRaw = [$namaBarangRaw];
+        
+        // Jumlah barang
+        $jumlahBarangRaw = array_map("htmlspecialchars", $_POST['jumlah_barang']) ?? [];
+        if (!is_array($jumlahBarangRaw)) $jumlahBarangRaw = [$jumlahBarangRaw];
+
+        $items = [];
+        foreach ($namaBarangRaw as $i => $n) {
+            $n = trim((string)$n);
+            $j = isset($jumlahBarangRaw[$i]) ? (int)$jumlahBarangRaw[$i] : 0;
+            if ($n !== '' && $j > 0) {
+                $items[] = ['nama_barang' => $n, 'jumlah_barang' => $j];
+            }
+        }
+    
+        $namaDriver = htmlspecialchars($_POST["nama_driver"]);
+        $namaSuplier = htmlspecialchars($_POST["nama_suplier"]);
+        $namaJumlahBarang = json_encode($items, JSON_UNESCAPED_UNICODE);
+        $tanggal = htmlspecialchars($_POST["tanggal"]);;
+        $jamKedatangan = htmlspecialchars($_POST["jam_kedatangan"]);
+        $noKendaraan = htmlspecialchars($_POST["no_kendaraan"]);
+        $keterangan = htmlspecialchars($_POST["keterangan"]);
+
+        try {
+            $sql = "INSERT INTO data_barang_eksternal (`id_barang_eksternal`,  `id_pengguna`, `nama_driver`, `nama_suplier`, `nama_jumlah_barang`, `tanggal`, `jam_kedatangan`, `no_kendaraan`, `keterangan`) VALUES (null, :id_pengguna, :nama_driver, :nama_suplier, :nama_jumlah_barang, :tanggal, :jam_kedatangan, :no_kendaraan, :keterangan)";
+            $stmt = $pdo->prepare($sql);
+            $dataDikirim = [
+                "id_pengguna" => $_SESSION["id_pengguna"],
+                "nama_driver" => $namaDriver,
+                "nama_suplier" => $namaSuplier,
+                "nama_jumlah_barang" => $namaJumlahBarang,
+                "tanggal" => $tanggal,
+                "jam_kedatangan" => $jamKedatangan,
+                "no_kendaraan" => $noKendaraan,
                 "keterangan" => $keterangan,
             ];
             $stmt->execute($dataDikirim);

@@ -292,62 +292,65 @@ if (!isset($_SESSION["role"])) {
                                     </div>
                                     <div class="col">
                                         <label
-                                            for="nama-supplier"
+                                            for="nama-suplier"
                                             class="form-label"
                                             >Nama Supplier</label
                                         >
                                         <input
                                             type="text"
                                             class="form-control"
-                                            id="nama-supplier"
-                                            name="nama_supplier"
+                                            id="nama-suplier"
+                                            name="nama_suplier"
                                             placeholder=""
                                         />
                                     </div>
                                 </div>
                                 <h5>Barang</h5>
-                                <div class="row align-items-end">
-                                    <div class="col">
-                                        <label
-                                            for="nama-barang"
-                                            class="form-label"
-                                            >Nama Barang</label
-                                        >
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            id="nama-barang"
-                                            name="nama_barang"
-                                            placeholder=""
-                                        />
-                                    </div>
-                                    <div class="col">
-                                        <label
-                                            for="jumlah-barang"
-                                            class="form-label"
-                                            >Jumlah Barang</label
-                                        >
-                                        <input
-                                            type="number"
-                                            class="form-control"
-                                            id="jumlah-barang"
-                                            name="jumlah_barang"
-                                            placeholder=""
-                                        />
-                                    </div>
-                                    <div class="col-2">
-                                        <button class="btn btn-danger">
-                                            <span
-                                                class="material-symbols-rounded"
+                                <div id="form-container">
+                                    <div class="row align-items-end">
+                                        <div class="col">
+                                            <label
+                                                for="nama-barang"
+                                                class="form-label"
+                                                >Nama Barang</label
                                             >
-                                                delete
-                                            </span>
-                                        </button>
+                                            <input
+                                                type="text"
+                                                class="form-control"
+                                                id="nama-barang"
+                                                name="nama_barang[]"
+                                                placeholder=""
+                                            />
+                                        </div>
+                                        <div class="col">
+                                            <label
+                                                for="jumlah-barang"
+                                                class="form-label"
+                                                >Jumlah Barang</label
+                                            >
+                                            <input
+                                                type="number"
+                                                class="form-control"
+                                                id="jumlah-barang"
+                                                name="jumlah_barang[]"
+                                                placeholder=""
+                                            />
+                                        </div>
+                                        <div class="col-2">
+                                            <button class="btn btn-danger">
+                                                <span
+                                                    class="material-symbols-rounded"
+                                                >
+                                                    delete
+                                                </span>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                                 <button
                                     type="button"
                                     class="btn btn-outline-success my-3"
+                                    id="btn-tambah"
                                 >
                                     Tambah
                                 </button>
@@ -378,16 +381,14 @@ if (!isset($_SESSION["role"])) {
                                     />
                                 </div>
                                 <div class="mb-3">
-                                    <label
-                                        for="nomor-kendaraan"
-                                        class="form-label"
+                                    <label for="no-kendaraan" class="form-label"
                                         >Nomor Kendaraan</label
                                     >
                                     <input
                                         type="text"
                                         class="form-control"
-                                        id="Nomor Kendaraan"
-                                        name="nomor_kendaraan"
+                                        id="no-Kendaraan"
+                                        name="no_kendaraan"
                                         placeholder=""
                                     />
                                 </div>
@@ -406,7 +407,7 @@ if (!isset($_SESSION["role"])) {
                                 <div class="row">
                                     <div class="col">
                                         <button
-                                            type="button"
+                                            type="reset"
                                             class="btn btn-outline-success my-3 w-100"
                                         >
                                             Bersihkan
@@ -416,6 +417,7 @@ if (!isset($_SESSION["role"])) {
                                         <button
                                             type="button"
                                             class="btn btn-success my-3 w-100"
+                                            onclick="simpan(event)"
                                         >
                                             Simpan
                                         </button>
@@ -432,6 +434,110 @@ if (!isset($_SESSION["role"])) {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             // muatDataBarangEksternal(10);
+            let counter = 1;
+
+            // Fungsi untuk bikin kolom baru
+            function buatKolom(nomor) {
+                const div = document.createElement("div");
+
+                div.innerHTML = `
+                    <div class="row align-items-end barang-row">
+                        <div class="col">
+                            <label
+                                for="nama-barang-${nomor}"
+                                class="form-label"
+                                >Nama Barang</label
+                            >
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="nama-barang-${nomor}"
+                                name="nama_barang[]"
+                                placeholder=""
+                            />
+                        </div>
+                        <div class="col">
+                            <label
+                                for="jumlah-barang-${nomor}"
+                                class="form-label"
+                                >Jumlah Barang</label
+                            >
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="jumlah-barang-${nomor}"
+                                name="jumlah_barang[]"
+                                placeholder=""
+                            />
+                        </div>
+                        <div class="col-2">
+                            <button class="btn btn-danger btn-hapus" type="button">
+                                <span
+                                    class="material-symbols-rounded"
+                                >
+                                    delete
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+
+                return div;
+            }
+
+            // Event tambah
+            document
+                .getElementById("btn-tambah")
+                .addEventListener("click", function () {
+                    counter++;
+                    const kolomBaru = buatKolom(counter);
+                    document
+                        .getElementById("form-container")
+                        .appendChild(kolomBaru);
+                });
+
+            // Event hapus (delegasi ke parent)
+            document
+                .getElementById("form-container")
+                .addEventListener("click", function (e) {
+                    if (e.target.closest(".btn-hapus")) {
+                        e.target.closest(".align-items-end").remove();
+                    }
+                });
+
+            // Simpan data ke database
+            function simpan(event) {
+                event.preventDefault();
+
+                const elmForm = document.getElementById("form-pencatatan");
+                const dataForm = new FormData(elmForm);
+                dataForm.append("kirim_data_barang_eksternal", true);
+
+                // for (const [name, value] of dataForm) {
+                //     console.log(`${name}: ${value}`);
+                // }
+
+                fetch("/backend/kelola_data.php", {
+                    method: "POST",
+                    body: dataForm,
+                })
+                    .then(async (respon) => {
+                        const data = await respon.json();
+                        console.log(data);
+                        if (!respon.ok) {
+                            throw new Error(
+                                data.message || "Terjadi kesalahan"
+                            );
+                        }
+                        return data;
+                    })
+                    .then((data) => {
+                        alert(data.message);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
         </script>
     </body>
 </html>
