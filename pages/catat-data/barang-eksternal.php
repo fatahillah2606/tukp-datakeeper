@@ -286,6 +286,7 @@ if (!isset($_SESSION["role"])) {
                                             type="text"
                                             class="form-control"
                                             id="nama-driver"
+                                            name="nama_driver"
                                             placeholder=""
                                         />
                                     </div>
@@ -299,6 +300,7 @@ if (!isset($_SESSION["role"])) {
                                             type="text"
                                             class="form-control"
                                             id="nama-supplier"
+                                            name="nama_supplier"
                                             placeholder=""
                                         />
                                     </div>
@@ -315,6 +317,7 @@ if (!isset($_SESSION["role"])) {
                                             type="text"
                                             class="form-control"
                                             id="nama-barang"
+                                            name="nama_barang"
                                             placeholder=""
                                         />
                                     </div>
@@ -328,6 +331,7 @@ if (!isset($_SESSION["role"])) {
                                             type="number"
                                             class="form-control"
                                             id="jumlah-barang"
+                                            name="jumlah_barang"
                                             placeholder=""
                                         />
                                     </div>
@@ -355,6 +359,7 @@ if (!isset($_SESSION["role"])) {
                                         type="date"
                                         class="form-control"
                                         id="tanggal"
+                                        name="tanggal"
                                         placeholder=""
                                     />
                                 </div>
@@ -368,6 +373,7 @@ if (!isset($_SESSION["role"])) {
                                         type="time"
                                         class="form-control"
                                         id="jam-kedatangan"
+                                        name="jam_kedatangan"
                                         placeholder=""
                                     />
                                 </div>
@@ -381,6 +387,7 @@ if (!isset($_SESSION["role"])) {
                                         type="text"
                                         class="form-control"
                                         id="Nomor Kendaraan"
+                                        name="nomor_kendaraan"
                                         placeholder=""
                                     />
                                 </div>
@@ -392,6 +399,7 @@ if (!isset($_SESSION["role"])) {
                                         type="text"
                                         class="form-control"
                                         id="keterangan"
+                                        name="keterangan"
                                         placeholder=""
                                     />
                                 </div>

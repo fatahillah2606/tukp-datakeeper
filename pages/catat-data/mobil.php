@@ -283,6 +283,7 @@ if (!isset($_SESSION["role"])) {
                                         type="text"
                                         class="form-control"
                                         id="nama-driver"
+                                        name="nama_driver"
                                         placeholder=""
                                     />
                                 </div>
@@ -296,6 +297,7 @@ if (!isset($_SESSION["role"])) {
                                         type="text"
                                         class="form-control"
                                         id="merek-kendaraan"
+                                        name="merek_kendaraan"
                                         placeholder=""
                                     />
                                 </div>
@@ -309,19 +311,21 @@ if (!isset($_SESSION["role"])) {
                                         type="text"
                                         class="form-control"
                                         id="nomor-kendaraan"
+                                        name="nomor_kendaraan"
                                         placeholder=""
                                     />
                                 </div>
                                 <h5>Kilometer</h5>
                                 <div class="row align-items-end">
                                     <div class="col">
-                                        <label for="awal" class="form-label"
+                                        <label for="-awal" class="form-label"
                                             >Awal</label
                                         >
                                         <input
                                             type="number"
                                             class="form-control"
                                             id="awal"
+                                            name="km_awal"
                                             placeholder=""
                                         />
                                     </div>
@@ -333,6 +337,7 @@ if (!isset($_SESSION["role"])) {
                                             type="number"
                                             class="form-control"
                                             id="akhir"
+                                            name="km_akhir"
                                             placeholder=""
                                         />
                                     </div>
@@ -345,6 +350,7 @@ if (!isset($_SESSION["role"])) {
                                         type="date"
                                         class="form-control"
                                         id="tanggal"
+                                        name="tanggal"
                                         placeholder=""
                                     />
                                 </div>
@@ -356,6 +362,7 @@ if (!isset($_SESSION["role"])) {
                                         type="text"
                                         class="form-control"
                                         id="tujuan"
+                                        name="tujuan"
                                         placeholder=""
                                     />
                                 </div>
@@ -367,6 +374,7 @@ if (!isset($_SESSION["role"])) {
                                         type="text"
                                         class="form-control"
                                         id="keperluan"
+                                        name="keperluan"
                                         placeholder=""
                                     />
                                 </div>
@@ -383,6 +391,7 @@ if (!isset($_SESSION["role"])) {
                                         <button
                                             type="button"
                                             class="btn btn-success my-3 w-100"
+                                            onclick="simpan(event)"
                                         >
                                             Simpan
                                         </button>
@@ -399,6 +408,41 @@ if (!isset($_SESSION["role"])) {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             // muatDataMobil(10);
+            let counter = 1;
+
+            // Simpan data ke database
+            function simpan(event) {
+                event.preventDefault();
+
+                const elmForm = document.getElementById("form-pencatatan");
+                const dataForm = new FormData(elmForm);
+                dataForm.append("kirim_data_mobil", true);
+
+                //  for (const [name, value] of dataForm) {
+                //     console.log(`${name}: ${value}`);
+                //  }
+
+                fetch("/backend/kelola_data.php", {
+                    method: "POST",
+                    body: dataForm,
+                })
+                    .then(async (respon) => {
+                        const data = await respon.json();
+                        console.log(data);
+                        if (!respon.ok) {
+                            throw new Error(
+                                data.message || "Terjadi kesalahan"
+                            );
+                        }
+                        return data;
+                    })
+                    .then((data) => {
+                        alert(data.message);
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
         </script>
     </body>
 </html>

@@ -194,5 +194,82 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
         }
     }
+    // Catat mobil
+    if (isset($_POST["kirim_data_mobil"])) {
+
+        $namaDriver   = htmlspecialchars($_POST["nama_driver"]);
+        $merekKendaraan   = htmlspecialchars($_POST["merek_kendaraan"]);
+        $nomorKendaraan  = htmlspecialchars($_POST["nomor_kendaraan"]);
+        $kmAwal          = htmlspecialchars($_POST["km_awal"]);
+        $kmAkhir         = htmlspecialchars($_POST["km_akhir"]);
+        $tanggal         = htmlspecialchars($_POST["tanggal"]);
+        $tujuan          = htmlspecialchars($_POST["tujuan"]);
+        $keperluan       = htmlspecialchars($_POST["keperluan"]);
+
+        try {
+            $sql = "INSERT INTO data_mobil (`id_mobil`,  `id_pengguna`, `tanggal`, `nama_driver`,	`merek_kendaraan`, `no_kendaraan`, `km_awal`,	`km_akhir`, `tujuan`, `keperluan`) VALUES (null,  :id_pengguna, :tanggal, :nama_driver,	:merek_kendaraan, :no_kendaraan, :km_awal,	:km_akhir, :tujuan, :keperluan)";
+            $stmt = $pdo->prepare($sql);
+            $dataDikirim = [
+                "id_pengguna"    => $_SESSION["id_pengguna"],
+                "tanggal"        => $tanggal,
+                "nama_driver"    => $namaDriver,
+                "merek_kendaraan" => $merekKendaraan,
+                "no_kendaraan"   => $nomorKendaraan,
+                "km_awal"        => $kmAwal,
+                "km_akhir"       => $kmAkhir,
+                "tujuan"         => $tujuan,
+                "keperluan"      => $keperluan,
+            ];
+            $stmt->execute($dataDikirim);
+            echo json_encode(generateAPI("success", 200, "Data terkirim", []), JSON_PRETTY_PRINT);
+        } catch (\Throwable $th) {
+            echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
+        }
+    }
+    // Catat Barang Internal
+    if (isset($_POST["kirim_data_pengunjung"])) {
+        $namaBarangRaw = array_map("htmlspecialchars", $_POST['nama_barang']) ?? [];
+        if (!is_array($namaBarangRaw)) $namaBarangRaw = [$namaBarangRaw];
+        $jumlahBarangRaw = array_map("htmlspecialchars", $_POST['jumlah_barang']) ?? [];
+        if (!is_array($jumlahBarangRaw)) $namaPengunjungRaw = [$jumlahbarangRaw];
+
+        // rapikan & validasi ringan
+        $namaBarang = array_values(array_filter(array_map(function($v){
+            $v = trim($v);
+            return mb_substr($v, 0, 100);
+        }, $namaBarangRaw), fn($v)=>$v !== ''));
+        $jumlahBarang = array_values(array_filter(array_map(function($v){
+            $v = trim($v);
+            return mb_substr($v, 0, 100);
+        }, $jumlahBarangRaw), fn($v)=>$v !== ''));
+
+        // simpan sebagai JSON -> 
+        $jsonNamaBarang = json_encode($namaBarang, JSON_UNESCAPED_UNICODE);
+        $jsonJumlahBarang = json_encode($jumlahBarang, JSON_UNESCAPED_UNICODE);
+    
+        $namaPembawa = htmlspecialchars($_POST["nama_pembawa"]);
+        $namaBarang = htmlspecialchars($_POST["nama_barang"]);
+        $jumlahBarang = htmlspecialchars($_POST["jumlah_barang"]);
+        $tanggal = htmlspecialchars($_POST["tanggal"]);;
+        $keterangan = htmlspecialchars($_POST["keterangan"]);
+
+        try {
+            $sql = "INSERT INTO data_barang_internal (`id_barang_internal`,  `id_pengguna`,'nama_pembawa', `nama_barang`, `jumlah_barang`, `tanggal`, `keterangan`) VALUES (null, :id_pengguna, :nama_pembawa, :nama_barang, :jumlah_barang, :tanggal, :keterangan)";
+            $stmt = $pdo->prepare($sql);
+            $dataDikirim = [
+                "id_pengguna" => $_SESSION["id_pengguna"],
+                "nama_pembawa" => $jsonNamaPembawa,
+                "nama_barang" => $jsonNamaBarang,
+                "jumlah_barang" => $jsonJumlahBarang,
+                "tanggal" => $tanggal,
+                "keterangan" => $keterangan,
+            ];
+            $stmt->execute($dataDikirim);
+            echo json_encode(generateAPI("success", 200, "Data terkirim", []), JSON_PRETTY_PRINT);
+        } catch (\Throwable $th) {
+            echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
+        }
+    }
 }
 ?>
+

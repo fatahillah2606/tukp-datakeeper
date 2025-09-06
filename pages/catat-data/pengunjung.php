@@ -495,16 +495,16 @@ if (!isset($_SESSION["role"])) {
                 const dataForm = new FormData(elmForm);
                 dataForm.append("kirim_data_pengunjung", true);
 
-                for (const [name, value] of dataForm) {
-                    console.log(`${name}: ${value}`);
-                }
+                //  for (const [name, value] of dataForm) {
+                //     console.log(`${name}: ${value}`);
+                //  }
 
                 fetch("/backend/kelola_data.php", {
                     method: "POST",
                     body: dataForm,
                 })
                     .then(async (respon) => {
-                        const data = await respon.text();
+                        const data = await respon.json();
                         console.log(data);
                         if (!respon.ok) {
                             throw new Error(
