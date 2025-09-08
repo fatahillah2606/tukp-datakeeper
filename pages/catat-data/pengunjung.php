@@ -239,7 +239,7 @@ if (!isset($_SESSION["role"])) {
                                         class="d-flex justify-content-center gap-2 mt-3"
                                     >
                                         <a
-                                            href="/pages/logout.php"
+                                            href="/logout.php"
                                             class="btn btn-danger d-flex align-items-center gap-2 px-3 rounded-pill"
                                         >
                                             <i class="bx bx-exit fs-4"></i>
