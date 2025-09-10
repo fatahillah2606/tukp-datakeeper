@@ -286,6 +286,7 @@ if (!isset($_SESSION["role"])) {
                                         class="form-control"
                                         id="judul-pengumuman"
                                         placeholder=""
+                                        maxlength="25"
                                     />
                                 </div>
                                 <div class="mb-3">

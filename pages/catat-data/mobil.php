@@ -285,6 +285,7 @@ if (!isset($_SESSION["role"])) {
                                         id="nama-driver"
                                         name="nama_driver"
                                         placeholder=""
+                                        maxlength="25"
                                     />
                                 </div>
                                 <div class="col">
@@ -299,6 +300,7 @@ if (!isset($_SESSION["role"])) {
                                         id="merek-kendaraan"
                                         name="merek_kendaraan"
                                         placeholder=""
+                                        maxlength="25"
                                     />
                                 </div>
                                 <div class="col">
@@ -311,6 +313,7 @@ if (!isset($_SESSION["role"])) {
                                         id="no-kendaraan"
                                         name="no_kendaraan"
                                         placeholder=""
+                                        maxlength="11"
                                     />
                                 </div>
                                 <h5>Kilometer</h5>
@@ -362,6 +365,7 @@ if (!isset($_SESSION["role"])) {
                                         id="tujuan"
                                         name="tujuan"
                                         placeholder=""
+                                        maxlength="25"
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -374,6 +378,7 @@ if (!isset($_SESSION["role"])) {
                                         id="keperluan"
                                         name="keperluan"
                                         placeholder=""
+                                        maxlength="50"
                                     />
                                 </div>
                                 <div class="row">

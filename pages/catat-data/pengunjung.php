@@ -290,6 +290,7 @@ if (!isset($_SESSION["role"])) {
                                                 id="nama-pengunjung-1"
                                                 name="nama_pengunjung[]"
                                                 placeholder=""
+                                                maxlength="25"
                                             />
                                         </div>
                                     </div>
@@ -314,6 +315,7 @@ if (!isset($_SESSION["role"])) {
                                         id="nama-perusahaan"
                                         name="nama_perusahaan"
                                         placeholder=""
+                                        maxlength="25"
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -326,6 +328,7 @@ if (!isset($_SESSION["role"])) {
                                         id="no-kendaraan"
                                         name="no_kendaraan"
                                         placeholder=""
+                                        maxlength="11"
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -365,6 +368,7 @@ if (!isset($_SESSION["role"])) {
                                         id="keperluan"
                                         name="keperluan"
                                         placeholder=""
+                                        maxlength="50"
                                     />
                                 </div>
                                 <div class="safety">
@@ -448,6 +452,7 @@ if (!isset($_SESSION["role"])) {
                                 id="nama-pengunjung-${nomor}"
                                 name="nama_pengunjung[]"
                                 placeholder=""
+                                maxlength="25"
                             />
                             <button
                                 type="button"

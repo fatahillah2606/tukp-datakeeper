@@ -63,6 +63,7 @@ if (isset($_SESSION["role"])) {
                             id="email_user"
                             placeholder="nama@admin"
                             name="email_user"
+                            maxlength="25"
                             required
                         />
                     </div>
@@ -78,6 +79,7 @@ if (isset($_SESSION["role"])) {
                             id="userpassword"
                             placeholder=""
                             name="password"
+                            maxlength="60"
                             required
                         />
                     </div>

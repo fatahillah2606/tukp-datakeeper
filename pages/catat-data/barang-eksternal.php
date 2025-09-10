@@ -288,6 +288,7 @@ if (!isset($_SESSION["role"])) {
                                             id="nama-driver"
                                             name="nama_driver"
                                             placeholder=""
+                                            maxlength="25"
                                         />
                                     </div>
                                     <div class="col">
@@ -302,6 +303,7 @@ if (!isset($_SESSION["role"])) {
                                             id="nama-suplier"
                                             name="nama_suplier"
                                             placeholder=""
+                                            maxlength="25"
                                         />
                                     </div>
                                 </div>
@@ -390,6 +392,7 @@ if (!isset($_SESSION["role"])) {
                                         id="no-Kendaraan"
                                         name="no_kendaraan"
                                         placeholder=""
+                                        maxlength="11"
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -402,6 +405,7 @@ if (!isset($_SESSION["role"])) {
                                         id="keterangan"
                                         name="keterangan"
                                         placeholder=""
+                                        maxlength="50"
                                     />
                                 </div>
                                 <div class="row">
@@ -468,7 +472,6 @@ if (!isset($_SESSION["role"])) {
                                 id="jumlah-barang-${nomor}"
                                 name="jumlah_barang[]"
                                 placeholder=""
-                            />
                         </div>
                         <div class="col-2">
                             <button class="btn btn-danger btn-hapus" type="button">

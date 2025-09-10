@@ -285,6 +285,8 @@ if (!isset($_SESSION["role"])) {
                                         id="nama-pembawa"
                                         name="nama_pembawa"
                                         placeholder=""
+                                        maxlength="25"
+                                        required
                                     />
                                 </div>
                                 <h5>Barang</h5>
@@ -302,6 +304,7 @@ if (!isset($_SESSION["role"])) {
                                                 id="nama-barang"
                                                 name="nama_barang[]"
                                                 placeholder=""
+                                                required
                                             />
                                         </div>
                                         <div class="col">
@@ -316,6 +319,7 @@ if (!isset($_SESSION["role"])) {
                                                 id="jumlah-barang"
                                                 name="jumlah_barang[]"
                                                 placeholder=""
+                                                required
                                             />
                                         </div>
                                         <div class="col-2">
@@ -349,6 +353,7 @@ if (!isset($_SESSION["role"])) {
                                         id="tanggal"
                                         name="tanggal"
                                         placeholder=""
+                                        required
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -361,6 +366,8 @@ if (!isset($_SESSION["role"])) {
                                         id="keterangan"
                                         name="keterangan"
                                         placeholder=""
+                                        maxlength="50"
+                                        required
                                     />
                                 </div>
                                 <div class="row">
@@ -413,6 +420,7 @@ if (!isset($_SESSION["role"])) {
                                 id="nama-barang-${nomor}"
                                 name="nama_barang[]"
                                 placeholder=""
+                                required
                             />
                         </div>
                         <div class="col">
@@ -427,6 +435,7 @@ if (!isset($_SESSION["role"])) {
                                 id="jumlah-barang-${nomor}"
                                 name="jumlah_barang[]"
                                 placeholder=""
+                                required
                             />
                         </div>
                         <div class="col-2">
@@ -475,27 +484,43 @@ if (!isset($_SESSION["role"])) {
                 // for (const [name, value] of dataForm) {
                 //     console.log(`${name}: ${value}`);
                 // }
+                const kolomIsian = document.querySelectorAll(
+                    "input[required], select[required]"
+                );
+                console.log(kolomIsian);
 
-                fetch("/backend/kelola_data.php", {
-                    method: "POST",
-                    body: dataForm,
-                })
-                    .then(async (respon) => {
-                        const data = await respon.json();
-                        console.log(data);
-                        if (!respon.ok) {
-                            throw new Error(
-                                data.message || "Terjadi kesalahan"
-                            );
-                        }
-                        return data;
+                let valid = true;
+
+                kolomIsian.foreach((element) => {
+                    if (element.value == "") {
+                        valid = false;
+                    }
+                });
+
+                if (valid) {
+                    fetch("/backend/kelola_data.php", {
+                        method: "POST",
+                        body: dataForm,
                     })
-                    .then((data) => {
-                        alert(data.message);
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                    });
+                        .then(async (respon) => {
+                            const data = await respon.json();
+                            console.log(data);
+                            if (!respon.ok) {
+                                throw new Error(
+                                    data.message || "Terjadi kesalahan"
+                                );
+                            }
+                            return data;
+                        })
+                        .then((data) => {
+                            alert(data.message);
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                        });
+                } else {
+                    alert("Mohon isi kolom yang dibutuhkan");
+                }
             }
         </script>
     </body>

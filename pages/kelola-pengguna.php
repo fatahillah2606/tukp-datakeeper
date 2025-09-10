@@ -296,16 +296,15 @@ if (!isset($_SESSION["role"])) {
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label
-                                        for="email-pengguna"
-                                        class="form-label"
+                                    <label for="id-pengguna" class="form-label"
                                         >Id Pengguna</label
                                     >
                                     <input
-                                        type="email"
+                                        type="number"
                                         class="form-control"
-                                        id="email-pengguna"
+                                        id="id-pengguna"
                                         placeholder=""
+                                        maxlength="4"
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -319,6 +318,7 @@ if (!isset($_SESSION["role"])) {
                                         class="form-control"
                                         id="nama-pengguna"
                                         placeholder=""
+                                        maxlength="25"
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -332,6 +332,7 @@ if (!isset($_SESSION["role"])) {
                                         class="form-control"
                                         id="sandi-pengguna"
                                         placeholder=""
+                                        maxlength="60"
                                     />
                                 </div>
                                 <div class="form-check">

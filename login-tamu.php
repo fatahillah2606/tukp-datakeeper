@@ -49,20 +49,19 @@ if (isset($_SESSION["role"])) {
                     >
                         <option value="Admin">Admin</option>
                         <option value="Security">Security</option>
-                        <option value="Tamu"selected>Tamu</option>
+                        <option value="Tamu" selected>Tamu</option>
                     </select>
 
                     <!-- Kolom email pengguna -->
                     <div class="mb-3">
-                        <label for="token" class="form-label"
-                            >Token</label
-                        >
+                        <label for="token" class="form-label">Token</label>
                         <input
                             type="text"
                             class="form-control"
                             id="token"
                             placeholder="XXX-XXX-XXX-XXX"
                             name="token"
+                            maxlength="60"
                             required
                         />
                     </div>
