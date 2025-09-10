@@ -545,7 +545,7 @@ if (!isset($_SESSION["role"])) {
                             console.error(error);
                         });
                 } else {
-                    alert("Mohon isi kolom yang dibutuhkan");
+                    alert("Semua Kolom Wajib Diisi");
                 }
             }
         </script>

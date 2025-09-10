@@ -189,7 +189,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 "safety_induction" => $safetyInduction,
             ];
             $stmt->execute($dataDikirim);
-            echo json_encode(generateAPI("success", 200, "Data terkirim", []), JSON_PRETTY_PRINT);
+            echo json_encode(generateAPI("success", 200, "Data Berhasil Disimpan", []), JSON_PRETTY_PRINT);
         } catch (\Throwable $th) {
             echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
         }
@@ -221,7 +221,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 "keperluan"      => $keperluan,
             ];
             $stmt->execute($dataDikirim);
-            echo json_encode(generateAPI("success", 200, "Data terkirim", []), JSON_PRETTY_PRINT);
+            echo json_encode(generateAPI("success", 200, "Data Berhasil Disimpan", []), JSON_PRETTY_PRINT);
         } catch (\Throwable $th) {
             echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
         }
@@ -262,7 +262,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 "keterangan" => $keterangan,
             ];
             $stmt->execute($dataDikirim);
-            echo json_encode(generateAPI("success", 200, "Data terkirim", []), JSON_PRETTY_PRINT);
+            echo json_encode(generateAPI("success", 200, "Data Berhasil Disimpan", []), JSON_PRETTY_PRINT);
         } catch (\Throwable $th) {
             echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
         }
@@ -309,7 +309,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 "keterangan" => $keterangan,
             ];
             $stmt->execute($dataDikirim);
-            echo json_encode(generateAPI("success", 200, "Data terkirim", []), JSON_PRETTY_PRINT);
+            echo json_encode(generateAPI("success", 200, "Data Berhasil Disimpan", []), JSON_PRETTY_PRINT);
         } catch (\Throwable $th) {
             echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
         }
