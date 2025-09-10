@@ -289,6 +289,7 @@ if (!isset($_SESSION["role"])) {
                                             name="nama_driver"
                                             placeholder=""
                                             maxlength="25"
+                                            required
                                         />
                                     </div>
                                     <div class="col">
@@ -304,6 +305,7 @@ if (!isset($_SESSION["role"])) {
                                             name="nama_suplier"
                                             placeholder=""
                                             maxlength="25"
+                                            required
                                         />
                                     </div>
                                 </div>
@@ -322,6 +324,7 @@ if (!isset($_SESSION["role"])) {
                                                 id="nama-barang"
                                                 name="nama_barang[]"
                                                 placeholder=""
+                                                required
                                             />
                                         </div>
                                         <div class="col">
@@ -336,6 +339,7 @@ if (!isset($_SESSION["role"])) {
                                                 id="jumlah-barang"
                                                 name="jumlah_barang[]"
                                                 placeholder=""
+                                                required
                                             />
                                         </div>
                                         <div class="col-2">
@@ -366,6 +370,7 @@ if (!isset($_SESSION["role"])) {
                                         id="tanggal"
                                         name="tanggal"
                                         placeholder=""
+                                        required
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -380,6 +385,7 @@ if (!isset($_SESSION["role"])) {
                                         id="jam-kedatangan"
                                         name="jam_kedatangan"
                                         placeholder=""
+                                        required
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -393,6 +399,7 @@ if (!isset($_SESSION["role"])) {
                                         name="no_kendaraan"
                                         placeholder=""
                                         maxlength="11"
+                                        required
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -406,6 +413,7 @@ if (!isset($_SESSION["role"])) {
                                         name="keterangan"
                                         placeholder=""
                                         maxlength="50"
+                                        required
                                     />
                                 </div>
                                 <div class="row">
@@ -458,6 +466,7 @@ if (!isset($_SESSION["role"])) {
                                 id="nama-barang-${nomor}"
                                 name="nama_barang[]"
                                 placeholder=""
+                                required
                             />
                         </div>
                         <div class="col">
@@ -472,6 +481,7 @@ if (!isset($_SESSION["role"])) {
                                 id="jumlah-barang-${nomor}"
                                 name="jumlah_barang[]"
                                 placeholder=""
+                                required
                         </div>
                         <div class="col-2">
                             <button class="btn btn-danger btn-hapus" type="button">

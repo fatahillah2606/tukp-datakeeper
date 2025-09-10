@@ -491,7 +491,7 @@ if (!isset($_SESSION["role"])) {
 
                 let valid = true;
 
-                kolomIsian.foreach((element) => {
+                kolomIsian.forEach((element) => {
                     if (element.value == "") {
                         valid = false;
                     }

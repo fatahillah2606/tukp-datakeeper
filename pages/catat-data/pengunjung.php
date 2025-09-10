@@ -291,6 +291,7 @@ if (!isset($_SESSION["role"])) {
                                                 name="nama_pengunjung[]"
                                                 placeholder=""
                                                 maxlength="25"
+                                                required
                                             />
                                         </div>
                                     </div>
@@ -316,6 +317,7 @@ if (!isset($_SESSION["role"])) {
                                         name="nama_perusahaan"
                                         placeholder=""
                                         maxlength="25"
+                                        required
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -329,6 +331,7 @@ if (!isset($_SESSION["role"])) {
                                         name="no_kendaraan"
                                         placeholder=""
                                         maxlength="11"
+                                        required
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -341,6 +344,7 @@ if (!isset($_SESSION["role"])) {
                                         id="tanggal"
                                         name="tanggal"
                                         placeholder=""
+                                        required
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -356,6 +360,7 @@ if (!isset($_SESSION["role"])) {
                                         name="nomor_telepon"
                                         placeholder=""
                                         maxlength="13"
+                                        required
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -369,6 +374,7 @@ if (!isset($_SESSION["role"])) {
                                         name="keperluan"
                                         placeholder=""
                                         maxlength="50"
+                                        required
                                     />
                                 </div>
                                 <div class="safety">
@@ -453,6 +459,7 @@ if (!isset($_SESSION["role"])) {
                                 name="nama_pengunjung[]"
                                 placeholder=""
                                 maxlength="25"
+                                required
                             />
                             <button
                                 type="button"
@@ -503,26 +510,43 @@ if (!isset($_SESSION["role"])) {
                 //     console.log(`${name}: ${value}`);
                 //  }
 
-                fetch("/backend/kelola_data.php", {
-                    method: "POST",
-                    body: dataForm,
-                })
-                    .then(async (respon) => {
-                        const data = await respon.json();
-                        console.log(data);
-                        if (!respon.ok) {
-                            throw new Error(
-                                data.message || "Terjadi kesalahan"
-                            );
-                        }
-                        return data;
+                const kolomIsian = document.querySelectorAll(
+                    "input[required], select[required]"
+                );
+                console.log(kolomIsian);
+
+                let valid = true;
+
+                kolomIsian.forEach((element) => {
+                    if (element.value == "") {
+                        valid = false;
+                    }
+                });
+
+                if (valid) {
+                    fetch("/backend/kelola_data.php", {
+                        method: "POST",
+                        body: dataForm,
                     })
-                    .then((data) => {
-                        alert(data.message);
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                    });
+                        .then(async (respon) => {
+                            const data = await respon.json();
+                            console.log(data);
+                            if (!respon.ok) {
+                                throw new Error(
+                                    data.message || "Terjadi kesalahan"
+                                );
+                            }
+                            return data;
+                        })
+                        .then((data) => {
+                            alert(data.message);
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                        });
+                } else {
+                    alert("Mohon isi kolom yang dibutuhkan");
+                }
             }
         </script>
     </body>
