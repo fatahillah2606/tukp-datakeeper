@@ -72,7 +72,8 @@ function muatDataBarangInternal(limit) {
                             <td>${formatTanggal(laporan.tanggal)}</td>
                             <td>${laporan.keterangan}</td>
                             <td class="action-btn">
-                                <button class="btn btn-success">
+                            <a href="/pages/edit-data/barang-internal.php">
+                                <button class="btn btn-success" <button class="btn btn-success"    onclick="window.location.href='/pages/edit-data/barang-internal.php'">
                                     <span
                                         class="material-symbols-rounded"
                                     >
@@ -152,7 +153,7 @@ function muatDataBarangEksternal(limit) {
                             <td>${laporan.no_kendaraan}</td>
                             <td>${laporan.keterangan}</td>
                             <td class="action-btn">
-                                <button class="btn btn-success">
+                                <button class="btn btn-success"    onclick="window.location.href='/pages/edit-data/barang-eksternal.php'">
                                     <span
                                         class="material-symbols-rounded"
                                     >
@@ -219,7 +220,7 @@ function muatDataMobil(limit) {
                             <td>${laporan.tujuan}</td>
                             <td>${laporan.keperluan}</td>
                             <td class="action-btn">
-                                <button class="btn btn-success">
+                                <button class="btn btn-success"    onclick="window.location.href='/pages/edit-data/mobil.php'">
                                     <span
                                         class="material-symbols-rounded"
                                     >
@@ -295,7 +296,7 @@ function muatDataPengunjung(limit) {
                             <td>${laporan.keperluan}</td>
                             <td>${laporan.safety_induction}</td>
                             <td class="action-btn">
-                                <button class="btn btn-success">
+                                <button class="btn btn-success"    onclick="window.location.href='/pages/edit-data/pengunjung.php'">
                                     <span
                                         class="material-symbols-rounded"
                                     >
