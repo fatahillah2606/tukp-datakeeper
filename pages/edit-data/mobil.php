@@ -394,6 +394,7 @@ if (!isset($_SESSION["role"])) {
                                         <button
                                             type="button"
                                             class="btn btn-outline-success my-3 w-100"
+                                            onclick="window.location.href='/pages/lihat-data/mobil.php'"
                                         >
                                             Batalkan
                                         </button>
