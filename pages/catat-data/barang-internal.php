@@ -89,7 +89,7 @@ if (!isset($_SESSION["role"])) {
                     <span class="material-symbols-rounded">campaign</span>
                     <span class="menu-title">Pengumuman</span>
                 </a>
-                <a href="kelola-pengguna.php">
+                <a href="../kelola-pengguna.php">
                     <span class="material-symbols-rounded"
                         >manage_accounts</span
                     >
