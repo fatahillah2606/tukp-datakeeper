@@ -482,6 +482,7 @@ if (!isset($_SESSION["role"])) {
                                 name="jumlah_barang[]"
                                 placeholder=""
                                 required
+                            />
                         </div>
                         <div class="col-2">
                             <button class="btn btn-danger btn-hapus" type="button">
@@ -529,7 +530,6 @@ if (!isset($_SESSION["role"])) {
                 // for (const [name, value] of dataForm) {
                 //     console.log(`${name}: ${value}`);
                 // }
-
                 const kolomIsian = document.querySelectorAll(
                     "input[required], select[required]"
                 );
