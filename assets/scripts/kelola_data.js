@@ -72,7 +72,6 @@ function muatDataBarangInternal(limit) {
                             <td>${formatTanggal(laporan.tanggal)}</td>
                             <td>${laporan.keterangan}</td>
                             <td class="action-btn">
-                            <a href="/pages/edit-data/barang-internal.php">
                                 <button class="btn btn-success" <button class="btn btn-success"    onclick="window.location.href='/pages/edit-data/barang-internal.php'">
                                     <span
                                         class="material-symbols-rounded"
@@ -80,7 +79,9 @@ function muatDataBarangInternal(limit) {
                                         edit
                                     </span>
                                 </button>
-                                <button class="btn btn-danger">
+                                <button class="btn btn-danger" onclick="hapusBarangInternal(${
+                                    laporan.id_barang_internal
+                                })">
                                     <span
                                         class="material-symbols-rounded"
                                     >
@@ -103,6 +104,38 @@ function muatDataBarangInternal(limit) {
         .catch((error) => {
             console.error(error);
         });
+}
+
+// Hapus barang Internal
+function hapusBarangInternal(idData) {
+    const dataBarangInternal = {
+        hapus_barang_internal: true,
+        id_barang_internal: idData,
+    };
+
+    if (confirm("Yakin ingin menghapus data ini?") === true) {
+        fetch("/backend/kelola_data.php?hapus_data_barang_internal=true", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(dataBarangInternal),
+        })
+            .then(async (response) => {
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.message || "Terjadi kesalahan");
+                }
+                return data;
+            })
+            .then((data) => {
+                alert(data.message);
+                muatDataBarangInternal();
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 }
 
 // Muat data barang eksternal

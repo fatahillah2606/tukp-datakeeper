@@ -315,5 +315,28 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 }
+
+// Untuk hapus
+if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
+    // Ambil data yang dikirim client
+    $jsonData = file_get_contents('php://input');
+    $jsonData = json_decode($jsonData, true);
+    
+    // Barang internal
+    if ($jsonData["hapus_barang_internal"]) {
+        try {
+            $sql = "DELETE FROM data_barang_internal WHERE `id_barang_internal` = :idData";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                "idData" => $jsonData["id_barang_internal"],
+            ]);
+
+            echo json_encode(generateAPI("success", 200, "Data Berhasil Dihapus", []), JSON_PRETTY_PRINT);
+        } catch (\Throwable $th) {
+            echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
+        }
+    }
+    
+}
 ?>
 
