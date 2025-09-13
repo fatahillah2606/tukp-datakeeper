@@ -193,7 +193,9 @@ function muatDataBarangEksternal(limit) {
                                         edit
                                     </span>
                                 </button>
-                                <button class="btn btn-danger">
+                                <button class="btn btn-danger" onclick="hapusBarangEksternal(${
+                                    laporan.id_barang_eksternal
+                                })">
                                     <span
                                         class="material-symbols-rounded"
                                     >
@@ -211,6 +213,38 @@ function muatDataBarangEksternal(limit) {
         .catch((error) => {
             console.error(error);
         });
+}
+
+// Hapus barang eksternal
+function hapusBarangEksternal(idData) {
+    const dataBarangEksternal = {
+        hapus_barang_eksternal: true,
+        id_barang_eksternal: idData,
+    };
+
+    if (confirm("Yakin ingin menghapus data ini?") === true) {
+        fetch("/backend/kelola_data.php?hapus_data_barang_eksternal=true", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(dataBarangEksternal),
+        })
+            .then(async (response) => {
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.message || "Terjadi kesalahan");
+                }
+                return data;
+            })
+            .then((data) => {
+                alert(data.message);
+                muatDataBarangEksternal();
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 }
 
 // Muat data mobil
@@ -260,10 +294,9 @@ function muatDataMobil(limit) {
                                         edit
                                     </span>
                                 </button>
-                                <button class="btn btn-danger">
-                                    <span
-                                        class="material-symbols-rounded"
-                                    >
+                                <button class="btn btn-danger" onclick="hapusMobil(${
+                                    laporan.id_mobil
+                                })">
                                         delete
                                     </span>
                                 </button>
@@ -278,6 +311,37 @@ function muatDataMobil(limit) {
         .catch((error) => {
             console.error(error);
         });
+}
+// Hapus mobil
+function hapusMobil(idData) {
+    const dataMobil = {
+        hapus_mobil: true,
+        id_mobil: idData,
+    };
+
+    if (confirm("Yakin ingin menghapus data ini?") === true) {
+        fetch("/backend/kelola_data.php?hapus_data_mobil=true", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(dataMobil),
+        })
+            .then(async (response) => {
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.message || "Terjadi kesalahan");
+                }
+                return data;
+            })
+            .then((data) => {
+                alert(data.message);
+                muatDataMobil();
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 }
 
 // Muat data pengunjung
@@ -336,7 +400,9 @@ function muatDataPengunjung(limit) {
                                         edit
                                     </span>
                                 </button>
-                                <button class="btn btn-danger" >
+                                <button class="btn btn-danger" onclick="hapusPengunjung(${
+                                    laporan.id_pengunjung
+                                })">
                                     <span
                                         class="material-symbols-rounded"
                                     >
@@ -354,4 +420,35 @@ function muatDataPengunjung(limit) {
         .catch((error) => {
             console.error(error);
         });
+}
+// Hapus Pengunjung
+function hapusPengunjung(idData) {
+    const dataPengunjung = {
+        hapus_pengunjung: true,
+        id_pengunjung: idData,
+    };
+
+    if (confirm("Yakin ingin menghapus data ini?") === true) {
+        fetch("/backend/kelola_data.php?hapus_data_pengunjung=true", {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(dataPengunjung),
+        })
+            .then(async (response) => {
+                const data = await response.json();
+                if (!response.ok) {
+                    throw new Error(data.message || "Terjadi kesalahan");
+                }
+                return data;
+            })
+            .then((data) => {
+                alert(data.message);
+                muatDataPengunjung();
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    }
 }

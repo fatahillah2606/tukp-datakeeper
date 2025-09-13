@@ -323,7 +323,7 @@ if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
     $jsonData = json_decode($jsonData, true);
     
     // Barang internal
-    if ($jsonData["hapus_barang_internal"]) {
+    if (isset($jsonData["hapus_barang_internal"])) {
         try {
             $sql = "DELETE FROM data_barang_internal WHERE `id_barang_internal` = :idData";
             $stmt = $pdo->prepare($sql);
@@ -336,7 +336,48 @@ if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
             echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
         }
     }
-    
+        // Barang eksternal
+    if (isset($jsonData["hapus_barang_eksternal"])) {
+        try {
+            $sql = "DELETE FROM data_barang_eksternal WHERE `id_barang_eksternal` = :idData";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                "idData" => $jsonData["id_barang_eksternal"],
+            ]);
+
+            echo json_encode(generateAPI("success", 200, "Data Berhasil Dihapus", []), JSON_PRETTY_PRINT);
+        } catch (\Throwable $th) {
+            echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
+        }
+    }
+        // mobil
+    if (isset($jsonData["hapus_mobil"])) {
+        try {
+            $sql = "DELETE FROM data_mobil WHERE `id_mobil` = :idData";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                "idData" => $jsonData["id_mobil"],
+            ]);
+
+            echo json_encode(generateAPI("success", 200, "Data Berhasil Dihapus", []), JSON_PRETTY_PRINT);
+        } catch (\Throwable $th) {
+            echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
+        }
+    }
+        // pengunjung
+    if (isset($jsonData["hapus_pengunjung"])) {
+        try {
+            $sql = "DELETE FROM data_pengunjung WHERE `id_pengunjung` = :idData";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute([
+                "idData" => $jsonData["id_pengunjung"],
+            ]);
+
+            echo json_encode(generateAPI("success", 200, "Data Berhasil Dihapus", []), JSON_PRETTY_PRINT);
+        } catch (\Throwable $th) {
+            echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
+        }
+    }    
 }
 ?>
 
