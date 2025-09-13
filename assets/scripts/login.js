@@ -159,7 +159,7 @@ function SecurityLogin(event) {
                     const respon = JSON.parse(xhr.responseText);
                     if (respon.status === "success") {
                         // Jika berhasil, alihkan kehalaman dashboard
-                        location.href = "/pages/dashboard-security.php";
+                        location.href = "/pages/dashboard.php";
                     } else {
                         alert("Login gagal: " + respon.message);
                     }

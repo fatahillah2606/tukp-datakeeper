@@ -297,6 +297,9 @@ function muatDataMobil(limit) {
                                 <button class="btn btn-danger" onclick="hapusMobil(${
                                     laporan.id_mobil
                                 })">
+                                <span
+                                        class="material-symbols-rounded"
+                                    >
                                         delete
                                     </span>
                                 </button>

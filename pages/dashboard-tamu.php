@@ -8,6 +8,11 @@ if (!isset($_SESSION["role"])) {
     // Pindah user ke halaman login
     header("Location: /");
     exit();
+} else {
+    if ($_SESSION["role"]  !== "Tamu") {
+        header("Location: /pages/dashboard.php");
+        exit();
+    }
 }
 ?>
 
@@ -27,13 +32,17 @@ if (!isset($_SESSION["role"])) {
         />
         <!-- local css -->
         <link rel="stylesheet" href="/assets/style/style.css" />
-        <style>.layout {grid-template-columns: 0px 1fr !important;}</style>
+        <style>
+            .layout {
+                grid-template-columns: 0px 1fr !important;
+            }
+        </style>
     </head>
     <body>
         <div class="layout default">
-            <!-- Sidebar -->
-            <aside class="sidebar p-2">
-            </aside>
+            <!-- Bagian Sidebar -->
+            <?php include $_SERVER['DOCUMENT_ROOT'] . "/components/sidebar.php"; ?>
+            <!--  -->
             <div class="main">
                 <!-- Navbar -->
                 <nav class="navbar px-4 overflow-hidden">
@@ -53,48 +62,52 @@ if (!isset($_SESSION["role"])) {
                     <div class="container px-4 text-center">
                         <div class="row gx-5">
                             <div class="col">
-                                <div class="p-3 bg-success text-white rounded">
-                                    <a href="catat-data/pengunjung-tamu.php">
+                                <a href="catat-data/pengunjung.php">
+                                    <div
+                                        class="p-3 bg-success text-white rounded"
+                                    >
                                         <span
                                             class="menu-title bg-success text-white rounded"
                                             >Catat Pengunjung</span
                                         >
-                                    </a>
-                                </div>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col">
-                                <div class="p-3 bg-success text-white rounded">
-                                    <a
-                                        href="catat-data/barang-internal-tamu.php"
+                                <a href="catat-data/barang-internal.php">
+                                    <div
+                                        class="p-3 bg-success text-white rounded"
                                     >
                                         <span
                                             class="menu-title bg-success text-white rounded"
                                             >Catat Barang Internal</span
                                         >
-                                    </a>
-                                </div>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col">
-                                <div class="p-3 bg-success text-white rounded">
-                                    <a
-                                        href="catat-data/barang-eksternal-tamu.php"
+                                <a href="catat-data/barang-eksternal.php">
+                                    <div
+                                        class="p-3 bg-success text-white rounded"
                                     >
                                         <span
                                             class="menu-title bg-success text-white rounded"
                                             >Catat Barang Eksternal</span
                                         >
-                                    </a>
-                                </div>
+                                    </div>
+                                </a>
                             </div>
                             <div class="col">
-                                <div class="p-3 bg-success text-white rounded">
-                                    <a href="catat-data/mobil-tamu.php">
+                                <a href="catat-data/mobil.php">
+                                    <div
+                                        class="p-3 bg-success text-white rounded"
+                                    >
                                         <span
                                             class="menu-title bg-success text-white rounded"
                                             >Catat Mobil</span
                                         >
-                                    </a>
-                                </div>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
