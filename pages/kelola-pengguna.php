@@ -305,6 +305,7 @@ if (!isset($_SESSION["role"])) {
                                         id="id-pengguna"
                                         placeholder=""
                                         maxlength="4"
+                                        required
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -319,6 +320,7 @@ if (!isset($_SESSION["role"])) {
                                         id="nama-pengguna"
                                         placeholder=""
                                         maxlength="25"
+                                        required
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -333,6 +335,7 @@ if (!isset($_SESSION["role"])) {
                                         id="sandi-pengguna"
                                         placeholder=""
                                         maxlength="60"
+                                        required
                                     />
                                 </div>
                                 <div class="form-check">
@@ -393,21 +396,33 @@ if (!isset($_SESSION["role"])) {
                                     <div class="row gap-2 mt-3">
                                         <button
                                             type="button"
-                                            class="col btn btn-link"
+                                            class="col btn btn-primary"
+                                            title="Reset"
                                         >
-                                            Reset Sandi
+                                            <span
+                                                class="material-symbols-rounded fs-3"
+                                                >history</span
+                                            >
                                         </button>
                                         <button
                                             type="button"
-                                            class="col btn btn-outline-success"
+                                            class="col btn btn-success"
+                                            title="Edit"
                                         >
-                                            Edit
+                                            <span
+                                                class="material-symbols-rounded fs-3"
+                                                >edit</span
+                                            >
                                         </button>
                                         <button
                                             type="button"
                                             class="col btn btn-danger"
+                                            title="Hapus"
                                         >
-                                            Hapus
+                                            <span
+                                                class="material-symbols-rounded fs-3"
+                                                >delete</span
+                                            >
                                         </button>
                                     </div>
                                 </div>
@@ -428,21 +443,33 @@ if (!isset($_SESSION["role"])) {
                                     <div class="row gap-2 mt-3">
                                         <button
                                             type="button"
-                                            class="col btn btn-link"
+                                            class="col btn btn-primary"
+                                            title="Reset"
                                         >
-                                            Reset Sandi
+                                            <span
+                                                class="material-symbols-rounded fs-3"
+                                                >history</span
+                                            >
                                         </button>
                                         <button
                                             type="button"
-                                            class="col btn btn-outline-success"
+                                            class="col btn btn-success"
+                                            title="Edit"
                                         >
-                                            Edit
+                                            <span
+                                                class="material-symbols-rounded fs-3"
+                                                >edit</span
+                                            >
                                         </button>
                                         <button
                                             type="button"
                                             class="col btn btn-danger"
+                                            title="Hapus"
                                         >
-                                            Hapus
+                                            <span
+                                                class="material-symbols-rounded fs-3"
+                                                >delete</span
+                                            >
                                         </button>
                                     </div>
                                 </div>
@@ -456,7 +483,7 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/navigation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
-            muatDataBarangInternal(10);
+            muatDataPengguna();
         </script>
     </body>
 </html>

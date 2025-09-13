@@ -287,6 +287,7 @@ if (!isset($_SESSION["role"])) {
                                         id="judul-pengumuman"
                                         placeholder=""
                                         maxlength="25"
+                                        required
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -299,6 +300,7 @@ if (!isset($_SESSION["role"])) {
                                         class="form-control"
                                         id="isi-pengumuman"
                                         rows="3"
+                                        required
                                     ></textarea>
                                 </div>
                                 <div class="row">
@@ -343,7 +345,7 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/navigation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
-            muatDataBarangInternal(10);
+            muatDataPengumuman();
         </script>
     </body>
 </html>
