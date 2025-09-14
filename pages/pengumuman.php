@@ -40,17 +40,18 @@ if (!isset($_SESSION["role"])) {
                     <div class="card overflow-hidden" id="formulir">
                         <h5 class="card-header">Buat Pengumuman</h5>
                         <div class="card-body">
-                            <form action="" method="post" id="form-pencatatan">
+                            <form action="" method="post" id="form-pengumuman">
                                 <div class="mb-3">
                                     <label
-                                        for="judul-pengumuman"
+                                        for="judul_pengumuman"
                                         class="form-label"
                                         >Judul Pengumuman</label
                                     >
                                     <input
                                         type="text"
                                         class="form-control"
-                                        id="judul-pengumuman"
+                                        id="judul_pengumuman"
+                                        name="judul_pengumuman"
                                         placeholder=""
                                         maxlength="25"
                                         required
@@ -58,13 +59,14 @@ if (!isset($_SESSION["role"])) {
                                 </div>
                                 <div class="mb-3">
                                     <label
-                                        for="isi-pengumuman"
+                                        for="isi_pengumuman"
                                         class="form-label"
                                         >Isi Pengumuman</label
                                     >
                                     <textarea
                                         class="form-control"
-                                        id="isi-pengumuman"
+                                        id="isi_pengumuman"
+                                        name="isi_pengumuman"
                                         rows="3"
                                         required
                                     ></textarea>
@@ -72,7 +74,7 @@ if (!isset($_SESSION["role"])) {
                                 <div class="row">
                                     <div class="col">
                                         <button
-                                            type="button"
+                                            type="reset"
                                             class="btn btn-outline-success my-3 w-100"
                                         >
                                             Bersihkan
@@ -82,6 +84,7 @@ if (!isset($_SESSION["role"])) {
                                         <button
                                             type="button"
                                             class="btn btn-success my-3 w-100"
+                                            onclick="simpan(event)"
                                         >
                                             Simpan
                                         </button>
@@ -94,15 +97,7 @@ if (!isset($_SESSION["role"])) {
                     <!-- List pengumuman -->
                     <div id="list-pengumuman">
                         <h2 class="mb-3">List Pengumuman</h2>
-                        <div class="alert alert-success" role="alert">
-                            <h1 class="fs-3">Pengumuman</h1>
-                            <p>
-                                Token Untuk Login Tanggal 01 Juli 2025 : JL1225
-                            </p>
-                            <button type="button" class="btn btn-danger my-2">
-                                Hapus
-                            </button>
-                        </div>
+                        <div id="pengumuman-container"></div>
                     </div>
                 </main>
             </div>
@@ -111,6 +106,141 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/navigation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
+            // muatDataPengumuman(10);
+            let counter = 1;
+
+            // Simpan data ke database
+            function simpan(event) {
+                event.preventDefault();
+
+                const elmForm = document.getElementById("form-pengumuman");
+                const dataForm = new FormData(elmForm);
+                dataForm.append("kirim_data_pengumuman", true);
+
+                //  for (const [name, value] of dataForm) {
+                //     console.log(`${name}: ${value}`);
+                //  }
+
+                const kolomIsian = document.querySelectorAll(
+                    "input[required], select[required], textarea[required]"
+                );
+                console.log(kolomIsian);
+
+                let valid = true;
+
+                kolomIsian.forEach((element) => {
+                    if (element.value == "") {
+                        valid = false;
+                    }
+                });
+
+                if (valid) {
+                    fetch("/backend/pengumuman.php", {
+                        method: "POST",
+                        body: dataForm,
+                    })
+                        .then(async (respon) => {
+                            const data = await respon.json();
+                            console.log(data);
+                            if (!respon.ok) {
+                                throw new Error(
+                                    data.message || "Terjadi kesalahan"
+                                );
+                            }
+                            return data;
+                        })
+                        .then((data) => {
+                            alert(data.message);
+                            muatDataPengumuman();
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                        });
+                } else {
+                    alert("Semua Kolom Wajib Diisi");
+                }
+            }
+
+            // Lihat list Pengumuman //
+            const pengumumanContainer = document.getElementById(
+                "pengumuman-container"
+            );
+            function muatDataPengumuman() {
+                fetch("/backend/pengumuman.php", {
+                    method: "GET",
+                })
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error("Gagal terhubung ke server");
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        if (data.code === 200) {
+                            ListPengumuman = data.data;
+                            konten = "";
+                            ListPengumuman.forEach((Pengumuman) => {
+                                konten += `
+                                    <div class="alert alert-success" role="alert">
+                                        <h1 class="fs-3">${Pengumuman.judul_pengumuman}</h1>
+                                            <p>
+                                                ${Pengumuman.isi_pengumuman}
+                                            </p>
+                                <button class="btn btn-danger" onclick="hapusPengumuman(${Pengumuman.id_pengumuman})">
+                                <span
+                                        class="material-symbols-rounded"
+                                    >
+                                        delete
+                                    </span>
+                                    </div>
+                                         `;
+                            });
+                            pengumumanContainer.innerHTML = konten;
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
+
+            // Hapus Pengumuman
+            function hapusPengumuman(idData) {
+                const dataPengumuman = {
+                    hapus_pengumuman: true,
+                    id_pengumuman: idData,
+                };
+
+                if (confirm("Yakin ingin menghapus data ini?") === true) {
+                    fetch(
+                        "/backend/pengumuman.php?hapus_data_penngumuman=true",
+                        {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(dataPengumuman),
+                        }
+                    )
+                        .then(async (response) => {
+                            const data = await response.json();
+                            console.log(data);
+                            if (!response.ok) {
+                                throw new Error(
+                                    data.message || "Terjadi kesalahan"
+                                );
+                            }
+                            return data;
+                        })
+                        .then((data) => {
+                            alert(data.message);
+                            muatDataPengumuman();
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                        });
+                }
+            }
+
             muatDataPengumuman();
         </script>
     </body>

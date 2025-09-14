@@ -363,21 +363,7 @@ if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
         } catch (\Throwable $th) {
             echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
         }
-    }
-        // pengunjung
-    if (isset($jsonData["hapus_pengunjung"])) {
-        try {
-            $sql = "DELETE FROM data_pengunjung WHERE `id_pengunjung` = :idData";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([
-                "idData" => $jsonData["id_pengunjung"],
-            ]);
-
-            echo json_encode(generateAPI("success", 200, "Data Berhasil Dihapus", []), JSON_PRETTY_PRINT);
-        } catch (\Throwable $th) {
-            echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
-        }
-    }    
+    }   
 }
 ?>
 

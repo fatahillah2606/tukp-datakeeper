@@ -48,10 +48,7 @@ if (!isset($_SESSION["role"])) {
                     </h1>
 
                     <!-- Pengumuman -->
-                    <div class="alert alert-success" role="alert">
-                        <h1 class="fs-3">Pengumuman</h1>
-                        <p>Token Untuk Login Tanggal 01 Juli 2025 : JL1225</p>
-                    </div>
+                    <div id="pengumuman-container"></div>
 
                     <!-- Tabel -->
                     <div class="tabel p-4 rounded-4">
@@ -133,6 +130,43 @@ if (!isset($_SESSION["role"])) {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             muatDataBarangInternal(10);
+
+            // Lihat list Pengumuman //
+            const pengumumanContainer = document.getElementById(
+                "pengumuman-container"
+            );
+            function muatDataPengumuman() {
+                fetch("/backend/pengumuman.php", {
+                    method: "GET",
+                })
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error("Gagal terhubung ke server");
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        if (data.code === 200) {
+                            ListPengumuman = data.data;
+                            konten = "";
+                            ListPengumuman.forEach((Pengumuman) => {
+                                konten += `
+                                    <div class="alert alert-success" role="alert">
+                                        <h1 class="fs-3">${Pengumuman.judul_pengumuman}</h1>
+                                            <p>
+                                                ${Pengumuman.isi_pengumuman}
+                                            </p>
+                                    </div>
+                                         `;
+                            });
+                            pengumumanContainer.innerHTML = konten;
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
+            muatDataPengumuman();
         </script>
     </body>
 </html>
