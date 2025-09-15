@@ -212,7 +212,7 @@ if (!isset($_SESSION["role"])) {
 
                 if (confirm("Yakin ingin menghapus data ini?") === true) {
                     fetch(
-                        "/backend/pengumuman.php?hapus_data_penngumuman=true",
+                        "/backend/pengumuman.php?hapus_data_pengumuman=true",
                         {
                             method: "DELETE",
                             headers: {

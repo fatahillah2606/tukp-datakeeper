@@ -40,17 +40,17 @@ if (!isset($_SESSION["role"])) {
                     <div class="card overflow-hidden" id="formulir">
                         <h5 class="card-header">Tambah Pengguna</h5>
                         <div class="card-body">
-                            <form action="" method="post" id="form-pencatatan">
+                            <form action="" method="post" id="form-pengguna">
                                 <div class="mb-3">
-                                    <label
-                                        for="tipe-pengguna"
-                                        class="form-label"
+                                    <label for="role" class="form-label"
                                         >Tipe Pengguna</label
                                     >
                                     <select
                                         class="form-select"
                                         aria-label="Default select example"
-                                        id="tipe-pengguna"
+                                        id="role"
+                                        name="role"
+                                        required
                                     >
                                         <option selected>
                                             Pilih jenis pengguna
@@ -62,66 +62,65 @@ if (!isset($_SESSION["role"])) {
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="id-pengguna" class="form-label"
+                                    <label for="userid" class="form-label"
                                         >Id Pengguna</label
                                     >
                                     <input
                                         type="number"
                                         class="form-control"
-                                        id="id-pengguna"
+                                        id="userid"
+                                        name="id_user"
                                         placeholder=""
                                         maxlength="4"
                                         required
                                     />
                                 </div>
                                 <div class="mb-3">
-                                    <label
-                                        for="nama-pengguna"
-                                        class="form-label"
+                                    <label for="nama_user" class="form-label"
                                         >Nama Pengguna</label
                                     >
                                     <input
                                         type="text"
                                         class="form-control"
-                                        id="nama-pengguna"
+                                        id="nama_user"
+                                        name="nama_user"
                                         placeholder=""
                                         maxlength="25"
                                         required
                                     />
                                 </div>
                                 <div class="mb-3">
-                                    <label
-                                        for="sandi-pengguna"
-                                        class="form-label"
-                                        >Sandi</label
+                                    <label for="userpassword" class="form-label"
+                                        >Sandi Pengguna</label
                                     >
                                     <input
                                         type="password"
                                         class="form-control"
-                                        id="sandi-pengguna"
+                                        id="userpassword"
+                                        name="password"
                                         placeholder=""
                                         maxlength="60"
                                         required
                                     />
                                 </div>
-                                <div class="form-check">
+                                <div class="form-check mb-3">
                                     <input
                                         class="form-check-input"
                                         type="checkbox"
                                         value=""
-                                        id="show-password"
+                                        id="showpw"
                                     />
                                     <label
                                         class="form-check-label"
-                                        for="show-password"
+                                        for="showpw"
                                     >
-                                        Tampilkan sandi
+                                        Tampilkan Sandi
                                     </label>
                                 </div>
                                 <div class="row">
                                     <div class="col">
                                         <button
-                                            type="button"
+                                            type="reset"
                                             class="btn btn-outline-success my-3 w-100"
                                         >
                                             Bersihkan
@@ -131,6 +130,7 @@ if (!isset($_SESSION["role"])) {
                                         <button
                                             type="button"
                                             class="btn btn-success my-3 w-100"
+                                            onclick="simpan(event)"
                                         >
                                             Tambah
                                         </button>
@@ -143,104 +143,7 @@ if (!isset($_SESSION["role"])) {
                     <!-- List pengguna -->
                     <div id="list-pengguna" class="mb-5">
                         <h2 class="mb-3 text-center">List Pengguna</h2>
-                        <div
-                            class="d-flex flex-wrap justify-content-center gap-3"
-                        >
-                            <div class="card" style="width: 300px">
-                                <span class="material-symbols-rounded">
-                                    account_circle
-                                </span>
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">
-                                        Andika
-                                    </h5>
-                                    <h6
-                                        class="card-subtitle mb-2 text-body-secondary text-center"
-                                    >
-                                        Admin
-                                    </h6>
-                                    <div class="row gap-2 mt-3">
-                                        <button
-                                            type="button"
-                                            class="col btn btn-primary"
-                                            title="Reset"
-                                        >
-                                            <span
-                                                class="material-symbols-rounded fs-3"
-                                                >history</span
-                                            >
-                                        </button>
-                                        <button
-                                            type="button"
-                                            class="col btn btn-success"
-                                            title="Edit"
-                                        >
-                                            <span
-                                                class="material-symbols-rounded fs-3"
-                                                >edit</span
-                                            >
-                                        </button>
-                                        <button
-                                            type="button"
-                                            class="col btn btn-danger"
-                                            title="Hapus"
-                                        >
-                                            <span
-                                                class="material-symbols-rounded fs-3"
-                                                >delete</span
-                                            >
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card" style="width: 300px">
-                                <span class="material-symbols-rounded">
-                                    account_circle
-                                </span>
-                                <div class="card-body">
-                                    <h5 class="card-title text-center">
-                                        Muhaimin Al Aziz Hasibuan
-                                    </h5>
-                                    <h6
-                                        class="card-subtitle mb-2 text-body-secondary text-center"
-                                    >
-                                        Security
-                                    </h6>
-                                    <div class="row gap-2 mt-3">
-                                        <button
-                                            type="button"
-                                            class="col btn btn-primary"
-                                            title="Reset"
-                                        >
-                                            <span
-                                                class="material-symbols-rounded fs-3"
-                                                >history</span
-                                            >
-                                        </button>
-                                        <button
-                                            type="button"
-                                            class="col btn btn-success"
-                                            title="Edit"
-                                        >
-                                            <span
-                                                class="material-symbols-rounded fs-3"
-                                                >edit</span
-                                            >
-                                        </button>
-                                        <button
-                                            type="button"
-                                            class="col btn btn-danger"
-                                            title="Hapus"
-                                        >
-                                            <span
-                                                class="material-symbols-rounded fs-3"
-                                                >delete</span
-                                            >
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <div id="pengguna-container"></div>
                     </div>
                 </main>
             </div>
@@ -249,6 +152,177 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/navigation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
+            // muatDataPengguna(10);
+            let counter = 1;
+
+            // Simpan data ke database
+            function simpan(event) {
+                event.preventDefault();
+
+                const elmForm = document.getElementById("form-pengguna");
+                const dataForm = new FormData(elmForm);
+                dataForm.append("kirim_data_pengguna", true);
+
+                //  for (const [name, value] of dataForm) {
+                //     console.log(`${name}: ${value}`);
+                //  }
+
+                const kolomIsian = document.querySelectorAll(
+                    "input[required], select[required], textarea[required]"
+                );
+                console.log(kolomIsian);
+
+                let valid = true;
+
+                kolomIsian.forEach((element) => {
+                    if (element.value == "") {
+                        valid = false;
+                    }
+                });
+
+                if (valid) {
+                    fetch("/backend/kelola_pengguna.php", {
+                        method: "POST",
+                        body: dataForm,
+                    })
+                        .then(async (respon) => {
+                            const data = await respon.text();
+                            console.log(data);
+                            if (!respon.ok) {
+                                throw new Error(
+                                    data.message || "Terjadi kesalahan"
+                                );
+                            }
+                            return data;
+                        })
+                        .then((data) => {
+                            alert(data.message);
+                            muatDataPengguna();
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                        });
+                } else {
+                    alert("Semua Kolom Wajib Diisi");
+                }
+            }
+
+            // Lihat list Pengguna //
+            const penggunaContainer =
+                document.getElementById("pengguna-container");
+            function muatDataPengguna() {
+                fetch("../backend/kelola_pengguna.php", {
+                    method: "GET",
+                })
+                    .then((response) => {
+                        console.log("Status:", response.status);
+                        if (!response.ok) {
+                            throw new Error("Gagal terhubung ke server");
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        if (data.code === 200) {
+                            ListPengguna = data.data;
+                            let konten = `<div class="d-flex flex-wrap justify-content-center gap-3">`;
+                            ListPengguna.forEach((Pengguna) => {
+                                konten += `
+                                            <div class="card" style="width: 300px">
+                                                <span class="material-symbols-rounded">
+                                                    account_circle
+                                                </span>
+                                                <div class="card-body">
+                                                    <h5 class="card-title text-center">
+                                                        ${Pengguna.nama_user}
+                                                    </h5>
+                                                    <h6
+                                                        class="card-subtitle mb-2 text-body-secondary text-center"
+                                                    >
+                                                        ${Pengguna.role}
+                                                    </h6>
+                                                    <div class="row gap-2 mt-3">
+                                                        <button
+                                                            type="button"
+                                                            class="col btn btn-primary"
+                                                            title="Reset"
+                                                        >
+                                                            <span
+                                                                class="material-symbols-rounded fs-3"
+                                                                >history</span
+                                                            >
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            class="col btn btn-success"
+                                                            title="Edit"
+                                                        >
+                                                            <span
+                                                                class="material-symbols-rounded fs-3"
+                                                                >edit</span
+                                                            >
+                                                        </button>
+                                                        <button
+                                                            type="button"
+                                                            class="col btn btn-danger"
+                                                            title="Hapus"
+                                                            onclick="hapusPengguna('${Pengguna.id_pengguna}')"
+                                                        >
+                                                            <span
+                                                                class="material-symbols-rounded fs-3"
+                                                                >delete</span
+                                                            >
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                         `;
+                            });
+                            penggunaContainer.innerHTML = konten;
+                        }
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                    });
+            }
+
+            // Hapus Penggunna
+            function hapusPengguna(idData) {
+                const dataPengguna = {
+                    hapus_pengguna: true,
+                    id_pengguna: idData,
+                };
+
+                if (confirm("Yakin ingin menghapus data ini?") === true) {
+                    fetch(
+                        "/backend/kelola_pengguna.php?hapus_data_pengguna=true",
+                        {
+                            method: "DELETE",
+                            headers: {
+                                "Content-Type": "application/json",
+                            },
+                            body: JSON.stringify(dataPengguna),
+                        }
+                    )
+                        .then(async (response) => {
+                            const data = await response.json();
+                            console.log(data);
+                            if (!response.ok) {
+                                throw new Error(
+                                    data.message || "Terjadi kesalahan"
+                                );
+                            }
+                            return data;
+                        })
+                        .then((data) => {
+                            alert(data.message);
+                            muatDataPengguna();
+                        })
+                        .catch((error) => {
+                            console.error(error);
+                        });
+                }
+            }
+
             muatDataPengguna();
         </script>
     </body>
