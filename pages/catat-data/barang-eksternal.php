@@ -90,6 +90,7 @@ if (!isset($_SESSION["role"])) {
                                                 id="nama-barang"
                                                 name="nama_barang[]"
                                                 placeholder=""
+                                                maxlength="25"
                                                 required
                                             />
                                         </div>
@@ -100,12 +101,12 @@ if (!isset($_SESSION["role"])) {
                                                 >Jumlah Barang</label
                                             >
                                             <input
-                                                type="number"
+                                                type="text"
                                                 class="form-control"
                                                 id="jumlah-barang"
                                                 name="jumlah_barang[]"
                                                 placeholder=""
-                                                max="9999"
+                                                maxlength="10"
                                                 required
                                             />
                                         </div>
@@ -212,14 +213,6 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/navigation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
-            // limit number
-            document
-                .getElementById("jumlah-barang")
-                .addEventListener("input", function () {
-                    if (this.value.length > 4) {
-                        this.value = this.value.slice(0, 4);
-                    }
-                });
             // muatDataBarangEksternal(10);
             let counter = 1;
 
@@ -241,6 +234,7 @@ if (!isset($_SESSION["role"])) {
                                 id="nama-barang-${nomor}"
                                 name="nama_barang[]"
                                 placeholder=""
+                                maxlength="25"
                                 required
                             />
                         </div>
@@ -251,12 +245,12 @@ if (!isset($_SESSION["role"])) {
                                 >Jumlah Barang</label
                             >
                             <input
-                                type="number"
+                                type="text"
                                 class="form-control"
                                 id="jumlah-barang-${nomor}"
                                 name="jumlah_barang[]"
                                 placeholder=""
-                                max="9999"
+                                maxlength="10"
                                 required
                             />
                         </div>
