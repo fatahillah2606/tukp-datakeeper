@@ -16,7 +16,7 @@ if (!isset($_SESSION["role"])) {
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Edit Data Pengunjung - TUKP Data Keeper</title>
+        <title>Edit Pengunjung - TUKP Data Keeper</title>
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -121,12 +121,12 @@ if (!isset($_SESSION["role"])) {
                                         >Nomor Telepon</label
                                     >
                                     <input
-                                        type="text"
+                                        type="number"
                                         class="form-control"
                                         id="nomor-telepon"
                                         name="nomor_telepon"
                                         placeholder=""
-                                        maxlength="13"
+                                        max="9999999999999"
                                         required
                                     />
                                 </div>
@@ -176,11 +176,10 @@ if (!isset($_SESSION["role"])) {
                                 <div class="row">
                                     <div class="col">
                                         <button
-                                            type="button"
+                                            type="reset"
                                             class="btn btn-outline-success my-3 w-100"
-                                            onclick="window.location.href='/pages/lihat-data/pengunjung.php'"
                                         >
-                                            Batalkan
+                                            Bersihkan
                                         </button>
                                     </div>
                                     <div class="col">
@@ -203,6 +202,18 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/navigation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
+            // Ambil parameter url
+            const urlParam = new URLSearchParams(window.location.search);
+            const idPengunjung = urlParam.get("id_pengunjung");
+
+            // limit number
+            document
+                .getElementById("nomor-telepon")
+                .addEventListener("input", function () {
+                    if (this.value.length > 13) {
+                        this.value = this.value.slice(0, 13);
+                    }
+                });
             // muatDataPengunjung();
             let counter = 1;
 

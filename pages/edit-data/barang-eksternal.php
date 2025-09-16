@@ -8,7 +8,7 @@ if (!isset($_SESSION["role"])) {
     // Pindah user ke halaman login
     header("Location: /");
     exit();
-}
+} 
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +16,7 @@ if (!isset($_SESSION["role"])) {
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Edit Data Barang Eksternal - TUKP Data Keeper</title>
+        <title>Edit Barang Eksternal - TUKP Data Keeper</title>
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -30,7 +30,7 @@ if (!isset($_SESSION["role"])) {
     </head>
     <body>
         <div class="layout">
-            <!-- Sidebar -->
+            <!-- Bagian Sidebar -->
             <?php include $_SERVER['DOCUMENT_ROOT'] . "/components/sidebar.php"; ?>
             <div class="main">
                 <!-- Bagian Navbar -->
@@ -90,6 +90,7 @@ if (!isset($_SESSION["role"])) {
                                                 id="nama-barang"
                                                 name="nama_barang[]"
                                                 placeholder=""
+                                                maxlength="25"
                                                 required
                                             />
                                         </div>
@@ -100,11 +101,12 @@ if (!isset($_SESSION["role"])) {
                                                 >Jumlah Barang</label
                                             >
                                             <input
-                                                type="number"
+                                                type="text"
                                                 class="form-control"
                                                 id="jumlah-barang"
                                                 name="jumlah_barang[]"
                                                 placeholder=""
+                                                maxlength="10"
                                                 required
                                             />
                                         </div>
@@ -187,9 +189,8 @@ if (!isset($_SESSION["role"])) {
                                         <button
                                             type="reset"
                                             class="btn btn-outline-success my-3 w-100"
-                                            onclick="window.location.href='/pages/lihat-data/barang-eksternal.php'"
                                         >
-                                            Batalkan
+                                            Bersihkan
                                         </button>
                                     </div>
                                     <div class="col">
@@ -233,6 +234,7 @@ if (!isset($_SESSION["role"])) {
                                 id="nama-barang-${nomor}"
                                 name="nama_barang[]"
                                 placeholder=""
+                                maxlength="25"
                                 required
                             />
                         </div>
@@ -243,12 +245,14 @@ if (!isset($_SESSION["role"])) {
                                 >Jumlah Barang</label
                             >
                             <input
-                                type="number"
+                                type="text"
                                 class="form-control"
                                 id="jumlah-barang-${nomor}"
                                 name="jumlah_barang[]"
                                 placeholder=""
+                                maxlength="10"
                                 required
+                            />
                         </div>
                         <div class="col-2">
                             <button class="btn btn-danger btn-hapus" type="button">
@@ -296,7 +300,6 @@ if (!isset($_SESSION["role"])) {
                 // for (const [name, value] of dataForm) {
                 //     console.log(`${name}: ${value}`);
                 // }
-
                 const kolomIsian = document.querySelectorAll(
                     "input[required], select[required]"
                 );

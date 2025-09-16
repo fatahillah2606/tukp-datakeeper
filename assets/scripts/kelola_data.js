@@ -396,7 +396,9 @@ function muatDataPengunjung(limit) {
                             <td>${laporan.keperluan}</td>
                             <td>${laporan.safety_induction}</td>
                             <td class="action-btn">
-                                <button class="btn btn-success"    onclick="window.location.href='/pages/edit-data/pengunjung.php'">
+                                <button class="btn btn-success" onclick="window.location.href='/pages/edit-data/pengunjung.php?id_pengunjung=${
+                                    laporan.id_pengunjung
+                                }'">
                                     <span
                                         class="material-symbols-rounded"
                                     >

@@ -16,7 +16,7 @@ if (!isset($_SESSION["role"])) {
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Edit Data Mobil - TUKP Data Keeper</title>
+        <title>Edit Mobil - TUKP Data Keeper</title>
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -160,11 +160,10 @@ if (!isset($_SESSION["role"])) {
                                 <div class="row">
                                     <div class="col">
                                         <button
-                                            type="button"
+                                            type="reset"
                                             class="btn btn-outline-success my-3 w-100"
-                                            onclick="window.location.href='/pages/lihat-data/mobil.php'"
                                         >
-                                            Batalkan
+                                            Bersihkan
                                         </button>
                                     </div>
                                     <div class="col">
@@ -188,15 +187,21 @@ if (!isset($_SESSION["role"])) {
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             // limit number
-            ["awal", "akhir"].forEach(function (id) {
-                document
-                    .getElementById(id)
-                    .addEventListener("input", function () {
-                        if (this.value && this.value.length > 4) {
-                            this.value = this.value.slice(0, 4);
-                        }
-                    });
-            });
+            document
+                .getElementById("awal")
+                .addEventListener("input", function () {
+                    if (this.value.length > 4) {
+                        this.value = this.value.slice(0, 4);
+                    }
+                });
+            // limit number
+            document
+                .getElementById("akhir")
+                .addEventListener("input", function () {
+                    if (this.value.length > 4) {
+                        this.value = this.value.slice(0, 4);
+                    }
+                });
             // muatDataMobil(10);
             let counter = 1;
 

@@ -16,7 +16,7 @@ if (!isset($_SESSION["role"])) {
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Edit Data Barang Internal - TUKP Data Keeper</title>
+        <title>Edit Barang Internal - TUKP Data Keeper</title>
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -70,6 +70,7 @@ if (!isset($_SESSION["role"])) {
                                                 id="nama-barang"
                                                 name="nama_barang[]"
                                                 placeholder=""
+                                                maxlength="25"
                                                 required
                                             />
                                         </div>
@@ -85,7 +86,7 @@ if (!isset($_SESSION["role"])) {
                                                 id="jumlah-barang"
                                                 name="jumlah_barang[]"
                                                 placeholder=""
-                                                maxlength="4"
+                                                maxlength="10"
                                                 required
                                             />
                                         </div>
@@ -142,9 +143,8 @@ if (!isset($_SESSION["role"])) {
                                         <button
                                             type="reset"
                                             class="btn btn-outline-success my-3 w-100"
-                                            onclick="window.location.href='/pages/lihat-data/barang-internal.php'"
                                         >
-                                            Batalkan
+                                            Bersihkan
                                         </button>
                                     </div>
                                     <div class="col">
@@ -188,6 +188,7 @@ if (!isset($_SESSION["role"])) {
                                 id="nama-barang-${nomor}"
                                 name="nama_barang[]"
                                 placeholder=""
+                                maxlength="25"
                                 required
                             />
                         </div>
@@ -198,11 +199,12 @@ if (!isset($_SESSION["role"])) {
                                 >Jumlah Barang</label
                             >
                             <input
-                                type="number"
+                                type="text"
                                 class="form-control"
                                 id="jumlah-barang-${nomor}"
                                 name="jumlah_barang[]"
                                 placeholder=""
+                                maxlength="10"
                                 required
                             />
                         </div>
