@@ -269,16 +269,6 @@ if (!isset($_SESSION["role"])) {
                                                     <div class="row gap-2 mt-3">
                                                         <button
                                                             type="button"
-                                                            class="col btn btn-primary"
-                                                            title="Reset"
-                                                        >
-                                                            <span
-                                                                class="material-symbols-rounded fs-3"
-                                                                >history</span
-                                                            >
-                                                        </button>
-                                                        <button
-                                                            type="button"
                                                             class="col btn btn-success"
                                                             title="Edit"
                                                         >
