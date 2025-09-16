@@ -171,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $namaPerusahaan = htmlspecialchars($_POST["nama_perusahaan"]);
         $noKendaraan = htmlspecialchars($_POST["no_kendaraan"]);
         $tanggal = htmlspecialchars($_POST["tanggal"]);
-        $nomorTelepon = htmlspecialchars($_POST["nomor_telepon"]);
+        $nomorTelepon = (int) ($_POST["nomor_telepon"]);
         $keperluan = htmlspecialchars($_POST["keperluan"]);
         $safetyInduction = $_POST["safety_induction"] ?? false;
 

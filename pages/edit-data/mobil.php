@@ -88,7 +88,7 @@ if (!isset($_SESSION["role"])) {
                                 <h5>Kilometer</h5>
                                 <div class="row align-items-end">
                                     <div class="col">
-                                        <label for="-awal" class="form-label"
+                                        <label for="awal" class="form-label"
                                             >Awal</label
                                         >
                                         <input
@@ -98,6 +98,7 @@ if (!isset($_SESSION["role"])) {
                                             name="km_awal"
                                             placeholder=""
                                             required
+                                            max="9999"
                                         />
                                     </div>
                                     <div class="col">
@@ -111,6 +112,7 @@ if (!isset($_SESSION["role"])) {
                                             name="km_akhir"
                                             placeholder=""
                                             required
+                                            max="9999"
                                         />
                                     </div>
                                 </div>
@@ -185,6 +187,16 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/navigation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
+            // limit number
+            ["awal", "akhir"].forEach(function (id) {
+                document
+                    .getElementById(id)
+                    .addEventListener("input", function () {
+                        if (this.value && this.value.length > 4) {
+                            this.value = this.value.slice(0, 4);
+                        }
+                    });
+            });
             // muatDataMobil(10);
             let counter = 1;
 

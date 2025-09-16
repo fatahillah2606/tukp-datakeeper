@@ -121,12 +121,12 @@ if (!isset($_SESSION["role"])) {
                                         >Nomor Telepon</label
                                     >
                                     <input
-                                        type="text"
+                                        type="number"
                                         class="form-control"
                                         id="nomor-telepon"
                                         name="nomor_telepon"
                                         placeholder=""
-                                        maxlength="13"
+                                        max="9999999999999"
                                         required
                                     />
                                 </div>
@@ -202,6 +202,14 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/navigation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
+            // limit number
+            document
+                .getElementById("nomor-telepon")
+                .addEventListener("input", function () {
+                    if (this.value.length > 13) {
+                        this.value = this.value.slice(0, 13);
+                    }
+                });
             // muatDataPengunjung();
             let counter = 1;
 

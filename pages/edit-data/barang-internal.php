@@ -80,11 +80,12 @@ if (!isset($_SESSION["role"])) {
                                                 >Jumlah Barang</label
                                             >
                                             <input
-                                                type="number"
+                                                type="text"
                                                 class="form-control"
                                                 id="jumlah-barang"
                                                 name="jumlah_barang[]"
                                                 placeholder=""
+                                                maxlength="4"
                                                 required
                                             />
                                         </div>

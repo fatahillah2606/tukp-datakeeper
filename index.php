@@ -63,6 +63,7 @@ if (isset($_SESSION["role"])) {
                             id="userid"
                             placeholder="123456"
                             name="id_user"
+                            max="9999"
                             required
                         />
                     </div>
@@ -113,5 +114,14 @@ if (isset($_SESSION["role"])) {
         <!-- Script Js -->
         <script src="assets/scripts/login.js"></script>
         <script src="assets/bootstrap-5.3.5-dist/js/bootstrap.bundle.min.js"></script>
+        // limit id user
+        <script>
+            const idUser = document.getElementById("id_user");
+            idUser.addEventListener("input", function () {
+                if (this.value.length > 4) {
+                    this.value = this.value.slice(0, 4);
+                }
+            });
+        </script>
     </body>
 </html>

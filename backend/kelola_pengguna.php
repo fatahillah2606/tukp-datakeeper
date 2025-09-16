@@ -28,22 +28,21 @@ if ($_SERVER["REQUEST_METHOD"] === "GET") {
 }
 // Request POST
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-// Tambah Pengguna
+// Tambah Pengguna security
     if (isset($_POST["kirim_data_pengguna"])) {
 
-        $role  = htmlspecialchars($_POST["role"]);
         $idUser  = htmlspecialchars($_POST["id_user"]);
         $namaUser   = htmlspecialchars($_POST["nama_user"]);
+        $role  = htmlspecialchars($_POST["role"]);
         $password  = password_hash($_POST["password"], PASSWORD_BCRYPT);
 
         try {
-            $sql = "INSERT INTO pengguna (`role`,  `id_user`, `nama_user`, `password`) VALUES (:id_user, :nama_user, :role, :password)";
+            $sql = "INSERT INTO pengguna (`id_pengguna`, `id_user`, `nama_user`, `role`, `password`) VALUES (null, :id_user, :nama_user, :role, :password)";
             $stmt = $pdo->prepare($sql);
             $dataDikirim = [
-
-                "role"  => $role,
-                "id_user"        => $idUser,
+                "id_user" => $idUser,
                 "nama_user"  => $namaUser,
+                "role"  => $role,
                 "password"  => $password,
             ];
             $stmt->execute($dataDikirim);
@@ -53,7 +52,50 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 }
-// Untuk hapus
+// Tambah Pengguna admin
+    if (isset($_POST["kirim_data_pengguna_admin"])) {
+
+        $emailUser  = htmlspecialchars($_POST["email_user"]);
+        $namaUser   = htmlspecialchars($_POST["nama_user"]);
+        $role  = htmlspecialchars($_POST["role"]);
+        $password  = password_hash($_POST["password"], PASSWORD_BCRYPT);
+
+        try {
+            $sql = "INSERT INTO pengguna (`id_pengguna`, `email_user`, `nama_user`, `role`, `password`) VALUES (null, :email_user, :nama_user, :role, :password)";
+            $stmt = $pdo->prepare($sql);
+            $dataDikirim = [
+                "email_user" => $emailUser,
+                "nama_user"  => $namaUser,
+                "role"  => $role,
+                "password"  => $password,
+            ];
+            $stmt->execute($dataDikirim);
+            echo json_encode(generateAPI("success", 200, "Data Berhasil Disimpan", []), JSON_PRETTY_PRINT);
+        } catch (\Throwable $th) {
+            echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
+        }
+    }
+    // Tambah Pengguna Tamu
+    if (isset($_POST["kirim_data_pengguna_tamu"])) {
+
+
+        $role  = htmlspecialchars($_POST["role"]);
+        $tokenLogin  = password_hash($_POST["token_login"], PASSWORD_BCRYPT);
+
+        try {
+            $sql = "INSERT INTO pengguna (`id_pengguna`, `role`, `token_login`) VALUES (null, :role, :token_login)";
+            $stmt = $pdo->prepare($sql);
+            $dataDikirim = [
+                "role"  => $role,
+                "token_login"  => $tokenLogin,
+            ];
+            $stmt->execute($dataDikirim);
+            echo json_encode(generateAPI("success", 200, "Data Berhasil Disimpan", []), JSON_PRETTY_PRINT);
+        } catch (\Throwable $th) {
+            echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
+        }
+    }
+// Untuk hapus 
 if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
     // Ambil data yang dikirim client
     $jsonData = file_get_contents('php://input');

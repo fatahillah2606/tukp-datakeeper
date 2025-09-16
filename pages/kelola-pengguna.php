@@ -45,33 +45,32 @@ if (!isset($_SESSION["role"])) {
                                     <label for="role" class="form-label"
                                         >Tipe Pengguna</label
                                     >
+
+                                    <!-- Opsi Pilih Role -->
                                     <select
-                                        class="form-select"
-                                        aria-label="Default select example"
-                                        id="role"
+                                        class="form-select mb-3"
+                                        aria-label="Jenis Pengguna"
                                         name="role"
-                                        required
+                                        id="role"
                                     >
-                                        <option selected>
-                                            Pilih jenis pengguna
-                                        </option>
                                         <option value="Admin">Admin</option>
-                                        <option value="Security">
+                                        <option value="Security" selected>
                                             Security
                                         </option>
+                                        <option value="Tamu">Tamu</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="userid" class="form-label"
+                                    <label for="id_user" class="form-label"
                                         >Id Pengguna</label
                                     >
                                     <input
                                         type="number"
                                         class="form-control"
-                                        id="userid"
+                                        id="id_user"
                                         name="id_user"
                                         placeholder=""
-                                        maxlength="4"
+                                        maxlength="9999"
                                         required
                                     />
                                 </div>
@@ -90,13 +89,13 @@ if (!isset($_SESSION["role"])) {
                                     />
                                 </div>
                                 <div class="mb-3">
-                                    <label for="userpassword" class="form-label"
+                                    <label for="password" class="form-label"
                                         >Sandi Pengguna</label
                                     >
                                     <input
                                         type="password"
                                         class="form-control"
-                                        id="userpassword"
+                                        id="password"
                                         name="password"
                                         placeholder=""
                                         maxlength="60"
@@ -152,6 +151,40 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/navigation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
+            // limit number
+            document
+                .getElementById("id_user")
+                .addEventListener("input", function () {
+                    if (this.value.length > 4) {
+                        this.value = this.value.slice(0, 4);
+                    }
+                });
+            // Cek opsi role
+            let peran = document.getElementById("role");
+            peran.addEventListener("change", () => {
+                if (peran.value === "Admin") {
+                    location.href = "kelola-pengguna-admin.php";
+                } else if (peran.value === "Security") {
+                    location.href = "kelola-pengguna.php";
+                } else {
+                    location.href = "kelola-pengguna-tamu.php";
+                }
+            });
+
+            //Tombol Tampilkan Sandi
+            let showpw = document.getElementById("showpw");
+            let password = document.getElementById("password");
+
+            if (showpw) {
+                showpw.addEventListener("change", () => {
+                    if (showpw.checked) {
+                        password.setAttribute("type", "text");
+                    } else {
+                        password.setAttribute("type", "password");
+                    }
+                });
+            }
+
             // muatDataPengguna(10);
             let counter = 1;
 
@@ -186,7 +219,7 @@ if (!isset($_SESSION["role"])) {
                         body: dataForm,
                     })
                         .then(async (respon) => {
-                            const data = await respon.text();
+                            const data = await respon.json();
                             console.log(data);
                             if (!respon.ok) {
                                 throw new Error(

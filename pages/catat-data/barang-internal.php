@@ -85,6 +85,7 @@ if (!isset($_SESSION["role"])) {
                                                 id="jumlah-barang"
                                                 name="jumlah_barang[]"
                                                 placeholder=""
+                                                max="9999"
                                                 required
                                             />
                                         </div>
@@ -165,6 +166,14 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/navigation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
+            // limit number
+            document
+                .getElementById("jumlah-barang")
+                .addEventListener("input", function () {
+                    if (this.value.length > 4) {
+                        this.value = this.value.slice(0, 4);
+                    }
+                });
             // muatDataBarangInternal(10);
             let counter = 1;
 
