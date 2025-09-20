@@ -297,18 +297,14 @@ if (!isset($_SESSION["role"])) {
                 const dataForm = new FormData(elmForm);
                 dataForm.append("kirim_data_barang_eksternal", true);
 
-                // for (const [name, value] of dataForm) {
-                //     console.log(`${name}: ${value}`);
-                // }
                 const kolomIsian = document.querySelectorAll(
                     "input[required], select[required]"
                 );
-                console.log(kolomIsian);
 
                 let valid = true;
 
                 kolomIsian.forEach((element) => {
-                    if (element.value == "") {
+                    if (element.value === "") {
                         valid = false;
                     }
                 });
@@ -330,6 +326,7 @@ if (!isset($_SESSION["role"])) {
                         })
                         .then((data) => {
                             alert(data.message);
+                            window.location.href = "/index.php"; // pindah ke login
                         })
                         .catch((error) => {
                             console.error(error);

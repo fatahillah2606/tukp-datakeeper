@@ -303,7 +303,7 @@ if (!isset($_SESSION["role"])) {
                         })
                         .then((data) => {
                             alert(data.message);
-                            muatDataPengguna();
+                            window.location.href = "/pages/kelola-pengguna-tamu.php"; // pindah ke halaman kelola-pengguna
                         })
                         .catch((error) => {
                             console.error(error);

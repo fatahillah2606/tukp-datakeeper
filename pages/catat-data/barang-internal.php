@@ -284,6 +284,7 @@ if (!isset($_SESSION["role"])) {
                         })
                         .then((data) => {
                             alert(data.message);
+                            window.location.href = "/index.php"; // pindah ke login
                         })
                         .catch((error) => {
                             console.error(error);

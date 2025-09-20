@@ -151,7 +151,7 @@ if (!isset($_SESSION["role"])) {
                         })
                         .then((data) => {
                             alert(data.message);
-                            muatDataPengumuman();
+                            window.location.href = "/pages/pengumuman.php"; // pindah ke halaman kelola-pengguna
                         })
                         .catch((error) => {
                             console.error(error);

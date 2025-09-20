@@ -14,6 +14,7 @@
     </div>
     <!-- button -->
     <div class="d-flex gap-3 align-items-center">
+        <?php if ($_SESSION["role"] == "Admin") { ?>
         <button
             type="button"
             class="btn btn-light"
@@ -24,6 +25,7 @@
                 >notifications</span
             >
         </button>
+        <?php } ?>
         <button
             type="button"
             class="btn btn-light"
