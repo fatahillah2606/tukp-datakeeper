@@ -55,26 +55,26 @@ if (!isset($_SESSION["role"])) {
                         <div class="tabel-head">
                             <h3>Data Barang Internal</h3>
 
-                            <!-- search bar -->
+                                                        <!-- search bar -->
                             <form class="row g-3">
                                 <div class="col-auto">
                                     <label
-                                        for="search-bar"
+                                        for="search-bar-internal"
                                         class="visually-hidden"
                                         >Cari</label
                                     >
                                     <input
-                                        type="text"
+                                        type="search"
                                         class="form-control"
-                                        id="search-bar"
+                                        id="search-bar-internal"
                                         placeholder="Cari..."
                                     />
                                 </div>
                                 <div class="col-auto">
                                     <button
                                         type="submit"
-                                        class="btn mb-3"
-                                        id="search"
+                                        class="btn btn-success mb-3"
+                                        id="search-internal"
                                     >
                                         <span class="material-symbols-rounded">
                                             search
@@ -88,7 +88,7 @@ if (!isset($_SESSION["role"])) {
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">No</th>
                                     <th scope="col">Nama Pembawa</th>
                                     <th scope="col">Nama dan Jumlah Barang</th>
                                     <th scope="col">Tanggal</th>
@@ -96,28 +96,12 @@ if (!isset($_SESSION["role"])) {
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
-                            <tbody class="table-group-divider" id="isi-tabel">
+                            <tbody
+                                class="table-group-divider"
+                                id="isi-tabel-internal"
+                            >
                                 <tr>
-                                    <td cols>Driver_51</td>
-                                    <td><li>Minyak, 500</li></td>
-                                    <td>2025-03-12</td>
-                                    <td>Barang diterima dalam kondisi baik</td>
-                                    <td class="action-btn">
-                                        <button class="btn btn-success">
-                                            <span
-                                                class="material-symbols-rounded"
-                                            >
-                                                edit
-                                            </span>
-                                        </button>
-                                        <button class="btn btn-danger">
-                                            <span
-                                                class="material-symbols-rounded"
-                                            >
-                                                delete
-                                            </span>
-                                        </button>
-                                    </td>
+                                    <td colspan="6">Memuat Data</td>
                                 </tr>
                             </tbody>
                         </table>

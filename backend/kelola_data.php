@@ -171,7 +171,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $namaPerusahaan = htmlspecialchars($_POST["nama_perusahaan"]);
         $noKendaraan = htmlspecialchars($_POST["no_kendaraan"]);
         $tanggal = htmlspecialchars($_POST["tanggal"]);
-        $nomorTelepon = (int) ($_POST["nomor_telepon"]);
+        $nomorTelepon = htmlspecialchars ($_POST["nomor_telepon"]);
         $keperluan = htmlspecialchars($_POST["keperluan"]);
         $safetyInduction = $_POST["safety_induction"] ?? false;
 
@@ -194,6 +194,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             echo json_encode(generateAPI("error", 500, "Terjadi kesalahan", strval($th)), JSON_PRETTY_PRINT);
         }
     }
+
     // Catat mobil
     if (isset($_POST["kirim_data_mobil"])) {
 
@@ -316,7 +317,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
 }
 
-// Untuk hapus
+// Untuk hapus barang internal
 if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
     // Ambil data yang dikirim client
     $jsonData = file_get_contents('php://input');
@@ -365,5 +366,100 @@ if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
         }
     }   
 }
+
+        // pengunjung
+        if (isset($jsonData["hapus_pengunjung"])) {
+    try {
+        $sql = "DELETE FROM data_pengunjung WHERE `id_pengunjung` = :idData";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            "idData" => $jsonData["id_pengunjung"],
+        ]);
+
+        echo json_encode(
+            generateAPI("success", 200, "Data Pengunjung Berhasil Dihapus", []),
+            JSON_PRETTY_PRINT
+        );
+    } catch (\Throwable $th) {
+        echo json_encode(
+            generateAPI("error", 500, "Terjadi kesalahan", strval($th)),
+            JSON_PRETTY_PRINT
+        );
+    }
+}
+
+        // Edit data mobil
+            if (isset($_POST['update_mobil'])) {
+                $id = $_POST['id_mobil'];
+                $nama_driver = $_POST['nama_driver'];
+                $merek = $_POST['merek_kendaraan'];
+                $no_kendaraan = $_POST['no_kendaraan'];
+                $tanggal = $_POST['tanggal'];
+                $km_awal = $_POST['km_awal'];
+                $km_akhir = $_POST['km_akhir'];
+                $tujuan = $_POST['tujuan'];
+                $keperluan = $_POST['keperluan'];
+
+                $sql = "UPDATE data_mobil 
+                        SET nama_driver=:nama_driver, merek_kendaraan=:merek, no_kendaraan=:no_kendaraan,
+                            tanggal=:tanggal, km_awal=:km_awal, km_akhir=:km_akhir, tujuan=:tujuan, keperluan=:keperluan
+                        WHERE id_mobil=:id";
+
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([
+                    'nama_driver' => $nama_driver,
+                    'merek' => $merek,
+                    'no_kendaraan' => $no_kendaraan,
+                    'tanggal' => $tanggal,
+                    'km_awal' => $km_awal,
+                    'km_akhir' => $km_akhir,
+                    'tujuan' => $tujuan,
+                    'keperluan' => $keperluan,
+                    'id' => $id
+                ]);
+
+                header("Location: /pages/lihat-data/mobil.php?status=updated");
+                exit;
+            }
+
+            // edit data pengunjung
+            if (isset($_POST['update_pengunjung'])) {
+    $id = $_POST['id_pengunjung'];
+    $nama_pengunjung = json_encode($_POST['nama_pengunjung'], JSON_UNESCAPED_UNICODE); // array → JSON
+    $nama_perusahaan = $_POST['nama_perusahaan'];
+    $no_kendaraan = $_POST['no_kendaraan'];
+    $tanggal = $_POST['tanggal'];
+    $no_telpon = $_POST['no_telpon']; // sesuaikan dengan name di form
+    $keperluan = $_POST['keperluan'];
+    $safety_induction = $_POST['safety_induction'];
+
+    $sql = "UPDATE data_pengunjung 
+            SET nama_pengunjung = :nama_pengunjung,
+                nama_perusahaan = :nama_perusahaan,
+                no_kendaraan = :no_kendaraan,
+                tanggal = :tanggal,
+                no_telpon = :no_telpon,
+                keperluan = :keperluan,
+                safety_induction = :safety_induction
+            WHERE id_pengunjung = :id";
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        'nama_pengunjung' => $nama_pengunjung,
+        'nama_perusahaan' => $nama_perusahaan,
+        'no_kendaraan'    => $no_kendaraan,
+        'tanggal'         => $tanggal,
+        'no_telpon'       => $no_telpon,
+        'keperluan'       => $keperluan,
+        'safety_induction'=> $safety_induction,
+        'id'              => $id
+    ]);
+
+    // Redirect balik ke halaman lihat data pengunjung
+    header("Location: /pages/lihat-data/pengunjung.php?status=updated");
+    exit;
+}
+
+
 ?>
 

@@ -16,7 +16,7 @@ if (!isset($_SESSION["role"])) {
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Edit Barang Internal - TUKP Data Keeper</title>
+        <title>Catat Barang Internal - TUKP Data Keeper</title>
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -81,12 +81,12 @@ if (!isset($_SESSION["role"])) {
                                                 >Jumlah Barang</label
                                             >
                                             <input
-                                                type="text"
+                                                type="number"
                                                 class="form-control"
                                                 id="jumlah-barang"
                                                 name="jumlah_barang[]"
                                                 placeholder=""
-                                                maxlength="10"
+                                                max="9999"
                                                 required
                                             />
                                         </div>
@@ -167,6 +167,17 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/navigation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
+            const userRole = "<?php echo $_SESSION['role']; ?>";
+        </script>
+        <script>
+             // limit number
+            document
+                .getElementById("jumlah-barang")
+                .addEventListener("input", function () {
+                    if (this.value.length > 4) {
+                        this.value = this.value.slice(0, 4);
+                    }
+                });
             // muatDataBarangInternal(10);
             let counter = 1;
 
@@ -199,12 +210,12 @@ if (!isset($_SESSION["role"])) {
                                 >Jumlah Barang</label
                             >
                             <input
-                                type="text"
+                                type="number"
                                 class="form-control"
                                 id="jumlah-barang-${nomor}"
                                 name="jumlah_barang[]"
                                 placeholder=""
-                                maxlength="10"
+                                max="9999"
                                 required
                             />
                         </div>
@@ -284,6 +295,11 @@ if (!isset($_SESSION["role"])) {
                         })
                         .then((data) => {
                             alert(data.message);
+                            if (userRole === "Tamu") {
+                                window.location.href = "/logout.php"; // kalau tamu langsung logout
+                            } else {
+                                window.location.href = "/index.php"; // selain tamu ke index
+                            }
                         })
                         .catch((error) => {
                             console.error(error);

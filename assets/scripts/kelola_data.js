@@ -175,8 +175,10 @@ function hapusBarangInternal(idData) {
 }
 
 // Muat data barang eksternal
+// 🔹 Variabel global
 let semuaBarangEksternal = [];
 
+// 🔹 Fungsi muat data barang eksternal
 function muatDataBarangEksternal(limit) {
     let url = limit
         ? "/backend/kelola_data.php?data_eksternal&limit=" + limit
@@ -193,6 +195,7 @@ function muatDataBarangEksternal(limit) {
         .catch((err) => console.error(err));
 }
 
+// 🔹 Fungsi render tabel barang eksternal
 function renderBarangEksternal(list) {
     let isiTabel = document.getElementById("isi-tabel-eksternal");
     let konten = "";
@@ -217,12 +220,29 @@ function renderBarangEksternal(list) {
                 <td>${laporan.jam_kedatangan}</td>
                 <td>${laporan.no_kendaraan}</td>
                 <td>${laporan.keterangan}</td>
+                <td class="action-btn">
+                    <!-- Tombol Edit -->
+                    <button class="btn btn-success" 
+                        onclick="window.location.href='/pages/edit-data/barang-eksternal.php?id_barang_eksternal=${
+                            laporan.id_barang_eksternal
+                        }'">
+                        <span class="material-symbols-rounded">edit</span>
+                    </button>
+
+                    <!-- Tombol Hapus -->
+                    <button class="btn btn-danger" 
+                        onclick="hapusBarangEksternal(${
+                            laporan.id_barang_eksternal
+                        })">
+                        <span class="material-symbols-rounded">delete</span>
+                    </button>
+                </td>
             </tr>
         `;
     });
 
     isiTabel.innerHTML =
-        konten || `<tr><td colspan="9">Data tidak ditemukan</td></tr>`;
+        konten || `<tr><td colspan="10">Data tidak ditemukan</td></tr>`;
 }
 
 // 🔎 Search khusus eksternal
@@ -493,14 +513,14 @@ function renderPengunjung(list) {
                 <td>${laporan.keperluan}</td>
                 <td>${laporan.safety_induction}</td>
                 <td class="action-btn">
-                    <button class="btn btn-success" onclick="window.location.href='/pages/edit-data/pengunjung.php?id_pengunjung=${
-                        laporan.id_pengunjung
-                    }'">
+                    <button class="btn btn-success" 
+                        onclick="window.location.href='/pages/edit-data/pengunjung.php?id_pengunjung=${
+                            laporan.id_pengunjung
+                        }'">
                         <span class="material-symbols-rounded">edit</span>
                     </button>
-                    <button class="btn btn-danger" onclick="hapusPengunjung(${
-                        laporan.id_pengunjung
-                    })">
+                    <button class="btn btn-danger" 
+                        onclick="hapusPengunjung(${laporan.id_pengunjung})">
                         <span class="material-symbols-rounded">delete</span>
                     </button>
                 </td>
@@ -588,7 +608,7 @@ function hapusPengunjung(idData) {
             })
             .then((data) => {
                 alert(data.message);
-                muatDataPengunjung();
+                muatDataPengunjung(); // refresh tabel setelah hapus
             })
             .catch((error) => {
                 console.error(error);

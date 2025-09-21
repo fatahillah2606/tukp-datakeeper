@@ -298,7 +298,7 @@ if (!isset($_SESSION["role"])) {
                             if (userRole === "Tamu") {
                                 window.location.href = "/logout.php"; // kalau tamu langsung logout
                             } else {
-                                window.location.href = "/index.php"; // selain tamu ke index
+                                window.location.href = "/pages/lihat-data/barang-internal.php"; // selain tamu ke index
                             }
                         })
                         .catch((error) => {

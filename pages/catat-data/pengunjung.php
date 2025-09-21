@@ -121,12 +121,13 @@ if (!isset($_SESSION["role"])) {
                                         >Nomor Telepon</label
                                     >
                                     <input
-                                        type="number"
+                                        type="tel"
                                         class="form-control"
                                         id="nomor-telepon"
                                         name="nomor_telepon"
-                                        placeholder=""
-                                        max="9999999999999"
+                                        maxlength="13"
+                                        pattern="[0-9]{1,13}"
+                                        title="Nomor telepon hanya angka maksimal 13 digit"
                                         required
                                     />
                                 </div>
@@ -205,14 +206,6 @@ if (!isset($_SESSION["role"])) {
             const userRole = "<?php echo $_SESSION['role']; ?>";
         </script>
         <script>
-            // limit number
-            document
-                .getElementById("nomor-telepon")
-                .addEventListener("input", function () {
-                    if (this.value.length > 13) {
-                        this.value = this.value.slice(0, 13);
-                    }
-                });
             // muatDataPengunjung();
             let counter = 1;
 
@@ -321,7 +314,8 @@ if (!isset($_SESSION["role"])) {
                             if (userRole === "Tamu") {
                                 window.location.href = "/logout.php"; // kalau tamu langsung logout
                             } else {
-                                window.location.href = "/index.php"; // selain tamu ke index
+                                window.location.href =
+                                    "/pages/lihat-data/pengunjung.php"; // selain tamu ke index
                             }
                         })
                         .catch((error) => {
@@ -331,6 +325,17 @@ if (!isset($_SESSION["role"])) {
                     alert("Semua Kolom Wajib Diisi");
                 }
             }
+            // Batasi input nomor telepon maksimal 13 digit angka
+            document
+                .getElementById("nomor-telepon")
+                .addEventListener("input", function () {
+                    // hapus semua karakter non-angka
+                    this.value = this.value.replace(/[^0-9]/g, "");
+                    // potong jika lebih dari 13 digit
+                    if (this.value.length > 13) {
+                        this.value = this.value.slice(0, 13);
+                    }
+                });
         </script>
     </body>
 </html>

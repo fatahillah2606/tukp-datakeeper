@@ -1,260 +1,97 @@
 <?php
-// reuire $_SERVER['DOCUMENT_ROOT'] . ''
-
-// cek sesi 
 session_start();
 if (!isset($_SESSION["role"])) {
-
-    // Pindah user ke halaman login
     header("Location: /");
     exit();
 }
-?>
 
+include $_SERVER['DOCUMENT_ROOT'] . "/connection/db_tukp.php"; // koneksi DB
+
+// Ambil data lama berdasarkan ID
+if (isset($_GET['id_mobil'])) {
+    $id = $_GET['id_mobil'];
+    $stmt = $pdo->prepare("SELECT * FROM data_mobil WHERE id_mobil = :id");
+    $stmt->execute(['id' => $id]);
+    $data = $stmt->fetch(PDO::FETCH_ASSOC);
+}
+?>
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Edit Mobil - TUKP Data Keeper</title>
-        <link
-            rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
-        />
-        <link
-            rel="stylesheet"
-            href="/assets/bootstrap-5.3.5-dist/css/bootstrap.min.css"
-        />
-        <!-- local css -->
-        <link rel="stylesheet" href="/assets/style/style.css" />
-    </head>
-    <body>
-        <div class="layout">
-            <!-- Sidebar -->
-            <?php include $_SERVER['DOCUMENT_ROOT'] . "/components/sidebar.php"; ?>
-            <div class="main">
-                <!-- Bagian Navbar -->
-                <?php include $_SERVER['DOCUMENT_ROOT'] . "/components/navbar.php"; ?>
-                <main class="content p-4">
-                    <!-- Formulir -->
-                    <div class="card overflow-hidden" id="formulir">
-                        <h5 class="card-header">Catat Mobil</h5>
+<html lang="id">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edit Mobil - TUKP Data Keeper</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="/assets/bootstrap-5.3.5-dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/assets/style/style.css" />
+</head>
+<body>
+<div class="layout">
+    <?php include $_SERVER['DOCUMENT_ROOT'] . "/components/sidebar.php"; ?>
+    <div class="main">
+        <?php include $_SERVER['DOCUMENT_ROOT'] . "/components/navbar.php"; ?>
+        <main class="content p-4">
+            <!-- Form rapi di tengah horizontal, bisa scroll kalau panjang -->
+            <div class="container min-vh-100 d-flex justify-content-center">
+                <div class="col-md-5">
+                    <div class="card shadow-sm w-100 mb-5">
+                        <h5 class="card-header text-center">Edit Data Mobil</h5>
                         <div class="card-body">
-                            <form action="" method="post" id="form-pencatatan">
+                            <form action="/backend/kelola_data.php" method="post">
+                                <input type="hidden" name="id_mobil" value="<?= $data['id_mobil'] ?>">
+
                                 <div class="mb-3">
-                                    <label for="nama-driver" class="form-label"
-                                        >Nama Driver</label
-                                    >
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="nama-driver"
-                                        name="nama_driver"
-                                        placeholder=""
-                                        maxlength="25"
-                                        required
-                                    />
-                                </div>
-                                <div class="col">
-                                    <label
-                                        for="merek-kendaraan-"
-                                        class="form-label"
-                                        >Merek Kendaraan</label
-                                    >
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="merek-kendaraan"
-                                        name="merek_kendaraan"
-                                        placeholder=""
-                                        maxlength="25"
-                                        required
-                                    />
-                                </div>
-                                <div class="col">
-                                    <label for="no-kendaraan" class="form-label"
-                                        >Nomor Kendaraan</label
-                                    >
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="no-kendaraan"
-                                        name="no_kendaraan"
-                                        placeholder=""
-                                        maxlength="11"
-                                        required
-                                    />
-                                </div>
-                                <h5>Kilometer</h5>
-                                <div class="row align-items-end">
-                                    <div class="col">
-                                        <label for="awal" class="form-label"
-                                            >Awal</label
-                                        >
-                                        <input
-                                            type="number"
-                                            class="form-control"
-                                            id="awal"
-                                            name="km_awal"
-                                            placeholder=""
-                                            required
-                                            max="9999"
-                                        />
-                                    </div>
-                                    <div class="col">
-                                        <label for="akhir" class="form-label"
-                                            >Akhir</label
-                                        >
-                                        <input
-                                            type="number"
-                                            class="form-control"
-                                            id="akhir"
-                                            name="km_akhir"
-                                            placeholder=""
-                                            required
-                                            max="9999"
-                                        />
-                                    </div>
+                                    <label class="form-label">Nama Driver</label>
+                                    <input type="text" class="form-control" name="nama_driver" value="<?= $data['nama_driver'] ?>" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="tanggal" class="form-label"
-                                        >Tanggal</label
-                                    >
-                                    <input
-                                        type="date"
-                                        class="form-control"
-                                        id="tanggal"
-                                        name="tanggal"
-                                        placeholder=""
-                                        required
-                                    />
+                                    <label class="form-label">Merek Kendaraan</label>
+                                    <input type="text" class="form-control" name="merek_kendaraan" value="<?= $data['merek_kendaraan'] ?>" required>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="tujuan" class="form-label"
-                                        >Tujuan</label
-                                    >
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="tujuan"
-                                        name="tujuan"
-                                        placeholder=""
-                                        maxlength="25"
-                                        required
-                                    />
-                                </div>
-                                <div class="mb-3">
-                                    <label for="keperluan" class="form-label"
-                                        >Keperluan</label
-                                    >
-                                    <input
-                                        type="text"
-                                        class="form-control"
-                                        id="keperluan"
-                                        name="keperluan"
-                                        placeholder=""
-                                        maxlength="50"
-                                        required
-                                    />
+                                    <label class="form-label">Nomor Kendaraan</label>
+                                    <input type="text" class="form-control" name="no_kendaraan" value="<?= $data['no_kendaraan'] ?>" required>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <button
-                                            type="reset"
-                                            class="btn btn-outline-success my-3 w-100"
-                                        >
-                                            Bersihkan
-                                        </button>
+                                        <label class="form-label">KM Awal</label>
+                                        <input type="number" class="form-control" name="km_awal" value="<?= $data['km_awal'] ?>" required>
                                     </div>
                                     <div class="col">
-                                        <button
-                                            type="button"
-                                            class="btn btn-success my-3 w-100"
-                                            onclick="simpan(event)"
-                                        >
-                                            Simpan
-                                        </button>
+                                        <label class="form-label">KM Akhir</label>
+                                        <input type="number" class="form-control" name="km_akhir" value="<?= $data['km_akhir'] ?>" required>
+                                    </div>
+                                </div>
+                                <div class="mb-3 mt-3">
+                                    <label class="form-label">Tanggal</label>
+                                    <input type="date" class="form-control" name="tanggal" value="<?= $data['tanggal'] ?>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Tujuan</label>
+                                    <input type="text" class="form-control" name="tujuan" value="<?= $data['tujuan'] ?>" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label">Keperluan</label>
+                                    <input type="text" class="form-control" name="keperluan" value="<?= $data['keperluan'] ?>" required>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <!-- Tombol Batalkan -->
+                                        <a href="/pages/lihat-data/mobil.php" class="btn btn-outline-danger w-100">Batalkan</a>
+                                    </div>
+                                    <div class="col">
+                                        <!-- Tombol Update -->
+                                        <button type="submit" name="update_mobil" class="btn btn-success w-100">Update</button>
                                     </div>
                                 </div>
                             </form>
                         </div>
                     </div>
-                </main>
+                </div>
             </div>
-        </div>
-        <script src="/assets/scripts/kelola_data.js"></script>
-        <script src="/assets/scripts/navigation.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script>
-            // limit number
-            document
-                .getElementById("awal")
-                .addEventListener("input", function () {
-                    if (this.value.length > 4) {
-                        this.value = this.value.slice(0, 4);
-                    }
-                });
-            // limit number
-            document
-                .getElementById("akhir")
-                .addEventListener("input", function () {
-                    if (this.value.length > 4) {
-                        this.value = this.value.slice(0, 4);
-                    }
-                });
-            // muatDataMobil(10);
-            let counter = 1;
-
-            // Simpan data ke database
-            function simpan(event) {
-                event.preventDefault();
-
-                const elmForm = document.getElementById("form-pencatatan");
-                const dataForm = new FormData(elmForm);
-                dataForm.append("kirim_data_mobil", true);
-
-                //  for (const [name, value] of dataForm) {
-                //     console.log(`${name}: ${value}`);
-                //  }
-
-                const kolomIsian = document.querySelectorAll(
-                    "input[required], select[required]"
-                );
-                console.log(kolomIsian);
-
-                let valid = true;
-
-                kolomIsian.forEach((element) => {
-                    if (element.value == "") {
-                        valid = false;
-                    }
-                });
-
-                if (valid) {
-                    fetch("/backend/kelola_data.php", {
-                        method: "POST",
-                        body: dataForm,
-                    })
-                        .then(async (respon) => {
-                            const data = await respon.json();
-                            console.log(data);
-                            if (!respon.ok) {
-                                throw new Error(
-                                    data.message || "Terjadi kesalahan"
-                                );
-                            }
-                            return data;
-                        })
-                        .then((data) => {
-                            alert(data.message);
-                        })
-                        .catch((error) => {
-                            console.error(error);
-                        });
-                } else {
-                    alert("Semua Kolom Wajib Diisi");
-                }
-            }
-        </script>
-    </body>
+        </main>
+    </div>
+</div>
+</body>
 </html>

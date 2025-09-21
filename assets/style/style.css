@@ -180,4 +180,106 @@ a {
     #menu-btn-mobile {
         display: block;
     }
+    /* Container for menu buttons */
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Row spacing on mobile */
+    .row {
+        margin-left: -0.75rem;
+        margin-right: -0.75rem;
+    }
+
+    .row > * {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    /* Mobile-specific spacing for menu cards */
+    @media screen and (max-width: 640px) {
+        .container {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+
+        .row {
+            margin-left: -0.5rem;
+            margin-right: -0.5rem;
+            row-gap: 1rem; /* Add vertical spacing between rows */
+        }
+
+        .row > * {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            margin-bottom: 1rem; /* Extra bottom margin for each column */
+        }
+
+        /* Menu card styling for mobile */
+        .row .col a {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .row .col a > div {
+            padding: 1.5rem 1rem; /* Increase padding inside buttons */
+            margin-bottom: 0.5rem; /* Space between button cards */
+            min-height: 80px; /* Ensure minimum touch target size */
+        }
+
+        .menu-title {
+            font-size: 0.95rem; /* Slightly smaller text on mobile */
+            line-height: 1.4; /* Better line spacing */
+        }
+
+        /* Ensure proper spacing for welcome text */
+        .display-4,
+        .h2 {
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .display-4 {
+            font-size: 1.75rem; /* Smaller welcome text on mobile */
+            margin-bottom: 0.5rem;
+        }
+
+        .h2 {
+            font-size: 1.25rem; /* Smaller subtitle on mobile */
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    /* Tablet spacing adjustments */
+    @media screen and (min-width: 641px) and (max-width: 768px) {
+        .row {
+            row-gap: 1.25rem;
+        }
+
+        .row > * {
+            margin-bottom: 1.25rem;
+        }
+
+        .row .col a > div {
+            padding: 1.75rem 1.25rem;
+            min-height: 100px;
+        }
+    }
+
+    /* Large tablet and desktop - maintain original spacing */
+    @media screen and (min-width: 769px) {
+        .row {
+            row-gap: 1.5rem;
+        }
+
+        .row > * {
+            margin-bottom: 1.5rem;
+        }
+
+        .row .col a > div {
+            padding: 2rem 1.5rem;
+            min-height: 120px;
+        }
+    }
 }
