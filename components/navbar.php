@@ -65,9 +65,9 @@
                 </div>
 
                 <div class="modal-body text-center">
-                    <!-- Welcome -->
-                    <h5 class="fw-semibold">Tidak Ada Notifikasi</h5>
-                    <!-- Action buttons -->
+                    <div class="modal-body text-center" id="notif-container">
+                        <!-- notifikasi akan dimuat lewat JS -->
+                    </div>
                     <div class="d-flex justify-content-center gap-2 mt-3"></div>
                 </div>
             </div>
@@ -155,5 +155,62 @@
             margin: 0;
         }
     </style>
+    <script>
+        function muatNotifikasi() {
+            fetch("/backend/lupa_sandi.php", { method: "GET" })
+                .then((res) => res.json())
+                .then((data) => {
+                    if (data.code === 200) {
+                        let konten = "";
+                        data.data.forEach((item) => {
+                            konten += `
+                                <div class="alert alert-success" role="alert">
+                                    <h6 class="fw-semibold">
+                                        ${item.cari_pengguna} meminta reset sandi
+                                    </h6>
+                                    <div class="d-flex justify-content-center gap-2 mt-2">
+                                        <button type="button" class="btn btn-success d-flex align-items-center justify-content-center btn-icon" title="Edit" onclick="window.location.href='/pages/kelola-pengguna.php'">
+                                            <span class="material-symbols-rounded fs-3">edit</span>
+                                        </button>
+                                        <button type="button" class="btn btn-danger d-flex align-items-center justify-content-center btn-icon"
+                                                onclick="hapusResetSandi(${item.id_reset_sandi})">
+                                            <span class="material-symbols-rounded fs-3">delete</span>
+                                        </button>
+                                    </div>
+                                </div>
+                    `;
+                        });
+                        document.getElementById("notif-container").innerHTML =
+                            konten;
+                    } else {
+                        document.getElementById(
+                            "notif-container"
+                        ).innerHTML = `<p class="text-muted">Tidak ada permintaan reset sandi</p>`;
+                    }
+                })
+                .catch((err) => console.error(err));
+        }
+
+        // Panggil otomatis saat halaman dimuat
+        muatNotifikasi();
+
+        function hapusResetSandi(id) {
+            if (confirm("Hapus permintaan ini?")) {
+                fetch("/backend/lupa_sandi.php", {
+                    method: "DELETE",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        hapus_reset_sandi: true,
+                        id_reset_sandi: id,
+                    }),
+                })
+                    .then((res) => res.json())
+                    .then((data) => {
+                        alert(data.message);
+                        muatNotifikasi(); // reload daftar
+                    });
+            }
+        }
+    </script>
 </nav>
 <?php } ?>

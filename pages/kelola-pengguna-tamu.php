@@ -62,6 +62,20 @@ if (!isset($_SESSION["role"])) {
                                     </select>
                                 </div>
                                 <div class="mb-3">
+                                    <label for="nama_user" class="form-label"
+                                        >Nama Pengguna</label
+                                    >
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="nama_user"
+                                        name="nama_user"
+                                        placeholder=""
+                                        maxlength="25"
+                                        required
+                                    />
+                                </div>
+                                <div class="mb-3">
                                     <label for="token_login" class="form-label"
                                         >Token</label
                                     >
@@ -303,7 +317,8 @@ if (!isset($_SESSION["role"])) {
                         })
                         .then((data) => {
                             alert(data.message);
-                            window.location.href = "/pages/kelola-pengguna-tamu.php"; // pindah ke halaman kelola-pengguna
+                            window.location.href =
+                                "/pages/kelola-pengguna-tamu.php"; // pindah ke halaman kelola-pengguna
                         })
                         .catch((error) => {
                             console.error(error);

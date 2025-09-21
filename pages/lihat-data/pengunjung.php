@@ -46,22 +46,22 @@ if (!isset($_SESSION["role"])) {
                             <form class="row g-3">
                                 <div class="col-auto">
                                     <label
-                                        for="search-bar"
+                                        for="search-bar-pengunjung"
                                         class="visually-hidden"
                                         >Cari</label
                                     >
                                     <input
                                         type="text"
                                         class="form-control"
-                                        id="search-bar"
+                                        id="search-bar-pengunjung"
                                         placeholder="Cari..."
                                     />
                                 </div>
                                 <div class="col-auto">
                                     <button
                                         type="submit"
-                                        class="btn mb-3"
-                                        id="search"
+                                        class="btn btn-success mb-3"
+                                        id="search-pengunjung"
                                     >
                                         <span class="material-symbols-rounded">
                                             search
@@ -86,7 +86,10 @@ if (!isset($_SESSION["role"])) {
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
-                            <tbody class="table-group-divider" id="isi-tabel">
+                            <tbody
+                                class="table-group-divider"
+                                id="isi-tabel-pengunjung"
+                            >
                                 <tr>
                                     <td colspan="9">Memuat Data</td>
                                 </tr>

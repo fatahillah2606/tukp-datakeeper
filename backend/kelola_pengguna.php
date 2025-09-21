@@ -80,13 +80,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 
         $role  = htmlspecialchars($_POST["role"]);
+        $namaUser   = htmlspecialchars($_POST["nama_user"]);
         $tokenLogin  = password_hash($_POST["token_login"], PASSWORD_BCRYPT);
 
         try {
-            $sql = "INSERT INTO pengguna (`id_pengguna`, `role`, `token_login`) VALUES (null, :role, :token_login)";
+            $sql = "INSERT INTO pengguna (`id_pengguna`, `role`, `nama_user`, `token_login`) VALUES (null, :role, :nama_user, :token_login)";
             $stmt = $pdo->prepare($sql);
             $dataDikirim = [
                 "role"  => $role,
+                "nama_user"  => $namaUser,
                 "token_login"  => $tokenLogin,
             ];
             $stmt->execute($dataDikirim);

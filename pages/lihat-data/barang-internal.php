@@ -45,22 +45,22 @@ if (!isset($_SESSION["role"])) {
                             <form class="row g-3">
                                 <div class="col-auto">
                                     <label
-                                        for="search-bar"
+                                        for="search-bar-internal"
                                         class="visually-hidden"
                                         >Cari</label
                                     >
                                     <input
-                                        type="text"
+                                        type="search"
                                         class="form-control"
-                                        id="search-bar"
+                                        id="search-bar-internal"
                                         placeholder="Cari..."
                                     />
                                 </div>
                                 <div class="col-auto">
                                     <button
                                         type="submit"
-                                        class="btn mb-3"
-                                        id="search"
+                                        class="btn btn-success mb-3"
+                                        id="search-internal"
                                     >
                                         <span class="material-symbols-rounded">
                                             search
@@ -82,7 +82,10 @@ if (!isset($_SESSION["role"])) {
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
-                            <tbody class="table-group-divider" id="isi-tabel">
+                            <tbody
+                                class="table-group-divider"
+                                id="isi-tabel-internal"
+                            >
                                 <tr>
                                     <td colspan="6">Memuat Data</td>
                                 </tr>

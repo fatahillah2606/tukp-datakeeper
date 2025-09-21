@@ -45,26 +45,26 @@ if (!isset($_SESSION["role"])) {
                             <form class="row g-3">
                                 <div class="col-auto">
                                     <label
-                                        for="search-bar"
+                                        for="search-bar-eksternal"
                                         class="visually-hidden"
                                         >Cari</label
                                     >
                                     <input
-                                        type="text"
+                                        type="search"
                                         class="form-control"
-                                        id="search-bar"
+                                        id="search-bar-eksternal"
                                         placeholder="Cari..."
                                     />
                                 </div>
                                 <div class="col-auto">
                                     <button
                                         type="submit"
-                                        class="btn mb-3"
-                                        id="search"
+                                        class="btn btn-success mb-3"
+                                        id="search-eksternal"
                                     >
-                                        <span class="material-symbols-rounded">
-                                            search
-                                        </span>
+                                        <span class="material-symbols-rounded"
+                                            >search</span
+                                        >
                                     </button>
                                 </div>
                             </form>
@@ -85,7 +85,10 @@ if (!isset($_SESSION["role"])) {
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
-                            <tbody class="table-group-divider" id="isi-tabel">
+                            <tbody
+                                class="table-group-divider"
+                                id="isi-tabel-eksternal"
+                            >
                                 <tr>
                                     <td colspan="9">Memuat Data</td>
                                 </tr>
@@ -99,7 +102,7 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/navigation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
-            muatDataBarangEksternal(10);
+            muatDataBarangEksternal(0);
         </script>
     </body>
 </html>

@@ -186,6 +186,9 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/navigation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
+            const userRole = "<?php echo $_SESSION['role']; ?>";
+        </script>
+        <script>
             // limit number
             document
                 .getElementById("awal")
@@ -247,7 +250,11 @@ if (!isset($_SESSION["role"])) {
                         })
                         .then((data) => {
                             alert(data.message);
-                            window.location.href = "/index.php"; // pindah ke login
+                            if (userRole === "Tamu") {
+                                window.location.href = "/logout.php"; // kalau tamu langsung logout
+                            } else {
+                                window.location.href = "/index.php"; // selain tamu ke index
+                            }
                         })
                         .catch((error) => {
                             console.error(error);

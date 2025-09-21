@@ -28,82 +28,118 @@ function formatTanggal(tanggalString) {
 }
 
 // Muat data barang internal
+// 🔹 Variabel global
+let semuaBarangInternal = [];
+
+// 🔹 Fungsi muat data barang internal
 function muatDataBarangInternal(limit) {
-    let url;
-    let isiTabel = document.getElementById("isi-tabel");
-    let konten = "";
+    let url = limit
+        ? "/backend/kelola_data.php?data_internal&limit=" + limit
+        : "/backend/kelola_data.php?data_internal";
 
-    // Jika diminta limit
-    if (limit) {
-        url = "/backend/kelola_data.php?data_internal&limit=" + limit;
-    } else {
-        url = "/backend/kelola_data.php?data_internal";
-    }
-
-    // Fetch API
-    fetch(url, {
-        method: "GET",
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Gagal terhubung ke server");
-            }
-            return response.json();
-        })
+    fetch(url)
+        .then((res) => res.json())
         .then((data) => {
             if (data.code === 200) {
-                laporan = data.data;
-                nomor = 1;
-                data.data.forEach((laporan) => {
-                    let dataBarang = "";
-                    let isiDataBarang = JSON.parse(laporan.nama_jumlah_barang);
-
-                    isiDataBarang.forEach((barang) => {
-                        dataBarang += `
-                        <li>${barang.nama_barang}, ${barang.jumlah_barang} </li>
-                        `;
-                    });
-
-                    konten += `
-                        <tr>
-                            <th scope="row">${nomor}</th>
-                            <td>${laporan.nama_pembawa}</td>
-                            <td>${dataBarang}</td>
-                            <td>${formatTanggal(laporan.tanggal)}</td>
-                            <td>${laporan.keterangan}</td>
-                            <td class="action-btn">
-                                <button class="btn btn-success" <button class="btn btn-success"    onclick="window.location.href='/pages/edit-data/barang-internal.php'">
-                                    <span
-                                        class="material-symbols-rounded"
-                                    >
-                                        edit
-                                    </span>
-                                </button>
-                                <button class="btn btn-danger" onclick="hapusBarangInternal(${
-                                    laporan.id_barang_internal
-                                })">
-                                    <span
-                                        class="material-symbols-rounded"
-                                    >
-                                        delete
-                                    </span>
-                                </button>
-                                <a href="/pages/print/print-barang-internal.php?id_barang=${
-                                    laporan.id_barang_internal
-                                }" target="_blank" class="btn btn-primary">
-                                   <span class="material-symbols-rounded">print</span>
-                                </a>
-                            </td>
-                        </tr>
-                    `;
-                    nomor++;
-                });
-                isiTabel.innerHTML = konten;
+                semuaBarangInternal = data.data; // simpan global
+                renderBarangInternal(semuaBarangInternal); // tampilkan default
             }
         })
-        .catch((error) => {
-            console.error(error);
+        .catch((err) => console.error(err));
+}
+
+// 🔹 Fungsi render tabel barang internal
+function renderBarangInternal(list) {
+    let isiTabel = document.getElementById("isi-tabel-internal");
+    let konten = "";
+
+    list.forEach((laporan, nomor) => {
+        let dataBarang = "";
+        try {
+            JSON.parse(laporan.nama_jumlah_barang).forEach((b) => {
+                dataBarang += `<li>${b.nama_barang}, ${b.jumlah_barang}</li>`;
+            });
+        } catch (e) {
+            console.error("Gagal parse barang:", e);
+        }
+
+        konten += `
+            <tr>
+                <td>${nomor + 1}</td>
+                <td>${laporan.nama_pembawa}</td>
+                <td>${dataBarang}</td>
+                <td>${formatTanggal(laporan.tanggal)}</td>
+                <td>${laporan.keterangan}</td>
+                <td class="action-btn">
+                    <button class="btn btn-success" onclick="window.location.href='/pages/edit-data/barang-internal.php?id_barang_internal=${
+                        laporan.id_barang_internal
+                    }'">
+                        <span class="material-symbols-rounded">edit</span>
+                    </button>
+                    <button class="btn btn-danger" onclick="hapusBarangInternal(${
+                        laporan.id_barang_internal
+                    })">
+                        <span class="material-symbols-rounded">delete</span>
+                    </button>
+                    <a href="/pages/print/print-barang-internal.php?id_barang=${
+                        laporan.id_barang_internal
+                    }" target="_blank" class="btn btn-primary">
+                        <span class="material-symbols-rounded">print</span>
+                    </a>
+                </td>
+            </tr>
+        `;
+    });
+
+    isiTabel.innerHTML =
+        konten || `<tr><td colspan="6">Data tidak ditemukan</td></tr>`;
+}
+
+// 🔎 Search khusus internal
+let searchInternal = document.getElementById("search-internal");
+if (searchInternal) {
+    searchInternal.addEventListener("click", function (e) {
+        e.preventDefault();
+        const keyword = document
+            .getElementById("search-bar-internal")
+            .value.toLowerCase();
+
+        const hasil = semuaBarangInternal.filter((item) => {
+            // cek field utama + tanggal
+            const cocokFieldUtama =
+                String(item.nama_pembawa || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.keterangan || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.tanggal || "")
+                    .toLowerCase()
+                    .includes(keyword) || // format DB (YYYY-MM-DD)
+                formatTanggal(item.tanggal).toLowerCase().includes(keyword); // format Indonesia
+
+            // cek di barang JSON
+            let cocokBarang = false;
+            try {
+                const barangList = JSON.parse(item.nama_jumlah_barang);
+                cocokBarang = barangList.some(
+                    (b) =>
+                        String(b.nama_barang || "")
+                            .toLowerCase()
+                            .includes(keyword) ||
+                        String(b.jumlah_barang || "")
+                            .toLowerCase()
+                            .includes(keyword)
+                );
+            } catch (e) {
+                console.error("Parse error:", e);
+            }
+
+            return cocokFieldUtama || cocokBarang;
         });
+
+        renderBarangInternal(hasil);
+    });
 }
 
 // Hapus barang Internal
@@ -139,82 +175,111 @@ function hapusBarangInternal(idData) {
 }
 
 // Muat data barang eksternal
+let semuaBarangEksternal = [];
+
 function muatDataBarangEksternal(limit) {
-    let url;
-    let isiTabel = document.getElementById("isi-tabel");
-    let konten = "";
+    let url = limit
+        ? "/backend/kelola_data.php?data_eksternal&limit=" + limit
+        : "/backend/kelola_data.php?data_eksternal";
 
-    // Jika diminta limit
-    if (limit) {
-        url = "/backend/kelola_data.php?data_eksternal&limit=" + limit;
-    } else {
-        url = "/backend/kelola_data.php?data_eksternal";
-    }
-
-    // Fetch API
-    fetch(url, {
-        method: "GET",
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Gagal terhubung ke server");
-            }
-            return response.json();
-        })
+    fetch(url)
+        .then((res) => res.json())
         .then((data) => {
             if (data.code === 200) {
-                laporan = data.data;
-                nomor = 1;
-                data.data.forEach((laporan) => {
-                    let dataBarang = "";
-                    let isiDataBarang = JSON.parse(laporan.nama_jumlah_barang);
-
-                    isiDataBarang.forEach((barang) => {
-                        dataBarang += `
-                        <li>${barang.nama_barang}, ${barang.jumlah_barang} </li>
-                        `;
-                    });
-
-                    konten += `
-                        <tr>
-                            <th scope="row">${nomor}</th>
-                            <td>${laporan.nama_driver}</td>
-                            <td>${laporan.nama_suplier}</td>
-                            <td>${dataBarang}</td>
-                            <td>${formatTanggal(laporan.tanggal)}</td>
-                            <td>${laporan.jam_kedatangan}</td>
-                            <td>${laporan.no_kendaraan}</td>
-                            <td>${laporan.keterangan}</td>
-                            <td class="action-btn">
-                                <button class="btn btn-success"    onclick="window.location.href='/pages/edit-data/barang-eksternal.php'">
-                                    <span
-                                        class="material-symbols-rounded"
-                                    >
-                                        edit
-                                    </span>
-                                </button>
-                                <button class="btn btn-danger" onclick="hapusBarangEksternal(${
-                                    laporan.id_barang_eksternal
-                                })">
-                                    <span
-                                        class="material-symbols-rounded"
-                                    >
-                                        delete
-                                    </span>
-                                </button>
-                            </td>
-                        </tr>
-                    `;
-                    nomor++;
-                });
-                isiTabel.innerHTML = konten;
+                semuaBarangEksternal = data.data; // simpan global
+                renderBarangEksternal(semuaBarangEksternal); // tampilkan default
             }
         })
-        .catch((error) => {
-            console.error(error);
-        });
+        .catch((err) => console.error(err));
 }
 
+function renderBarangEksternal(list) {
+    let isiTabel = document.getElementById("isi-tabel-eksternal");
+    let konten = "";
+
+    list.forEach((laporan, nomor) => {
+        let dataBarang = "";
+        try {
+            JSON.parse(laporan.nama_jumlah_barang).forEach((b) => {
+                dataBarang += `<li>${b.nama_barang}, ${b.jumlah_barang}</li>`;
+            });
+        } catch (e) {
+            console.error("Gagal parse barang:", e);
+        }
+
+        konten += `
+            <tr>
+                <td>${nomor + 1}</td>
+                <td>${laporan.nama_driver}</td>
+                <td>${laporan.nama_suplier}</td>
+                <td>${dataBarang}</td>
+                <td>${formatTanggal(laporan.tanggal)}</td>
+                <td>${laporan.jam_kedatangan}</td>
+                <td>${laporan.no_kendaraan}</td>
+                <td>${laporan.keterangan}</td>
+            </tr>
+        `;
+    });
+
+    isiTabel.innerHTML =
+        konten || `<tr><td colspan="9">Data tidak ditemukan</td></tr>`;
+}
+
+// 🔎 Search khusus eksternal
+let searchExternal = document.getElementById("search-eksternal");
+if (searchExternal) {
+    searchExternal.addEventListener("click", function (e) {
+        e.preventDefault();
+        const keyword = document
+            .getElementById("search-bar-eksternal")
+            .value.toLowerCase();
+
+        const hasil = semuaBarangEksternal.filter((item) => {
+            // cek field utama + tanggal
+            const cocokFieldUtama =
+                String(item.nama_driver || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.nama_suplier || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.no_kendaraan || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.keterangan || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.jam_kedatangan || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.tanggal || "")
+                    .toLowerCase()
+                    .includes(keyword) || // format DB (YYYY-MM-DD)
+                formatTanggal(item.tanggal).toLowerCase().includes(keyword); // format Indonesia
+
+            // cek di barang JSON
+            let cocokBarang = false;
+            try {
+                const barangList = JSON.parse(item.nama_jumlah_barang);
+                cocokBarang = barangList.some(
+                    (b) =>
+                        String(b.nama_barang || "")
+                            .toLowerCase()
+                            .includes(keyword) ||
+                        String(b.jumlah_barang || "")
+                            .toLowerCase()
+                            .includes(keyword)
+                );
+            } catch (e) {
+                console.error("Parse error:", e);
+            }
+
+            return cocokFieldUtama || cocokBarang;
+        });
+
+        renderBarangEksternal(hasil);
+    });
+}
 // Hapus barang eksternal
 function hapusBarangEksternal(idData) {
     const dataBarangEksternal = {
@@ -248,73 +313,106 @@ function hapusBarangEksternal(idData) {
 }
 
 // Muat data mobil
+// 🔹 Variabel global
+let semuaMobil = [];
+
+// 🔹 Fungsi muat data mobil
 function muatDataMobil(limit) {
-    let url;
-    let isiTabel = document.getElementById("isi-tabel");
-    let konten = "";
+    let url = limit
+        ? "/backend/kelola_data.php?data_mobil&limit=" + limit
+        : "/backend/kelola_data.php?data_mobil";
 
-    // Jika diminta limit
-    if (limit) {
-        url = "/backend/kelola_data.php?data_mobil&limit=" + limit;
-    } else {
-        url = "/backend/kelola_data.php?data_mobil";
-    }
-
-    // Fetch API
-    fetch(url, {
-        method: "GET",
-    })
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error("Gagal terhubung ke server");
-            }
-            return response.json();
-        })
+    fetch(url)
+        .then((res) => res.json())
         .then((data) => {
             if (data.code === 200) {
-                laporan = data.data;
-                nomor = 1;
-                data.data.forEach((laporan) => {
-                    konten += `
-                        <tr>
-                            <th scope="row">${nomor}</th>
-                            <td>${laporan.nama_driver}</td>
-                            <td>${laporan.merek_kendaraan}</td>
-                            <td>${laporan.no_kendaraan}</td>
-                            <td>${formatTanggal(laporan.tanggal)}</td>
-                            <td>${laporan.km_awal}</td>
-                            <td>${laporan.km_akhir}</td>
-                            <td>${laporan.tujuan}</td>
-                            <td>${laporan.keperluan}</td>
-                            <td class="action-btn">
-                                <button class="btn btn-success"    onclick="window.location.href='/pages/edit-data/mobil.php'">
-                                    <span
-                                        class="material-symbols-rounded"
-                                    >
-                                        edit
-                                    </span>
-                                </button>
-                                <button class="btn btn-danger" onclick="hapusMobil(${
-                                    laporan.id_mobil
-                                })">
-                                <span
-                                        class="material-symbols-rounded"
-                                    >
-                                        delete
-                                    </span>
-                                </button>
-                            </td>
-                        </tr>
-                    `;
-                    nomor++;
-                });
-                isiTabel.innerHTML = konten;
+                semuaMobil = data.data; // simpan global
+                renderMobil(semuaMobil); // tampilkan default
             }
         })
-        .catch((error) => {
-            console.error(error);
-        });
+        .catch((err) => console.error(err));
 }
+
+// 🔹 Fungsi render tabel mobil
+function renderMobil(list) {
+    let isiTabel = document.getElementById("isi-tabel-mobil");
+    let konten = "";
+
+    list.forEach((laporan, nomor) => {
+        konten += `
+            <tr>
+                <td>${nomor + 1}</td>
+                <td>${laporan.nama_driver}</td>
+                <td>${laporan.merek_kendaraan}</td>
+                <td>${laporan.no_kendaraan}</td>
+                <td>${formatTanggal(laporan.tanggal)}</td>
+                <td>${laporan.km_awal}</td>
+                <td>${laporan.km_akhir}</td>
+                <td>${laporan.tujuan}</td>
+                <td>${laporan.keperluan}</td>
+                <td class="action-btn">
+                    <button class="btn btn-success" onclick="window.location.href='/pages/edit-data/mobil.php?id_mobil=${
+                        laporan.id_mobil
+                    }'">
+                        <span class="material-symbols-rounded">edit</span>
+                    </button>
+                    <button class="btn btn-danger" onclick="hapusMobil(${
+                        laporan.id_mobil
+                    })">
+                        <span class="material-symbols-rounded">delete</span>
+                    </button>
+                </td>
+            </tr>
+        `;
+    });
+
+    isiTabel.innerHTML =
+        konten || `<tr><td colspan="10">Data tidak ditemukan</td></tr>`;
+}
+
+// 🔎 Search khusus mobil
+let searchMobil = document.getElementById("search-mobil");
+if (searchMobil) {
+    searchMobil.addEventListener("click", function (e) {
+        e.preventDefault();
+        const keyword = document
+            .getElementById("search-bar-mobil")
+            .value.toLowerCase();
+
+        const hasil = semuaMobil.filter((item) => {
+            return (
+                String(item.nama_driver || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.merek_kendaraan || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.no_kendaraan || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.tujuan || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.keperluan || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.km_awal || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.km_akhir || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.tanggal || "")
+                    .toLowerCase()
+                    .includes(keyword) || // format DB
+                formatTanggal(item.tanggal).toLowerCase().includes(keyword) // format Indonesia
+            );
+        });
+
+        renderMobil(hasil);
+    });
+}
+
 // Hapus mobil
 function hapusMobil(idData) {
     const dataMobil = {
@@ -348,85 +446,124 @@ function hapusMobil(idData) {
 }
 
 // Muat data pengunjung
+// 🔹 Variabel global
+let semuaPengunjung = [];
+
+// 🔹 Fungsi muat data pengunjung
 function muatDataPengunjung(limit) {
-    let url;
-    let isiTabel = document.getElementById("isi-tabel");
-    let konten = "";
+    let url = limit
+        ? "/backend/kelola_data.php?data_pengunjung&limit=" + limit
+        : "/backend/kelola_data.php?data_pengunjung";
 
-    // Jika diminta limit
-    if (limit) {
-        url = "/backend/kelola_data.php?data_pengunjung&limit=" + limit;
-    } else {
-        url = "/backend/kelola_data.php?data_pengunjung";
-    }
-
-    // Fetch API
-    fetch(url, {
-        method: "GET",
-    })
-        .then(async (response) => {
-            const data = await response.json();
-            console.log(data);
-            if (!response.ok) {
-                throw new Error("Gagal terhubung ke server");
-            }
-            return data;
-        })
+    fetch(url)
+        .then((res) => res.json())
         .then((data) => {
             if (data.code === 200) {
-                laporan = data.data;
-                nomor = 1;
-                data.data.forEach((laporan) => {
-                    let dataPengunjung = "";
-                    let isiDataPengunjung = JSON.parse(laporan.nama_pengunjung);
-                    console.log(isiDataPengunjung);
-                    isiDataPengunjung.forEach((pengunjung) => {
-                        dataPengunjung += `
-                        <li>${pengunjung}</li>
-                        `;
-                    });
-
-                    konten += `
-                        <tr>
-                            <th scope="row">${nomor}</th>
-                            <td>${dataPengunjung}</td>
-                            <td>${laporan.nama_perusahaan}</td>
-                            <td>${laporan.no_kendaraan}</td>
-                            <td>${formatTanggal(laporan.tanggal)}</td>
-                            <td>${laporan.no_telpon}</td>
-                            <td>${laporan.keperluan}</td>
-                            <td>${laporan.safety_induction}</td>
-                            <td class="action-btn">
-                                <button class="btn btn-success" onclick="window.location.href='/pages/edit-data/pengunjung.php?id_pengunjung=${
-                                    laporan.id_pengunjung
-                                }'">
-                                    <span
-                                        class="material-symbols-rounded"
-                                    >
-                                        edit
-                                    </span>
-                                </button>
-                                <button class="btn btn-danger" onclick="hapusPengunjung(${
-                                    laporan.id_pengunjung
-                                })">
-                                    <span
-                                        class="material-symbols-rounded"
-                                    >
-                                        delete
-                                    </span>
-                                </button>
-                            </td>
-                        </tr>
-                    `;
-                    nomor++;
-                });
-                isiTabel.innerHTML = konten;
+                semuaPengunjung = data.data; // simpan global
+                renderPengunjung(semuaPengunjung); // tampilkan default
             }
         })
-        .catch((error) => {
-            console.error(error);
-        });
+        .catch((err) => console.error(err));
 }
+
+// 🔹 Fungsi render tabel pengunjung
+function renderPengunjung(list) {
+    let isiTabel = document.getElementById("isi-tabel-pengunjung");
+    let konten = "";
+
+    list.forEach((laporan, nomor) => {
+        let dataPengunjung = "";
+        try {
+            // Asumsi nama_pengunjung tersimpan sebagai JSON array string
+            JSON.parse(laporan.nama_pengunjung).forEach((p) => {
+                dataPengunjung += `<li>${p}</li>`;
+            });
+        } catch (e) {
+            console.error("Gagal parse pengunjung:", e);
+        }
+
+        konten += `
+            <tr>
+                <td>${nomor + 1}</td>
+                <td>${dataPengunjung}</td>
+                <td>${laporan.nama_perusahaan}</td>
+                <td>${laporan.no_kendaraan}</td>
+                <td>${formatTanggal(laporan.tanggal)}</td>
+                <td>${laporan.no_telpon}</td>
+                <td>${laporan.keperluan}</td>
+                <td>${laporan.safety_induction}</td>
+                <td class="action-btn">
+                    <button class="btn btn-success" onclick="window.location.href='/pages/edit-data/pengunjung.php?id_pengunjung=${
+                        laporan.id_pengunjung
+                    }'">
+                        <span class="material-symbols-rounded">edit</span>
+                    </button>
+                    <button class="btn btn-danger" onclick="hapusPengunjung(${
+                        laporan.id_pengunjung
+                    })">
+                        <span class="material-symbols-rounded">delete</span>
+                    </button>
+                </td>
+            </tr>
+        `;
+    });
+
+    isiTabel.innerHTML =
+        konten || `<tr><td colspan="9">Data tidak ditemukan</td></tr>`;
+}
+
+// 🔎 Search khusus pengunjung
+let searchPengunjung = document.getElementById("search-pengunjung");
+if (searchPengunjung) {
+    searchPengunjung.addEventListener("click", function (e) {
+        e.preventDefault();
+        const keyword = document
+            .getElementById("search-bar-pengunjung")
+            .value.toLowerCase();
+
+        const hasil = semuaPengunjung.filter((item) => {
+            // cek field utama + tanggal
+            const cocokFieldUtama =
+                String(item.nama_perusahaan || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.no_kendaraan || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.no_telpon || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.keperluan || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.safety_induction || "")
+                    .toLowerCase()
+                    .includes(keyword) ||
+                String(item.tanggal || "")
+                    .toLowerCase()
+                    .includes(keyword) || // format DB
+                formatTanggal(item.tanggal).toLowerCase().includes(keyword); // format Indonesia
+
+            // cek di array nama_pengunjung
+            let cocokPengunjung = false;
+            try {
+                const pengunjungList = JSON.parse(item.nama_pengunjung);
+                cocokPengunjung = pengunjungList.some((p) =>
+                    String(p || "")
+                        .toLowerCase()
+                        .includes(keyword)
+                );
+            } catch (e) {
+                console.error("Parse error:", e);
+            }
+
+            return cocokFieldUtama || cocokPengunjung;
+        });
+
+        renderPengunjung(hasil);
+    });
+}
+
 // Hapus Pengunjung
 function hapusPengunjung(idData) {
     const dataPengunjung = {
