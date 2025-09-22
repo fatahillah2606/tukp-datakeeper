@@ -69,4 +69,36 @@ if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
         }
     } 
 }
+// Update data pengumuman
+if (isset($_POST['update_pengumuman'])) {
+    $id    = $_POST['id_pengumuman'] ?? null;
+    $judul = trim($_POST['judul_pengumuman'] ?? '');
+    $isi   = trim($_POST['isi_pengumuman'] ?? '');
+
+    if (!$id || $judul === '' || $isi === '') {
+        echo "Data tidak lengkap!";
+        exit;
+    }
+
+    try {
+        $sql = "UPDATE pengumuman 
+                   SET judul_pengumuman = :judul, 
+                       isi_pengumuman   = :isi
+                 WHERE id_pengumuman   = :id";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            'judul' => $judul,
+            'isi'   => $isi,
+            'id'    => $id
+        ]);
+
+        // Redirect balik setelah update berhasil
+        header("Location: /pages/pengumuman.php?status=updated");
+        exit;
+    } catch (PDOException $e) {
+        echo "Terjadi kesalahan: " . $e->getMessage();
+    }
+}
+
+
 ?>

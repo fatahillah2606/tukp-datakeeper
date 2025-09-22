@@ -42,7 +42,7 @@ $nama_pengunjung = json_decode($data['nama_pengunjung'], true) ?? [];
         <main class="content p-4">
             <div class="container min-vh-100 d-flex justify-content-center">
                 <div class="col-md-6">
-                    <div class="card shadow-sm w-100 mb-5">
+                    <div class="card shadow-sm w-100 mb-5" id="formulir">
                         <h5 class="card-header text-center">Edit Data Pengunjung</h5>
                         <div class="card-body">
                             <form action="/backend/kelola_data.php" method="post">

@@ -37,8 +37,8 @@ if (!isset($_SESSION["role"])) {
                 <?php include $_SERVER['DOCUMENT_ROOT'] . "/components/navbar.php"; ?>
                 <main class="content p-4">
                     <!-- Formulir -->
-                    <div class="card overflow-hidden" id="formulir">
-                        <h5 class="card-header">Catat Pengunjung</h5>
+                    <div class="card shadow-sm w-100 mb-5" id="formulir">
+                        <h5 class="card-header text-center">Catat Pengunjung</h5>
                         <div class="card-body">
                             <form action="" method="post" id="form-pencatatan">
                                 <div id="form-container">

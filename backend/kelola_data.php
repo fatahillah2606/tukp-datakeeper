@@ -424,42 +424,128 @@ if ($_SERVER["REQUEST_METHOD"] === "DELETE") {
 
             // edit data pengunjung
             if (isset($_POST['update_pengunjung'])) {
-    $id = $_POST['id_pengunjung'];
-    $nama_pengunjung = json_encode($_POST['nama_pengunjung'], JSON_UNESCAPED_UNICODE); // array → JSON
-    $nama_perusahaan = $_POST['nama_perusahaan'];
-    $no_kendaraan = $_POST['no_kendaraan'];
-    $tanggal = $_POST['tanggal'];
-    $no_telpon = $_POST['no_telpon']; // sesuaikan dengan name di form
-    $keperluan = $_POST['keperluan'];
-    $safety_induction = $_POST['safety_induction'];
+                $id = $_POST['id_pengunjung'];
+                $nama_pengunjung = json_encode($_POST['nama_pengunjung'], JSON_UNESCAPED_UNICODE); // array → JSON
+                $nama_perusahaan = $_POST['nama_perusahaan'];
+                $no_kendaraan = $_POST['no_kendaraan'];
+                $tanggal = $_POST['tanggal'];
+                $no_telpon = $_POST['no_telpon']; // sesuaikan dengan name di form
+                $keperluan = $_POST['keperluan'];
+                $safety_induction = $_POST['safety_induction'];
 
-    $sql = "UPDATE data_pengunjung 
-            SET nama_pengunjung = :nama_pengunjung,
-                nama_perusahaan = :nama_perusahaan,
-                no_kendaraan = :no_kendaraan,
-                tanggal = :tanggal,
-                no_telpon = :no_telpon,
-                keperluan = :keperluan,
-                safety_induction = :safety_induction
-            WHERE id_pengunjung = :id";
+                $sql = "UPDATE data_pengunjung 
+                        SET nama_pengunjung = :nama_pengunjung,
+                            nama_perusahaan = :nama_perusahaan,
+                            no_kendaraan = :no_kendaraan,
+                            tanggal = :tanggal,
+                            no_telpon = :no_telpon,
+                            keperluan = :keperluan,
+                            safety_induction = :safety_induction
+                        WHERE id_pengunjung = :id";
 
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-        'nama_pengunjung' => $nama_pengunjung,
-        'nama_perusahaan' => $nama_perusahaan,
-        'no_kendaraan'    => $no_kendaraan,
-        'tanggal'         => $tanggal,
-        'no_telpon'       => $no_telpon,
-        'keperluan'       => $keperluan,
-        'safety_induction'=> $safety_induction,
-        'id'              => $id
-    ]);
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([
+                    'nama_pengunjung' => $nama_pengunjung,
+                    'nama_perusahaan' => $nama_perusahaan,
+                    'no_kendaraan'    => $no_kendaraan,
+                    'tanggal'         => $tanggal,
+                    'no_telpon'       => $no_telpon,
+                    'keperluan'       => $keperluan,
+                    'safety_induction'=> $safety_induction,
+                    'id'              => $id
+                ]);
 
-    // Redirect balik ke halaman lihat data pengunjung
-    header("Location: /pages/lihat-data/pengunjung.php?status=updated");
-    exit;
-}
+                // Redirect balik ke halaman lihat data pengunjung
+                header("Location: /pages/lihat-data/pengunjung.php?status=updated");
+                exit;
+            }
+            // edit data barang internal
+            if (isset($_POST['update_barang_internal'])) {
+                $id = $_POST['id_barang_internal'];
+                $nama_pembawa = $_POST['nama_pembawa'];
+                $tanggal = $_POST['tanggal'];
+                $keterangan = $_POST['keterangan'];
 
+                // gabungkan nama_barang dan jumlah_barang jadi array of object
+                $barang = [];
+                if (!empty($_POST['nama_barang']) && !empty($_POST['jumlah_barang'])) {
+                    foreach ($_POST['nama_barang'] as $i => $nama) {
+                        $barang[] = [
+                            "nama_barang"   => htmlspecialchars($nama),
+                            "jumlah_barang" => htmlspecialchars($_POST['jumlah_barang'][$i])
+                        ];
+                    }
+                }
+                $json_barang = json_encode($barang, JSON_UNESCAPED_UNICODE);
+
+                $sql = "UPDATE data_barang_internal 
+                        SET nama_pembawa = :nama_pembawa,
+                            nama_jumlah_barang = :barang,
+                            tanggal = :tanggal,
+                            keterangan = :keterangan
+                        WHERE id_barang_internal = :id";
+
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([
+                    'nama_pembawa' => $nama_pembawa,
+                    'barang'       => $json_barang,
+                    'tanggal'      => $tanggal,
+                    'keterangan'   => $keterangan,
+                    'id'           => $id
+                ]);
+
+                // Redirect balik ke halaman lihat data barang internal
+                header("Location: /pages/lihat-data/barang-internal.php?status=updated");
+                exit;
+            }
+
+            // edit data barang eksternal
+            if (isset($_POST['update_barang_eksternal'])) {
+                $id = $_POST['id_barang_eksternal'];
+                $nama_driver = $_POST['nama_driver'];
+                $nama_suplier = $_POST['nama_suplier'];
+                $tanggal = $_POST['tanggal'];
+                $jam_kedatangan = $_POST['jam_kedatangan'];
+                $no_kendaraan = $_POST['no_kendaraan'];
+                $keterangan = $_POST['keterangan'];
+
+                // gabungkan barang
+                $barang = [];
+                if (!empty($_POST['nama_barang']) && !empty($_POST['jumlah_barang'])) {
+                    foreach ($_POST['nama_barang'] as $i => $nama) {
+                        $barang[] = [
+                            "nama_barang"   => htmlspecialchars($nama),
+                            "jumlah_barang" => htmlspecialchars($_POST['jumlah_barang'][$i])
+                        ];
+                    }
+                }
+                $json_barang = json_encode($barang, JSON_UNESCAPED_UNICODE);
+
+                $sql = "UPDATE data_barang_eksternal 
+                        SET nama_driver = :nama_driver,
+                            nama_suplier = :nama_suplier,
+                            nama_jumlah_barang = :barang,
+                            tanggal = :tanggal,
+                            jam_kedatangan = :jam_kedatangan,
+                            no_kendaraan = :no_kendaraan,
+                            keterangan = :keterangan
+                        WHERE id_barang_eksternal = :id";
+
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([
+                    'nama_driver'   => $nama_driver,
+                    'nama_suplier'  => $nama_suplier,
+                    'barang'        => $json_barang,
+                    'tanggal'       => $tanggal,
+                    'jam_kedatangan'=> $jam_kedatangan,
+                    'no_kendaraan'  => $no_kendaraan,
+                    'keterangan'    => $keterangan,
+                    'id'            => $id
+                ]);
+
+                header("Location: /pages/lihat-data/barang-eksternal.php?status=updated");
+                exit;
+            }
 
 ?>
 

@@ -78,15 +78,18 @@ if (!isset($_SESSION["role"])) {
                                     <th scope="col">Nama Driver</th>
                                     <th scope="col">Merek Kendaraan</th>
                                     <th scope="col">Nomor Kendaraan</th>
+                                    <th scope="col">Tanggal</th>
                                     <th scope="col">KM Awal</th>
                                     <th scope="col">KM Akhir</th>
-                                    <th scope="col">Tanggal</th>
                                     <th scope="col">Tujuan</th>
                                     <th scope="col">Keperluan</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
-                            <tbody class="table-group-divider" id="isi-tabel-mobil">
+                            <tbody
+                                class="table-group-divider"
+                                id="isi-tabel-mobil"
+                            >
                                 <tr>
                                     <td colspan="10">Memuat Data</td>
                                 </tr>
