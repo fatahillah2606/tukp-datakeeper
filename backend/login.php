@@ -117,57 +117,58 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
         
     }
-            // Cek apakah yang login tamu
-    if (isset($_POST["tamu"])) {
-        
-        // Ambil data dari form
-        $pengguna =  htmlspecialchars($_POST["pengguna"]);
-        $token = htmlspecialchars($_POST["token"]);
+     // Cek apakah yang login tamu
+    // Cek apakah yang login tamu
+if (isset($_POST["tamu"])) {
+    
+    // Ambil data dari form
+    $pengguna = htmlspecialchars($_POST["pengguna"]);
+    $token    = htmlspecialchars($_POST["token"]);
 
-        // Proses Validasi
-        $query_sql = "SELECT * FROM pengguna WHERE `role` = :peran";
-        $stmt = $pdo->prepare($query_sql);
-        $stmt->execute(["peran"=> "tamu"]);
-        $hasil =  $stmt->fetch();
-        
-        // Cek jika akun tersedia 
-        if (empty($hasil)) {
-             echo json_encode(generateAPI("failed", 403, "Akun Tidak Terdaftar", []));
+    // Proses Validasi -> cari berdasarkan role TAMU + nama_user
+    $query_sql = "SELECT * FROM pengguna WHERE role = :peran AND nama_user = :pengguna";
+    $stmt = $pdo->prepare($query_sql);
+    $stmt->execute([
+        "peran"    => "Tamu", 
+        "pengguna" => $pengguna
+    ]);
+    $hasil = $stmt->fetch();
+
+    // Cek jika akun tersedia 
+    if (!$hasil) {
+        echo json_encode(generateAPI("failed", 403, "Akun Tidak Terdaftar", []));
+    } else {
+
+        // Verifikasi dengan kolom token_login
+        if (password_verify($token, $hasil["token_login"])) {
+
+            // Jika Berhasil, buat sesi
+            $_SESSION["nama_user"]   = $hasil["nama_user"];
+            $_SESSION["role"]        = $hasil["role"];
+            $_SESSION["id_pengguna"] = $hasil["id_pengguna"];
+
+            // Buat Token untuk menyimpan cookies
+            $tokenBaru   = bin2hex(random_bytes(32));
+            $hashToken   = password_hash($tokenBaru, PASSWORD_BCRYPT);
+
+            // Simpan sesi ke database
+            $query_sql = "UPDATE pengguna SET token_login = :token_login WHERE id_pengguna = :id_pengguna";
+            $stmt = $pdo->prepare($query_sql);
+            $stmt->execute([
+                "token_login" => $hashToken,
+                "id_pengguna" => $hasil["id_pengguna"]
+            ]);
+
+            // Atur Cookie
+            setcookie("login", $hasil["id_pengguna"] . ":" . $tokenBaru, time() + (86400 * 30), "/");
+
+            // Berikan respon jika berhasil login
+            echo json_encode(generateAPI("success", 200, "Berhasil Login", []));
         } else {
-
-            // Verifikasi Password
-            if (password_verify($token, $hasil["password"])) {
-
-                // Jika Berhasil, buat sesi
-
-                $_SESSION["nama_user"] = $hasil["nama_user"];
-                $_SESSION["role"] = $hasil["role"];
-                $_SESSION["id_pengguna"] = $hasil["id_pengguna"];
-
-                // Buat Token untuk menyimpan cookies
-                $token = bin2hex(random_bytes(32));
-                $cacahToken = password_hash($token, PASSWORD_BCRYPT);
-
-                // Simpan sesi ke database
-                $query_sql = "UPDATE pengguna SET token_login = :token_login WHERE id_pengguna= :id_pengguna";
-                $stmt = $pdo->prepare($query_sql);
-                $stmt->execute([
-                    "token_login" => $cacahToken,
-                    "id_pengguna" => $hasil["id_pengguna"]
-                ]);
-
-                // Atur Cookie
-                setcookie("login", $hasil["id_pengguna"] . ":" . $token, time() + (86400 * 30), "/");
-
-                // Berikan respon jika berhasil login
-               echo json_encode(generateAPI("success", 200, "Berhasil Login", []));
-             } else {
-
-                // Jika Gagal, Kasih Keterangan
-                echo json_encode(generateAPI("failed", 403, "Token Salah", []));
-            }
+            // Jika Gagal, Kasih Keterangan
+            echo json_encode(generateAPI("failed", 403, "Token Salah", []));
         }
-        
     }
+}
 }
 ?>

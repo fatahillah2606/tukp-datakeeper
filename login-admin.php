@@ -99,7 +99,7 @@ if (isset($_SESSION["role"])) {
 
                     <!-- Tombol -->
                     <div class="btn-grup">
-                        <a href="#" class="btn btn-secondary"> Lupa Sandi </a>
+                        <a href="/pages/lupa-sandi.php" class="btn btn-secondary"> Lupa Sandi </a>
                         <button
                             type="submit"
                             class="btn btn-success"

@@ -102,20 +102,6 @@ if (!isset($_SESSION["role"])) {
                                         required
                                     />
                                 </div>
-                                <div class="form-check mb-3">
-                                    <input
-                                        class="form-check-input"
-                                        type="checkbox"
-                                        value=""
-                                        id="showpw"
-                                    />
-                                    <label
-                                        class="form-check-label"
-                                        for="showpw"
-                                    >
-                                        Tampilkan Sandi
-                                    </label>
-                                </div>
                                 <div class="row">
                                     <div class="col">
                                         <button
