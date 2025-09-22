@@ -94,7 +94,7 @@ if (!isset($_SESSION["role"])) {
                                         >Sandi Pengguna</label
                                     >
                                     <input
-                                        type="password"
+                                        type="text"
                                         class="form-control"
                                         id="password"
                                         name="password"
