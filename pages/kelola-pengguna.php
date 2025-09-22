@@ -263,16 +263,6 @@ if (!isset($_SESSION["role"])) {
                                                     <div class="row gap-2 mt-3">
                                                         <button
                                                             type="button"
-                                                            class="col btn btn-success"
-                                                            title="Edit"
-                                                        >
-                                                            <span
-                                                                class="material-symbols-rounded fs-3"
-                                                                >edit</span
-                                                            >
-                                                        </button>
-                                                        <button
-                                                            type="button"
                                                             class="col btn btn-danger"
                                                             title="Hapus"
                                                             onclick="hapusPengguna('${Pengguna.id_pengguna}')"
