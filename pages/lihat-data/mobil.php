@@ -8,11 +8,6 @@ if (!isset($_SESSION["role"])) {
     // Pindah user ke halaman login
     header("Location: /");
     exit();
-} else {
-    if ($_SESSION["role"]  == "Tamu") {
-        header("Location: /pages/dashboard-tamu.php");
-        exit();
-    }
 }
 ?>
 
@@ -21,7 +16,7 @@ if (!isset($_SESSION["role"])) {
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Dashboard - TUKP Data Keeper</title>
+        <title>Lihat Data Mobil - TUKP Data Keeper</title>
         <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
@@ -35,38 +30,29 @@ if (!isset($_SESSION["role"])) {
     </head>
     <body>
         <div class="layout">
-            <!-- Bagian Sidebar -->
+            <!-- Sidebar -->
             <?php include $_SERVER['DOCUMENT_ROOT'] . "/components/sidebar.php"; ?>
-            <!--  -->
             <div class="main">
                 <!-- Bagian Navbar -->
                 <?php include $_SERVER['DOCUMENT_ROOT'] . "/components/navbar.php"; ?>
                 <main class="content p-4">
-                    <h1 class="display-2 mb-5 ms-3">
-                        Selamat Datang,
-                        <?php echo $_SESSION["nama_user"]; ?>
-                    </h1>
-
-                    <!-- Pengumuman -->
-                    <div id="pengumuman-container"></div>
-
                     <!-- Tabel -->
                     <div class="tabel p-4 rounded-4">
                         <div class="tabel-head">
-                            <h3>Data Barang Internal</h3>
+                            <h3>Data Mobil</h3>
 
-                                                        <!-- search bar -->
+                            <!-- search bar -->
                             <form class="row g-3">
                                 <div class="col-auto">
                                     <label
-                                        for="search-bar-internal"
+                                        for="search-bar-mobil"
                                         class="visually-hidden"
                                         >Cari</label
                                     >
                                     <input
                                         type="search"
                                         class="form-control"
-                                        id="search-bar-internal"
+                                        id="search-bar-mobil"
                                         placeholder="Cari..."
                                     />
                                 </div>
@@ -74,7 +60,7 @@ if (!isset($_SESSION["role"])) {
                                     <button
                                         type="submit"
                                         class="btn btn-success mb-3"
-                                        id="search-internal"
+                                        id="search-mobil"
                                     >
                                         <span class="material-symbols-rounded">
                                             search
@@ -89,19 +75,23 @@ if (!isset($_SESSION["role"])) {
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Nama Pembawa</th>
-                                    <th scope="col">Nama dan Jumlah Barang</th>
+                                    <th scope="col">Nama Driver</th>
+                                    <th scope="col">Merek Kendaraan</th>
+                                    <th scope="col">Nomor Kendaraan</th>
                                     <th scope="col">Tanggal</th>
-                                    <th scope="col">Keterangan</th>
+                                    <th scope="col">KM Awal</th>
+                                    <th scope="col">KM Akhir</th>
+                                    <th scope="col">Tujuan</th>
+                                    <th scope="col">Keperluan</th>
                                     <th scope="col"></th>
                                 </tr>
                             </thead>
                             <tbody
                                 class="table-group-divider"
-                                id="isi-tabel-internal"
+                                id="isi-tabel-mobil"
                             >
                                 <tr>
-                                    <td colspan="6">Memuat Data</td>
+                                    <td colspan="10">Memuat Data</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -113,44 +103,7 @@ if (!isset($_SESSION["role"])) {
         <script src="/assets/scripts/navigation.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
-            muatDataBarangInternal(10);
-
-            // Lihat list Pengumuman //
-            const pengumumanContainer = document.getElementById(
-                "pengumuman-container"
-            );
-            function muatDataPengumuman() {
-                fetch("/backend/pengumuman.php", {
-                    method: "GET",
-                })
-                    .then((response) => {
-                        if (!response.ok) {
-                            throw new Error("Gagal terhubung ke server");
-                        }
-                        return response.json();
-                    })
-                    .then((data) => {
-                        if (data.code === 200) {
-                            ListPengumuman = data.data;
-                            konten = "";
-                            ListPengumuman.forEach((Pengumuman) => {
-                                konten += `
-                                    <div class="alert alert-success" role="alert">
-                                        <h1 class="fs-3">${Pengumuman.judul_pengumuman}</h1>
-                                            <p>
-                                                ${Pengumuman.isi_pengumuman}
-                                            </p>
-                                    </div>
-                                         `;
-                            });
-                            pengumumanContainer.innerHTML = konten;
-                        }
-                    })
-                    .catch((error) => {
-                        console.error(error);
-                    });
-            }
-            muatDataPengumuman();
+            muatDataMobil(0);
         </script>
     </body>
 </html>

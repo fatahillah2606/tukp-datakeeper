@@ -1,0 +1,285 @@
+:root {
+    /* --- Primary Color (berbasis Hijau: #328E3D) --- */
+    --md-sys-color-primary: #328e3d; /* Hijau utama Anda */
+    --md-sys-color-on-primary: #ffffff; /* Teks di atas primary (putih) */
+    --md-sys-color-primary-container: #b9f8c6; /* Kontainer primary (hijau muda) */
+    --md-sys-color-on-primary-container: #00210a; /* Teks di atas primary container (hijau gelap) */
+
+    /* --- Secondary Color (berbasis Kuning: #DCBA2B) --- */
+    --md-sys-color-secondary: #dcba2b; /* Kuning utama Anda */
+    --md-sys-color-on-secondary: #000000; /* Teks di atas secondary (hitam/gelap untuk kontras) */
+    --md-sys-color-secondary-container: #fff7b3; /* Kontainer secondary (kuning sangat muda) */
+    --md-sys-color-on-secondary-container: #221b00; /* Teks di atas secondary container (coklat gelap) */
+
+    /* --- Tertiary Color (untuk aksen, saya pilih biru/cyan sebagai pelengkap hijau & kuning) --- */
+    --md-sys-color-tertiary: #52634f; /* Contoh warna tersier (hijau kebiruan/abu-abu) */
+    --md-sys-color-on-tertiary: #ffffff;
+    --md-sys-color-tertiary-container: #d5e8ce;
+    --md-sys-color-on-tertiary-container: #101f10;
+
+    /* --- Neutral Colors (berbasis Putih) --- */
+    --md-sys-color-background: #ffffff; /* Latar belakang utama (putih) */
+    --md-sys-color-on-background: #1c1b1f; /* Teks di atas background (hampir hitam) */
+    --md-sys-color-surface: #ffffff; /* Permukaan elemen (putih) */
+    --md-sys-color-on-surface: #1c1b1f; /* Teks di atas surface */
+    --md-sys-color-surface-variant: #e8e0ec; /* Varian permukaan (abu-abu terang) */
+    --md-sys-color-on-surface-variant: #4c444f; /* Teks di atas surface variant (abu-abu gelap) */
+    --md-sys-color-outline: #7d747e; /* Garis tepi (abu-abu sedang) */
+    --md-sys-color-shadow: #000000; /* Bayangan */
+    --md-sys-color-inverse-surface: #313034; /* Permukaan invers (untuk dark mode) */
+    --md-sys-color-inverse-on-surface: #f4eff4; /* Teks di atas inverse surface */
+    --md-sys-color-inverse-primary: #7bdd8c; /* Primary invers (untuk dark mode) */
+
+    /* --- Error Colors --- */
+    --md-sys-color-error: #ba1a1a; /* Merah untuk error */
+    --md-sys-color-on-error: #ffffff;
+    --md-sys-color-error-container: #ffdad6;
+    --md-sys-color-on-error-container: #410002;
+}
+
+a {
+    text-decoration: none;
+}
+
+.layout {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    height: 100vh;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+.layout.menu-active {
+    grid-template-columns: 250px 1fr;
+}
+.layout.default {
+    grid-template-columns: 250px 1fr;
+}
+
+.sidebar {
+    background-color: var(--md-sys-color-primary-container);
+    overflow: hidden;
+    z-index: 999;
+    transition: 0.3s ease;
+}
+.sidebar #menu-btn {
+    color: var(--md-sys-color-on-primary-container);
+    border-radius: 10px;
+}
+.sidebar #menu-btn:hover {
+    background-color: var(--md-sys-color-primary) !important;
+    color: var(--md-sys-color-on-primary);
+}
+.sidebar a {
+    width: 226px;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    gap: 10px;
+    color: var(--md-sys-color-on-primary-container);
+    border-radius: 10px;
+}
+.sidebar a .material-symbols-rounded {
+    padding: 10px 8px;
+    border-radius: 10px;
+}
+.layout.menu-active .sidebar a:hover {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+}
+.layout .sidebar a:hover .material-symbols-rounded {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+}
+
+.main {
+    display: grid;
+    grid-template-rows: 60px 1fr;
+}
+
+.navbar .logo img {
+    height: 100%;
+}
+
+.content {
+    height: 100vh;
+    overflow: auto;
+}
+
+/* Tabel */
+.tabel {
+    background-color: var(--md-sys-color-primary-container);
+}
+.table > * {
+    color: var(--md-sys-color-on-primary-container);
+}
+#search {
+    background-color: var(--md-sys-color-primary);
+    color: var(--md-sys-color-on-primary);
+}
+
+.tabel table tr th,
+.tabel table tr td {
+    background-color: var(--md-sys-color-primary-container);
+}
+
+/* Formulir */
+#formulir {
+    max-width: 500px;
+    margin: auto;
+}
+
+#formulir .card-header {
+    background-color: var(--md-sys-color-primary-container);
+}
+
+/* Pengumuman */
+#list-pengumuman {
+    width: 90%;
+    max-width: 800px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+/* List pengguna */
+#list-pengguna {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+#list-pengguna .material-symbols-rounded {
+    font-size: 100px;
+    text-align: center;
+}
+#menu-btn-mobile {
+    display: none;
+}
+
+@media screen and (max-width: 640px) {
+    .layout {
+        grid-template-columns: 0px 1fr;
+    }
+    .layout.menu-active {
+        grid-template-columns: 0px 1fr;
+    }
+    .layout.default {
+        grid-template-columns: 0px 1fr;
+    }
+    .sidebar {
+        transform: translateX(-100%);
+        width: 250px;
+    }
+    .layout.menu-active .sidebar {
+        transform: translateX(0);
+    }
+    .layout.default .sidebar {
+        transform: translateX(-100%);
+    }
+    #menu-btn-mobile {
+        display: block;
+    }
+    /* Container for menu buttons */
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Row spacing on mobile */
+    .row {
+        margin-left: -0.75rem;
+        margin-right: -0.75rem;
+    }
+
+    .row > * {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+
+    /* Mobile-specific spacing for menu cards */
+    @media screen and (max-width: 640px) {
+        .container {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+        }
+
+        .row {
+            margin-left: -0.5rem;
+            margin-right: -0.5rem;
+            row-gap: 1rem; /* Add vertical spacing between rows */
+        }
+
+        .row > * {
+            padding-left: 0.5rem;
+            padding-right: 0.5rem;
+            margin-bottom: 1rem; /* Extra bottom margin for each column */
+        }
+
+        /* Menu card styling for mobile */
+        .row .col a {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .row .col a > div {
+            padding: 1.5rem 1rem; /* Increase padding inside buttons */
+            margin-bottom: 0.5rem; /* Space between button cards */
+            min-height: 80px; /* Ensure minimum touch target size */
+        }
+
+        .menu-title {
+            font-size: 0.95rem; /* Slightly smaller text on mobile */
+            line-height: 1.4; /* Better line spacing */
+        }
+
+        /* Ensure proper spacing for welcome text */
+        .display-4,
+        .h2 {
+            margin-left: 0.5rem;
+            margin-right: 0.5rem;
+        }
+
+        .display-4 {
+            font-size: 1.75rem; /* Smaller welcome text on mobile */
+            margin-bottom: 0.5rem;
+        }
+
+        .h2 {
+            font-size: 1.25rem; /* Smaller subtitle on mobile */
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    /* Tablet spacing adjustments */
+    @media screen and (min-width: 641px) and (max-width: 768px) {
+        .row {
+            row-gap: 1.25rem;
+        }
+
+        .row > * {
+            margin-bottom: 1.25rem;
+        }
+
+        .row .col a > div {
+            padding: 1.75rem 1.25rem;
+            min-height: 100px;
+        }
+    }
+
+    /* Large tablet and desktop - maintain original spacing */
+    @media screen and (min-width: 769px) {
+        .row {
+            row-gap: 1.5rem;
+        }
+
+        .row > * {
+            margin-bottom: 1.5rem;
+        }
+
+        .row .col a > div {
+            padding: 2rem 1.5rem;
+            min-height: 120px;
+        }
+    }
+}

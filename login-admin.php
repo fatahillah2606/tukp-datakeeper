@@ -4,7 +4,7 @@ session_start();
 if (isset($_SESSION["role"])) {
 
     // Pindah user ke halaman login
-    header("Location: /pages/dashboard-tamu.php");
+    header("Location: /pages/dashboard.php");
     exit();
 }
 ?>
@@ -47,23 +47,23 @@ if (isset($_SESSION["role"])) {
                         name="pengguna"
                         id="role"
                     >
-                        <option value="Admin">Admin</option>
-                        <option value="Security" selected>Security</option>
+                        <option value="Admin" selected>Admin</option>
+                        <option value="Security">Security</option>
                         <option value="Tamu">Tamu</option>
                     </select>
 
-                    <!-- Kolom Id Pengguna -->
+                    <!-- Kolom email pengguna -->
                     <div class="mb-3">
-                        <label for="userid" class="form-label"
-                            >Id Pengguna</label
+                        <label for="email_user" class="form-label"
+                            >Email Pengguna</label
                         >
                         <input
-                            type="number"
+                            type="email"
                             class="form-control"
-                            id="userid"
-                            placeholder="123456"
-                            name="id_user"
-                            max="9999"
+                            id="email_user"
+                            placeholder="nama@admin"
+                            name="email_user"
+                            maxlength="25"
                             required
                         />
                     </div>
@@ -79,6 +79,7 @@ if (isset($_SESSION["role"])) {
                             id="userpassword"
                             placeholder=""
                             name="password"
+                            maxlength="60"
                             required
                         />
                     </div>
@@ -102,7 +103,7 @@ if (isset($_SESSION["role"])) {
                         <button
                             type="submit"
                             class="btn btn-success"
-                            onclick="SecurityLogin(event)"
+                            onclick="AdminLogin(event)"
                         >
                             Submit
                         </button>
@@ -114,14 +115,5 @@ if (isset($_SESSION["role"])) {
         <!-- Script Js -->
         <script src="assets/scripts/login.js"></script>
         <script src="assets/bootstrap-5.3.5-dist/js/bootstrap.bundle.min.js"></script>
-        // limit id user
-        <script>
-            const idUser = document.getElementById("id_user");
-            idUser.addEventListener("input", function () {
-                if (this.value.length > 4) {
-                    this.value = this.value.slice(0, 4);
-                }
-            });
-        </script>
     </body>
 </html>
