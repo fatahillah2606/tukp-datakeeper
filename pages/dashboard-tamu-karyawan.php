@@ -62,25 +62,25 @@ if (!isset($_SESSION["role"])) {
                     <div class="container px-4 text-center">
                         <div class="row gx-5">
                             <div class="col">
-                                <a href="../pages/dashboard-tamu-pengunjung-umum.php">
+                                <a href="catat-data/barang-internal.php">
                                     <div
                                         class="p-3 bg-success text-white rounded"
                                     >
                                         <span
                                             class="menu-title bg-success text-white rounded"
-                                            >Pengunjung Umum</span
+                                            >Catat Barang Internal</span
                                         >
                                     </div>
                                 </a>
                             </div>
                             <div class="col">
-                                <a href="../pages/dashboard-tamu-karyawan.php">
+                                <a href="catat-data/mobil.php">
                                     <div
                                         class="p-3 bg-success text-white rounded"
                                     >
                                         <span
                                             class="menu-title bg-success text-white rounded"
-                                            >Karyawan</span
+                                            >Catat Mobil</span
                                         >
                                     </div>
                                 </a>

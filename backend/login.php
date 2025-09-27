@@ -126,11 +126,10 @@ if (isset($_POST["tamu"])) {
     $token    = htmlspecialchars($_POST["token"]);
 
     // Proses Validasi -> cari berdasarkan role TAMU + nama_user
-    $query_sql = "SELECT * FROM pengguna WHERE role = :peran AND nama_user = :pengguna";
+    $query_sql = "SELECT * FROM pengguna WHERE role = :peran";
     $stmt = $pdo->prepare($query_sql);
     $stmt->execute([
-        "peran"    => "Tamu", 
-        "pengguna" => $pengguna
+        "peran"    => "Tamu"
     ]);
     $hasil = $stmt->fetch();
 
@@ -140,7 +139,7 @@ if (isset($_POST["tamu"])) {
     } else {
 
         // Verifikasi dengan kolom token_login
-        if (password_verify($token, $hasil["token_login"])) {
+        if (password_verify($token, $hasil["password"])) {
 
             // Jika Berhasil, buat sesi
             $_SESSION["nama_user"]   = $hasil["nama_user"];
